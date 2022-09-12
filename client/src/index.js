@@ -1,1 +1,2 @@
-const practica= "prractica"
+const practica = "prractica"
+let prueba = 23;

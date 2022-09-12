@@ -22,14 +22,14 @@ could arise.
 #Applied technologies
 
 ##**Backend & Database:**
-###NodeJs
-###express
-###Sequelize
-###Postgres
-##front-end
-##React
-##Redux
-##HTML
-##css
-##**Programming language:**
-##javascript
++NodeJs
++express
++Sequelize
++Postgres
++front-end
++React
++Redux
++HTML
++css
+**Programming language:**
++javascript

@@ -1,0 +1,5 @@
+# ignore arch env
+#.env
+
+# ignore arch node modules
+node_modules/

@@ -1,4 +1,4 @@
-const {getAllProductsDogService}=require('../service/dogs/getallProductsDosService')
+const {getAllProductsDogService}=require('../service/dogs/getAllProductsDogService')
 
 const getAllDogsData=async(req,res)=>{
      const allproducts=await getAllProductsDogService()

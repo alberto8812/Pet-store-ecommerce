@@ -28,17 +28,18 @@ module.exports = (sequelize) => {
     }, 
 
     detail: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
 
     image: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
 
     rating:{
-      type: DataTypes.FLOAT,
+      type: DataTypes.STRING,
+      defaultValue:'1',
       allowNull: false, 
     }
 

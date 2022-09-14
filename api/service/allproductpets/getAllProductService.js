@@ -2,7 +2,7 @@ const axios = require('axios')
 const {db}=require('../../database/db')
 const {Product}=db.models
 
-const getAllProductService = async () => {
+const getAllProductApiService = async () => {
     const apiUrl =  (await axios.get(`https://pet-elegant.herokuapp.com/api/products`)).data
     const apiInfo = await apiUrl.data.map(e =>{
         return{
@@ -17,20 +17,33 @@ const getAllProductService = async () => {
            
         }
     })
-
+    let dbCreateProducts=[]
     for (const iterator of apiInfo) {
 
         dbCreateProducts=await Product.findOrCreate({
-        where:{name: iterator.name}
+        where:{
+            name: iterator.name,
+            price:iterator.price,
+            stock:iterator.stock,
+            detail:iterator.detail,
+            image:iterator.image,
+            rating:iterator.rating?iterator.rating:'1',
+        
+        }
         })
     }
 
-return apiInfo
+return dbCreateProducts
+}
+
+const getAllProudctsservice=async () =>{
+    return await Product.findAll()
 }
 
 
 
 
 module.exports = {
-    getAllProductService
+    getAllProductApiService,
+    getAllProudctsservice
 }

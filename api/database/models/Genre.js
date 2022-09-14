@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
     },
     
     name:{
-      type: DataTypes.String,
+      type: DataTypes.STRING,
       allowNull: false
     }
   }

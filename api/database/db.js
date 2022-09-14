@@ -1,7 +1,7 @@
 require('dotenv').config()
 const {Sequelize,Op}=require('sequelize');
 const{DB_USER, DB_PASSWORD, DB_HOST,DB_NAME}=process.env
-
+console.log(DB_USER, DB_PASSWORD, DB_HOST,DB_NAME)
 const  sequelize =
 process.env.NODE_ENV==="production"
    ? new Sequelize({

@@ -2,13 +2,14 @@
 
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from 'react-redux'
-import getName from '../../redux/actions/index'
+import './SearchBar.css'
+// import { useDispatch } from 'react-redux'
+// import getName from '../../redux/actions/index'
 
 
 export default function SearchBar() {
     const [state, setState] = useState('')
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
 
     function handleChange(e) {
         e.preventDefault()
@@ -17,16 +18,17 @@ export default function SearchBar() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        if (state.length > 1) {
-            dispatch(getName(state))
-            setState('')
-        } else {
-            alert(`I don't enter anything in the search`)
-        }
+        console.log(state)
+        // if (state.length > 1) {
+        //     dispatch(getName(state))
+        //     setState('')
+        // } else {
+        //     alert(`I don't enter anything in the search`)
+        // }
     }
     return (
         <>
-            <input
+            {/* <input
                 type='text'
                 placeholder="Insert product to search..."
                 onChange={e => handleChange(e)}
@@ -40,7 +42,11 @@ export default function SearchBar() {
                 <span>
                     <strong>Search!</strong>
                 </span>
-            </button>
+            </button> */}
+            <div class="input-group">
+                <input type="email" class="input" id="Email" name="Email" placeholder="Search..." autocomplete="off" />
+                <input class="button--submit" value="Search" type="submit" />
+            </div>
         </>
     )
 }

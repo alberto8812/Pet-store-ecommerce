@@ -4,8 +4,9 @@ module.exports = (sequelize) => {
   sequelize.define('product', {
 
     id: {
-      type: DataTypes.STRING,
-      primaryKey: true,   //revisar
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,   
       allowNull: false
     }, 
 
@@ -34,6 +35,11 @@ module.exports = (sequelize) => {
     image: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+
+    rating:{
+      type: DataTypes.FLOAT,
+      allowNull: false, 
     }
 
   })

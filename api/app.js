@@ -1,13 +1,20 @@
 const express=require("express"),
       app=express(),
       morgan = require('morgan'),
+      cors=require('cors'),// providing a Connect/Express middleware that can be used to enable CORS with various options.
       v1DogsProducstRouter=require('./v1/routes/dogsProductsRouter'),
       v1UsersRouter=require('./v1/routes/usersRouter'),
-      { expressjwt: jwt } = require("express-jwt"),//Express middleware for validating JWTs (JSON Web Tokens)
-      jwks=require('jwks-rsa');
-  
+      jwtCheck=require('./middleware/jwtLoginUser');
+
+      
+
 app.use(morgan('dev'));
 app.use(express.json());
+
+app.use(cors())
+
+//middlewere JSON WEB TOKEN
+app.use(jwtCheck)
 
 app.use("/dogs",v1DogsProducstRouter);
 

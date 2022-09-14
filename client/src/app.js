@@ -23,6 +23,16 @@ function App() {
         <Route exact path={'/paymentgateway'} element={<PaymentGateway />} />
         <Route path={'*'} element={<NotFound />} />
       </Routes>
+     <Routes>
+        <Route exact path={'/'} element={<Home/>}/>
+        <Route exact path={'/detail/:id'} element={<Detail/>}/>
+        <Route exact path={'/aboutus'} element={<AboutUs/>}/>
+        <Route exact path={'/registration'} element={<Registration/>}/>
+        <Route exact path={'/profile'} element={<Profiler/>}/>
+        <Route exact path={'/registration'} element={<Registration/>}/>
+        <Route exact path={'/paymentgateway'} element={<PaymentGateway/>}/>
+        <Route path={'*'} element={<NotFound/>}/>
+    </Routes>
     </div>
   );
 }

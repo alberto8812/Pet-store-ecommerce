@@ -2,7 +2,7 @@ const express=require("express"),
       app=express(),
       morgan = require('morgan'),
       cors=require('cors'),// providing a Connect/Express middleware that can be used to enable CORS with various options.
-      v1DogsProducstRouter=require('./v1/routes/dogsProductsRouter'),
+      v1ProducstRouter=require('./V1/routes/allProductsRouter'),
       v1UsersRouter=require('./v1/routes/usersRouter'),
       jwtCheck=require('./middleware/jwtLoginUser');
 
@@ -14,9 +14,9 @@ app.use(express.json());
 app.use(cors())
 
 //middlewere JSON WEB TOKEN
-app.use(jwtCheck)
+//app.use(jwtCheck)
 
-app.use("/dogs",v1DogsProducstRouter);
+app.use("/products",v1ProducstRouter);
 
 
 //rote is all relation with users login,register

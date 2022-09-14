@@ -2,8 +2,7 @@ const axios = require('axios')
 
 
 const getAllProductService = async () => {
-    const apiUrl =  await axios.get(`https://pet-elegant.herokuapp.com/api/products`)
-    console.log(apiUrl.data)
+    const apiUrl =  (await axios.get(`https://pet-elegant.herokuapp.com/api/products`)).data
     const apiInfo = await apiUrl.data.map(e =>{
         return{
           

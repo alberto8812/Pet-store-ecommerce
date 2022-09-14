@@ -14,7 +14,7 @@ module.exports = (sequelize)=>{
     },
 
     price:{
-      type: DataTypes.Number,
+      type: DataTypes.NUMBER,
       allowNull: false
     }, 
 

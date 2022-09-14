@@ -1,0 +1,1 @@
+// Componente footer con los datos rapidos 'domicilio' 'mail' 'telefono' etc

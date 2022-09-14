@@ -11,6 +11,7 @@
   "author": "dianaibarra98,alberto88,Fainyer,Ramon181,fgastiarena",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.27.2",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
     "pg": "^8.8.0",

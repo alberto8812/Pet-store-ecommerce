@@ -9,17 +9,17 @@ module.exports = (sequelize)=>{
       allowNull: false
     },
     quantity:{
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
 
     price:{
-      type: DataTypes.NUMBER,
+      type: DataTypes.FLOAT,
       allowNull: false
     }, 
 
     subtotal: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.FLOAT,
       allowNull: false
     },
     date: {

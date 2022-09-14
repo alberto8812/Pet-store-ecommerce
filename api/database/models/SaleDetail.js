@@ -8,22 +8,6 @@ module.exports = (sequelize)=>{
       primaryKey: true,
       allowNull: false
     },
-
-    id_genre:{
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,  //revisar 
-      primaryKey: true,
-      allowNull: false
-
-    },
-    id_sale:{
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,  // revisar
-      primaryKey: true,
-      allowNull: false
-
-    },
-
     quantity:{
       type: DataTypes.NUMBER,
       allowNull: true,
@@ -37,6 +21,10 @@ module.exports = (sequelize)=>{
     subtotal: {
       type: DataTypes.NUMBER,
       allowNull: false
+    },
+    date: {
+      type: DataTypes.DATE,
+      allowNull: true
     }
   })
 }

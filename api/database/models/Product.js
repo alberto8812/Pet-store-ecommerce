@@ -34,14 +34,7 @@ module.exports = (sequelize) => {
     image: {
       type: DataTypes.STRING,
       allowNull: false
-    },
-
-    id_Compras:{
-      type: DataTypes.STRING,
-      default: 0,
-      allowNull: false
     }
-
 
   })
 }

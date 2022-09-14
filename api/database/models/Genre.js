@@ -10,15 +10,7 @@ module.exports = (sequelize) => {
       unique: true,
       allowNull: false, 
     },
-
-    id_category: {
-
-      primaryKey: true, 
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      allowNull: true
-    },
-
+    
     name:{
       type: DataTypes.String,
       allowNull: false

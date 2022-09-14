@@ -30,11 +30,12 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull:false,
       unique: true,
-    }, 
-    token: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
+    },
+
+    flagAdmin:{
+      type: DataTypes.BOOLEAN,
+      allowNull: true,                
     }
+
   })
 }

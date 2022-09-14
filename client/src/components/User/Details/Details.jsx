@@ -2,7 +2,7 @@
 import React from "react";
 import './Details.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDetails, clear } from '../../redux/actions/actions'; //aun no existen
+//import { getDetails, clear } from '../../redux/actions/actions'; //aun no existen
 import { Link, useParams } from 'react-router-dom';
 
 export default function Details(){

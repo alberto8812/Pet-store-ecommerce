@@ -15,12 +15,12 @@ module.exports = (sequelize) => {
     }, 
     
     price: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.FLOAT,
       allowNull: false 
     },
 
     stock:{
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       min: 0,
       default: 0,
       allowNull: false

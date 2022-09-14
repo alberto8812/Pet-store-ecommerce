@@ -15,10 +15,14 @@ module.exports = (sequelize)=>{
 
     price:{
 <<<<<<< HEAD
+<<<<<<< HEAD
       type: DataTypes.FLOAT,
 =======
       type: DataTypes.NUMBER,
 >>>>>>> 3539b71232d1ef9bbbe1488a393eaf18719b5bf1
+=======
+      type: DataTypes.FLOAT,
+>>>>>>> 9e907bdd45a5fec1d4c64ba996b8295641a5d31a
       allowNull: false
     }, 
 

@@ -1,6 +1,10 @@
 require('dotenv').config()
-const { Sequelize, Op } = require('sequelize');
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env
+const {Sequelize,Op}=require('sequelize');
+const{DB_USER, DB_PASSWORD, DB_HOST,DB_NAME}=process.env
+const fs = require('fs');
+const path = require('path');
+
+
 
 const sequelize =
   process.env.NODE_ENV === "production"

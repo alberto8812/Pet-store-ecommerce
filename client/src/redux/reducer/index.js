@@ -31,20 +31,22 @@ function rootReducer(state = initialState, action) {
         case GET_ALL_PRODUCTS:
             return{
                 ...state,
-                product: [...action.payload],
+                products: [...action.payload],
                 allProducts: [...action.payload]
             };
         case GET_DETAILS:
             return{
-
+                ...state,
+                details: {...action.payload}
             };
         case SEARCH_BY_NAME:
             return{
-    
+                ...state,
+                products: [...action.payload],
             };
         case ADD_PRODUCT:
             return{
-
+                ...state,
             };
         case FILTER_BY_SPECIES:
             return{
@@ -98,11 +100,13 @@ function rootReducer(state = initialState, action) {
             };
         case PAGINATE:
             return{
-
+                ...state,
+                products: [...action.payload],
             };
         case CLEAR:
             return{
-
+                ...state,
+                details: {}
             };
         default:
             return state

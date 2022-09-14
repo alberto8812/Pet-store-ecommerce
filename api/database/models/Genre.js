@@ -1,4 +1,4 @@
-const {DataTypes, UUIDV4} = require ('sequelize') 
+const {DataTypes} = require ('sequelize') 
 module.exports = (sequelize) => {
 
   sequelize.define('genre', {
@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
     },
     
     name:{
-      type: DataTypes.String,
+      type: DataTypes.STRING,
       allowNull: false
     }
   }

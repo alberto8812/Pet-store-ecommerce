@@ -1,7 +1,8 @@
-const {getAllProductsDogService}=require('../service/dogs/getAllProductsDogService')
+const {getAllProductsDogService} = require('../service/dogs/getAllProductsDogService')
+const {Product} = require('../database/db')
 
-const getAllDogsData=async(req,res)=>{
-     const allproducts=await getAllProductsDogService()
+const getAllDogsData = async(req,res)=>{
+     const allproducts = await getAllProductsDogService()
      
      res.status(200).json({msg:allproducts})
 }

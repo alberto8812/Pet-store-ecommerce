@@ -29,7 +29,11 @@ export default function Footer() {
                     {/* Column2 */}
                     <div>
                         <h4>Contact Us</h4>
+
+                        <button onClick={e => handleClick(e)}><i class="bi bi-envelope-paper"></i>ACA HAY UN BOTON</button>
+
                         <button onClick={e => handleClick(e)}><i class="bi bi-envelope-paper"></i></button>
+
                     </div>
                     {/* Column3 */}
                     <div>
@@ -48,4 +52,3 @@ export default function Footer() {
     )
 
 }
-

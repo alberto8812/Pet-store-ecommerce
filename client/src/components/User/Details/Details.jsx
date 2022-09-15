@@ -2,8 +2,9 @@
 import React from "react";
 import './Details.css';
 import { useDispatch, useSelector } from 'react-redux';
-//import { getDetails, clear } from '../../redux/actions/actions'; //aun no existen
+import { getDetails, clear } from '../../../redux/actions/index'; 
 import { Link, useParams } from 'react-router-dom';
+import Loading from '../Loading/Loading'
 
 export default function Details(){
 
@@ -20,6 +21,9 @@ export default function Details(){
 
     const details = useSelector(state => state.details);
 
+    if (carga) {
+        return <Loading />;
+    }
     return (
         <div className="">
             <div className="">

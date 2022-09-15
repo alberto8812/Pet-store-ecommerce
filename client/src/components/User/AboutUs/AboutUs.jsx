@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './AboutUs.css';
 
 export default function AboutUs(){
+
     const FORM_ENDPOINT = "";
     const [submitted, setSubmitted] = useState(false);
 
@@ -49,5 +50,6 @@ export default function AboutUs(){
         </form>
 
       );
+
 
 }

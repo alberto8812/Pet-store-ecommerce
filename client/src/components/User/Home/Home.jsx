@@ -19,7 +19,7 @@ SUPONGO QUE ESTA BIEN PERO HASTA QUE NO HAYA ALGO QUE MOSTRAR NO SABREMOS */
   const [animalsPerPage, setAnimalsPerPage] = useState(5); // Hasta 5 cards por pag
   const indexLastAnimal = currentPage * animalsPerPage; 
   const indexFirstAnimal = indexLastAnimal - animalsPerPage; 
-const animalsInCurrentPage = allProducts.slice(indexFirstAnimal, indexLastAnimal);  //CHEQUEAR QUE STATE PUSIERON EN EL REDUCER !!!
+  const animalsInCurrentPage = allProducts.slice(indexFirstAnimal, indexLastAnimal);  //CHEQUEAR QUE STATE PUSIERON EN EL REDUCER !!!
 
   const pagination = (pageNumber) => {
       setCurrentPage(pageNumber);
@@ -40,7 +40,7 @@ const animalsInCurrentPage = allProducts.slice(indexFirstAnimal, indexLastAnimal
 
         </div>
       <Footer/>
+      </div>
   )
 
 }
-//agrego

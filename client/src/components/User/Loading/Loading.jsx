@@ -1,7 +1,6 @@
 // componenten de Carga
-
 import React from 'react'
-//import loading from '../../imagens/Loading.jpg' BUSCAR UNA IMAGEN DE CARGA
+import loading from './catLoading.gif'
 
 
 export default function Loading() {

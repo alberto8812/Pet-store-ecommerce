@@ -14,11 +14,14 @@ app.use(express.json());
 app.use(cors())
 
 //middlewere JSON WEB TOKEN
-//app.use(jwtCheck)
+
 
 app.use("/products",v1ProducstRouter);
 
-app.use(jwtCheck)
+
+
+
+//app.use(jwtCheck)
 //rote is all relation with users login,register
 app.use("/users",v1UsersRouter)
 

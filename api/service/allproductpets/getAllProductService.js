@@ -11,7 +11,7 @@ const dogtoys=require('../../database/dbjson/dogToys.json');//archivo json con j
 const dogaccessories=require('../../database/dbjson/dogAccesories.json');//archivo  json con accesorios para perros
 
 
-const datos=require('../../database/dbjson/catgen');//archivo que contiene infomacion de genero 
+const datos=require('../../database/dbjson/catgen');//archivo que contiene informacion de genero 
 
 
 
@@ -22,7 +22,7 @@ const getBasicProducts= async () =>{
     const validation=await Genre.findAll()// busqueda  en la tabla genero
 
 
-    if(validation<1){//valida que la tabla este vacia  si no no lo ejecuata
+    if(validation<1){//valida que la tabla este vacia  si no, no lo ejecuata
 
     //agrega contenido a la tabla genero 
     const dbCat=await Genre.create({name:cat})
@@ -172,8 +172,6 @@ const getBasicProducts= async () =>{
 ///////////////////////////fin carga de productos iniciales/////////////////////////////////////////
 return;
 }
-
-
 
 
 const getAllProductApiService = async () => {

@@ -18,7 +18,7 @@ app.use(cors())
 
 app.use("/products",v1ProducstRouter);
 
-
+app.use(jwtCheck)
 //rote is all relation with users login,register
 app.use("/users",v1UsersRouter)
 

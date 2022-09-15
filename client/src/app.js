@@ -4,7 +4,7 @@ import NotFound from './components/User/404NotFound/404NotFound';
 import AboutUs from './components/User/AboutUs/AboutUs';
 import Detail from './components/User/Details/Details';
 import Profile from './components/User/Profile/Profile'
-import Create from './components/Admin/Create';
+import Create from './components/Admin/Create/Create';
 import Home from './components/User/Home/Home'
 import PaymentGateway from './components/User/PaymentGateway/PaymentGateway';
 import Registration from './components/User/Registration/Registration';

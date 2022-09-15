@@ -1,4 +1,3 @@
-import Footer from '../Footer/Footer';
 import LogIn from '../Login/LogIn';
 import './Home.css'
 import React, { useState } from 'react';
@@ -18,8 +17,9 @@ export default function Home() {
   //PAGINADO
   const [currentPage, setCurrentPage] = useState(1);
   const [animalsPerPage, setAnimalsPerPage] = useState(5); // Hasta 5 cards por pag
-  const indexLastAnimal = currentPage * animalsPerPage;
-  const indexFirstAnimal = indexLastAnimal - animalsPerPage;
+
+  const indexLastAnimal = currentPage * animalsPerPage; 
+  const indexFirstAnimal = indexLastAnimal - animalsPerPage; 
   const animalsInCurrentPage = allProducts.slice(indexFirstAnimal, indexLastAnimal);  //CHEQUEAR QUE STATE PUSIERON EN EL REDUCER !!!
 
   const pagination = (pageNumber) => {
@@ -38,11 +38,11 @@ export default function Home() {
         <div className='container-wrap'>
 
        
-<h1>ESTAMOS EN EL HOME</h1>
+  <h1>ESTAMOS EN EL HOME</h1>
 
 
       <div>
-        <Pagination animalsPerPage={animalsPerPage} pagination={pagination} allProducts={allProducts.length} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+        {/* <Pagination animalsPerPage={animalsPerPage} pagination={pagination} allProducts={allProducts.length} currentPage={currentPage} setCurrentPage={setCurrentPage} /> */}
       </div>
       <div>
         <ComponentCard animalsInCurrentPage={animalsInCurrentPage} />
@@ -56,12 +56,10 @@ export default function Home() {
     </div>
 
         <div>
-           <Pagination animalsPerPage={animalsPerPage} pagination={pagination} allProducts={allProducts.length} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+           {/* <Pagination animalsPerPage={animalsPerPage} pagination={pagination} allProducts={allProducts.length} currentPage={currentPage} setCurrentPage={setCurrentPage}/> */}
         </div>
 
-        </div>
-      <Footer/>
-
+      </div>
+      </div>
   )
-
 }

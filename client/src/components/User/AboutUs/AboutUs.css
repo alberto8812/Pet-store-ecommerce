@@ -1,0 +1,39 @@
+* {
+    box-sizing: border-box;
+}
+
+.form-aboutus {
+    width: 100%;
+    max-width: 600px;
+    margin: 40% auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 1rem;
+    background-color: #cdd2d3c4;
+    border-radius: 10px;
+    box-shadow: -1rem 0 3rem rgb(71, 125, 129);
+    transition: 0.4s ease-out;
+    border: 1px solid black;
+    padding: 1rem;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.div-inputs {
+    width: 90%;
+}
+
+.inputAbout {
+    gap: 0.5rem;
+    width: 100%;
+    outline: none;
+    padding: 0.5rem;
+    border-radius: .4rem;
+    border-color: transparent;
+    margin-top: 20px;
+}
+
+textarea {
+    height: 150px;
+}

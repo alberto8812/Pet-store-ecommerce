@@ -1,4 +1,3 @@
-import { Profiler } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import NotFound from './components/User/404NotFound/404NotFound';
@@ -11,11 +10,10 @@ import PaymentGateway from './components/User/PaymentGateway/PaymentGateway';
 import Registration from './components/User/Registration/Registration';
 import NavBar from './components/User/NavBar/NavBar';
 
-
 function App() {
   return (
     <div className="App">
-      {/*<NavBar />*/}
+      <NavBar />
       <Routes>
         <Route path={'/'} element={<Home />} />
         <Route path={'/details/:id'} element={<Detail />} />

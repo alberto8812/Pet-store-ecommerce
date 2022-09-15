@@ -12,4 +12,5 @@ export const REMOVE_FAVORITE = 'REMOVE_FAVORITE';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_OF_CART = 'REMOVE_OF_CART';
 export const PAGINATE = 'PAGINATE';
-export const CLEAR = 'CLEAR'
+export const CLEAR = 'CLEAR';
+export const SEARCH_FAIL = 'SEARCH_FAIL'

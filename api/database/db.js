@@ -71,11 +71,16 @@ SaleDetail.belongsTo(Sale)
 SaleDetail.hasMany(Genre)
 Genre.belongsTo(SaleDetail)
 
+Genre.hasMany(Product)///adicional
+Product.belongsTo(Genre)//adicional
+
 Genre.belongsToMany(Category, {through: 'genre_category'})
 Category.belongsToMany(Genre, {through: 'genre_category'})
 
 Category.hasMany(Product)
 Product.belongsTo(Category)
+
+
  
 
 module.exports = {

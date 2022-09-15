@@ -2,6 +2,15 @@
 
 export default function AboutUs(){
     return(
+        <div>
         <h1>Estas en AboutUs </h1>
+        <h1>Estas en AboutUs </h1>
+        <h1>Estas en AboutUs </h1>
+        <h1>Estas en AboutUs </h1>
+        <h1>Estas en AboutUs </h1>
+        <h1>Estas en AboutUs </h1>
+        <h1>Estas en AboutUs </h1>
+        
+        </div>
     )
 }

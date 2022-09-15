@@ -35,8 +35,6 @@ const sequelize =
       native: false, // lets Sequelize know we can use pg-native for ~30% more speed
     });
 
-<<<<<<< HEAD
-=======
     
     const basename = path.basename(__filename);
 
@@ -85,7 +83,6 @@ Product.belongsTo(Category)
 
  
 
->>>>>>> main
 module.exports = {
   ...sequelize.models,
   db: sequelize,

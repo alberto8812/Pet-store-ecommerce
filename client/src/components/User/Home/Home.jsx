@@ -1,6 +1,7 @@
 import React from 'react';
-import LogIn from './LogIn';
-import Pagination from './Pagination';
+import Footer from '../Footer/Footer';
+import LogIn from '../Login/LogIn';
+// import Pagination from './Pagination';
 
 export default function Home() {
 
@@ -29,7 +30,7 @@ SUPONGO QUE ESTA BIEN PERO HASTA QUE NO HAYA ALGO QUE MOSTRAR NO SABREMOS */
         <div>
            {/*<Pagination animalsPerPage={animalsPerPage} pagination={pagination} allProducts={allProducts.length} currentPage={currentPage} setCurrentPage={setCurrentPage}/>*/}
         </div>
-
+      <Footer/>
       </div>
   )
 

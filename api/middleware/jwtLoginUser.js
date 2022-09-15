@@ -11,6 +11,6 @@ const jwtCheck = jwt({
   audience: 'http://www.pet-love-api.com',
   issuer: 'https://dev-nzbce16c.us.auth0.com/',
   algorithms: ['RS256']
-})
+}).unless({path:['/products']})
 
 module.exports=jwtCheck;

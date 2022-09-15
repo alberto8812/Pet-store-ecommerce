@@ -1,4 +1,3 @@
-import Footer from '../Footer/Footer';
 import LogIn from '../Login/LogIn';
 import './Home.css'
 import React, { useState } from 'react';
@@ -39,11 +38,11 @@ export default function Home() {
         <div className='container-wrap'>
 
        
-<h1>ESTAMOS EN EL HOME</h1>
+  <h1>ESTAMOS EN EL HOME</h1>
 
 
       <div>
-        <Pagination animalsPerPage={animalsPerPage} pagination={pagination} allProducts={allProducts.length} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+        {/* <Pagination animalsPerPage={animalsPerPage} pagination={pagination} allProducts={allProducts.length} currentPage={currentPage} setCurrentPage={setCurrentPage} /> */}
       </div>
       <div>
         <ComponentCard animalsInCurrentPage={animalsInCurrentPage} />
@@ -57,14 +56,10 @@ export default function Home() {
     </div>
 
         <div>
-           <Pagination animalsPerPage={animalsPerPage} pagination={pagination} allProducts={allProducts.length} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+           {/* <Pagination animalsPerPage={animalsPerPage} pagination={pagination} allProducts={allProducts.length} currentPage={currentPage} setCurrentPage={setCurrentPage}/> */}
         </div>
-
-        </div>
-      <Footer/>
 
       </div>
-
+      </div>
   )
-
 }

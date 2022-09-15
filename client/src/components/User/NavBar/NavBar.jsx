@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import './NavBar.css'
 import { Icon } from '@iconify/react';
 import SearchBar from '../SearchBar/SearchBar';
+import LogIn from '../Login/LogIn';
+
 <Icon icon="bx:home" />
 
 const NavBar = () => {
@@ -35,14 +37,17 @@ const NavBar = () => {
                         <h3 className='link_home'>shopping</h3>
                     </Link>
                     <Link to='/' className='nav-link' >
-                        <Icon icon="ic:outline-favorite"  width='30px' height='30px' />
+                        <Icon icon="ic:outline-favorite" width='30px' height='30px' />
                         <h3 className='link_home'>Favorite</h3>
                     </Link>
                     <div>
-                    <Link to='/' className='nav-link' >
+                        {/*<Link to='/' className='nav-link' >
                         <Icon icon="healthicons:ui-user-profile" width='30px' height='30px' />
                         <h3 className='link_home'>Profile</h3>
-                    </Link>
+                         </Link>*/}
+                        <LogIn className='nav-link' >
+                            <Icon icon="healthicons:ui-user-profile" width='30px' height='30px' />
+                        </LogIn>
                     </div>
                 </div>
             </div>

@@ -1,58 +1,92 @@
-//MODAL para iniciar secion
-import React, { useState } from "react";
-import { Modal, TextField, Button } from '@material-ui/core'
-import { makeStyles } from "@material-ui/styles";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Button from '@mui/material/Button';
+import { TextField, } from '@material-ui/core'
 
-const useStyles = makeStyles((theme) => ({
-    modal: {
-        position: 'absolute',
-        width: 400,
-        backgroundColor: 'white',
-        border: '2px solid black',
-        //boxShadow: theme.shadows[5],
-        padding: "16px 32px 24px",
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-    },
-    textfield: {
-        width: '100%'
-    }
-}))
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    pt: 2,
+    px: 4,
+    pb: 3,
+};
+
+function ChildModal() {
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+    return (
+        <React.Fragment>
+            <Button onClick={handleOpen}>Registrar</Button>
+            <Modal
+                hideBackdrop
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="child-modal-title"
+                aria-describedby="child-modal-description"
+            >
+                <Box sx={{ ...style, width: 200 }}>
+                <h2 id="parent-modal-title">Sing in</h2>
+                    <TextField label='Full name' type='text' className={style.textfield} />
+                    <br />
+                    <TextField label='User name' type='text' className={style.textfield} />
+                    <br />
+                    <TextField label='Email' type='email' className={style.textfield} />
+                    <br />
+                    <TextField label='Passwork' type='password' className={style.textfield} />
+                    <br />
+                    <TextField label='Confirm Password' type='password' className={style.textfield} />
+                    <br /><br />
+                    <Button>Sing in</Button>
+                    <Button onClick={() => handleClose()}>Cancel</Button>
+                </Box>
+            </Modal>
+        </React.Fragment>
+    );
+}
 
 export default function LogIn() {
-    const style = useStyles();
-
-    const [modal, setModal] = useState(false)
-
-    const abrirCerrarModal = () => {
-        setModal(!modal)
-    }
-
-    const body = (
-        <div className={style.modal}>
-            <div align='center'>
-                <h2>Login / Registration</h2>
-            </div>
-            <TextField label='Email' type='email' className={style.textfield} />
-            <br />
-            <TextField label='Passwork' type='password' className={style.textfield} />
-            <br /><br />
-            <div align='right'>
-                <Button>Log In</Button>
-                <Button onClick={() =>abrirCerrarModal()}>Cancel</Button>
-            </div>
-        </div>
-    )
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
         <div>
-            <Button onClick={() =>abrirCerrarModal()}>Abrir Modal Prueba</Button>
+            <Button onClick={handleOpen}>Log in</Button>
             <Modal
-                open={modal}
-                onclose={abrirCerrarModal}>
-                {body}
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="parent-modal-title"
+                aria-describedby="parent-modal-description"
+            >
+                <Box sx={{ ...style, width: 400 }}>
+                    <h2 id="parent-modal-title">Log in</h2>
+                    <TextField label='Email' type='email' className={style.textfield} />
+                    <br />
+                    <TextField label='Passwork' type='password' className={style.textfield} />
+                    <br /><br />
+                    <div align='right'>
+                        <Button>Log in</Button>
+                        <Button onClick={() => handleClose()}>Cancel</Button>
+                        <ChildModal />
+                    </div>
+                </Box>
             </Modal>
         </div>
-    )
+    );
 }

@@ -1,50 +1,56 @@
-//Formulario Para que el propietarios de la pagina pueda cargar sus productos y modificar stock
+//Formulario para que el propietario de la pagina pueda cargar sus productos y modificar stock
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
-import { postProduct } from "../../redux/actions";
+import { postProduct } from "../../../redux/actions";
 
 function validate(input) {
     let errors = {}
 
     if (!input.name) {
-        errors.name = 'Ingresar nombre para el producto'
-    } else if (!input.name.length > 50) {
-        errors.name = 'El nombre no debe superar los 50 caracteres'
+        errors.name = 'Product name is required'
+    } else if (input.name.length > 50) {
+        errors.name = 'The name must not exceed 50 characters'
     }
 
     if (!input.price) {
-        errors.price = 'Ingresar precio para el producto'
+        errors.price = 'Product price is required'
     } else if (isNaN(parseInt(input.price))) {
-        errors.price = 'Ingresa solo valores numéricos'
+        errors.price = 'Enter only numeric values'
     } else if (input.price <= 0) {
-        errors.price = 'el valor debe ser superior a 0'
+        errors.price = 'The value must be greater than 0'
+    }
+
+    if(!input.race) {
+        errors.race = "Race is required"
+    } else if (input.race.length > 50) {
+        errors.race = "Race name must not exceed 50 characters"
     }
 
     if (!input.stock) {
-        errors.stock = 'Ingresar stock para el producto'
+        errors.stock = 'Product stock is required'
     } else if (isNaN(parseInt(input.stock))) {
-        errors.stock = 'Ingresa solo valores numéricos'
-    } else if (input.stock < -1) {
-        errors.stock = 'el stock debe ser 0 o superior'
+        errors.stock = 'Enter only numeric values'
+    } else if (input.stock < 0) {
+        errors.stock = 'Stock must be 0 or greater'
     }
 
     if (!input.detail) {
-        errors.name = 'Ingresar detalles para el producto'
-    } else if (!input.detail.length > 300) {
-        errors.name = 'El nombre no debe superar los 300 caracteres'
+        errors.detail = 'Product detail is required'
+    } else if (input.detail.length > 300) {
+        errors.detail = 'The name must not exceed 300 characters'
     }
 
     if (!input.rating) {
-        errors.rating = 'Ingresar rating para el producto'
+        errors.rating = 'Product rating is required'
     } else if (isNaN(parseInt(input.rating))) {
-        errors.rating = 'Ingresa solo valores numéricos'
+        errors.rating = 'Enter only numeric values'
     } else if (input.rating <= 0) {
-        errors.rating = 'el valor debe ser superior a 0'
+        errors.rating = 'The value must be greater than 0'
     }
 
     if (!input.image) {
-        errors.image = 'Ingresar imagen para el producto'
+        errors.image = 'Product image is required'
     }
     return errors
 }
@@ -59,6 +65,8 @@ export default function Create() {
     const [input, setInput] = useState({
         name: '',
         price: '',
+        age: '',
+        race: '',
         stock: '',
         detail: '',
         image: '',
@@ -124,8 +132,10 @@ export default function Create() {
         })
     }
 
-     name: '',
+        name: '',
         price: '',
+        age: '',
+        race: '',
         stock: '',
         detail: '',
         image: '',
@@ -148,10 +158,12 @@ export default function Create() {
                */
 
             dispatch(postProduct(input))
-            alert('Se cargo un nuevo producto')
+            alert('The product was added')
             setInput({
                 name: '',
                 price: '',
+                age: '',
+                race: '',
                 stock: '',
                 detail: '',
                 image: '',
@@ -161,14 +173,14 @@ export default function Create() {
             })
             navigate('/')
         } else {
-            alert('Faltan ingresar datos')
+            alert('There is incomplete data')
         }
     }
 
     return (
         <div>
-            <h1 >Cargar Productos al Pet-Love</h1>
-            <div >
+            <h1>Add products to Pets Love</h1>
+            <div>
                 <form onSubmit={e => handleSubmit(e)}>
                     <div>
                         <label><strong>Name: </strong></label>
@@ -187,6 +199,25 @@ export default function Create() {
                     </div>
 
                     <div>
+                        <label><strong>Age: </strong></label>
+                        <div><select name="age" onChange={e => handleChange(e)}>
+                            <option disabled selected>Select an age</option>
+                            <option value= 'Puppy'>Puppy</option>
+                            <option value= 'Young'>Young</option>
+                            <option value= 'Adult'>Adult</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label><strong>Race: </strong></label>
+                        <input type="text" value={input.race} name='race' onChange={e => handleChange(e)} />
+                        {errors.race && (
+                            <p>{errors.race}</p>
+                        )}
+                    </div>
+
+                    <div>
                         <label><strong>Stock: </strong></label>
                         <input type="text" value={input.stock} name='stock' onChange={e => handleChange(e)} />
                         <label><strong> u.</strong></label>
@@ -198,7 +229,7 @@ export default function Create() {
                     <div>
                         <label><strong>Rating: </strong></label>
                         <input type="text" value={input.rating} name='rating' onChange={e => handleChange(e)} />
-                        <label><strong> ESTRELLAS.</strong></label>
+                        <label><strong> STARS </strong></label>
                         {errors.rating && (
                             <p >{errors.rating}</p>
                         )}
@@ -270,12 +301,12 @@ export default function Create() {
                     </div>
 
  */}
-                    <button type="submit"><strong>Crear</strong></button>
-
+                    <button type="submit"><strong>Create</strong></button>
+                    <Link to="/home">
+                        <button>Cancel</button>
+                    </Link>
                 </form>
             </div>
         </div>
-
     )
-
 }

@@ -1,0 +1,14 @@
+.mainFooter {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.cards-img {
+    width: 200px;
+}
+
+.columns-row {
+    display: inline-flex;
+    flex-direction: row;
+}

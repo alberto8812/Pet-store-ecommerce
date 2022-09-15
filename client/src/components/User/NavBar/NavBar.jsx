@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import './NavBar.css'
-import SearchBar from '../SearchBar/SearchBar';
 import { Icon } from '@iconify/react';
+import SearchBar from '../SearchBar/SearchBar';
 import LogIn from '../Login/LogIn';
+
 <Icon icon="bx:home" />
 
 const NavBar = () => {

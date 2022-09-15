@@ -40,3 +40,4 @@ const animalsInCurrentPage = allProducts.slice(indexFirstAnimal, indexLastAnimal
   )
 
 }
+//agrego

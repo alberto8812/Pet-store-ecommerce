@@ -16,7 +16,7 @@ export default function Footer() {
     return (
         <div className='mainFooter'>
             <div className='footer-container'>
-                <div>
+                <div className='columns-row'>
                     {/* Column1 */}
                     <div>
                         <h4>Pets Love TM</h4>
@@ -35,14 +35,14 @@ export default function Footer() {
                     <div>
                         <img className='cards-img' src={`https://aniversarioloves.es/wp-content/uploads/stripe_credit-card-logos.png`} alt='cards'/>
                     </div>
+
+                </div>
                     <hr/>
                     <div>
                         <p>
                             &copy;{new Date().getFullYear()} <strong>PETS LOVE TM</strong> | All rights reserved | <a href='' style={{'textDecoration': 'none'}}>Terms & Conditions</a>
                         </p>
                     </div>
-
-                </div>
             </div>
         </div>
     )

@@ -4,6 +4,7 @@ const express=require("express"),
       cors=require('cors'),// providing a Connect/Express middleware that can be used to enable CORS with various options.
       v1ProducstRouter=require('./V1/routes/allProductsRouter'),
       v1UsersRouter=require('./v1/routes/usersRouter'),
+      categoryRouter=require('./V1/routes/categoryRouter'),
       jwtCheck=require('./middleware/jwtLoginUser');
 
       
@@ -21,5 +22,6 @@ app.use("/products",v1ProducstRouter);
 app.use(jwtCheck)
 //rote is all relation with users login,register
 app.use("/users",v1UsersRouter)
+app.use("/categorys",categoryRouter)
 
 module.exports=app

@@ -36,5 +36,6 @@ const sequelize =
     });
 
 module.exports = {
+  ...sequelize.models,
   db: sequelize,
 }

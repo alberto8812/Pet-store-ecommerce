@@ -1,3 +1,6 @@
+import Footer from '../Footer/Footer';
+import LogIn from '../Login/LogIn';
+import './Home.css'
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { ComponentCard } from '../ComponentCard/ComponentCard';
@@ -24,9 +27,18 @@ export default function Home() {
   }
 
   return (
+
     <div>
       <h1>ESTAMOS EN HOME</h1>
       <h1>PET LOVE STORE</h1>
+
+
+
+      <div className='home-container'>
+        <div className='container-wrap'>
+
+       
+<h1>ESTAMOS EN EL HOME</h1>
 
 
       <div>
@@ -35,12 +47,20 @@ export default function Home() {
       <div>
         <ComponentCard animalsInCurrentPage={animalsInCurrentPage} />
 
+
       </div>
 
       <div>
         <Footer />
       </div>
     </div>
+
+        <div>
+           <Pagination animalsPerPage={animalsPerPage} pagination={pagination} allProducts={allProducts.length} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+        </div>
+
+        </div>
+      <Footer/>
 
   )
 

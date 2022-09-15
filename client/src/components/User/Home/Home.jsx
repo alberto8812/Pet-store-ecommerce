@@ -1,6 +1,6 @@
 import React from 'react';
-import LogIn from './LogIn';
-import Pagination from './Pagination';
+import LogIn from '../Login/LogIn';
+import Pagination from '../Pagination/Pagination';
 
 export default function Home() {
 
@@ -23,9 +23,7 @@ SUPONGO QUE ESTA BIEN PERO HASTA QUE NO HAYA ALGO QUE MOSTRAR NO SABREMOS */
 
   return (
       <div>
-<h1>ESTAMOS EN EL HOME</h1>
 
-<LogIn></LogIn>
         <div>
            {/*<Pagination animalsPerPage={animalsPerPage} pagination={pagination} allProducts={allProducts.length} currentPage={currentPage} setCurrentPage={setCurrentPage}/>*/}
         </div>

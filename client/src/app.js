@@ -1,15 +1,16 @@
 import { Profiler } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import NotFound from './components/User/404NotFound';
-import AboutUs from './components/User/AboutUs';
+import NotFound from './components/User/404NotFound/404NotFound';
+import AboutUs from './components/User/AboutUs/AboutUs';
 import Detail from './components/User/Details/Details';
-import Home from './components/User/Home'
-import PaymentGateway from './components/User/PaymentGateway';
-import Registration from './components/User/Registration';
-import Profile from './components/User/Profile'
-import NavBar from './components/User/NavBar';
+import Profile from './components/User/Profile/Profile'
 import Create from './components/Admin/Create';
+import Home from './components/User/Home/Home'
+import PaymentGateway from './components/User/PaymentGateway/PaymentGateway';
+import Registration from './components/User/Registration/Registration';
+import NavBar from './components/User/NavBar/NavBar';
+
 
 function App() {
   return (

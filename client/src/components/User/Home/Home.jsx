@@ -61,7 +61,6 @@ export default function Home() {
               </li>
             </ul>
           </div>
-       
 
       <div>
         <Pagination animalsPerPage={animalsPerPage} allProducts={allProducts.length} currentPage={currentPage} setCurrentPage={setCurrentPage} />

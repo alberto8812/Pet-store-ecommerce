@@ -7,6 +7,7 @@ import { Box, Grid } from "@material-ui/core";
 import "./Home.css";
 import Carousel from "../carousel/Carousel";
 
+
 export default function Home() {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.allProducts);
@@ -28,6 +29,10 @@ export default function Home() {
   ); //CHEQUEAR QUE STATE PUSIERON EN EL REDUCER !!!
 
 
+
+  function handlePrice(e) {
+    dispatch(sortByPrice(e.target.value))
+  }
 
   return (
     <div>
@@ -78,7 +83,7 @@ export default function Home() {
               <li>
                 <div>
                   Sort by Price
-                  <select className='select'>
+                  <select className='select' onChange={handlePrice}>
                     <option disabled selected >Select</option>
                     <option value='Lower Price'>Lower Price</option>
                     <option value='Higher Price'>Higher Price</option>

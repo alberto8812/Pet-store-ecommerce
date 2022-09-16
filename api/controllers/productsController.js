@@ -1,6 +1,6 @@
 const {getAllProductApiService,getAllProudctsservice,getBasicProducts}=require('../service/allproductpets/getAllProductService');
 const {getDbProductDetail}=require('../service/allproductpets/getProductDetailService');
-const {getdbProdcutNameService}=require('../service/allproductpets/getProductNameService')
+const {getdbProdcutSearchService}=require('../service/allproductpets/getProdcutSearchService')
 
 
 //// ruta para conseguir productos de la api //////
@@ -23,10 +23,10 @@ const getProductDetail=async(req,res)=>{
 }
 
 //// funcion para busqueda por nombre 
-const getProductName=async(req,res)=>{
+const getProductSearch=async(req,res)=>{
     try {
-        const getProductName=await getdbProdcutNameService(req)
-        res.status(202).json(getProductName) 
+        const getProductSearch=await getdbProdcutSearchService(req)
+        res.status(202).json(getProductSearch) 
     } catch (error) {
         res.status(500).json({msg:error.message})
     }
@@ -35,5 +35,5 @@ const getProductName=async(req,res)=>{
 module.exports={
     getAllProductsData,
     getProductDetail,
-    getProductName
+    getProductSearch
 }

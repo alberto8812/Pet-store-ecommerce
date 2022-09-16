@@ -15,7 +15,7 @@ export default function Pagination({animalsPerPage, allProducts, currentPage, se
             setCurrentPage(currentPage +1);
         } 
         if(currentPage === pageNumber.length) {
-            e.target.name(disable)
+            e.target.name(disable);
         }
 
         const newInputValue = input + 1;
@@ -30,13 +30,14 @@ export default function Pagination({animalsPerPage, allProducts, currentPage, se
         if (currentPage === 1) {
             e.target.name(disable)
         }
+
         const newInputValuePrev = input - 1;
         setInput(newInputValuePrev)
 
     }
 
     const onKeyDown = (e) => {
-        if(e.keyCode === 13){ // la tecla 13 es el enter
+        if(e.keyCode === '13'){ // la tecla 13 es el enter
             setCurrentPage(parseInt(e.target.value))
             if(parseInt(e.target.value) < 1 || parseInt(e.target.value) > Math.ceil(pageNumber.length) || isNaN(parseInt(e.target.value))){
                 setCurrentPage(1)
@@ -57,6 +58,7 @@ export default function Pagination({animalsPerPage, allProducts, currentPage, se
             <button name='prev' className='btnpag' onClick={e => handlePrev(e)}>Prev</button>
             <input className='input-pag' onChange={e => onChange(e)} onKeyDown={(e) => onKeyDown(e)} name="animalsPerPage" autoComplete="off" value={input} />
             <p className='parrafo-pag'>de {Math.ceil(pageNumber.length)}</p>
+            <button name='next' onClick={e => handleNext(e)}>Next</button>
             <button name='next' className='btnpag' onClick={e => handleNext(e)}>Next</button>
 
         </div>

@@ -1,51 +1,50 @@
-// componente barra de busqueda
-
-import React from "react";
-import { useState } from "react";
-import './SearchBar.css'
-// import { useDispatch } from 'react-redux'
-// import getName from '../../redux/actions/index'
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { testFilters } from "../../../redux/actions";
+import './SearchBar.css';
 
 
 export default function SearchBar() {
-    const [state, setState] = useState('')
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const [name, setName] = useState("");
+    const [genre, setGenre] = useState("");
+    
+    useEffect(() => {
+        dispatch(testFilters({ name, genre }));
+      }, [dispatch]);    
+  
 
     function handleChange(e) {
         e.preventDefault()
-        setState(e.target.value)
-    }
-
+        setName(e.target.value)
+        console.log(e.target.value);
+    };
+    
     function handleSubmit(e) {
-        e.preventDefault()
-        console.log(state)
-        // if (state.length > 1) {
-        //     dispatch(getName(state))
-        //     setState('')
-        // } else {
-        //     alert(`I don't enter anything in the search`)
-        // }
-    }
+        e.preventDefault();
+        dispatch(testFilters({name,genre}));
+        setName('');
+        setGenre('');
+    };
+
+    function handleEnter(e){
+        if(e.key === 'Enter') handleSubmit(e);
+    };
+
+    
     return (
         <>
-            {/* <input
-                type='text'
-                placeholder="Insert product to search..."
-                onChange={e => handleChange(e)}
-                value={state}
-                onKeyPress={e => e.key === 'Enter' && handleSubmit(e)}
-            />
-            <button
-                type="submit"
-                onClick={e => handleSubmit(e)}
-            >
-                <span>
-                    <strong>Search!</strong>
-                </span>
-            </button> */}
             <div class="input-group">
-                <input type="email" class="input" id="Email" name="Email" placeholder="Search..." autocomplete="off" />
-                <input class="button--submit" value="Search" type="submit" />
+                <input 
+                    className="input" 
+                    type="text" 
+                    value={name}
+                    placeholder="Search..." 
+                    onChange={e => handleChange(e)}
+                    onKeyDown={e => handleEnter(e)} 
+                    autocomplete="off"
+                />
+                <button class="button--submit" type="submit" onClick={e => handleSubmit(e)}>🔍</button>
             </div>
         </>
     )

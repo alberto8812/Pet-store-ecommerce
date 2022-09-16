@@ -18,9 +18,8 @@ import {
 
 const initialState = {
     products: [],
-    details: {},
     allProducts: [],
-    productTest:[]
+    details: {},
 }
 
 function rootReducer(state = initialState, action) {
@@ -105,10 +104,12 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 details: {}
             };
-        /////////////////////test filters/////////////////////////////////////
-        case "GET_test":
-
-        return{...state,productTest:action.payload}
+            /////////////////////test filters/////////////////////////////////////
+        case "GET_TEST":
+            return {
+                ...state,
+                allProducts: action.payload
+            };
         default:
             return state
     }

@@ -14,6 +14,10 @@ export default function Pagination({animalsPerPage, allProducts, currentPage, se
         if(e.target.name === 'next' && currentPage < pageNumber.length) {
             setCurrentPage(currentPage +1);
         } 
+        if(currentPage === pageNumber.length) {
+            e.target.name(disable)
+        }
+
         const newInputValue = input + 1;
         setInput(newInputValue)
     };
@@ -22,6 +26,9 @@ export default function Pagination({animalsPerPage, allProducts, currentPage, se
         e.preventDefault();
         if(e.target.name === 'prev' && currentPage > 1){
             setCurrentPage(currentPage -1)
+        }
+        if (currentPage === 1) {
+            e.target.name(disable)
         }
         const newInputValuePrev = input - 1;
         setInput(newInputValuePrev)
@@ -48,8 +55,8 @@ export default function Pagination({animalsPerPage, allProducts, currentPage, se
     return (
         <div className="navPagination">
             <button name='prev' onClick={e => handlePrev(e)}>Prev</button>
-            <input onChange={e => onChange(e)} onKeyDown={(e) => onKeyDown(e)} name="animalsPerPage" autoComplete="off" value={input} />
-            <p>de {Math.ceil(pageNumber.length)}</p>
+            <input className='input-pag' onChange={e => onChange(e)} onKeyDown={(e) => onKeyDown(e)} name="animalsPerPage" autoComplete="off" value={input} />
+            <p className='parrafo-pag'>de {Math.ceil(pageNumber.length)}</p>
             <button name='next' onClick={e => handleNext(e)}>Next</button>
 
         </div>

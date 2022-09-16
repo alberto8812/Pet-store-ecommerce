@@ -19,7 +19,8 @@ import {
 const initialState = {
     products: [],
     details: {},
-    allProducts: []
+    allProducts: [],
+    productTest:[]
 }
 
 function rootReducer(state = initialState, action) {
@@ -104,6 +105,10 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 details: {}
             };
+        /////////////////////test filters/////////////////////////////////////
+        case "GET_test":
+
+        return{...state,productTest:action.payload}
         default:
             return state
     }

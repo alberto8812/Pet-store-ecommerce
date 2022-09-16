@@ -31,6 +31,7 @@ export default function Home() {
       <div>
         <Pagination animalsPerPage={animalsPerPage} allProducts={allProducts.length} currentPage={currentPage} setCurrentPage={setCurrentPage} />
       </div>
+      
       <div>
         <ComponentCard animalsInCurrentPage={animalsInCurrentPage} />
 

@@ -3,8 +3,10 @@ const express=require("express"),
       morgan = require('morgan'),
       cors=require('cors'),// providing a Connect/Express middleware that can be used to enable CORS with various options.
       v1ProducstRouter=require('./V1/routes/allProductsRouter'),
+      v1ProductCreate=require('./V1/routes/CreateProductRouter'),
       v1UsersRouter=require('./v1/routes/usersRouter'),
-      jwtCheck=require('./middleware/jwtLoginUser');
+      jwtCheck=require('./middleware/jwtLoginUser'),
+      V1testRouter=require('./V1/routes/testRouter');
 
       
 
@@ -18,6 +20,9 @@ app.use(cors())
 
 app.use("/products",v1ProducstRouter);
 
+app.use("/create",v1ProductCreate)
+
+app.use("/test",V1testRouter)
 
 
 

@@ -8,3 +8,25 @@
     flex: 1;
 }
 
+.filters{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    list-style:none;
+    background-color: rgba(215, 227, 250, 0.549);
+    margin-top: 10%; 
+    border-radius: 5px;  
+}
+
+.select{
+    background-color: rgba(187, 191, 222, 0.684);
+    font-size: 100%;
+    border-radius: 5px;
+    margin: 4px;
+}
+
+.select:hover {
+    cursor: pointer;
+    box-shadow: 0 16px 24px 0 rgba(0,0,0,0.2);
+}

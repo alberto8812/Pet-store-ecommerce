@@ -19,10 +19,6 @@ import {
 const initialState = {
     products: [],
     details: {},
-    filteredBySpecies: 'all',
-    filteredByRace: 'all',
-    filteredByAge: 'all',
-    filteredByCategory: 'all',
     allProducts: [],
     productTest:[]
 }
@@ -30,82 +26,82 @@ const initialState = {
 function rootReducer(state = initialState, action) {
     switch (action.type) {
         case GET_ALL_PRODUCTS:
-            return{
+            return {
                 ...state,
                 products: [...action.payload],
                 allProducts: [...action.payload]
             };
         case GET_DETAILS:
-            return{
+            return {
                 ...state,
-                details: {...action.payload}
+                details: {...action.payload }
             };
         case SEARCH_BY_NAME:
-            return{
+            return {
                 ...state,
                 products: [...action.payload],
             };
         case ADD_PRODUCT:
-            return{
+            return {
                 ...state,
             };
         case FILTER_BY_SPECIES:
-            return{
+            return {
 
             };
         case FILTER_BY_RACE:
-            return{
-    
+            return {
+
             };
         case FILTER_BY_AGE:
-            return{
-    
+            return {
+
             };
         case FILTER_BY_CATEGORY:
-            return{
-    
+            return {
+
             };
         case SORT_BY_PRICE:
             var orderedProducts = [...state.products]
             orderedProducts.sort((product1, product2) => {
-                if(product1.price > product2.price) {
+                if (product1.price > product2.price) {
                     return 1
                 }
-                if(product1.price < product2.price) {
+                if (product1.price < product2.price) {
                     return -1
-                } 
+                }
                 return 0
             })
-            if(action.payload==="desc"){
+            if (action.payload === "desc") {
                 orderedProducts = orderedProducts.reverse()
             }
-            return{
+            return {
                 ...state,
                 products: [...orderedProducts]
             };
         case ADD_FAVORITE:
-            return{
-                
+            return {
+
             };
         case REMOVE_FAVORITE:
-            return{
+            return {
 
             };
         case ADD_TO_CART:
-            return{
+            return {
 
             };
         case REMOVE_OF_CART:
-            return{
+            return {
 
             };
         case PAGINATE:
-            return{
+            return {
                 ...state,
                 products: [...action.payload],
             };
         case CLEAR:
-            return{
+            return {
                 ...state,
                 details: {}
             };
@@ -115,7 +111,7 @@ function rootReducer(state = initialState, action) {
         return{...state,productTest:action.payload}
         default:
             return state
-        }
     }
-    
+}
+
 export default rootReducer;

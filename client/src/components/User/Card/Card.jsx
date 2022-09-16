@@ -17,7 +17,7 @@ export default function Card({ id, image, name, price, rating }) {
                         <h4>{price}</h4>
                         <h2>Rating:</h2>
                         <h4>⭐ {rating}</h4>
-                        <Link to={`/detail/${id}`}><span>Show more</span></Link>
+                        <Link to={`/products/detail/${id}`}><span>Show more</span></Link>
                     </div>
                 </div>
 

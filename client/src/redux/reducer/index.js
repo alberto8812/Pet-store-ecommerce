@@ -23,7 +23,8 @@ const initialState = {
     filteredByRace: 'all',
     filteredByAge: 'all',
     filteredByCategory: 'all',
-    allProducts: []
+    allProducts: [],
+    productTest:[]
 }
 
 function rootReducer(state = initialState, action) {
@@ -108,6 +109,10 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 details: {}
             };
+        /////////////////////test filters/////////////////////////////////////
+        case "GET_test":
+
+        return{...state,productTest:action.payload}
         default:
             return state
         }

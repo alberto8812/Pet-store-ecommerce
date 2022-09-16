@@ -14,6 +14,10 @@ export default function Pagination({animalsPerPage, allProducts, currentPage, se
         if(e.target.name === 'next' && currentPage < pageNumber.length) {
             setCurrentPage(currentPage +1);
         } 
+        if(currentPage === pageNumber.length) {
+            e.target.name(disable)
+        }
+
         const newInputValue = input + 1;
         setInput(newInputValue)
     };
@@ -22,6 +26,9 @@ export default function Pagination({animalsPerPage, allProducts, currentPage, se
         e.preventDefault();
         if(e.target.name === 'prev' && currentPage > 1){
             setCurrentPage(currentPage -1)
+        }
+        if (currentPage === 1) {
+            e.target.name(disable)
         }
         const newInputValuePrev = input - 1;
         setInput(newInputValuePrev)

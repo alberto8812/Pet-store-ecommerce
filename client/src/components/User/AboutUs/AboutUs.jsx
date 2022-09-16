@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './AboutUs.css';
 
 export default function AboutUs(){
 
     const FORM_ENDPOINT = "";
     const [submitted, setSubmitted] = useState(false);
+    const navigate = useNavigate();
 
   const handleSubmit = () => {
     setTimeout(() => {
@@ -15,14 +17,11 @@ export default function AboutUs(){
         alert('Thank you! We will be in touch soon.')
     }
 
-    // if (submitted) {
-    //     return (
-    //       <>
-    //         <h2>Thank you!</h2>
-    //         <div>We'll be in touch soon.</div>
-    //       </>
-    //     );
-    //   }
+    function handleClick(e){
+      e.preventDefault();
+      navigate('/');
+    }
+
 
       return (
         <form
@@ -45,6 +44,7 @@ export default function AboutUs(){
           </div>
           <div>
             <button type="submit"> Send a message </button>
+            <button onClick={e => handleClick(e)}>Go Home</button>
           </div>
           </div>
         </form>

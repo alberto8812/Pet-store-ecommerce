@@ -40,16 +40,6 @@ export default function Home() {
               </li>
               <li>
                 <div>
-                  Filter by Race 
-                  <select className='select'>
-                    <option value='All'>All</option>
-                    <option value='Raza blabla'>Raza blabla </option>
-                    <option value='Raza blabla2'>Raza blabla 2</option>
-                  </select>
-                </div>
-              </li>
-              <li>
-                <div>
                   Filter by Categories
                   <select className='select'>
                     <option value='All'>All</option>

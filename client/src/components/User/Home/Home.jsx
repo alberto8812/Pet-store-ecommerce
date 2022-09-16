@@ -32,11 +32,54 @@ export default function Home() {
       <h1>ESTAMOS EN HOME</h1>
       <h1>PET LOVE STORE</h1>
 
-
-
       <div className='home-container'>
         <div className='container-wrap'>
-
+          <div>
+            <ul className='filters'>
+              <li>
+                <div>
+                  Filter by Age 
+                  <select className='select'>
+                    <option value='All'>All</option>
+                    <option value='Puppy'>Puppy</option>
+                    <option value='Young'>Young</option>
+                    <option value='Adult'>Adult</option>
+                  </select>
+                </div>
+              </li>
+              <li>
+                <div>
+                  Filter by Race 
+                  <select className='select'>
+                    <option value='All'>All</option>
+                    <option value='Raza blabla'>Raza blabla </option>
+                    <option value='Raza blabla2'>Raza blabla 2</option>
+                  </select>
+                </div>
+              </li>
+              <li>
+                <div>
+                  Filter by Categories
+                  <select className='select'>
+                    <option value='All'>All</option>
+                    <option value='Accesories'>Accesories</option>
+                    <option value='Food'>Food</option>
+                    <option value='Toys'>Toys</option>
+                  </select>
+                </div>
+              </li>
+              <li>
+                <div>
+                  Sort by Price
+                  <select className='select'>
+                    <option disabled selected >Select</option>
+                    <option value='Lower Price'>Lower Price</option>
+                    <option value='Higher Price'>Higher Price</option>
+                  </select>
+                </div>
+              </li>
+            </ul>
+          </div>
        
   <h1>ESTAMOS EN EL HOME</h1>
 

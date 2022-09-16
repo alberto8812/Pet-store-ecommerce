@@ -3,6 +3,7 @@ import './Home.css'
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { ComponentCard } from '../ComponentCard/ComponentCard';
+import { sortByPrice } from '../../../redux/actions/index';
 import Pagination from '../Pagination/Pagination';
 import Footer from '../Footer/Footer'
 
@@ -21,6 +22,10 @@ export default function Home() {
   // const pagination = (pageNumber) => {
   //   setCurrentPage(pageNumber);
   // }
+
+  function handlePrice(e) {
+    dispatch(sortByPrice(e.target.value))
+  }
 
   return (
       <div className='home-container'>
@@ -52,7 +57,7 @@ export default function Home() {
               <li>
                 <div>
                   Sort by Price
-                  <select className='select'>
+                  <select className='select' onChange={handlePrice}>
                     <option disabled selected >Select</option>
                     <option value='Lower Price'>Lower Price</option>
                     <option value='Higher Price'>Higher Price</option>

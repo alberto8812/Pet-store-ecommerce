@@ -48,8 +48,8 @@ export default function Pagination({animalsPerPage, allProducts, currentPage, se
     return (
         <div className="navPagination">
             <button name='prev' onClick={e => handlePrev(e)}>Prev</button>
-            <input onChange={e => onChange(e)} onKeyDown={(e) => onKeyDown(e)} name="animalsPerPage" autoComplete="off" value={input} />
-            <p>de {Math.ceil(pageNumber.length)}</p>
+            <input className='input-pag' onChange={e => onChange(e)} onKeyDown={(e) => onKeyDown(e)} name="animalsPerPage" autoComplete="off" value={input} />
+            <p className='parrafo-pag'>de {Math.ceil(pageNumber.length)}</p>
             <button name='next' onClick={e => handleNext(e)}>Next</button>
 
         </div>

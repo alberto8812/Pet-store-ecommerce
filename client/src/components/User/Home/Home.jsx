@@ -8,11 +8,7 @@ import Footer from '../Footer/Footer'
 
 export default function Home() {
 
-  /* TUVE QUE COMENTAR EL PAGINATION XQ TIRABA ERROR AL NO TENER TODAVIA EL ALLPRODUCTS,
-  SUPONGO QUE ESTA BIEN PERO HASTA QUE NO HAYA ALGO QUE MOSTRAR NO SABREMOS */
-
-
-  const allProducts = useSelector(state => state.allProducts)
+  const allProducts = useSelector(state => state.allProducts);
 
   //PAGINADO
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,27 +18,18 @@ export default function Home() {
   const indexFirstAnimal = indexLastAnimal - animalsPerPage; 
   const animalsInCurrentPage = allProducts.slice(indexFirstAnimal, indexLastAnimal);  //CHEQUEAR QUE STATE PUSIERON EN EL REDUCER !!!
 
-  const pagination = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  }
+  // const pagination = (pageNumber) => {
+  //   setCurrentPage(pageNumber);
+  // }
 
   return (
-
-    <div>
-      <h1>ESTAMOS EN HOME</h1>
-      <h1>PET LOVE STORE</h1>
-
-
-
       <div className='home-container'>
         <div className='container-wrap'>
 
        
-  <h1>ESTAMOS EN EL HOME</h1>
-
 
       <div>
-        {/* <Pagination animalsPerPage={animalsPerPage} pagination={pagination} allProducts={allProducts.length} currentPage={currentPage} setCurrentPage={setCurrentPage} /> */}
+        <Pagination animalsPerPage={animalsPerPage} allProducts={allProducts.length} currentPage={currentPage} setCurrentPage={setCurrentPage} />
       </div>
       <div>
         <ComponentCard animalsInCurrentPage={animalsInCurrentPage} />
@@ -50,16 +37,16 @@ export default function Home() {
 
       </div>
 
+              <a style={{'textDecoration': 'none'}} href="#">
+                  <button>Go Up ↑</button>
+              </a>
+
       <div>
         <Footer />
       </div>
+
     </div>
 
-        <div>
-           {/* <Pagination animalsPerPage={animalsPerPage} pagination={pagination} allProducts={allProducts.length} currentPage={currentPage} setCurrentPage={setCurrentPage}/> */}
-        </div>
-
-      </div>
       </div>
   )
 }

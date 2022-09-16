@@ -9,6 +9,7 @@ import LogIn from '../Login/LogIn';
 
 const NavBar = () => {
 
+
     return (
         <div>
             <div className='nav-body'>
@@ -22,14 +23,6 @@ const NavBar = () => {
                     <SearchBar />
                 </div>
                 <div className='nav_box'>
-                    <div className='nav_selec'>
-                        <Icon icon="emojione-v1:cat-face" width='30px' height='30px' />
-                        <h3 className='link_home'>Cat</h3>
-                    </div>
-                    <div className='nav_selec'>
-                        <Icon icon="emojione-v1:dog-face" width='30px' height='30px' />
-                        <h3 className='link_home'>Dog</h3>
-                    </div>
                 </div>
                 <div className='nav_box'>
                     <Link to='/' className='nav-link' >
@@ -41,10 +34,6 @@ const NavBar = () => {
                         <h3 className='link_home'>Favorite</h3>
                     </Link>
                     <div>
-                        {/*<Link to='/' className='nav-link' >
-                        <Icon icon="healthicons:ui-user-profile" width='30px' height='30px' />
-                        <h3 className='link_home'>Profile</h3>
-                         </Link>*/}
                         <LogIn className='nav-link' >
                             <Icon icon="healthicons:ui-user-profile" width='30px' height='30px' />
                         </LogIn>

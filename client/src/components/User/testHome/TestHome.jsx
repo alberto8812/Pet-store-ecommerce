@@ -1,11 +1,13 @@
 import LogIn from '../Login/LogIn';
-import '../Home/Home.css'
+
 import React, { useState,useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ComponentCard } from '../ComponentCard/ComponentCard';
 import Pagination from '../Pagination/Pagination';
 import Footer from '../Footer/Footer'
 import { testFilters } from '../../../redux/actions';
+import { Box,Grid } from "@material-ui/core";
+import Carousel from '../carousel/Carousel';
 
 export default function TestHome() {
     let dispatch=useDispatch()
@@ -38,20 +40,28 @@ const handleSubmit=()=>{
   return (
 
     <div>
-      <h1>ESTAMOS EN HOME</h1>
-      <h1>PET LOVE STORE</h1>
-
-    <input placeholder='search' onChange={(e)=>setName(e.target.value)}/>
-
-    <button  onClick={handleSubmit}>search</button>
-    <button onClick={()=>setGenre('dog')} >dog</button>
-    <button onClick={()=>setGenre('cat')}>cat</button>
+      <Grid 
+      container
+      >
+        <Grid item xs={12}> 
+        <Box 
+        border={2}
+        m={5}
+        >
+          </Box></Grid>
+    <Grid item xs={12}>
+      <Box
+      border={2}
+      >
+        <Carousel/>
+    </Box>
+    </Grid>
       <div className='home-container'>
         <div className='container-wrap'>
 
        
   <h1>ESTAMOS EN EL HOME</h1>
-
+    
 
       <div>
         {/* <Pagination animalsPerPage={animalsPerPage} pagination={pagination} allProducts={allProducts.length} currentPage={currentPage} setCurrentPage={setCurrentPage} /> */}
@@ -72,6 +82,7 @@ const handleSubmit=()=>{
         </div>
 
       </div>
+      </Grid>
       </div>
   )
 }

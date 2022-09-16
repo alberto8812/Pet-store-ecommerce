@@ -3,10 +3,6 @@ import {
     GET_DETAILS,
     SEARCH_BY_NAME,
     ADD_PRODUCT,
-    FILTER_BY_SPECIES,
-    FILTER_BY_RACE,
-    FILTER_BY_AGE,
-    FILTER_BY_CATEGORY,
     SORT_BY_PRICE,
     ADD_FAVORITE,
     REMOVE_FAVORITE,
@@ -43,22 +39,6 @@ function rootReducer(state = initialState, action) {
         case ADD_PRODUCT:
             return {
                 ...state,
-            };
-        case FILTER_BY_SPECIES:
-            return {
-
-            };
-        case FILTER_BY_RACE:
-            return {
-
-            };
-        case FILTER_BY_AGE:
-            return {
-
-            };
-        case FILTER_BY_CATEGORY:
-            return {
-
             };
         case SORT_BY_PRICE:
             var orderedProducts = [...state.products]

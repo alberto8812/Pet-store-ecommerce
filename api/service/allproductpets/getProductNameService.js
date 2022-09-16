@@ -5,7 +5,7 @@ const {Product,Genre,Category}=db.models
 
 
 ///peticion a la api  para encontrar tos los productos que contengan la palabra de busqueda//
-const getdbProdcutName=async(req)=>{
+const getdbProdcutNameService=async(req)=>{
     const {name}=req.query
     const dbNameProduct=await Product.findAll({
         where:{
@@ -25,4 +25,4 @@ const getdbProdcutName=async(req)=>{
 
 
 
-module.exports={getdbProdcutName}
+module.exports={getdbProdcutNameService}

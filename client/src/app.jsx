@@ -9,14 +9,12 @@ import Home from './components/User/Home/Home'
 import PaymentGateway from './components/User/PaymentGateway/PaymentGateway';
 import Registration from './components/User/Registration/Registration';
 import NavBar from './components/User/NavBar/NavBar';
-import TestHome from './components/User/testHome/TestHome';
 
 function App() {
   return (
     <div className="App">
       <NavBar />
       <Routes>
-        <Route path={'/test'} element={<TestHome/>}/>
         <Route path={'/'} element={<Home />} />
         <Route path={'/details/:id'} element={<Detail />} />
         <Route path={'/aboutus'} element={<AboutUs />} />

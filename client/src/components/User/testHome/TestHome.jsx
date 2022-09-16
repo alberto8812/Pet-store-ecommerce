@@ -1,18 +1,23 @@
 import LogIn from '../Login/LogIn';
-import './Home.css'
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import '../Home/Home.css'
+import React, { useState,useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { ComponentCard } from '../ComponentCard/ComponentCard';
 import Pagination from '../Pagination/Pagination';
 import Footer from '../Footer/Footer'
+import { testFilters } from '../../../redux/actions';
 
-export default function Home() {
-
+export default function TestHome() {
+    let dispatch=useDispatch()
   /* TUVE QUE COMENTAR EL PAGINATION XQ TIRABA ERROR AL NO TENER TODAVIA EL ALLPRODUCTS,
   SUPONGO QUE ESTA BIEN PERO HASTA QUE NO HAYA ALGO QUE MOSTRAR NO SABREMOS */
+useEffect(() => {
+    dispatch(testFilters({name,genre}))
+}, [dispatch])
 
-
-  const allProducts = useSelector(state => state.allProducts)
+  const allProducts = useSelector(state => state.productTest)
+const [name, setName] = useState('');
+const [genre, setGenre] = useState('');
 
   //PAGINADO
   const [currentPage, setCurrentPage] = useState(1);
@@ -26,14 +31,21 @@ export default function Home() {
     setCurrentPage(pageNumber);
   }
 
+
+const handleSubmit=()=>{
+    dispatch(testFilters({name,genre}));
+}
   return (
 
     <div>
       <h1>ESTAMOS EN HOME</h1>
       <h1>PET LOVE STORE</h1>
 
+    <input placeholder='search' onChange={(e)=>setName(e.target.value)}/>
 
-
+    <button  onClick={handleSubmit}>search</button>
+    <button onClick={()=>setGenre('dog')} >dog</button>
+    <button onClick={()=>setGenre('cat')}>cat</button>
       <div className='home-container'>
         <div className='container-wrap'>
 
@@ -42,7 +54,7 @@ export default function Home() {
 
 
       <div>
-       <Pagination animalsPerPage={animalsPerPage} pagination={pagination} allProducts={allProducts.length} currentPage={currentPage} setCurrentPage={setCurrentPage} /> 
+        {/* <Pagination animalsPerPage={animalsPerPage} pagination={pagination} allProducts={allProducts.length} currentPage={currentPage} setCurrentPage={setCurrentPage} /> */}
       </div>
       <div>
         <ComponentCard animalsInCurrentPage={animalsInCurrentPage} />

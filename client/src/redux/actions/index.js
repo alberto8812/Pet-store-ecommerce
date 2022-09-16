@@ -50,3 +50,20 @@ export function postProduct(payload) {
         return response
     }
 }
+
+
+////////////////////////////////test filters/////////////////////////
+
+export const testFilters=({name,genre})=>{
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.get(`http://localhost:3001/test?name=`+name+`&genre=`+genre);
+            return dispatch({
+                type: "GET_test",
+                payload: data,
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    };
+}

@@ -9,5 +9,5 @@ router
       .get('/detail/:id',getProductDetail)//llama a la funcion de controller productscontrollet para traer detalles
 
       .get('/name',getProductName)//llama a la funcion controller productscontrllet para buscar pos nombre 
-
+      
 module.exports=router;

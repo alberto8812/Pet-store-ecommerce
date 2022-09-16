@@ -177,6 +177,8 @@ return;
 const getAllProductApiService = async () => {
 
     ///peticion a la api /////////////////////////
+    const checkData=await Product.findAll()
+  if(!checkData.length){
     const apiUrl =  (await axios.get(`https://pet-elegant.herokuapp.com/api/products`)).data
     const apiInfo = await apiUrl.data.map(e =>{
         return{
@@ -221,7 +223,7 @@ const getAllProductApiService = async () => {
         findGenre.addProducts(dbCreateProducts);
         dbCreateProducts.setGenre(findGenre);
     }
-
+  }
 return;
 }
 

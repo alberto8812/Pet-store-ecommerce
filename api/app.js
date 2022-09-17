@@ -5,8 +5,8 @@ const express=require("express"),
       v1ProducstRouter=require('./V1/routes/allProductsRouter'),
       v1ProductCreate=require('./V1/routes/CreateProductRouter'),
       v1UsersRouter=require('./v1/routes/usersRouter'),
-      jwtCheck=require('./middleware/jwtLoginUser'),
-      V1testRouter=require('./V1/routes/testRouter');
+      v1ProductsUsersRouter=require('./v1/routes/productsUsersRouter'),
+      jwtCheck=require('./middleware/jwtLoginUser');
 
       
 
@@ -22,12 +22,8 @@ app.use("/products",v1ProducstRouter);
 
 app.use("/create",v1ProductCreate)
 
-app.use("/test",V1testRouter)
-
-
-
-//app.use(jwtCheck)
-//rote is all relation with users login,register
 app.use("/users",v1UsersRouter)
+
+app.use("/products/users",jwtCheck,v1ProductsUsersRouter)
 
 module.exports=app

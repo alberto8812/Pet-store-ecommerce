@@ -6,7 +6,7 @@ const express=require("express"),
 router
       .get('/', getAllProductsData)//llama a la funcion de controller productscontrollet para traer todos los productos
 
-      .get('/search',getProductSearch)//llama a la funcion controller productscontrllet para buscar pos nombre 
+      .get('/search',getProductSearch)//llama a la funcion controller productscontrllet para buscar por nombre,genero y categoria 
       
       .get('/detail/:id',getProductDetail)//llama a la funcion de controller productscontrollet para traer detalles
 

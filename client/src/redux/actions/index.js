@@ -14,7 +14,7 @@ import {
 } from "./constants";
 
 export function getProducts(name) {
-    return async function(dispatch) {
+    return async function (dispatch) {
         try {
             if (name) {
                 return axios.get('http://localhost:3001/products?name=' + name)
@@ -35,13 +35,13 @@ export function getProducts(name) {
 export const getDetails = (id) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`http://localhost:3001/products/${id}`);
+            const { data } = await axios.get(`http://localhost:3001/products/detail/${id}`);
             return dispatch({
                 type: GET_DETAILS,
                 payload: data,
             });
         } catch (err) {
-                console.error(err);
+            console.error(err);
         }
     };
 };
@@ -52,9 +52,9 @@ export function clear() {
         payload: {},
     };
 }
-    
+
 export function postProduct(payload) {
-    return async function(dispatch) {
+    return async function (dispatch) {
         const response = await axios.post('/create', payload)
         console.log(response)
         return response
@@ -72,7 +72,7 @@ export function sortByPrice(order) {
 ////////////////////////////////test filters/////////////////////////
 
 export const testFilters = ({ name, genre }) => {
-    return async(dispatch) => {
+    return async (dispatch) => {
         try {
             console.log({ name, genre });
             const { data } = await axios.get(`http://localhost:3001/test?name=${name}&genre=${genre}`);

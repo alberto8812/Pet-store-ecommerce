@@ -25,7 +25,8 @@ export default function Detail() {
 
     return (
         <div>
-          
+            <h1>NAVBAR MOLESTA 1</h1>
+            <h1>NAVBAR MOLESTA 2</h1>
             <div>
                 <h1 >{myProduct.name}</h1>
                 <ul>
@@ -44,6 +45,11 @@ export default function Detail() {
                             <p >📌{myProduct.detail}</p>
                             <h2 className="caracts">Stock:</h2>
                             <p>{myProduct.stock}</p>
+                            <h2 className="caracts">Genres:</h2>
+                            <p>{myProduct.genre.name}</p>
+                            <h2 className="caracts">Category:</h2>
+                            <p>{myProduct.category.name}</p>
+
                         </div>
                     </li>
                 </ul>

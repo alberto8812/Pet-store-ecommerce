@@ -6,10 +6,12 @@ import Footer from "../Footer/Footer";
 import { Box, Grid } from "@material-ui/core";
 import "./Home.css";
 import Carousel from "../carousel/Carousel";
+import { sortByPrice } from "../../../redux/actions";
 
 export default function Home() {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.allProducts);
+  const [order, setOrder] = useState('');
 
   // useEffect(() => {
   //   dispatch(testFilters({ name, genre }));
@@ -31,7 +33,9 @@ export default function Home() {
 
 
   function handlePrice(e) {
-    dispatch(sortByPrice(e.target.value))
+    e.preventDefault();
+    dispatch(sortByPrice(e.target.value));
+    setOrder(e.target.value);
   }
 
   return (
@@ -83,10 +87,10 @@ export default function Home() {
               <li>
                 <div>
                   Sort by Price
-                  <select className='select' onChange={handlePrice}>
+                  <select className='select' onChange={e => handlePrice(e)}>
                     <option disabled selected >Select</option>
-                    <option value='Lower Price'>Lower Price</option>
-                    <option value='Higher Price'>Higher Price</option>
+                    <option value='higherPrice'>Higher Price</option>
+                    <option value='lowerPrice'>Lower Price</option>
                   </select>
                 </div>
               </li>

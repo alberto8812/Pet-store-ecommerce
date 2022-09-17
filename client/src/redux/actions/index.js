@@ -50,7 +50,8 @@ export function clear() {
         type: CLEAR,
         payload: {},
     };
-};
+
+}
 
 export function postProduct(payload) {
     return async function (dispatch) {

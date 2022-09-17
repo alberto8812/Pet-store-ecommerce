@@ -1,13 +1,56 @@
 // componente con las funciones de filtrado y ordenamiento
+import React from "react";
+import "../Home/Home.css";
 
-export default function Filter_Sort(){
 
-    function handlePrice(e) {
-        dispatch(sortByPrice(e.target.value))
-      }
+const Filter_Sort = ({ handlePrice }) => {
 
-return(
+  return (
+    <div>
+      <ul className='navbar'>
+        <li className='content-select'>
 
+            Filter by Age
+            <select className='select'>
+              <option value='All'>All</option>
+              <option value='Puppy'>Puppy</option>
+              <option value='Young'>Young</option>
+              <option value='Adult'>Adult</option>
+            </select>
+
+        </li>
+        <li className='content-select'>
+
+            Filter by Categories
+            <select className='select'>
+              <option value='All'>All</option>
+              <option value='Accesories'>Accesories</option>
+              <option value='Food'>Food</option>
+              <option value='Toys'>Toys</option>
+            </select>
+
+        </li>
+        <li className='content-select'>
+
+            Sort by Price
+            <select className='select' onChange={e => handlePrice(e)}>
+              <option disabled selected >Select</option>
+              <option value='Lower Price'>Lower Price</option>
+              <option value='Higher Price'>Higher Price</option>
+            </select>
+
+        </li>
+      </ul>
+    </div >
+
+
+  )
+}
+
+export default Filter_Sort
+
+
+/*
 <div>
             <ul className='filters'>
               <li>
@@ -35,7 +78,7 @@ return(
               <li>
                 <div>
                   Sort by Price
-                  <select className='select' onChange={handlePrice}>
+                  <select className='select' onChange={e => handlePrice(e)}>
                     <option disabled selected >Select</option>
                     <option value='Lower Price'>Lower Price</option>
                     <option value='Higher Price'>Higher Price</option>
@@ -44,5 +87,5 @@ return(
               </li>
             </ul>
           </div>
-)
-}
+
+*/

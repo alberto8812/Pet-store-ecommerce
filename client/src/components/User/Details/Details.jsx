@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getDetails } from "../../../redux/actions";
 import Loading from "../Loading/Loading";
+import './Details.css'
 
 export default function Detail() {
     const [carga, setCarga] = useState(true);
@@ -21,11 +22,10 @@ export default function Detail() {
     }
 
     return (
-        <div>
-          
+        <div className="divDetail">
             <div>
-                <h1 >{myProduct.name}</h1>
-                <ul>
+                <h1 className="name">{myProduct.name}</h1>
+                <ul className="asd">
                     <li>
                         <div>
                             <img src={myProduct.image} alt={myProduct.name}/>
@@ -33,7 +33,7 @@ export default function Detail() {
                     </li>
                     <li>
                         <div>
-                            <h2>Price:</h2>
+                            <h2 className="caracts">Price:</h2>
                             <p>{myProduct.price}</p>
                             <h2 className="caracts">Rating:</h2>
                             <p>⭐ {myProduct.rating}</p>
@@ -43,7 +43,7 @@ export default function Detail() {
                             <p>{myProduct.stock}</p>
                             <h2 className="caracts">Genre:</h2>
                             <p>{myProduct.genre.name}</p>
-                            <h2 className="caracts">Category:</h2>
+                            <h2 className="last">Category:</h2>
                             <p>{myProduct.category.name}</p>
                         </div>
                     </li>

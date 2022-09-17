@@ -1,5 +1,6 @@
 const { expressjwt: jwt } = require("express-jwt"),////Express middleware for validating JWTs (JSON Web Tokens)
-      jwks=require('jwks-rsa');
+      jwks=require('jwks-rsa'),
+      jwtAuthz=require("express-jwt-authz");
 
 const jwtCheck = jwt({
      
@@ -12,6 +13,14 @@ const jwtCheck = jwt({
   audience: 'http://www.pet-love-api.com',
   issuer: 'https://dev-nzbce16c.us.auth0.com/',
   algorithms: ['RS256']
-}).unless({path:['/products']})
+})
 
-module.exports=jwtCheck;
+
+
+const checkpermissions=jwtAuthz(["read:message"],{
+      checkAllScopes: true
+  })
+
+
+
+module.exports={jwtCheck,checkpermissions};

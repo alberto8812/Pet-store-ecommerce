@@ -17,8 +17,8 @@ const jwtCheck = jwt({
 
 
 
-const checkpermissions=jwtAuthz(["read:message"],{
-      checkAllScopes: true
+const checkpermissions=jwtAuthz(['read:message'],{
+      customScopeKey:"permissions"
   })
 
 

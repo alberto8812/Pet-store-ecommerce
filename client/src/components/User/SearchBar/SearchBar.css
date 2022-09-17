@@ -8,7 +8,7 @@
     max-width: 550px;
     padding: 0 7rem 0 1rem;
     font-size: 15px;
-    border: 1px solid #0099e5;
+    border: 1px solid #d200e5;
     border-radius: 6px 0 0 6px;
     background-color: white;
     margin-left: 50%;
@@ -19,7 +19,7 @@
     padding: .5em 1em;
     border: none;
     border-radius: 0 6px 6px 0;
-    background-color: #0099e5;
+    background-color: #770386;
     color: #fff;
     font-size: 15px;
     cursor: pointer;
@@ -27,7 +27,7 @@
 }
 
 .button--submit:hover {
-    background-color: #0099e5;
+    background-color: #8200e5;
 }
 
 .input:focus,

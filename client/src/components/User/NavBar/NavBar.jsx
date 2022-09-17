@@ -35,7 +35,6 @@ const NavBar = () => {
                     </Link>
                     <div>
                         <LogIn className='nav-link' >
-                            <Icon icon="healthicons:ui-user-profile" width='30px' height='30px' />
                         </LogIn>
                     </div>
                 </div>

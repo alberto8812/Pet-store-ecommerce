@@ -6,11 +6,14 @@ import Footer from "../Footer/Footer";
 import { Box, Grid } from "@material-ui/core";
 import "./Home.css";
 import Carousel from "../carousel/Carousel";
+import { sortByPrice } from "../../../redux/actions";
+import Filter_Sort from "../Filters_Sort/Filters_Sort";
 
 
 export default function Home() {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.allProducts);
+  const [order, setOrder] = useState('');
 
   // useEffect(() => {
   //   dispatch(testFilters({ name, genre }));
@@ -31,10 +34,14 @@ export default function Home() {
 
 
   function handlePrice(e) {
-    dispatch(sortByPrice(e.target.value))
+    e.preventDefault();
+    dispatch(sortByPrice(e.target.value));
+    setOrder(e.target.value);
   }
 
+  {/* 
   return (
+   
     <div>
       <Grid container>
         <Grid item xs={12}>
@@ -56,42 +63,7 @@ export default function Home() {
               />
             </div>
 
-          <div>
-            <ul className='filters'>
-              <li>
-                <div>
-                  Filter by Age 
-                  <select className='select'>
-                    <option value='All'>All</option>
-                    <option value='Puppy'>Puppy</option>
-                    <option value='Young'>Young</option>
-                    <option value='Adult'>Adult</option>
-                  </select>
-                </div>
-              </li>
-              <li>
-                <div>
-                  Filter by Categories
-                  <select className='select'>
-                    <option value='All'>All</option>
-                    <option value='Accesories'>Accesories</option>
-                    <option value='Food'>Food</option>
-                    <option value='Toys'>Toys</option>
-                  </select>
-                </div>
-              </li>
-              <li>
-                <div>
-                  Sort by Price
-                  <select className='select' onChange={handlePrice}>
-                    <option disabled selected >Select</option>
-                    <option value='Lower Price'>Lower Price</option>
-                    <option value='Higher Price'>Higher Price</option>
-                  </select>
-                </div>
-              </li>
-            </ul>
-          </div>
+          <Filter_Sort handlePrice={handlePrice}/>
 
             <div>
               <ComponentCard animalsInCurrentPage={animalsInCurrentPage} />
@@ -108,5 +80,37 @@ export default function Home() {
         </div>
       </Grid>
     </div>
-  );
+    );
+  */}
+
+
+  return(
+    <div className='home'>
+      <Grid container>
+        <Grid item xs={12}>
+          <Box border={2} m={5}></Box>
+        </Grid>
+        <Grid item xs={12}>
+          <Box border={2}>
+            <Carousel />
+          </Box>
+        </Grid>
+    <div className='divNBFun'>
+    <Filter_Sort handlePrice={handlePrice}/>
+    </div>
+    <div>
+        <ComponentCard animalsInCurrentPage={animalsInCurrentPage} />
+    </div>
+    <div>
+        <Pagination
+                animalsPerPage={animalsPerPage}
+                allProducts={allProducts.length}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage} />
+    </div>
+    </Grid>
+</div>
+
+  )
 }
+

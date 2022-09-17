@@ -44,6 +44,10 @@ export default function Detail() {
                             <p >📌{myProduct.detail}</p>
                             <h2 className="caracts">Stock:</h2>
                             <p>{myProduct.stock}</p>
+                            <h2 className="caracts">Genre:</h2>
+                            <p>{myProduct.genre.name}</p>
+                            <h2 className="caracts">Category:</h2>
+                            <p>{myProduct.category.name}</p>
                         </div>
                     </li>
                 </ul>

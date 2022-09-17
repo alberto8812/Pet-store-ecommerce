@@ -27,13 +27,17 @@ export function getProducts(name) {
                 payload: json.data
             })
         } catch (err) {
-            console.log(err)
+            console.error(err)
         }
     }
 }
 
 export const getDetails = (id) => {
+
+    return async(dispatch) => {
+
     return async (dispatch) => {
+
         try {
             const { data } = await axios.get(`http://localhost:3001/products/${id}`);
             return dispatch({
@@ -41,7 +45,11 @@ export const getDetails = (id) => {
                 payload: data,
             });
         } catch (err) {
+
+            console.error(err);
+=======
                 console.error(err);
+
         }
     };
 };
@@ -51,22 +59,28 @@ export function clear() {
         type: CLEAR,
         payload: {},
     };
+
+};
+
+
+=======
 }
     
+
 export function postProduct(payload) {
     return async function(dispatch) {
         const response = await axios.post('/create', payload)
         console.log(response)
         return response
     }
-}
+};
 
-export function sortByPrice(order) {
+export function sortByPrice(payload) {
     return {
         type: SORT_BY_PRICE,
-        payload: order
+        payload
     }
-}
+};
 
 
 ////////////////////////////////test filters/////////////////////////
@@ -74,7 +88,6 @@ export function sortByPrice(order) {
 export const testFilters = ({ name, genre }) => {
     return async(dispatch) => {
         try {
-            console.log({ name, genre });
             const { data } = await axios.get(`http://localhost:3001/test?name=${name}&genre=${genre}`);
             return dispatch({
                 type: "GET_TEST",
@@ -84,4 +97,4 @@ export const testFilters = ({ name, genre }) => {
             console.error(err);
         }
     };
-}
+};

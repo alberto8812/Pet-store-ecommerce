@@ -50,11 +50,8 @@ export function clear() {
         type: CLEAR,
         payload: {},
     };
-<<<<<<< HEAD
+
 }
-=======
-};
->>>>>>> 271a1ef8e89865db014a2648a2d53b193c5d390e
 
 export function postProduct(payload) {
     return async function (dispatch) {

@@ -4,10 +4,6 @@ import {
     GET_DETAILS,
     SEARCH_BY_NAME,
     ADD_PRODUCT,
-    FILTER_BY_SPECIES,
-    FILTER_BY_RACE,
-    FILTER_BY_AGE,
-    FILTER_BY_CATEGORY,
     SORT_BY_PRICE,
     ADD_FAVORITE,
     REMOVE_FAVORITE,
@@ -34,11 +30,14 @@ export function getProducts(name) {
             console.error(err)
         }
     }
-
 }
 
 export const getDetails = (id) => {
+
     return async(dispatch) => {
+
+    return async (dispatch) => {
+
         try {
             const { data } = await axios.get(`http://localhost:3001/products/${id}`);
             return dispatch({
@@ -46,18 +45,27 @@ export const getDetails = (id) => {
                 payload: data,
             });
         } catch (err) {
+
             console.error(err);
+=======
+                console.error(err);
+
         }
     };
 };
 
 export function clear() {
     return {
-        type: 'CLEAR',
+        type: CLEAR,
         payload: {},
     };
+
 };
 
+
+=======
+}
+    
 
 export function postProduct(payload) {
     return async function(dispatch) {

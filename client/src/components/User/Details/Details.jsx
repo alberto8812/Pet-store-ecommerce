@@ -1,6 +1,8 @@
-
-<<<<<<< HEAD
-=======
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { getDetails } from "../../../redux/actions";
+import Loading from "../Loading/Loading";
 
 export default function Detail() {
     const [carga, setCarga] = useState(true);
@@ -51,4 +53,4 @@ export default function Detail() {
         </div>
     )
 }
->>>>>>> 57bdf7cccf9c325711e2e3faf6eef4ca420a4177
+

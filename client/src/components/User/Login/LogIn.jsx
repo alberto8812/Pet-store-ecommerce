@@ -7,6 +7,8 @@ import { IconButton } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useAuth0 } from '@auth0/auth0-react';//peticion  libreria auth0 para registros de usuario
+
 import './Login.css'
 const style = {
     position: 'absolute',
@@ -23,6 +25,7 @@ const style = {
 };
 
 function ChildModal() {
+    
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => {
         setOpen(true);
@@ -62,6 +65,7 @@ function ChildModal() {
 }
 
 export default function LogIn() {
+    const {loginWithRedirect,logout}=useAuth0()
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => {
         setOpen(true);
@@ -84,14 +88,18 @@ export default function LogIn() {
             >
                 <Box sx={{ ...style, width: 400 }}>
                     <div><h2 id="parent-modal-title">Log in</h2></div>
-                    <IconButton onClick="{}" display='flex'>
+                    <button onClick={()=>loginWithRedirect()}>{/*crear boton para el login */}
+                   {/* <IconButton onClick="{}" display='flex'>*/}
                     <LoginIcon/>
-                    </IconButton>
+                    {/*</IconButton>*/}
+                    </button>
                     <p>Login</p>
                     <br />
-                    <IconButton onClick="{}">
+                    <button onClick={()=>logout()}>{/*crear boton para el logout */}
+                    {/*<IconButton onClick="{}">*/}
                     <LogoutIcon/>
-                    </IconButton>
+                    {/* </IconButton> */}
+                    </button>
                     <p>Logout</p>
                     <br /><br />
                     <div align='right'>

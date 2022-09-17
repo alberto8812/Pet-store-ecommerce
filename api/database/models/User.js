@@ -23,14 +23,10 @@ module.exports = (sequelize) => {
     
     userName:{
       type: DataTypes.STRING,
-      allowNull: false, 
+      allowNull: false,
+       
     },
-
-    password:{
-      type: DataTypes.STRING,
-      allowNull:false,
-      unique: true,
-    },
+    
 
     flagAdmin:{
       type: DataTypes.BOOLEAN,

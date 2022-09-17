@@ -7,7 +7,6 @@ import { Box, Grid } from "@material-ui/core";
 import "./Home.css";
 import Carousel from "../carousel/Carousel";
 
-
 export default function Home() {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.allProducts);
@@ -20,6 +19,7 @@ export default function Home() {
   //PAGINADO
   const [currentPage, setCurrentPage] = useState(1);
   const [animalsPerPage, setAnimalsPerPage] = useState(9); // Hasta 5 cards por pag
+  
 
   const indexLastAnimal = currentPage * animalsPerPage;
   const indexFirstAnimal = indexLastAnimal - animalsPerPage;

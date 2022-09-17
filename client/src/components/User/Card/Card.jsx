@@ -2,7 +2,7 @@ import React from "react";
 import './Card.css';
 import { Link } from 'react-router-dom';
 
-export default function Card({ id, image, name, price, rating }) {
+export default function Card({ id, image, name, price, rating, category }) {
     return (
         <div>
             <div>
@@ -17,6 +17,8 @@ export default function Card({ id, image, name, price, rating }) {
                         <h4>{price}</h4>
                         <h2>Rating:</h2>
                         <h4>⭐ {rating}</h4>
+                        <h2>Category</h2>
+                        <h4>{category}</h4>
                         <Link to={`/products/detail/${id}`}><span>Show more</span></Link>
                     </div>
                 </div>

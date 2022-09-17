@@ -20,7 +20,7 @@ const NavBar = () => {
                     </Link>
                 </div>
                 <div>
-                    <SearchBar />
+                    {/* <SearchBar /> */}
                 </div>
                 <div className='nav_box'>
                 </div>

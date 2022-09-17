@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { ComponentCard } from "../ComponentCard/ComponentCard";
 import Pagination from "../Pagination/Pagination";
 import Footer from "../Footer/Footer";
+import SearchBar from "../SearchBar/SearchBar";
 import { Box, Grid } from "@material-ui/core";
 import "./Home.css";
 import Carousel from "../carousel/Carousel";
-import { sortByPrice } from "../../../redux/actions";
+import { sortByPrice, getProducts} from "../../../redux/actions";
+
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -21,8 +23,10 @@ export default function Home() {
   //PAGINADO
   const [currentPage, setCurrentPage] = useState(1);
   const [animalsPerPage, setAnimalsPerPage] = useState(9); // Hasta 5 cards por pag
+  //const [filterAge, setFilterAge] = useState(''); 
+  const [filterCategory, setFilterCategory] = useState(''); 
+  const [filterName, setFilterName] = useState(''); 
   
-
   const indexLastAnimal = currentPage * animalsPerPage;
   const indexFirstAnimal = indexLastAnimal - animalsPerPage;
   const animalsInCurrentPage = allProducts.slice(
@@ -30,12 +34,24 @@ export default function Home() {
     indexLastAnimal
   ); //CHEQUEAR QUE STATE PUSIERON EN EL REDUCER !!!
 
-
-
   function handlePrice(e) {
     e.preventDefault();
     dispatch(sortByPrice(e.target.value));
     setOrder(e.target.value);
+  }
+
+  function onChangeAge(e) { //¿ESTE LO BORRAMOS MEJOR?
+    // setFilterAge(e.target.value)
+    // dispatch(getProducts)
+  }
+
+  function onChangeCategory(e) {
+    setFilterCategory(e.target.value)
+    dispatch(getProducts(filterName, e.target.value))
+  }
+
+  function onChangeName(e) {
+    dispatch(getProducts(filterName, filterCategory))
   }
 
   return (
@@ -62,10 +78,11 @@ export default function Home() {
 
           <div>
             <ul className='filters'>
+              <SearchBar setFilterName={setFilterName} onChangeName={onChangeName}></SearchBar>
               <li>
                 <div>
                   Filter by Age 
-                  <select className='select'>
+                  <select className='select' onChange={onChangeAge}>
                     <option value='All'>All</option>
                     <option value='Puppy'>Puppy</option>
                     <option value='Young'>Young</option>
@@ -76,11 +93,12 @@ export default function Home() {
               <li>
                 <div>
                   Filter by Categories
-                  <select className='select'>
+                  <select className='select' onChange={onChangeCategory}>
                     <option value='All'>All</option>
-                    <option value='Accesories'>Accesories</option>
-                    <option value='Food'>Food</option>
-                    <option value='Toys'>Toys</option>
+                    <option value='accessories'>Accesories</option> 
+                    {/* Corregir back es "accesories" */}
+                    <option value='food'>Food</option>
+                    <option value='toys'>Toys</option>
                   </select>
                 </div>
               </li>

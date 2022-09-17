@@ -31,6 +31,7 @@ export const ComponentCard = ({animalsInCurrentPage}) => {
                     name={v.name}
                     price={v.price}
                     rating={v.rating}
+                    category={v.category.name}
                     />)}) : `We couldn't load the games, refresh the page`}
 
         </div>

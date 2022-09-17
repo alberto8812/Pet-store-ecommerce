@@ -18,11 +18,11 @@ app.use(cors())
 //middlewere JSON WEB TOKEN
 
 
-app.use("/products",v1ProducstRouter);
+app.use("/products",v1ProducstRouter);//Esto lo borrariamos
 
 app.use("/create",v1ProductCreate)
 
-app.use("/test",V1testRouter)
+app.use("/test",V1testRouter) //esta ruta tendríamos que renombrar como products
 
 
 

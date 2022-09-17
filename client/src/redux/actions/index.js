@@ -13,19 +13,13 @@ import {
     CLEAR
 } from "./constants";
 
-export function getProducts(name) {
+export function getProducts(name = '', category = '', genre = '') {
+    console.log({name, category} )
     return async function (dispatch) {
         try {
-            if (name) {
-                return axios.get('http://localhost:3001/products?name=' + name)
+                return axios.get('http://localhost:3001/products/search?name=' + name + '&category=' + category + '&genre=' + genre)
                     .then(res => dispatch({ type: GET_ALL_PRODUCTS, payload: res.data }))
                     .catch(err => dispatch({ type: GET_ALL_PRODUCTS, payload: err.data }))
-            }
-            let json = await axios.get('http://localhost:3001/products', {})
-            return dispatch({
-                type: GET_ALL_PRODUCTS,
-                payload: json.data
-            })
         } catch (err) {
             console.error(err)
         }

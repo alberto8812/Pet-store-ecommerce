@@ -5,6 +5,7 @@ import { useState } from "react";
 import { getProducts } from '../../../redux/actions/index';
 import Loading from '../Loading/Loading'
 import Card from "../Card/Card";
+import '../Home/Home.css'
 
 export const ComponentCard = ({animalsInCurrentPage}) => {
     const dispatch = useDispatch()
@@ -21,10 +22,10 @@ export const ComponentCard = ({animalsInCurrentPage}) => {
       }
 
     return (
-        <div>
+        <div className='container'>
             {animalsInCurrentPage.length > 0 ?
             animalsInCurrentPage?.map(v => {
-                return (<Card 
+                return (<Card className='cardHome'
                     key={v.id}
                     id={v.id}
                     image={v.image ? v.image : v.name}

@@ -3,11 +3,11 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     right: 0;
-    background-color: #0045ad;
+    background-color: #6200ad;
     width: 100%;
 	height: 90px;
     box-shadow: 0 4px 16px rgb(24, 24, 24);
@@ -36,7 +36,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    color: black;
+    color: rgb(0, 0, 0);
 }
 
 .nav-link{
@@ -46,7 +46,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: black;
+    color: rgb(234, 208, 240);
 }
 
 
@@ -129,7 +129,6 @@
   #menu
   {
 	position: fixed;
-	
 	width: 180px;
 	height: 550px;
 	box-shadow: 0 0 10px #85888C;
@@ -171,3 +170,5 @@
 		margin-top: -35px;
 	}
   }
+
+  

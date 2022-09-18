@@ -7,7 +7,8 @@ import SearchBar from "../SearchBar/SearchBar";
 import { Box, Grid } from "@material-ui/core";
 import "./Home.css";
 import Carousel from "../carousel/Carousel";
-import { sortByPrice, getProducts} from "../../../redux/actions";
+import { sortByPrice, getProducts } from "../../../redux/actions";
+import Filter_Sort from "../Filters_Sort/Filters_Sort";
 
 
 export default function Home() {
@@ -55,6 +56,7 @@ export default function Home() {
   }
 
   return (
+   
     <div>
       <Grid container>
         <Grid item xs={12}>
@@ -130,5 +132,37 @@ export default function Home() {
         </div>
       </Grid>
     </div>
-  );
+    );
+ 
+
+
+  return(
+    <div className='home'>
+      <Grid container>
+        <Grid item xs={12}>
+          <Box border={2} m={5}></Box>
+        </Grid>
+        <Grid item xs={12}>
+          <Box border={2}>
+            <Carousel />
+          </Box>
+        </Grid>
+    <div className='divNBFun'>
+    <Filter_Sort handlePrice={handlePrice}/>
+    </div>
+    <div>
+        <ComponentCard animalsInCurrentPage={animalsInCurrentPage} />
+    </div>
+    <div>
+        <Pagination
+                animalsPerPage={animalsPerPage}
+                allProducts={allProducts.length}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage} />
+    </div>
+    </Grid>
+</div>
+
+  )
 }
+

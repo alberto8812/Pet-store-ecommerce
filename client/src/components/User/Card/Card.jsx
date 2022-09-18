@@ -4,14 +4,15 @@ import { Link } from 'react-router-dom';
 
 export default function Card({ id, image, name, price, rating, category }) {
     return (
-        <div>
-            <div>
-                <div >
-                    <div>
+        <div className="cards">
+            <div className="flip-card">
+                <div className="flip-card-inner">
+                    <div className="flip-card-front">
                         <h1>{name}</h1>
-                        <img src={image} alt={`${name}`}/>
+                        <img src={image} alt={`${name}`} className='imageProduct' />
+                        <h2>Price:</h2><h4>{price}</h4>
                     </div>
-                    <div >
+                    <div className="flip-card-back">
                         <h1>{name}</h1>
                         <h2>Price:</h2>
                         <h4>{price}</h4>
@@ -29,23 +30,3 @@ export default function Card({ id, image, name, price, rating, category }) {
 
     )
 }
-
-
-
-/*
-
-export default function Card({id, image, name, price}){ //Estas serían las props a mostrar en el home?
-   //luego asegurarnos que son los nombres correctos. 
-    return (
-        <Link key={id} className="" to= {`/details/${id}`}>
-            <img src={image} alt= "not found" className="cardimg"/>
-            <h3><b className="">{name}</b></h3>
-            <p className="">{price}</p> 
-            <button>Aca iria corazon</button>
-            { Acá también ponemos btn para añadir al carrito?}
-            </Link>
-        
-            )
-        }
-
-        */

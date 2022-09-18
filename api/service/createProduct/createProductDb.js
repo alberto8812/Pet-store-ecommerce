@@ -3,7 +3,7 @@ const {Product,Genre,Category}=db.models
 
 
 const createProductsDb=async(req)=>{
-    let {name, price, stock, detail, image, rating, category, genre } = req.body
+    let {name, price, stock, detail, image, rating, category, genre, age } = req.body
   console.log(name)
 
 
@@ -13,7 +13,8 @@ const createProductsDb=async(req)=>{
           stock, 
           detail, 
           image, 
-          rating
+          rating,
+          age
       })
 
       let categoryDb= await Category.findOne({ //buscamos en el modelo category todas las que coincidan con el nombre que llega por body. 

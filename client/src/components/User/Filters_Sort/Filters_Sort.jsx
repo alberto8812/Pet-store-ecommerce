@@ -52,8 +52,7 @@ const Filter_Sort = ({update, setUpdate}) => {
           Filter by Categories
           <select className='select' onChange={onChangeCategory}>
             <option value='All'>All</option>
-            <option value='accessories'>Accesories</option> 
-            {/* Corregir back es "accesories" */}
+            <option value='accessories'>Accessories</option>
             <option value='food'>Food</option>
             <option value='toys'>Toys</option>
           </select>

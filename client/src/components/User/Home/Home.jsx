@@ -21,7 +21,7 @@ export default function Home() {
 
   //PAGINADO
   const [currentPage, setCurrentPage] = useState(1);
-  const [animalsPerPage, setAnimalsPerPage] = useState(9); // Hasta 5 cards por pag
+  const [animalsPerPage, setAnimalsPerPage] = useState(9); // Hasta 9 cards por pag
 
   const indexLastAnimal = currentPage * animalsPerPage;
   const indexFirstAnimal = indexLastAnimal - animalsPerPage;

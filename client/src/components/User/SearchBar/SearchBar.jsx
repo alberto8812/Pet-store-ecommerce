@@ -4,26 +4,16 @@ import { testFilters } from "../../../redux/actions";
 import './SearchBar.css';
 
 
-export default function SearchBar() {
-    const dispatch = useDispatch();
-    const [name, setName] = useState("");
-    const [genre, setGenre] = useState("");
-    
-    useEffect(() => {
-        dispatch(testFilters({ name, genre }));
-      }, [dispatch]);    
+export default function SearchBar({onChangeName, setFilterName}) {
   
-
     function handleChange(e) {
         e.preventDefault()
-        setName(e.target.value)
+        setFilterName(e.target.value)
     };
     
     function handleSubmit(e) {
         e.preventDefault();
-        dispatch(testFilters({name,genre}));
-        setName('');
-        setGenre('');
+        onChangeName(e)
     };
 
     function handleEnter(e){
@@ -37,7 +27,7 @@ export default function SearchBar() {
                 <input 
                     className="input" 
                     type="text" 
-                    value={name}
+                    // value={name}
                     placeholder="Search..." 
                     onChange={e => handleChange(e)}
                     onKeyDown={e => handleEnter(e)} 

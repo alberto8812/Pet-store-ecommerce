@@ -2,6 +2,9 @@ const { expressjwt: jwt } = require("express-jwt"),////Express middleware for va
       jwks=require('jwks-rsa'),
       jwtAuthz=require("express-jwt-authz");
 
+
+
+
 /// verifica que el usuario esta con login
 const jwtCheck = jwt({
      
@@ -18,9 +21,11 @@ const jwtCheck = jwt({
 
 
 //verifica el rol///////////////////////////
-const checkpermissions=jwtAuthz(['read:message'],{
-      customScopeKey:"permissions"
+var checkpermissions=jwtAuthz(['read:message'],{
+      customScopeKey:"permissions",
+      customUserKey: 'auth'
   })
+
 
 
 

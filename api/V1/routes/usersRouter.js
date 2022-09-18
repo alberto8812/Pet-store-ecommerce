@@ -1,6 +1,5 @@
 const express=require("express"),
-      router=express.Router(),
-      {jwtCheck,checkpermissions}=require('../../middleware/jwtLoginUser');
+      router=express.Router();
 
 const { getUserLogin } = require("../../controllers/usersController");
 
@@ -8,6 +7,6 @@ const { getUserLogin } = require("../../controllers/usersController");
 
 
 router
-      .get('/',jwtCheck,getUserLogin) 
+      .get('/',getUserLogin) 
 
 module.exports=router;

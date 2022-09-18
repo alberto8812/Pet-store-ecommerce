@@ -10,6 +10,8 @@ import CreditCardIcon from '@mui/icons-material/CreditCard';
 import Footer from "../Footer/Footer";
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
+import Buy from "../Buy/Buy";
+import AddToCart from "../AddToCart/AddToCart";
 
 
 export default function Detail() {
@@ -162,8 +164,10 @@ export default function Detail() {
                                     </div>
                                     <div className="available" id="existencias">{myProduct.stock}</div>
                                     <div className="btn-container">
-                                        <button type="button" className="btn-section add-to-cart" id="comprar" name="comprar">Buy</button>
-                                        <button type="button" className="btn-section add-to-cart" id='agregarAlCarrito' name="comprar">Add to cart</button>
+                                        <Buy/>
+                                        <AddToCart/>
+                                        {/*<button type="button" className="btn-section add-to-cart" id="comprar" name="comprar">Buy</button>*/}
+                                        {/*<button type="button" className="btn-section add-to-cart" id='agregarAlCarrito' name="comprar">Add to cart</button>*/}
                                     </div>
                                 </div>
 

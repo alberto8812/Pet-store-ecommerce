@@ -1,0 +1,11 @@
+
+.btn-section-add-to-cart {
+    background: #3483fa;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 24px 0 0 0;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}

@@ -4,8 +4,8 @@ const express=require("express"),
       cors=require('cors'),// providing a Connect/Express middleware that can be used to enable CORS with various options.
       helmet = require("helmet"),
       v1ProducstRouter=require('./V1/routes/allProductsRouter'),
-      v1ProductCreate=require('./V1/routes/CreateProductRouter'),
       v1UsersRouter=require('./v1/routes/usersRouter'),
+      v1AdminRouter=require('./V1/routes/adminRouter'),
       {jwtCheck,checkpermissions}=require('./middleware/jwtLoginUser')
    
 
@@ -25,7 +25,8 @@ app.use("/loginUsers",jwtCheck,v1UsersRouter);
 
 
 ///proximamente ruta para roll admi
-app.use("/create",v1ProductCreate)
+app.use("/loginAdmin",jwtCheck,checkpermissions,v1AdminRouter)
+
 
 
 module.exports=app

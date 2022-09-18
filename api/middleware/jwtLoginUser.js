@@ -26,7 +26,6 @@ var checkpermissions=jwtAuthz(['read:message'],{
       customUserKey: 'auth'
   })
 
-  //const checkPermissions = (permissions: ['read:message']) => { return jwtAuthz(permissions, { customScopeKey: 'permissions', customUserKey: 'auth' }); };
 
 
 

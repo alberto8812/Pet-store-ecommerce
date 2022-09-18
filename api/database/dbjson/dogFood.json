@@ -5,7 +5,9 @@
         "price":100,
         "detail":"Balance - All Breeds Adult, is a complete food for adult dogs from 12 months of age, with normal activity. All breeds of dogs.",
         "image":"https://laika.com.co/cdn-cgi/image/onerror=redirect,format=auto,fit=scale-down,width=600,quality=80/https://s3.us-east-1.amazonaws.com/laikapp/images_products/af948ecd5b15307a62e88602c4e400f5.jpg",
-        "rating":"4"
+        "rating":"4",
+        "age":"adutl"
+    
     },
     {
         "name":"Pedigree - Small Breed Adult Dog Food",
@@ -13,7 +15,8 @@
         "price":30,
         "detail":"Pedigree - Small Breed Adult Dog Food is a 100% complete and balanced food. With the necessary nutrients for your dog to have a healthy and happy life. Concentrate with smaller pieces for small breed dogs.",
         "image":"https://laika.com.co/cdn-cgi/image/onerror=redirect,format=auto,fit=scale-down,width=600,quality=80/https://laikapp.s3.amazonaws.com/dev_images_products/14763_156873_Pedigree___Alimento_Para_Perro_Adulto_Raza_Peque__a_1651784127_500x500.jpg,https://laika.com.co/cdn-cgi/image/onerror=redirect,format=auto,fit=scale-down,width=600,quality=80/https://laikapp.s3.amazonaws.com/dev_images_products/14763_156874_Pedigree___Alimento_Para_Perro_Adulto_Raza_Peque__a_1651784127_500x500.jpg",
-        "rating":"4.1"
+        "rating":"4.1",
+        "age":"young"
     },
     {
         "name":"Premium Winner - Adult",
@@ -21,6 +24,8 @@
         "price":50,
         "detail":"Premium Winner - Adult, is a balanced food recommended for adult dogs of all breeds, which provides a diet that favors the proper formation of their bone structure, including teeth, as well as the correct functioning of the nervous, muscular and hormonal systems, in addition It has a high fiber content, essential for the proper functioning of your gastrointestinal system, as well as antioxidants and prebiotics that allow you to generate defenses.",
         "image":"https://laika.com.co/cdn-cgi/image/onerror=redirect,format=auto,fit=scale-down,width=600,quality=80/https://laikapp.s3.amazonaws.com/dev_images_products/78482_158303_Ganador_Premium___Adulto_1652216104_500x500.jpg,https://laika.com.co/cdn-cgi/image/onerror=redirect,format=auto,fit=scale-down,width=600,quality=80/https://laikapp.s3.amazonaws.com/dev_images_products/78482_158302_Ganador_Premium___Adulto_1652216104_500x500.jpg",
-        "rating":"5"
+        "rating":"5",  
+        "age":"puppy"
+
     }
 ]

@@ -11,7 +11,7 @@ const getLoginResponse =async(req)=>{
     }})
     const userInfo=response.data
     
-
+    console.log(userInfo)
     ///crear usuarios en la base de datos
     const createUserDB= await User.findOrCreate({where:{
         name:userInfo.name,

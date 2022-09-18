@@ -42,7 +42,10 @@ module.exports = (sequelize) => {
       defaultValue:'1',
       allowNull: false, 
     },
-
+    age:{
+      type: DataTypes.STRING,
+      allowNull: false, 
+    }
 
   })
 }

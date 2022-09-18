@@ -13,6 +13,8 @@ const dogaccessories = require('../../database/dbjson/dogAccesories.json'); //ar
 
 const datos = require('../../database/dbjson/catgen'); //archivo que contiene informacion de genero 
 
+var ArrayAge = ['puppy', 'young', 'three', 'adult'];
+var randomAge = Math.floor(Math.random()*ArrayAge.length);
 
 
 
@@ -20,9 +22,9 @@ const getBasicProducts = async() => {
     const { cat, dog } = datos
 
     const validation = await Genre.findAll() // busqueda  en la tabla genero
+    !validation.length
 
-
-    if (validation < 1) { //valida que la tabla este vacia  si no, no lo ejecuata
+    if (!validation.length) { //valida que la tabla este vacia  si no, no lo ejecuata
 
         //agrega contenido a la tabla genero 
         const dbCat = await Genre.create({ name: cat })
@@ -65,6 +67,7 @@ const getBasicProducts = async() => {
                 detail: iterator.detail,
                 image: iterator.image,
                 rating: iterator.rating ? iterator.rating : '1',
+                age:iterator.age
 
             })
 
@@ -84,6 +87,7 @@ const getBasicProducts = async() => {
                 detail: iterator.detail,
                 image: iterator.image,
                 rating: iterator.rating ? iterator.rating : '1',
+                age:iterator.age
 
             })
 
@@ -102,6 +106,7 @@ const getBasicProducts = async() => {
                 detail: iterator.detail,
                 image: iterator.image,
                 rating: iterator.rating ? iterator.rating : '1',
+                age:iterator.age
 
             })
 
@@ -121,6 +126,7 @@ const getBasicProducts = async() => {
                 detail: iterator.detail,
                 image: iterator.image,
                 rating: iterator.rating ? iterator.rating : '1',
+                age:iterator.age
 
             })
 
@@ -140,6 +146,7 @@ const getBasicProducts = async() => {
                 detail: iterator.detail,
                 image: iterator.image,
                 rating: iterator.rating ? iterator.rating : '1',
+                age:iterator.age
 
             })
 
@@ -159,6 +166,7 @@ const getBasicProducts = async() => {
                 detail: iterator.detail,
                 image: iterator.image,
                 rating: iterator.rating ? iterator.rating : '1',
+                age:iterator.age
 
             })
 
@@ -177,7 +185,7 @@ const getBasicProducts = async() => {
 const getAllProductApiService = async() => {
 
     ///peticion a la api /////////////////////////
-    const checkData = await Product.findAll()
+    const checkData = await Product.findAll({where:{name:"Waterproof fleece coat"}})
     if (!checkData.length) {
         const apiUrl = (await axios.get(`https://pet-elegant.herokuapp.com/api/products`)).data
         const apiInfo = await apiUrl.data.map(e => {
@@ -189,7 +197,7 @@ const getAllProductApiService = async() => {
                 stock: e.stock,
                 sales: e.sales,
                 image: e.image,
-                rating: e.rating,
+                rating: e.rating
 
             }
         })
@@ -217,6 +225,7 @@ const getAllProductApiService = async() => {
                 detail: iterator.detail,
                 image: iterator.image,
                 rating: iterator.rating ? iterator.rating : '1',
+                age:ArrayAge[randomAge]
 
             })
 
@@ -250,7 +259,8 @@ const getAllProudctsservice = async() => {
             image: res.image,
             rating: res.rating,
             genre: res.genre,
-            category: res.category
+            category: res.category,
+            age:res.age
         }
     })
 

@@ -13,7 +13,7 @@ const dogaccessories = require('../../database/dbjson/dogAccesories.json'); //ar
 
 const datos = require('../../database/dbjson/catgen'); //archivo que contiene informacion de genero 
 
-var ArrayAge = ['puppy', 'young', 'three', 'adult'];
+var ArrayAge = ['puppy', 'young', 'adult'];
 var randomAge = Math.floor(Math.random()*ArrayAge.length);
 
 

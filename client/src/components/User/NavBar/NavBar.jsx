@@ -18,12 +18,12 @@ useEffect(() => {
         if(isAuthenticated){
         try {
             const token= await getAccessTokenSilently()
-            console.log(token)
+            console.log(token,"front")
             const request= await axios.get('http://localhost:3001/loginUsers',
             { headers:{
                 authorization: `Bearer ${token}`
             }})
-            console.log(request.data)
+        
           
         } catch (error) {
             console.log(error.message)

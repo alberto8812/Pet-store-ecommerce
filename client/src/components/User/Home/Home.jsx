@@ -20,7 +20,6 @@ export default function Home() {
   //   dispatch(testFilters({ name, genre }));
   // }, [dispatch]);
 
-
   //PAGINADO
   const [currentPage, setCurrentPage] = useState(1);
   const [animalsPerPage, setAnimalsPerPage] = useState(9); // Hasta 5 cards por pag

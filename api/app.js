@@ -2,15 +2,17 @@ const express=require("express"),
       app=express(),
       morgan = require('morgan'),
       cors=require('cors'),// providing a Connect/Express middleware that can be used to enable CORS with various options.
+      helmet = require("helmet"),
       v1ProducstRouter=require('./V1/routes/allProductsRouter'),
-      v1ProductCreate=require('./V1/routes/CreateProductRouter'),
-      v1UsersRouter=require('./v1/routes/usersRouter');
+      v1UsersRouter=require('./v1/routes/usersRouter'),
+      v1AdminRouter=require('./V1/routes/adminRouter'),
+      {jwtCheck,checkpermissions}=require('./middleware/jwtLoginUser')
    
 
 
 app.use(morgan('dev'));
 app.use(express.json());
-
+app.use(helmet());
 app.use(cors())
 
 //middlewere JSON WEB TOKEN
@@ -19,11 +21,12 @@ app.use(cors())
 app.use("/products",v1ProducstRouter);
 
 //ruta para usuarios registrados
-app.use("/loginUsers",v1UsersRouter);
+app.use("/loginUsers",jwtCheck,v1UsersRouter);
 
 
 ///proximamente ruta para roll admi
-app.use("/create",v1ProductCreate)
+app.use("/loginAdmin",jwtCheck,checkpermissions,v1AdminRouter)
+
 
 
 module.exports=app

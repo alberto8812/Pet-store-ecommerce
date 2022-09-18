@@ -5,7 +5,9 @@
         "price":150,
         "detail":"El KONG AirDog Squeaker Bone combina dos juguetes clásicos para perros que lo hacen perfecto para el juego de buscar y recoger: la pelota de tenis y el chirriador.",
         "image":"https://laika.com.co/cdn-cgi/image/onerror=redirect,format=auto,fit=scale-down,width=600,quality=80/https://laikapp.s3.amazonaws.com/dev_images_products/4393_119216_Kong___Airkong_Hueso_1638307806_500x500.png,https://laika.com.co/cdn-cgi/image/onerror=redirect,format=auto,fit=scale-down,width=600,quality=80/https://laikapp.s3.amazonaws.com/dev_images_products/4393_119219_Kong___Airkong_Hueso_1638307807_500x500.png",
-        "rating":"3"
+        "rating":"3",
+        "age":"adutl"
+    
     },
     {
         "name":"Beco Pets - Hemp Hoop",
@@ -13,7 +15,9 @@
         "price":90,
         "detail":"Sometimes it's the simple things in life that bring us joy. Take this, a thick rope for you and your dog to play on. How about a string to help clean your dog's teeth? Now we are talking. Sometimes it's good to get rid of things a bit. In this case, less is more. A ring made of thick knots of strong rope. Flexibility enough for tug-of-war and is perfect for keeping your dog rolling, bouncing and bouncing until nap time.",
         "image":"https://laika.com.co/cdn-cgi/image/onerror=redirect,format=auto,fit=scale-down,width=600,quality=80/https://laikapp.s3.amazonaws.com/dev_images_products/74104_Beco_Pets___Aro_De_C____amo_1638208176_0_300x300.png,https://laika.com.co/cdn-cgi/image/onerror=redirect,format=auto,fit=scale-down,width=600,quality=80/https://laikapp.s3.amazonaws.com/dev_images_products/74104_Beco_Pets___Aro_De_C____amo_1638208176_1_300x300.png",
-        "rating":"4.8"
+        "rating":"4.8",
+        "age":"puppy"
+  
     },
     {
         "name":"Hartz - Jungle Plush",
@@ -21,6 +25,7 @@
         "price":65,
         "detail":"Each lightweight plush toy is easy to carry, shake, or toss around and is sure to delight playful pups. Soft and cuddly, these toys are the perfect friends for your dog to snuggle with during quiet time.",
         "image":"https://laika.com.co/cdn-cgi/image/onerror=redirect,format=auto,fit=scale-down,width=600,quality=80/https://laikapp.s3.amazonaws.com/dev_images_products/74156_181310_Hartz___Peluche_Jungle_1659542602_800x800.jpg,https://laika.com.co/cdn-cgi/image/onerror=redirect,format=auto,fit=scale-down,width=600,quality=80/https://laikapp.s3.amazonaws.com/dev_images_products/74156_181311_Hartz___Peluche_Jungle_1659542602_800x800.jpg",
-        "rating":"5"
+        "rating":"5",
+        "age":"young"
     }           
     ]

@@ -35,9 +35,6 @@ export function getProducts(name) {
 export const getDetails = (id) => {
 
     return async(dispatch) => {
-
-    return async (dispatch) => {
-
         try {
             const { data } = await axios.get(`http://localhost:3001/products/${id}`);
             return dispatch({
@@ -45,27 +42,18 @@ export const getDetails = (id) => {
                 payload: data,
             });
         } catch (err) {
-
             console.error(err);
-=======
-                console.error(err);
-
         }
     };
-};
+}
 
 export function clear() {
     return {
         type: CLEAR,
         payload: {},
     };
-
 };
 
-
-=======
-}
-    
 
 export function postProduct(payload) {
     return async function(dispatch) {

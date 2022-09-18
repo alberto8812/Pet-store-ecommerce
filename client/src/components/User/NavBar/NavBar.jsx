@@ -32,23 +32,7 @@ useEffect(() => {
 }
     callProtectAip()
 }, [isAuthenticated])  
-////////////////////////borrar
-const admin=async()=>{
-    try {
-        const token= await getAccessTokenSilently()
-        const request= await axios.get('http://localhost:3001/loginAdmin',
-        { headers:{
-            authorization: `Bearer ${token}`
-        }})
-    
-      
-    } catch (error) {
-        console.log(error.message)
-    }   
-}
 
-
-/////////////////////////////////
 
     return (
         <div>
@@ -78,7 +62,6 @@ const admin=async()=>{
                         </LogIn>
                     </div>
                     {/* enseñar datos de usuario*/}
-                    <button onClick={()=>admin()}>admin rute</button>{/*borrar*/}
                 {isAuthenticated && (<div>
                    
                     <img src={user.picture}  />

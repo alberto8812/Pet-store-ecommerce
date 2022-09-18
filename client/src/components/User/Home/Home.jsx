@@ -25,8 +25,9 @@ export default function Home() {
   const [currentPage, setCurrentPage] = useState(1);
   const [animalsPerPage, setAnimalsPerPage] = useState(9); // Hasta 5 cards por pag
   //const [filterAge, setFilterAge] = useState(''); 
-  const [filterCategory, setFilterCategory] = useState(''); 
-  const [filterName, setFilterName] = useState(''); 
+  // const [filterCategory, setFilterCategory] = useState(''); 
+  // const [filterName, setFilterName] = useState(''); 
+  const [update, setUpdate] = useState(' ')
   
   const indexLastAnimal = currentPage * animalsPerPage;
   const indexFirstAnimal = indexLastAnimal - animalsPerPage;
@@ -35,109 +36,9 @@ export default function Home() {
     indexLastAnimal
   ); //CHEQUEAR QUE STATE PUSIERON EN EL REDUCER !!!
 
-  function handlePrice(e) {
-    e.preventDefault();
-    dispatch(sortByPrice(e.target.value));
-    setOrder(e.target.value);
-  }
-
-  function onChangeAge(e) { //¿ESTE LO BORRAMOS MEJOR?
-    // setFilterAge(e.target.value)
-    // dispatch(getProducts)
-  }
-
-  function onChangeCategory(e) {
-    setFilterCategory(e.target.value)
-    dispatch(getProducts(filterName, e.target.value))
-  }
-
-  function onChangeName(e) {
-    dispatch(getProducts(filterName, filterCategory))
-  }
-
-  return (
-   
-    <div>
-      <Grid container>
-        <Grid item xs={12}>
-          <Box border={2} m={5}></Box>
-        </Grid>
-        <Grid item xs={12}>
-          <Box border={2}>
-            <Carousel />
-          </Box>
-        </Grid>
-      <div className='home-container'>
-        <div className='container-wrap'>
-            <div>
-              <Pagination
-                animalsPerPage={animalsPerPage}
-                allProducts={allProducts.length}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-              />
-            </div>
-
-          <div>
-            <ul className='filters'>
-              <SearchBar setFilterName={setFilterName} onChangeName={onChangeName}></SearchBar>
-              <li>
-                <div>
-                  Filter by Age 
-                  <select className='select' onChange={onChangeAge}>
-                    <option value='All'>All</option>
-                    <option value='Puppy'>Puppy</option>
-                    <option value='Young'>Young</option>
-                    <option value='Adult'>Adult</option>
-                  </select>
-                </div>
-              </li>
-              <li>
-                <div>
-                  Filter by Categories
-                  <select className='select' onChange={onChangeCategory}>
-                    <option value='All'>All</option>
-                    <option value='accessories'>Accesories</option> 
-                    {/* Corregir back es "accesories" */}
-                    <option value='food'>Food</option>
-                    <option value='toys'>Toys</option>
-                  </select>
-                </div>
-              </li>
-              <li>
-                <div>
-                  Sort by Price
-                  <select className='select' onChange={e => handlePrice(e)}>
-                    <option disabled selected >Select</option>
-                    <option value='higherPrice'>Higher Price</option>
-                    <option value='lowerPrice'>Lower Price</option>
-                  </select>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-            <div>
-              <ComponentCard animalsInCurrentPage={animalsInCurrentPage} />
-            </div>
-
-            <a style={{ textDecoration: "none" }} href="#">
-              <button>Go Up ↑</button>
-            </a>
-
-            <div>
-              <Footer />
-            </div>
-          </div>
-        </div>
-      </Grid>
-    </div>
-    );
- 
-
-
   return(
     <div className='home'>
+      {console.log(allProducts)}
       <Grid container>
         <Grid item xs={12}>
           <Box border={2} m={5}></Box>
@@ -148,7 +49,7 @@ export default function Home() {
           </Box>
         </Grid>
     <div className='divNBFun'>
-    <Filter_Sort handlePrice={handlePrice}/>
+    <Filter_Sort update={update} setUpdate={setUpdate}/>
     </div>
     <div>
         <ComponentCard animalsInCurrentPage={animalsInCurrentPage} />
@@ -161,8 +62,7 @@ export default function Home() {
                 setCurrentPage={setCurrentPage} />
     </div>
     </Grid>
-</div>
-
+    </div>
   )
 }
 

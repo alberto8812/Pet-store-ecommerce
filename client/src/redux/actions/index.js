@@ -13,11 +13,11 @@ import {
     CLEAR
 } from "./constants";
 
-export function getProducts(name = '', category = '', genre = '') {
+export function getProducts(name = '', category = '', genre = '', age = '') {
     console.log({name, category} )
     return async function (dispatch) {
         try {
-                return axios.get('http://localhost:3001/products/search?name=' + name + '&category=' + category + '&genre=' + genre)
+                return axios.get('http://localhost:3001/products/search?name=' + name + '&category=' + category + '&genre=' + genre + '&age' + age)
                     .then(res => dispatch({ type: GET_ALL_PRODUCTS, payload: res.data }))
                     .catch(err => dispatch({ type: GET_ALL_PRODUCTS, payload: err.data }))
         } catch (err) {

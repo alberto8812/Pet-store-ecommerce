@@ -46,7 +46,7 @@ export default function Home() {
           <Box border={2} m={5}></Box>
         </Grid>
         <Grid item xs={12}>
-          <Box border={2}>
+          <Box border={2} overflow='hidden' >
             <Carousel />
           </Box>
         </Grid>
@@ -63,7 +63,10 @@ export default function Home() {
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage} />
     </div>
+   
     </Grid>
+
+   <Footer/>
     </div>
   )
 }

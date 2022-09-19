@@ -31,7 +31,7 @@ export const ComponentCard = ({animalsInCurrentPage}) => {
             {animalsInCurrentPage.length > 0 ?
             animalsInCurrentPage?.map(v => {
                 return (
-                    <Box sx={{display:'grid',columnGap:1,rowGap:1,gridTemplateColumns:'repeat(1,500px)',}}>
+                    <Box sx={{display:'grid',columnGap:1,rowGap:1,gridTemplateColumns:'repeat(1,500px)',}}>{/*ajuste dinamica de las cards */}
                     <CardProduct className='cardHome'
                     key={v.id}
                     id={v.id}

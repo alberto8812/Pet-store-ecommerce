@@ -3,7 +3,13 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import { TextField, } from '@material-ui/core'
+import { IconButton } from '@mui/material';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { useAuth0 } from '@auth0/auth0-react';//peticion  libreria auth0 para registros de usuario
 
+import './Login.css'
 const style = {
     position: 'absolute',
     top: '50%',
@@ -19,6 +25,7 @@ const style = {
 };
 
 function ChildModal() {
+    
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => {
         setOpen(true);
@@ -28,7 +35,8 @@ function ChildModal() {
     };
     return (
         <React.Fragment>
-            <Button onClick={handleOpen}>Registrar</Button>
+            {/*<p>No estas registrado?</p>*/}
+            <Button onClick={handleOpen}>Registrate!</Button>
             <Modal
                 hideBackdrop
                 open={open}
@@ -57,6 +65,7 @@ function ChildModal() {
 }
 
 export default function LogIn() {
+    const {loginWithRedirect,logout}=useAuth0()
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => {
         setOpen(true);
@@ -67,7 +76,10 @@ export default function LogIn() {
 
     return (
         <div>
-            <Button onClick={handleOpen}>Log in</Button>
+            
+            <IconButton onClick={handleOpen}>
+                <AccountCircleIcon/>
+                </IconButton>
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -75,14 +87,23 @@ export default function LogIn() {
                 aria-describedby="parent-modal-description"
             >
                 <Box sx={{ ...style, width: 400 }}>
-                    <h2 id="parent-modal-title">Log in</h2>
-                    <TextField label='Email' type='email' className={style.textfield} />
+                    <div><h2 id="parent-modal-title">Log in</h2></div>
+                    <button onClick={()=>loginWithRedirect()}>{/*crear boton para el login */}
+                   {/* <IconButton onClick="{}" display='flex'>*/}
+                    <LoginIcon/>
+                    {/*</IconButton>*/}
+                    </button>
+                    <p>Login</p>
                     <br />
-                    <TextField label='Passwork' type='password' className={style.textfield} />
+                    <button onClick={()=>logout()}>{/*crear boton para el logout */}
+                    {/*<IconButton onClick="{}">*/}
+                    <LogoutIcon/>
+                    {/* </IconButton> */}
+                    </button>
+                    <p>Logout</p>
                     <br /><br />
                     <div align='right'>
-                        <Button>Log in</Button>
-                        <Button onClick={() => handleClose()}>Cancel</Button>
+                        {/*<Button onClick={() => handleClose()}>Cancel</Button>*/}
                         <ChildModal />
                     </div>
                 </Box>

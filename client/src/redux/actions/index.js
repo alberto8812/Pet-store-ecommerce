@@ -13,19 +13,13 @@ import {
     CLEAR
 } from "./constants";
 
-export function getProducts(name) {
-    return async function(dispatch) {
+export function getProducts(name = '', category = '', genre = '', age = '') {
+    console.log({name, category} )
+    return async function (dispatch) {
         try {
-            if (name) {
-                return axios.get('http://localhost:3001/products?name=' + name)
+                return axios.get('http://localhost:3001/products/search?name=' + name + '&category=' + category + '&genre=' + genre + '&age' + age)
                     .then(res => dispatch({ type: GET_ALL_PRODUCTS, payload: res.data }))
                     .catch(err => dispatch({ type: GET_ALL_PRODUCTS, payload: err.data }))
-            }
-            let json = await axios.get('http://localhost:3001/products', {})
-            return dispatch({
-                type: GET_ALL_PRODUCTS,
-                payload: json.data
-            })
         } catch (err) {
             console.error(err)
         }
@@ -33,10 +27,9 @@ export function getProducts(name) {
 }
 
 export const getDetails = (id) => {
-
-    return async(dispatch) => {
+    return async (dispatch) => {
         try {
-            const { data } = await axios.get(`http://localhost:3001/products/${id}`);
+            const { data } = await axios.get(`http://localhost:3001/products/detail/${id}`);
             return dispatch({
                 type: GET_DETAILS,
                 payload: data,
@@ -54,9 +47,8 @@ export function clear() {
     };
 };
 
-
 export function postProduct(payload) {
-    return async function(dispatch) {
+    return async function (dispatch) {
         const response = await axios.post('/create', payload)
         return response
     }
@@ -85,7 +77,7 @@ export function sortByPrice(payload) {
 ////////////////////////////////test filters/////////////////////////
 
 export const testFilters = ({ name, genre }) => {
-    return async(dispatch) => {
+    return async (dispatch) => {
         try {
             const { data } = await axios.get(`http://localhost:3001/test?name=${name}&genre=${genre}`);
             return dispatch({

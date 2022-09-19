@@ -6,7 +6,9 @@
             "price":100,
             "detail":"Help your furry friend get the restful sleep they deserve with this pet bed. The round design creates a protective atmosphere, while the rim provides additional support and serves as a perfect headrest for the legs.",
             "image":"https://laika.com.co/cdn-cgi/image/onerror=redirect,format=auto,fit=scale-down,width=600,quality=80/https://laikapp.s3.amazonaws.com/dev_images_products/74193_153446_Ocean_Blue_Home___Poufs_Pets_Paco_1650563734_500x500.jpg",
-            "rating":"5"
+            "rating":"5",
+            "age":"puppy"
+         
         }           
     ]
    

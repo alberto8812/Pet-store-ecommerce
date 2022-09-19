@@ -4,7 +4,8 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { getProducts } from '../../../redux/actions/index';
 import Loading from '../Loading/Loading'
-import Card from "../Card/Card";
+import CardProduct from "../Card/Card";
+import '../Home/Home.css'
 
 export const ComponentCard = ({animalsInCurrentPage}) => {
     const dispatch = useDispatch()
@@ -21,17 +22,20 @@ export const ComponentCard = ({animalsInCurrentPage}) => {
       }
 
     return (
-        <div>
+        <div className='container'>
             {animalsInCurrentPage.length > 0 ?
             animalsInCurrentPage?.map(v => {
-                return (<Card 
+                return (<CardProduct className='cardHome'
                     key={v.id}
                     id={v.id}
                     image={v.image ? v.image : v.name}
                     name={v.name}
+                    category={v.category.name}
+                    genre={v.genre.name}
                     price={v.price}
                     rating={v.rating}
-                    />)}) : `We couldn't load the games, refresh the page`}
+                    category={v.category.name}
+                    />)}) : `We couldn't load the products, refresh the page`}
 
         </div>
     )

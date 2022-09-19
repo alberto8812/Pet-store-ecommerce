@@ -55,14 +55,13 @@ export default function Home() {
     <div>
         <ComponentCard animalsInCurrentPage={animalsInCurrentPage} />
     </div>
-    <div>
+  
         <Pagination
                 animalsPerPage={animalsPerPage}
                 allProducts={allProducts.length}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage} />
-    </div>
-   
+  
     </Grid>
 
    <Footer/>

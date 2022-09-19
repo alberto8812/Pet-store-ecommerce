@@ -70,7 +70,7 @@ useEffect(() => {
                 </div>)}
                 </div>
             </div>
-            <nav role="navigation">
+            {/* <nav role="navigation">
                 <div id="menuToggle">
                     <input type="checkbox" />
                     <span></span>
@@ -82,7 +82,7 @@ useEffect(() => {
                         </div>
                     </ul>
                 </div>
-            </nav>
+            </nav> */}
         </div>
 
     );

@@ -49,8 +49,8 @@ export default function CardProduct({ id, image, name, price, rating, category, 
 
     return (
         <Card sx={{
-            width: 700,
-            height: 700,
+            width: 400,
+            height: 600,
             padding: "2em",
             margin: "2em",
             backgroundColor: '#aa71bfe0',
@@ -77,8 +77,8 @@ export default function CardProduct({ id, image, name, price, rating, category, 
 
             <CardMedia
                 component="img"
-                height="400"
-                width='400'
+                height="50%"
+                width='50%'
                 image={image}
                 alt={name}
             />

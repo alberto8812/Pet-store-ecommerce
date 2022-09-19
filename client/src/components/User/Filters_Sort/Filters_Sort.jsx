@@ -15,10 +15,10 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
 
   function chargeAllProducts(e){
     e.preventDefault(e);
-    let selectList = document.querySelectorAll('.default-select');
-    selectList.forEach(select => select.value = 'DEFAULT');
+   // let selectList = document.querySelectorAll('.default-select');
+   // selectList.forEach(select => select.value = 'DEFAULT');
     setCurrentPage(1);
-    dispatch(getProducts());
+    dispatch(getProducts({age:'',category:'',name:'',genre:''}));
   }
 
   function handlePrice(e) {
@@ -61,6 +61,7 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
     <div>
       <ul className='navbar'>
         <SearchBar setfiltersearch={setfiltersearch} onChangeName={onChangeName} filtersearch={filtersearch}></SearchBar>
+        <button onClick={e => chargeAllProducts(e)}>All Products</button>
         <li className='content-select'>
           Filter by Age 
           <select className='select' defaultValue={"DEFAULT"} onChange={e => onChangeAge(e)}>

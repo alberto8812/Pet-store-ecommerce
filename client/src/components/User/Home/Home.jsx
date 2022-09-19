@@ -14,7 +14,7 @@ import Filter_Sort from "../Filters_Sort/Filters_Sort";
 export default function Home() {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.allProducts);
-  const [order, setOrder] = useState('');
+  // const [order, setOrder] = useState('');
 
   // useEffect(() => {
   //   dispatch(testFilters({ name, genre }));
@@ -51,7 +51,7 @@ export default function Home() {
           </Box>
         </Grid>
     <div className='divNBFun'>
-    <Filter_Sort update={update} setUpdate={setUpdate}/>
+    <Filter_Sort update={update} setUpdate={setUpdate} setCurrentPage={setCurrentPage}/>
     </div>
     <div>
         <ComponentCard animalsInCurrentPage={animalsInCurrentPage} />

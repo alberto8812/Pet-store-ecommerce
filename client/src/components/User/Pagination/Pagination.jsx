@@ -37,7 +37,7 @@ export default function Pagination({ animalsPerPage, allProducts, currentPage, s
     }
 
     const onKeyDown = (e) => {
-        if (e.keyCode === '13') { // la tecla 13 es el enter
+        if (e.keyCode === 'Enter') { // la tecla 13 es el enter
             setCurrentPage(parseInt(e.target.value))
             if (parseInt(e.target.value) < 1 || parseInt(e.target.value) > Math.ceil(pageNumber.length) || isNaN(parseInt(e.target.value))) {
                 setCurrentPage(1)

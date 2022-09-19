@@ -20,12 +20,26 @@ export default function Detail() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    function restar() {
-        return console.log('reste')
+    const [counter, setCounter] = useState(0);
+
+    function restar(e) {
+        e.preventDefault()
+        // return console.log('reste')
+        if(counter === 0){
+            e.target.value(disable)
+        }
+        return setCounter(counter -1)
     }
-    function sumar() {
-        return console.log('sumar')
-    }
+    function sumar(e) {
+        e.preventDefault()
+        // return console.log('sumar')
+         return setCounter(counter +1)
+    };
+
+    // function onChange(e){
+    //     e.preventDefault();
+    //     {counter}
+    // }
 
     useEffect(() => {
         dispatch(getDetails(id)).then(() => setCarga(false))
@@ -153,11 +167,12 @@ export default function Detail() {
                                 <div className="cart">
                                     <div className="quantity">
                                         <div className="content-qty">
-                                            <button type="button" onClick={restar()} value>
+                                            <button type="button" onClick={e => restar(e)} value>
                                             -
                                             </button>
-                                            <input type="text" name="cantidad" id="cantidad" value="1" readOnly />
-                                            <button type="button" onClick={sumar()} value>
+                                            <p className="counter-detail">{counter}</p>
+                                            {/* <input onChange={e => onChange(e)} type="text" name="cantidad" id="cantidad" value="1" readOnly /> */}
+                                            <button type="button" onClick={e => sumar(e)} value>
                                                 +
                                             </button>
                                         </div>

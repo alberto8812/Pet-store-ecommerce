@@ -14,12 +14,12 @@ import {
 } from "./constants";
 
 export function getProducts(name = '', category = '', genre = '', age = '') {
-    return async function(dispatch) {
+    console.log({age} )
+    return async function (dispatch) {
         try {
-            console.log({ category });
-            return axios.get('http://localhost:3001/products/search?name=' + name + '&category=' + category + '&genre=' + genre + '&age' + age)
-                .then(res => dispatch({ type: GET_ALL_PRODUCTS, payload: res.data }))
-                .catch(err => dispatch({ type: GET_ALL_PRODUCTS, payload: err.data }))
+                return axios.get('http://localhost:3001/products/search?name=' + name + '&category=' + category + '&genre=' + genre + '&age=' + age)
+                    .then(res => dispatch({ type: GET_ALL_PRODUCTS, payload: res.data }))
+                    .catch(err => dispatch({ type: GET_ALL_PRODUCTS, payload: err.data }))
         } catch (err) {
             console.error(err)
         }

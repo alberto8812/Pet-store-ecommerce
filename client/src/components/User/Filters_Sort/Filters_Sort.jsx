@@ -30,7 +30,7 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
 
   function onChangeAge(e) { 
     setFilterAge(e.target.value)
-    dispatch(getProducts(filterAge, e.target.value))
+    dispatch(getProducts(filterAge))
     setUpdate(update===' '?'probando':' ');
     setOrder(e.target.value);
     setCurrentPage(1);

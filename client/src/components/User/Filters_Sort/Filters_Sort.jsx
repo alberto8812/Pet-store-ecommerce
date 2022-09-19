@@ -57,7 +57,7 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
         <button onClick={e => chargeAllProducts(e)}>All Products</button>
         <li className='content-select'>
           Filter by Age 
-          <select className='select' defaultValue={"DEFAULT"} onChange={e => onChangeAge(e)}>
+          <select className='default-select' defaultValue={"DEFAULT"} onChange={e => onChangeAge(e)}>
             <option value="DEFAULT">All</option>
             <option value='Puppy'>Puppy</option>
             <option value='Young'>Young</option>
@@ -66,7 +66,7 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
         </li>
         <li className='content-select'>
           Filter by Categories
-          <select className='select' onChange={e => onChangeCategory(e)}>
+          <select className='default-select' onChange={e => onChangeCategory(e)}>
             <option value="DEFAULT">All</option>
             <option value='accessories'>Accessories</option>
             <option value='food'>Food</option>
@@ -75,7 +75,7 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
         </li>
         <li className='content-select'>
           Sort by Price
-          <select className='select' defaultValue={"DEFAULT"} onChange={e => handlePrice(e)}>
+          <select className='default-select' defaultValue={"DEFAULT"} onChange={e => handlePrice(e)}>
             <option value="DEFAULT" disabled selected >Select</option>
             <option value='higherPrice'>Higher Price</option>
             <option value='lowerPrice'>Lower Price</option>

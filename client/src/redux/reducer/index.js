@@ -77,6 +77,7 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 details: {}
             };
+
             /////////////////////test filters/////////////////////////////////////
         case "GET_TEST":
             return {

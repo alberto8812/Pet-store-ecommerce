@@ -30,7 +30,7 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
   }
 
   function onChangeAge(e) { 
-    setfiltersearch({...filtersearch,age:e.target.value})
+    setfiltersearch({...filtersearch,age:e.target.value==='DEFAULT'?'':e.target.value})
     //dispatch(getProducts(filterAge, e.target.value))
     setUpdate(update===' '?'probando':' ');
     setOrder(e.target.value);
@@ -53,6 +53,7 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
   
   }, [filtersearch])
   function onChangeName(e) {
+    console.log(filtersearch,"onchange")
     dispatch(getProducts(filtersearch));//, filterCategory
     setCurrentPage(1);
   }

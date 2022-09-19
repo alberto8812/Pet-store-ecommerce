@@ -7,9 +7,10 @@ import { sortByPrice, getProducts } from "../../../redux/actions";
 
 const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
   const dispatch = useDispatch();
-  const [filterCategory, setFilterCategory] = useState(''); 
-  const [filterName, setFilterName] = useState(''); 
-  const [filterAge, setFilterAge] = useState('');
+  //const [filterCategory, setFilterCategory] = useState(''); 
+  //const [filterName, setFilterName] = useState(''); 
+  //const [filterAge, setFilterAge] = useState('');
+  const [filtersearch, setfiltersearch] = useState({age:'',category:'',name:'',genre:''})
   const [order, setOrder] = useState('');
 
   function handlePrice(e) {
@@ -22,8 +23,8 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
 
 
   function onChangeAge(e) { 
-    setFilterAge(e.target.value)
-    dispatch(getProducts(filterAge, e.target.value))
+    setfiltersearch({...filtersearch,age:e.target.value})
+    //dispatch(getProducts(filterAge, e.target.value))
     setUpdate(update===' '?'probando':' ');
     setOrder(e.target.value);
     setCurrentPage(1);
@@ -31,22 +32,28 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
   }
 
   function onChangeCategory(e) {
-    setFilterCategory(e.target.value)
-    dispatch(getProducts(filterName, e.target.value))
+    setfiltersearch({...filtersearch,category:e.target.value})
+    //dispatch(getProducts(filterName, e.target.value))
       setUpdate(update===' '?'probando':' ');
       setOrder(e.target.value);
       setCurrentPage(1);
   }
-
+  useEffect(() => {
+   console.log(filtersearch)
+    dispatch(getProducts(filtersearch));
+    //dispatch(getProducts(filterCategory));
+   // setUpdate(update===' '?'probando':' ');
+  
+  }, [filtersearch])
   function onChangeName(e) {
-    dispatch(getProducts(filterName, filterCategory));
+    dispatch(getProducts(filtersearch));//, filterCategory
     setCurrentPage(1);
   }
 
   return (
     <div>
       <ul className='navbar'>
-        <SearchBar setFilterName={setFilterName} onChangeName={onChangeName}></SearchBar>
+        <SearchBar setfiltersearch={setfiltersearch} onChangeName={onChangeName} filtersearch={filtersearch}></SearchBar>
         <li className='content-select'>
           Filter by Age 
           <select className='select' onChange={onChangeAge}>

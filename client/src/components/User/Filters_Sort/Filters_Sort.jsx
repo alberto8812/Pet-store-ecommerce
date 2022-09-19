@@ -5,34 +5,42 @@ import "../Home/Home.css";
 import SearchBar from "../SearchBar/SearchBar";
 import { sortByPrice, getProducts } from "../../../redux/actions";
 
-const Filter_Sort = ({update, setUpdate}) => {
+const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
   const dispatch = useDispatch();
   const [filterCategory, setFilterCategory] = useState(''); 
   const [filterName, setFilterName] = useState(''); 
-  const [filterAge, setFilterAge] = useState('')
+  const [filterAge, setFilterAge] = useState('');
+  const [order, setOrder] = useState('');
 
   function handlePrice(e) {
     e.preventDefault();
     dispatch(sortByPrice(e.target.value));
     setUpdate(update===' '?'probando':' ')
     setOrder(e.target.value);
+    setCurrentPage(1);
   }
 
 
   function onChangeAge(e) { 
     setFilterAge(e.target.value)
     dispatch(getProducts(filterAge, e.target.value))
-    setUpdate(update===' '?'probando':' ')
+    setUpdate(update===' '?'probando':' ');
+    setOrder(e.target.value);
+    setCurrentPage(1);
+
   }
 
   function onChangeCategory(e) {
     setFilterCategory(e.target.value)
     dispatch(getProducts(filterName, e.target.value))
-      setUpdate(update===' '?'probando':' ')
+      setUpdate(update===' '?'probando':' ');
+      setOrder(e.target.value);
+      setCurrentPage(1);
   }
 
   function onChangeName(e) {
-    dispatch(getProducts(filterName, filterCategory))
+    dispatch(getProducts(filterName, filterCategory));
+    setCurrentPage(1);
   }
 
   return (

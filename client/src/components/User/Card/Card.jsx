@@ -65,14 +65,14 @@ export default function CardProduct({ id, image, name, price, rating, category, 
                 action={
                     <IconButton aria-label="settings">
                         <Typography
-                            fontSize='50px'
+                            fontSize='20px'
                             fontWeight="bold"
                         >${price}</Typography>
                     </IconButton>
                 }
 
-                title={<h2>{name}</h2>}
-                subheader={<h3>{category}</h3>}
+                title={<h3>{name}</h3>}
+                subheader={<h4>{category}</h4>}
             />
 
             <CardMedia

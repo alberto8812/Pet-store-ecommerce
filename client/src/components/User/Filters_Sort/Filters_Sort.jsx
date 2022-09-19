@@ -7,17 +7,18 @@ import { sortByPrice, getProducts } from "../../../redux/actions";
 
 const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
   const dispatch = useDispatch();
-  const [filterCategory, setFilterCategory] = useState(''); 
-  const [filterName, setFilterName] = useState(''); 
-  const [filterAge, setFilterAge] = useState('');
+  //const [filterCategory, setFilterCategory] = useState(''); 
+  //const [filterName, setFilterName] = useState(''); 
+  //const [filterAge, setFilterAge] = useState('');
+  const [filtersearch, setfiltersearch] = useState({age:'',category:'',name:'',genre:''})
   const [order, setOrder] = useState('');
 
   function chargeAllProducts(e){
     e.preventDefault(e);
-    let selectList = document.querySelectorAll('.default-select');
-    selectList.forEach(select => select.value = 'DEFAULT');
+   // let selectList = document.querySelectorAll('.default-select');
+   // selectList.forEach(select => select.value = 'DEFAULT');
     setCurrentPage(1);
-    dispatch(getProducts());
+    dispatch(getProducts({age:'',category:'',name:'',genre:''}));
   }
 
   function handlePrice(e) {
@@ -29,8 +30,8 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
   }
 
   function onChangeAge(e) { 
-    setFilterAge(e.target.value)
-    dispatch(getProducts(filterAge))
+    setfiltersearch({...filtersearch,age:e.target.value})
+    //dispatch(getProducts(filterAge, e.target.value))
     setUpdate(update===' '?'probando':' ');
     setOrder(e.target.value);
     setCurrentPage(1);
@@ -38,22 +39,28 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
   }
 
   function onChangeCategory(e) {
-    setFilterCategory(e.target.value)
-    dispatch(getProducts(filterName, e.target.value))
+    setfiltersearch({...filtersearch,category:e.target.value})
+    //dispatch(getProducts(filterName, e.target.value))
       setUpdate(update===' '?'probando':' ');
       setOrder(e.target.value);
       setCurrentPage(1);
   }
-
+  useEffect(() => {
+   console.log(filtersearch)
+    dispatch(getProducts(filtersearch));
+    //dispatch(getProducts(filterCategory));
+   // setUpdate(update===' '?'probando':' ');
+  
+  }, [filtersearch])
   function onChangeName(e) {
-    dispatch(getProducts(filterName, filterCategory));
+    dispatch(getProducts(filtersearch));//, filterCategory
     setCurrentPage(1);
   }
 
   return (
     <div>
       <ul className='navbar'>
-        <SearchBar setFilterName={setFilterName} onChangeName={e => onChangeName(e)}></SearchBar>
+        <SearchBar setfiltersearch={setfiltersearch} onChangeName={onChangeName} filtersearch={filtersearch}></SearchBar>
         <button onClick={e => chargeAllProducts(e)}>All Products</button>
         <li className='content-select'>
           Filter by Age 

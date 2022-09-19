@@ -4,15 +4,15 @@ import { testFilters } from "../../../redux/actions";
 import './SearchBar.css';
 
 
-export default function SearchBar({onChangeName, setFilterName}) {
+export default function SearchBar({onChangeName, setfiltersearch,filtersearch}) {
   
     function handleChange(e) {
         e.preventDefault()
-        setFilterName(e.target.value)
+        setfiltersearch({...filtersearch,name:e.target.value})
     };
     
     function handleSubmit(e) {
-        e.preventDefault();
+        //e.preventDefault();
         onChangeName(e)
     };
 

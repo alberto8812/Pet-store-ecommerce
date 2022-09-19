@@ -40,7 +40,6 @@ export default function Home() {
 
   return(
     <div className='home'>
-      {console.log(allProducts)}
       <Grid container>
         <Grid item xs={12}>
           <Box border={2} m={5}></Box>

@@ -34,9 +34,7 @@ export const ComponentCard = ({animalsInCurrentPage}) => {
                     genre={v.genre.name}
                     price={v.price}
                     rating={v.rating}
-                    category={v.category.name}
                     />)}) : `We couldn't load the products, refresh the page`}
-
         </div>
     )
 }

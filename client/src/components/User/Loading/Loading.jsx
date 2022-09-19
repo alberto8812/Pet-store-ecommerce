@@ -5,7 +5,7 @@ import loading from './catLoading.gif'
 
 export default function Loading() {
     return (
-          <div >
+          <div>
             <img src={loading} alt="" />
           </div>
     )}

@@ -27,7 +27,7 @@ export function getProducts(prop) {
 }
 
 export const getDetails = (id) => {
-    return async (dispatch) => {
+    return async(dispatch) => {
         try {
             const { data } = await axios.get(`http://localhost:3001/products/detail/${id}`);
             return dispatch({
@@ -48,7 +48,7 @@ export function clear() {
 };
 
 export function postProduct(payload) {
-    return async function (dispatch) {
+    return async function(dispatch) {
         const response = await axios.post('/create', payload)
         return response
     }
@@ -77,7 +77,7 @@ export function sortByPrice(payload) {
 ////////////////////////////////test filters/////////////////////////
 
 export const testFilters = ({ name, genre }) => {
-    return async (dispatch) => {
+    return async(dispatch) => {
         try {
             const { data } = await axios.get(`http://localhost:3001/test?name=${name}&genre=${genre}`);
             return dispatch({

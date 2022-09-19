@@ -14,7 +14,7 @@ import Filter_Sort from "../Filters_Sort/Filters_Sort";
 export default function Home() {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.allProducts);
-  const [order, setOrder] = useState('');
+  // const [order, setOrder] = useState('');
 
   // useEffect(() => {
   //   dispatch(testFilters({ name, genre }));
@@ -22,7 +22,8 @@ export default function Home() {
 
   //PAGINADO
   const [currentPage, setCurrentPage] = useState(1);
-  const [animalsPerPage, setAnimalsPerPage] = useState(9); // Hasta 5 cards por pag
+  const [animalsPerPage, setAnimalsPerPage] = useState(9); // Hasta 9 cards por pag
+  
   //const [filterAge, setFilterAge] = useState(''); 
   // const [filterCategory, setFilterCategory] = useState(''); 
   // const [filterName, setFilterName] = useState(''); 
@@ -34,6 +35,8 @@ export default function Home() {
     indexFirstAnimal,
     indexLastAnimal
   ); //CHEQUEAR QUE STATE PUSIERON EN EL REDUCER !!!
+
+
 
   return(
     <div className='home'>
@@ -48,7 +51,7 @@ export default function Home() {
           </Box>
         </Grid>
     <div className='divNBFun'>
-    <Filter_Sort update={update} setUpdate={setUpdate}/>
+    <Filter_Sort update={update} setUpdate={setUpdate} setCurrentPage={setCurrentPage}/>
     </div>
     <div>
         <ComponentCard animalsInCurrentPage={animalsInCurrentPage} />

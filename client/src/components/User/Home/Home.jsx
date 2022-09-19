@@ -36,6 +36,7 @@ export default function Home() {
     e.preventDefault();
     dispatch(sortByPrice(e.target.value));
     setOrder(e.target.value);
+    setCurrentPage(1);
   }
 
   return (

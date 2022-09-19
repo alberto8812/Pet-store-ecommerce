@@ -1,16 +1,28 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./AboutUs.css";
+import { postContact } from "../../../redux/actions";
 
 export default function AboutUs() {
   // const [submitted, setSubmitted] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const initialState = {
+    name: '',
+    email: '',
+    message: ''
+  };
+  
+  const [input, setInput] = useState(initialState);
 
   function handleSubmit(e) {
     e.preventDefault();
+    dispatch(postContact(input));
     notifyOK();
+    setInput(initialState);
   }
 
   const notifyOK = () => {
@@ -22,6 +34,14 @@ export default function AboutUs() {
   function handleClick(e) {
     e.preventDefault();
     navigate("/");
+  };
+
+  function onChange(e){
+    e.preventDefault();
+    setInput({
+      ...input,
+      [e.target.name] : e.target.value
+    });
   }
 
   return (
@@ -30,41 +50,45 @@ export default function AboutUs() {
       onSubmit={handleSubmit}
     >
       <div className="div-inputs">
-        <div>
-          <label>Leave us your message and we'll contact you!</label>
+          <label className="main-title-aboutUs">Leave us your message and we'll contact you!</label>
           <input
             className="inputAbout"
             type="text"
             placeholder="Your name"
             id="name"
+            name="name"
+            value={input.name} 
+            onChange={(e)=>onChange(e)}
             required
           />
-        </div>
-        <div>
           <input
             className="inputAbout"
             type="email"
             placeholder="Email"
             id="email"
+            name="email"
+            value={input.email} 
+            onChange={(e)=>onChange(e)}
             required
           />
-        </div>
-        <div>
           <textarea
             className="inputAbout"
             placeholder="Your message"
             id="message"
+            name="message"
+            value={input.message} 
+            onChange={(e)=>onChange(e)}
             required
           />
-        </div>
-        <div>
-          <button> Send a message </button>
-          <button onClick={(e) => handleClick(e)}>Go Home</button>
+
+        <div className="div-buttons">
+          <button className="btn-aboutnUs"> Send a message </button>
+          <button className="btn-aboutnUs" onClick={(e) => handleClick(e)}>Go Home</button>
         </div>
       </div>
       <ToastContainer
         position="top-center"
-        autoClose={5000}
+        autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

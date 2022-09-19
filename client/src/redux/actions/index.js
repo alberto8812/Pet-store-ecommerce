@@ -58,10 +58,21 @@ export function clear() {
 export function postProduct(payload) {
     return async function(dispatch) {
         const response = await axios.post('/create', payload)
-        console.log(response)
         return response
     }
 };
+
+export function postContact(payload) {
+    console.log(payload)
+    return async function() {
+        try {
+            let newEmail = await axios.post('http://localhost:3001/aboutus', payload)
+            return newEmail;
+        } catch (error) {
+            console.error('Error en postContact --> ', error);
+        }
+    }
+}
 
 export function sortByPrice(payload) {
     return {

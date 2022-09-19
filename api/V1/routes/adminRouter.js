@@ -1,4 +1,4 @@
-const {CreateProductDb}=require("../../controllers/adminController")
+const {CreateProductDb, DeleteProductDb}=require("../../controllers/adminController")
 
 const express=require("express"),
       router=express.Router();
@@ -11,6 +11,8 @@ router
             })
 
         .post("/create",CreateProductDb)
+
+        .delete("/delete/:id", DeleteProductDb)
 
        
 

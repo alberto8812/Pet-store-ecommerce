@@ -39,7 +39,7 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
   }
 
   function onChangeCategory(e) {
-    setfiltersearch({...filtersearch,category:e.target.value})
+    setfiltersearch({...filtersearch,category:e.target.value==='DEFAULT'?'':e.target.value})
     //dispatch(getProducts(filterName, e.target.value))
       setUpdate(update===' '?'probando':' ');
       setOrder(e.target.value);

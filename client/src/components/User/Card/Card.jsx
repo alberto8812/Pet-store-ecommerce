@@ -79,7 +79,7 @@ export default function CardProduct({ id, image, name, price, rating, category, 
                 component="img"
                 height="50%"
                 width='50%'
-                image={image}
+                image={image ? image : 'https://i0.wp.com/puppis.blog/wp-content/uploads/2022/03/etapas-desarrollo-perros-cachorros-min.jpg?fit=1200%2C944&ssl=1'}
                 alt={name}
             />
             <CardContent>

@@ -33,7 +33,7 @@ export default function SearchBar({onChangeName, setFilterName}) {
                     onKeyDown={e => handleEnter(e)} 
                     autocomplete="off"
                 />
-                <button class="button--submit" type="submit" onClick={e => handleSubmit(e)}>🔍</button>
+                <button className="button--submit" type="submit" onClick={e => handleSubmit(e)}>🔍</button>
             </div>
         </>
     )

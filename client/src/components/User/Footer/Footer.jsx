@@ -19,16 +19,16 @@ export default function Footer() {
                 <div className='columns-row'>
                     {/* Column1 */}
                     <div className='column1'>
-                        <h4>Pets Love TM</h4>
+                        <h4 className='columnOne-title'>Developets TM</h4>
                         <ul className='list'>
-                            <li>Whatsapp <a href={`https://api.whatsapp.com/send?phone=${celNumber}`} style={{'textDecoration': 'none', 'color': 'green'}}> <i class="bi bi-whatsapp text-green"></i></a></li>
+                            <li>Whatsapp <a target='_blank' href={`https://api.whatsapp.com/send?phone=${celNumber}`} style={{'textDecoration': 'none', 'color': 'green'}}> <i class="bi bi-whatsapp text-green"></i></a></li>
                             <li>Facebook <a href='' style={{'textDecoration': 'none', 'color': 'blue'}}> <i class="bi bi-facebook"></i></a></li>
                             <li>Instagram <a href='' style={{'textDecoration': 'none', 'color': 'red'}}><i class="bi bi-instagram"></i></a></li>
                         </ul>
                     </div>
                     {/* Column2 */}
                     <div className='column2'>
-                        <h4>Contact Us</h4>
+                        <h4 className='columnTwo-title'>Contact Us</h4>
                         
                         <button className='buzonbtn' onClick={e => handleClick(e)}><i class="bi bi-envelope-paper"></i></button>
 
@@ -42,8 +42,8 @@ export default function Footer() {
             </div>
                     <hr/>
                     <div className='bottomfoot'>
-                        <p>
-                            &copy;{new Date().getFullYear()} <strong>PETS LOVE TM</strong> | All rights reserved | <a href='' style={{'textDecoration': 'none'}}>Terms & Conditions</a>
+                        <p className='fotter-text'>
+                            &copy;{new Date().getFullYear()} <strong>DEVELOPETS TM</strong> | All rights reserved | <a href='' style={{'textDecoration': 'none'}}>Terms & Conditions</a>
                         </p>
                     </div>
             

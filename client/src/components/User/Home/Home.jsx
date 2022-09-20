@@ -6,17 +6,17 @@ import Footer from "../Footer/Footer";
 import { Box, Grid } from "@material-ui/core";
 import "./Home.css";
 import Carousel from "../carousel/Carousel";
-import { sortByPrice, getProducts } from "../../../redux/actions";
+import { sortByPrice, getProducts, getAllProducts} from "../../../redux/actions";
 // import Filter_Sort from "../Filters_Sort/Filters_Sort";
 
 
 export default function Home() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.allProducts);
-
-  // useEffect(() => {
-  //   dispatch(testFilters({ name, genre }));
-  // }, [dispatch]);
+console.log(allProducts)
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, []);
 
   //PAGINADO
   const [currentPage, setCurrentPage] = useState(1);

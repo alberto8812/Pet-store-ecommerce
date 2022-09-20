@@ -14,12 +14,11 @@ import {
 } from "./constants";
 
 export function getProducts(prop) {
-    console.log(prop )
-    return async function (dispatch) {
+    return async function(dispatch) {
         try {
-                return axios.get('http://localhost:3001/products/search?name=' + prop.name + '&category=' + prop.category + '&genre=' +prop.genre + '&age='+prop.age)
-                    .then(res => dispatch({ type: GET_ALL_PRODUCTS, payload: res.data }))
-                    .catch(err => dispatch({ type: GET_ALL_PRODUCTS, payload: err.data }))
+            return axios.get('http://localhost:3001/products/search?name=' + prop.name + '&category=' + prop.category + '&genre=' + prop.genre + '&age=' + prop.age)
+                .then(res => dispatch({ type: GET_ALL_PRODUCTS, payload: res.data }))
+                .catch(err => dispatch({ type: GET_ALL_PRODUCTS, payload: err.data }))
         } catch (err) {
             console.error(err)
         }
@@ -55,7 +54,6 @@ export function postProduct(payload) {
 };
 
 export function postContact(payload) {
-    console.log(payload)
     return async function() {
         try {
             let newEmail = await axios.post('http://localhost:3001/aboutus', payload)

@@ -45,7 +45,16 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
       setUpdate(update===' '?'probando':' ');
       setOrder(e.target.value);
       setCurrentPage(1);
+  };
+
+  function handlePet(e) {
+    setfiltersearch({...filtersearch,genre:e.target.value})
+    //dispatch(getProducts(filterName, e.target.value))
+      setUpdate(update===' '?'probando':' ');
+      setOrder(e.target.value);
+      setCurrentPage(1);
   }
+
   useEffect(() => {
   //  console.log(filtersearch)
     dispatch(getProducts(filtersearch));

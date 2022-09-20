@@ -33,6 +33,9 @@ export default function Detail() {
     function sumar(e) {
         e.preventDefault()
         // return console.log('sumar')
+        if(counter === myProduct.stock){
+            e.target.value(disable)
+        }
          return setCounter(counter +1)
     };
 
@@ -195,8 +198,7 @@ export default function Detail() {
                             <div className="c-mobile">
                                 <div className="card-promotion-section">
                                     <p><CreditCardIcon className="fa fa-credit-card" /></p>
-                                    Pay with credit and debit
-
+                                    Pay with credit or debit
                                 </div>
                                 <div className="card-section">
                                     <p className="card-subtitle">Credit cards</p>

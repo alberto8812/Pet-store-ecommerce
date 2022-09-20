@@ -64,12 +64,12 @@ useEffect(() => {
                 </div>
                 <div className='nav_box'>
                     <Link to='/' className='nav-link' >
-                        <Icon icon="fa:shopping-cart" width='30px' height='30px' />
-                        <h3 className='link_home'>shopping</h3>
+                        <Icon className='link_home' icon="fa:shopping-cart" width='35px' height='35px' />
+                        {/* <h3 className='link_home'>shopping</h3> */}
                     </Link>
                     <Link to='/' className='nav-link' >
-                        <Icon icon="ic:outline-favorite" width='30px' height='30px' />
-                        <h3 className='link_home'>Favorite</h3>
+                        <Icon className='link_home' icon="ic:outline-favorite" width='35px' height='35px' />
+                        {/* <h3 className='link_home'>Favorite</h3> */}
                     </Link>
                     <div>
                         <LogIn className='nav-link' >

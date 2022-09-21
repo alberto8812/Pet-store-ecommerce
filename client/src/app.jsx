@@ -9,6 +9,7 @@ import Home from './components/User/Home/Home'
 import PaymentGateway from './components/User/PaymentGateway/PaymentGateway';
 import Registration from './components/User/Registration/Registration';
 import NavBar from './components/User/NavBar/NavBar';
+import Carrito from './components/User/Carrito/Carrito';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path={'/registration'} element={<Registration />} />
         <Route path={'/paymentgateway'} element={<PaymentGateway />} />
         <Route path={'/create'} element={<Create/>} />
+        <Route path={'/carrito'} element={<Carrito/>} />
         <Route path={'*'} element={<NotFound />} />
       </Routes>
     </div>

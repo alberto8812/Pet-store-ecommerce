@@ -28,9 +28,9 @@ export default function Footer() {
                     </div>
                     {/* Column2 */}
                     <div className='column2'>
-                        <h4 className='columnTwo-title'>Contact Us</h4>
-                        <button className='buzonbtn' onClick={e => handleClick(e)}><i class="bi bi-envelope-paper"></i></button>
-
+                        {/* <h4 className='columnTwo-title'>Contact Us</h4> */}
+                        <button className='buzonbtn' onClick={e => handleClick(e)}>Contact Us <i class="bi bi-envelope-paper"></i></button>
+                        {/* <button className='buzonbtn' onClick={e => handleClick(e)}><i class="bi bi-envelope-paper"></i></button> */}
                     </div>
                     {/* Column3 */}
                     <div className='column3'>

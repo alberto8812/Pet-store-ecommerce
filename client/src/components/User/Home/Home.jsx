@@ -6,9 +6,12 @@ import Footer from "../Footer/Footer";
 import { Box, Grid } from "@material-ui/core";
 import "./Home.css";
 import Carousel from "../carousel/Carousel";
-import { sortByPrice, getProducts, getAllProducts} from "../../../redux/actions";
+import {
+  sortByPrice,
+  getProducts,
+  getAllProducts,
+} from "../../../redux/actions";
 // import Filter_Sort from "../Filters_Sort/Filters_Sort";
-
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -27,20 +30,19 @@ console.log(products)
   //PAGINADO
   const [currentPage, setCurrentPage] = useState(1);
   const [animalsPerPage, setAnimalsPerPage] = useState(9); // Hasta 9 cards por pag
-  
+
   // const [update, setUpdate] = useState(' ')
-  
+
   const indexLastAnimal = currentPage * animalsPerPage;
   const indexFirstAnimal = indexLastAnimal - animalsPerPage;
   const animalsInCurrentPage = products.slice(
     indexFirstAnimal,
     indexLastAnimal
-  ); 
+  );
 
-
-  return(
-    <div className='home'>
-    {/* <div className='divNBFun'>
+  return (
+    <div className="home">
+      {/* <div className='divNBFun'>
     <Filter_Sort update={update} setUpdate={setUpdate} setCurrentPage={setCurrentPage}/>
     </div> */}
       <Grid container>
@@ -48,24 +50,26 @@ console.log(products)
           {/* <Box border={2} m={5}></Box> */}
         </Grid>
         <Grid item xs={12}>
-          <Box border={2} overflow='hidden' >
+          <Box border={2} overflow="hidden">
             <Carousel />
           </Box>
         </Grid>
-    <div>
-        <ComponentCard animalsInCurrentPage={animalsInCurrentPage} />
-    </div>
-  
-        <Pagination
-                animalsPerPage={animalsPerPage}
-                products={products.length}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage} />
-  
-    </Grid>
+          <Pagination
+            animalsPerPage={animalsPerPage}
+            allProducts={allProducts.length}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        <div>
+          <ComponentCard animalsInCurrentPage={animalsInCurrentPage} />
+        </div>
+      </Grid>
 
-   <Footer/>
+              <a style={{'textDecoration': 'none'}} href="#">
+                  <button className="goUp-btn">Go Up</button>
+              </a>
+
+      <Footer />
     </div>
-  )
+  );
 }
-

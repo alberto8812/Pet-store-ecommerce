@@ -56,7 +56,7 @@ console.log(products)
         </Grid>
           <Pagination
             animalsPerPage={animalsPerPage}
-            allProducts={allProducts.length}
+            products={products.length}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
           />

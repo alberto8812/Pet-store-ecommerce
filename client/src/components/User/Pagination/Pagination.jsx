@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import './Pagination.css';
 
-export default function Pagination({ animalsPerPage, allProducts, currentPage, setCurrentPage }) {
+export default function Pagination({ animalsPerPage, products, currentPage, setCurrentPage }) {
     const pageNumber = [];
     const [input, setInput] = useState(1);
 
-    for (let i = 1; i < Math.ceil(allProducts / animalsPerPage); i++) {
+    for (let i = 1; i < Math.ceil(products / animalsPerPage); i++) {
         pageNumber.push(i);
     }
 

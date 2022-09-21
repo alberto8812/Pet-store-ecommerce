@@ -15,10 +15,17 @@ import {
 
 export default function Home() {
   const dispatch = useDispatch();
-  const allProducts = useSelector((state) => state.allProducts);
+  const products = useSelector((state) => state.products);
+  const status = useSelector((state) => state.status);
+console.log(products)
   useEffect(() => {
     dispatch(getAllProducts());
   }, []);
+
+
+  useEffect(() => {
+  ////se ejecuta para update del home 
+  }, [status]);
 
   //PAGINADO
   const [currentPage, setCurrentPage] = useState(1);
@@ -28,7 +35,7 @@ export default function Home() {
 
   const indexLastAnimal = currentPage * animalsPerPage;
   const indexFirstAnimal = indexLastAnimal - animalsPerPage;
-  const animalsInCurrentPage = allProducts.slice(
+  const animalsInCurrentPage = products.slice(
     indexFirstAnimal,
     indexLastAnimal
   );

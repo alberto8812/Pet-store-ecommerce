@@ -1,15 +1,27 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import './NavBar.css'
 import { Icon } from '@iconify/react';
-import SearchBar from '../SearchBar/SearchBar';
 import LogIn from '../Login/LogIn';
 import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
 import axios from "axios"
+import Filter_Sort from '../Filters_Sort/Filters_Sort';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProducts, sortByPrice } from '../../../redux/actions';
+import home from './download.png';
 <Icon icon="bx:home" />
 
 const NavBar = () => {
     const {user,isAuthenticated,getAccessTokenSilently}=useAuth0()
+    const [update, setUpdate] = useState(' ');
+    const [currentPage, setCurrentPage] = useState(1);
+    const allProducts = useSelector((state) => state.allProducts);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getProducts());
+    }, [dispatch])
+
 
 
 /////// envio de informacion datos de usuarios/////////////////pendiente por chequeo equipo
@@ -39,23 +51,25 @@ useEffect(() => {
             <div className='nav-body'>
                 <div className='nav-header'>
                     <Link to='/' className='nav-link' >
-                        <Icon className='ico_nav' icon="bx:home" width='30px' height='30px' />
+                        {/* <Icon className='ico_nav' icon="bx:home" width='30px' height='30px' /> */}
+                        <img className='img-home-btn' src={home} alt=''/>
                         <h3 className='link_home'>Home</h3>
                     </Link>
                 </div>
                 <div>
                     {/* <SearchBar /> */}
+                    <Filter_Sort update={update} setUpdate={setUpdate} setCurrentPage={setCurrentPage} />
                 </div>
                 <div className='nav_box'>
                 </div>
                 <div className='nav_box'>
                     <Link to='/' className='nav-link' >
-                        <Icon icon="fa:shopping-cart" width='30px' height='30px' />
-                        <h3 className='link_home'>shopping</h3>
+                        <Icon className='link_home' icon="fa:shopping-cart" width='35px' height='35px' />
+                        {/* <h3 className='link_home'>shopping</h3> */}
                     </Link>
                     <Link to='/' className='nav-link' >
-                        <Icon icon="ic:outline-favorite" width='30px' height='30px' />
-                        <h3 className='link_home'>Favorite</h3>
+                        <Icon className='link_home' icon="ic:outline-favorite" width='35px' height='35px' />
+                        {/* <h3 className='link_home'>Favorite</h3> */}
                     </Link>
                     <div>
                         <LogIn className='nav-link' >
@@ -70,7 +84,7 @@ useEffect(() => {
                 </div>)}
                 </div>
             </div>
-            <nav role="navigation">
+            {/* <nav role="navigation">
                 <div id="menuToggle">
                     <input type="checkbox" />
                     <span></span>
@@ -82,7 +96,7 @@ useEffect(() => {
                         </div>
                     </ul>
                 </div>
-            </nav>
+            </nav> */}
         </div>
 
     );

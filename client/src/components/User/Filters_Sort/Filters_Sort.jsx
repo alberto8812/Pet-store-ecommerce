@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "../Home/Home.css";
 import SearchBar from "../SearchBar/SearchBar";
 import { sortByPrice, getProducts } from "../../../redux/actions";
+import './Filters_Sort.css'
 
 const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
   const dispatch = useDispatch();
@@ -15,14 +16,13 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
 
   function chargeAllProducts(e){
     e.preventDefault(e);
-   // let selectList = document.querySelectorAll('.default-select');
-   // selectList.forEach(select => select.value = 'DEFAULT');
+   let selectList = document.querySelectorAll('.default-select');
+   selectList.forEach(select => select.value = 'DEFAULT');
     setCurrentPage(1);
     dispatch(getProducts({age:'',category:'',name:'',genre:''}));
   }
 
   function handlePrice(e) {
-    e.preventDefault();
     dispatch(sortByPrice(e.target.value));
     setUpdate(update===' '?'probando':' ')
     setOrder(e.target.value);
@@ -44,14 +44,24 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
       setUpdate(update===' '?'probando':' ');
       setOrder(e.target.value);
       setCurrentPage(1);
+  };
+
+  function handlePet(e) {
+    setfiltersearch({...filtersearch,genre:e.target.value})
+    //dispatch(getProducts(filterName, e.target.value))
+      setUpdate(update===' '?'probando':' ');
+      setOrder(e.target.value);
+      setCurrentPage(1);
   }
+
   useEffect(() => {
-   console.log(filtersearch)
+  //  console.log(filtersearch)
     dispatch(getProducts(filtersearch));
     //dispatch(getProducts(filterCategory));
    // setUpdate(update===' '?'probando':' ');
   
   }, [filtersearch])
+
   function onChangeName(e) {
     console.log(filtersearch,"onchange")
     dispatch(getProducts(filtersearch));//, filterCategory
@@ -60,38 +70,40 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
 
   return (
     <div>
-      <ul className='navbar'>
         <SearchBar setfiltersearch={setfiltersearch} onChangeName={onChangeName} filtersearch={filtersearch}></SearchBar>
-        <button onClick={e => chargeAllProducts(e)}>All Products</button>
-        <li className='content-select'>
-          Filter by Age 
+      <ul className='navbar'>
+        {/* <li className='content-select'> */}
           <select className='default-select' defaultValue={"DEFAULT"} onChange={e => onChangeAge(e)}>
-            <option value="DEFAULT">All</option>
+            <option value="DEFAULT">Age</option>
             <option value='Puppy'>Puppy</option>
             <option value='Young'>Young</option>
             <option value='Adult'>Adult</option>
           </select>
-        </li>
-        <li className='content-select'>
-          Filter by Categories
-          <select className='default-select' onChange={e => onChangeCategory(e)}>
-            <option value="DEFAULT">All</option>
+        {/* </li> */}
+        {/* <li className='content-select'> */}         
+          <select className='default-select' defaultValue={"DEFAULT"} onChange={e => onChangeCategory(e)}>
+            <option value="DEFAULT">Categories</option>
             <option value='accessories'>Accessories</option>
             <option value='food'>Food</option>
             <option value='toys'>Toys</option>
           </select>
-        </li>
-        <li className='content-select'>
-          Sort by Price
+        {/* </li> */}
+        {/* <li className='content-select'> */}         
           <select className='default-select' defaultValue={"DEFAULT"} onChange={e => handlePrice(e)}>
-            <option value="DEFAULT" disabled selected >Select</option>
+            <option value="DEFAULT">Price</option>
             <option value='higherPrice'>Higher Price</option>
             <option value='lowerPrice'>Lower Price</option>
           </select>
-        </li>
+          <select className='default-select' defaultValue={"DEFAULT"} onChange={e => handlePet(e)}>
+            <option value="DEFAULT">Pet</option>
+            <option value='cat'>Cat</option>
+            <option value='dog'>Dog</option>
+          </select>
+          <button className="allProducts-btn" onClick={e => chargeAllProducts(e)}>All Products</button>
+        {/* </li> */}
       </ul>
     </div >
   )
 }
 
-export default Filter_Sort
+export default Filter_Sort;

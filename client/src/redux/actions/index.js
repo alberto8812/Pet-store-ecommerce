@@ -77,6 +77,7 @@ export function postContact(payload) {
 }
 
 export function sortByPrice(payload) {
+    console.log(payload)
     return {
         type: SORT_BY_PRICE,
         payload

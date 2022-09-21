@@ -24,7 +24,6 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
 
   function handlePrice(e) {
     dispatch(sortByPrice(e.target.value));
-    console.log(sortByPrice(e.target.value));
     setUpdate(update===' '?'probando':' ')
     setOrder(e.target.value);
     setCurrentPage(1);

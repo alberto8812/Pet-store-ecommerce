@@ -114,6 +114,13 @@ export default function Detail() {
                                 <div className="clear"></div>
                             </div>
                         </div>
+                        <div class="rating">
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                        </div>
                         <div className="clear"></div>
                     </div>
                     <div className="b2">

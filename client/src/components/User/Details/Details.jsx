@@ -24,7 +24,6 @@ export default function Detail() {
 
     function restar(e) {
         e.preventDefault()
-        // return console.log('reste')
         if(counter === 0){
             e.target.value(disable)
         }
@@ -32,7 +31,6 @@ export default function Detail() {
     }
     function sumar(e) {
         e.preventDefault()
-        // return console.log('sumar')
         if(counter === myProduct.stock){
             e.target.value(disable)
         }

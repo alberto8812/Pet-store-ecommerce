@@ -1,7 +1,24 @@
-import './Carrito.css'
-
+import React, { useState } from 'react';
+import './Carrito.css';
 
 export default function Carrito({ image, name, stock, price, id, category, genre, age }) {
+    const [counter, setCounter] = useState(0);
+
+        function handleResta(e) {
+        e.preventDefault()
+        if(counter === 0){
+            e.target.value(false)
+        }
+        return setCounter(counter -1)
+    }
+    function handleSuma(e) {
+        e.preventDefault()
+        if(counter === stock){
+            e.target.value(false)
+        }
+         return setCounter(counter +1)
+    };
+
     return (
         <div className="m7">
             <div className="b1 desk">
@@ -9,7 +26,8 @@ export default function Carrito({ image, name, stock, price, id, category, genre
             </div>
             <div className="total-container mobile"></div>
             <div className="notification success desk">
-                <i className="fas fa-truck"></i>
+                {/* <i className="fas fa-truck"></i> */}
+                <i class="bi bi-truck"></i>
                 "Envio gratis a partir de $500"
             </div>
             <section className="cart-products-container">
@@ -46,9 +64,10 @@ export default function Carrito({ image, name, stock, price, id, category, genre
                         </div>
                         <div className="quantity" data-id="0">
                             <div className="qty">
-                                <span className="minus disabled">-</span>
-                                <input type="number" id="cantidad_13854" pattern="[0-9]+" className="count" />
-                                <span className="plus">+</span>
+                                <button onClick={e => handleResta(e)} className="minus disabled" value>-</button>
+                                <p id="cantidad_13854" className="count">{counter}</p>
+                                {/* <input type="number" id="cantidad_13854" pattern="[0-9]+" className="count" /> */}
+                                <button onClick={e => handleSuma(e)} className="plus" value>+</button>
                             </div>
                             <small>{stock} 15u. disponibles</small>
                         </div>
@@ -57,7 +76,8 @@ export default function Carrito({ image, name, stock, price, id, category, genre
                         </div>
                         <div className="delete" data-id='0'>
                             <a href={`/carrito/eliminar/product/${id}`}>
-                                <i className="far fa-trash-alt"></i>
+                            <i class="bi bi-x-circle-fill" style={{'color': '#6200adc9'}}></i>
+                                {/* <i className="far fa-trash-alt"></i> */}
                             </a>
                         </div>
                     </div>
@@ -113,4 +133,4 @@ export default function Carrito({ image, name, stock, price, id, category, genre
             </div>
         </div>
     )
-}
+};

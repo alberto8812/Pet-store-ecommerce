@@ -11,7 +11,6 @@ import {
   getProducts,
   getAllProducts,
 } from "../../../redux/actions";
-// import Filter_Sort from "../Filters_Sort/Filters_Sort";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -31,8 +30,6 @@ console.log(products)
   const [currentPage, setCurrentPage] = useState(1);
   const [animalsPerPage, setAnimalsPerPage] = useState(9); // Hasta 9 cards por pag
 
-  // const [update, setUpdate] = useState(' ')
-
   const indexLastAnimal = currentPage * animalsPerPage;
   const indexFirstAnimal = indexLastAnimal - animalsPerPage;
   const animalsInCurrentPage = products.slice(
@@ -42,9 +39,6 @@ console.log(products)
 
   return (
     <div className="home">
-      {/* <div className='divNBFun'>
-    <Filter_Sort update={update} setUpdate={setUpdate} setCurrentPage={setCurrentPage}/>
-    </div> */}
       <Grid container>
         <Grid item xs={12}>
           {/* <Box border={2} m={5}></Box> */}

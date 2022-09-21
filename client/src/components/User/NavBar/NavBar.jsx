@@ -63,7 +63,7 @@ useEffect(() => {
                 <div className='nav_box'>
                 </div>
                 <div className='nav_box'>
-                    <Link to='/' className='nav-link' >
+                    <Link to='/carrito' className='nav-link' >
                         <Icon className='link_home' icon="fa:shopping-cart" width='35px' height='35px' />
                         {/* <h3 className='link_home'>shopping</h3> */}
                     </Link>

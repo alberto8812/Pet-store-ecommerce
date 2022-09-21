@@ -1,13 +1,13 @@
-* {
+/* * {
     box-sizing: border-box;
-}
+} */
 
 .form-aboutus {
     display: flex;
     width: 500px;
     height: 380px;
     /* max-width: 600px; */
-    margin: 0 auto;
+    margin: 100px auto;
     flex-direction: column;
     justify-content: center;
     border-radius: 1rem;

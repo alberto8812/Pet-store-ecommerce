@@ -1,5 +1,5 @@
-const {db,Op}=require('../../database/db')
-const {Product,Genre,Category}=db.models
+const { db, Op } = require('../../database/db')
+const { Product, Genre, Category } = db.models
 
 
 
@@ -19,19 +19,24 @@ const getdbProdcutSearchService=async(req)=>{
     if(category){
      categoryCondition.name=category
     }
-     if(name){
-         productCondiction.name= {[Op.iLike]:`%${name}%`}
-     }
- 
-    if(genre){
-     genreCondition.name=genre
+
+    if (category) {
+        categoryCondition.name = category
+    }
+    if (name) {
+        productCondiction.name = {
+            [Op.iLike]: `%${name}%` }
     }
 
-    const dbSearchProduct=await Product.findAll({
-        where: [productCondiction,ageCondition],
-        include:[ {model:Genre,attributes:['name'],where:genreCondition},{model:Category,attributes:['name'],where:categoryCondition}]
+    if (genre) {
+        genreCondition.name = genre
+    }
+
+    const dbSearchProduct = await Product.findAll({
+        where: [productCondiction, ageCondition],
+        include: [{ model: Genre, attributes: ['name'], where: genreCondition }, { model: Category, attributes: ['name'], where: categoryCondition }]
     })
-    
+
     return dbSearchProduct;
 }
 
@@ -42,4 +47,4 @@ const getdbProdcutSearchService=async(req)=>{
 
 
 
-module.exports={getdbProdcutSearchService}
+module.exports = { getdbProdcutSearchService }

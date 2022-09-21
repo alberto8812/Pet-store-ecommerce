@@ -31,11 +31,11 @@ export const ComponentCard = ({animalsInCurrentPage}) => {
             {animalsInCurrentPage.length > 0 ?
             animalsInCurrentPage?.map(v => {
                 return (
-                    <Box sx={{display:'grid',columnGap:1,rowGap:1,gridTemplateColumns:'repeat(1,500px)',}}>{/*ajuste dinamica de las cards */}
+                    <Box sx={{display:'grid',columnGap:1,rowGap:1,gridTemplateColumns:'repeat(.5,500px)',}}>{/*ajuste dinamica de las cards */}
                     <CardProduct className='cardHome'
                     key={v.id}
                     id={v.id}
-                    image={v.image ? v.image : v.name}
+                    image={v.image ? v.image : 'https://images5.alphacoders.com/312/312789.jpg'}
                     name={v.name}
                     category={v.category.name}
                     genre={v.genre.name}

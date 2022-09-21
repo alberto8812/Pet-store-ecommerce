@@ -7,7 +7,6 @@ const {Product,Genre,Category}=db.models
 ///peticion a la api  para encontrar tos los productos que contengan la palabra de busqueda//
 const getdbProdcutSearchService=async(req)=>{
     const {genre,name,category,age}=req.query
-    console.log(age,genre,category,"holaaaaaaaaaaaaaa")
     const productCondiction={}
     const genreCondition={};
     const categoryCondition={};

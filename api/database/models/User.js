@@ -26,6 +26,11 @@ module.exports = (sequelize) => {
       allowNull: false,
        
     },
+    direction:{
+      type: DataTypes.STRING,
+     
+       
+    },
     
 
     flagAdmin:{

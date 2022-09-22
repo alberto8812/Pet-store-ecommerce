@@ -60,25 +60,31 @@ process.env.NODE_ENV==="production"
 
     // Aca vendrian las relaciones
     // Product.hasMany(Reviews);
-const { User, Sale, SaleDetail, Genre, Category , Product} = sequelize.models
+const { User, Sale, SaleDetail, Genre, Category , Product, Review} = sequelize.models
 
-User.hasMany(Sale)
-Sale.belongsTo(User)
+User.hasMany(Sale, { foreingKey: "userId",  sourceKey: "id" })
+Sale.belongsTo(User, { foreingKey: "userId", targetId: "id" })
 
-Sale.hasMany(SaleDetail)
-SaleDetail.belongsTo(Sale)
+Sale.hasMany(SaleDetail, { foreingKey: "saleId",  sourceKey: "id"})
+SaleDetail.belongsTo(Sale, { foreingKey: "saleId", targetId: "id"})
 
-SaleDetail.hasMany(Genre)
-Genre.belongsTo(SaleDetail)
+SaleDetail.hasMany(Genre, { foreingKey: "saleDetailId", sourceKey: "id" })
+Genre.belongsTo(SaleDetail, { foreingKey: "saleDetailId", targetId: "id"})
 
-Genre.hasMany(Product)///adicional
-Product.belongsTo(Genre)//adicional
+Genre.hasMany(Product, { foreingKey: "genreId", sourceKey: "id"})///adicional
+Product.belongsTo(Genre, { foreingKey: "genreId", targetId: "id"} )//adicional
 
 Genre.belongsToMany(Category, {through: 'genre_category'})
 Category.belongsToMany(Genre, {through: 'genre_category'})
 
-Category.hasMany(Product)
-Product.belongsTo(Category)
+Category.hasMany(Product, { foreingKey: "categoryId", sourceKey: "id"})
+Product.belongsTo(Category, { foreingKey: "categoryId", targetId: "id"})
+
+User.hasMany(Review, { foreingKey: "userId", sourceKey: "id"} )
+Review.belongsTo(User, { foreingKey: "userId", targetId: "id"} )
+
+Product.hasMany(Review, { foreingKey: "productId", sourceKey: "id"} )
+Review.belongsTo(Product, { foreingKey: "productId", targetId: "id"})
 
 
  

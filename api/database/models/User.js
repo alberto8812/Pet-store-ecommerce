@@ -31,6 +31,11 @@ module.exports = (sequelize) => {
      
        
     },
+   city:{
+      type: DataTypes.STRING,
+     
+       
+    },
     
 
     flagAdmin:{

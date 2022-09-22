@@ -33,8 +33,8 @@ app.use(cors());
 app.use("/products", v1ProducstRouter);
 
 //ruta para usuarios registrados
-app.use("/loginUsers", jwtCheck, v1UsersRouter);
-
+app.use("/loginUsers", v1UsersRouter);
+// jwtCheck
 
 ///proximamente ruta para roll admi
 app.use("/loginAdmin", jwtCheck, checkpermissions, v1AdminRouter)

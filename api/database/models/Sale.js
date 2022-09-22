@@ -10,6 +10,10 @@ module.exports = (sequelize) =>{
       primaryKey: true,
       allowNull: false
     }, 
+    invoice:{
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     total: {
       type: DataTypes.FLOAT,
       allowNull: false

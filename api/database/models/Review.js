@@ -1,19 +1,16 @@
 const {DataTypes} = require ('sequelize')
 
 module.exports = (sequelize) =>{
-
-  sequelize.define('sale', {
-
+  
+  sequelize.define('review', {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
-      primaryKey: true,
-      allowNull: false
-    }, 
-    total: {
-      type: DataTypes.FLOAT,
+      primaryKey: true,  
+    },
+    comment:{
+      type: DataTypes.TEXT,
       allowNull: false
     }
-
   })
 }

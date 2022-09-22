@@ -1,13 +1,12 @@
-[
-    {
-        "name":"cat tunnel",
-        "stock":450,
-        "price":150,
-        "detail":"Cat tunnel - red, Our tunnel is foldable and has side drawstrings that will allow you to store them more easily.",
-        "image":"https://laika.com.co/cdn-cgi/image/onerror=redirect,format=auto,fit=scale-down,width=600,quality=80/https://laikapp.s3.amazonaws.com/dev_images_products/15076_TUNEL_GATO_1595567874_500x500.jpg",
-        "rating":"4",
-        "age":"adutl"
-    
+[{
+        "name": "cat tunnel",
+        "stock": 450,
+        "price": 150,
+        "detail": "Cat tunnel - red, Our tunnel is foldable and has side drawstrings that will allow you to store them more easily.",
+        "image": "https://laika.com.co/cdn-cgi/image/onerror=redirect,format=auto,fit=scale-down,width=600,quality=80/https://laikapp.s3.amazonaws.com/dev_images_products/15076_TUNEL_GATO_1595567874_500x500.jpg",
+        "rating": "4",
+        "age": "adutl"
+
     },
     {
         "name":"Petstages - Nighttime Cuddle Plush.",

@@ -2,11 +2,13 @@
     display: flex;
     text-align: center;
     margin: 0 auto;
-    margin-bottom: 15px;
+    margin-top: 15px;
+    align-content: center;
+    overflow: hidden;
 }
 
-.paginado button {
-    float: left;
+.btn-paginado {
+    /* float: left; */
     padding: 8px 18px;
     background-color: #63247ae0;
     border: transparent;
@@ -17,7 +19,7 @@
     transform-style: preserve-3d;
 }
 
-.paginado input {
+.input-pag {
     display: flex;
     font-size: 15px;
     font-weight: bold;
@@ -33,25 +35,25 @@
     transform-style: preserve-3d;
 }
 
-.pparrafo-pag {
+.parrafo-pag {
     display: flex;
-    justify-content: center;
+    align-items: center;
     padding: 8px 18px;
     border: transparent;
     color: black;
     transition: transform 0.5s ease-in-out;
-    transform-style: preserve-3d;
+    /* transform-style: preserve-3d; */
 }
 
-.paginado button:hover {
+.btn-paginado:hover {
     background-color: #63247a98;
     color: #121212;
     transition: transform 0.5s ease-in-out;
     transform-style: preserve-3d;
-    transform: rotateY(180deg);
+    /* transform: rotateY(180deg); */
 }
 
-.paginado button:focus {
+.btn-paginado:focus {
     background-color: #63247a98;
     color: #121212;
 }

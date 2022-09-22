@@ -1,8 +1,6 @@
-// componente con las funciones de filtrado y ordenamiento
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../Home/Home.css";
-import SearchBar from "../SearchBar/SearchBar";
 import { sortByPrice, getProducts } from "../../../redux/actions";
 import './Filters_Sort.css'
 
@@ -62,19 +60,14 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
   
   }, [filtersearch])
 
-  function onChangeName(e) {
-    console.log(filtersearch,"onchange")
-    dispatch(getProducts(filtersearch));//, filterCategory
-    setCurrentPage(1);
-  }
 
   return (
-    <div>
-        <SearchBar setfiltersearch={setfiltersearch} onChangeName={onChangeName} filtersearch={filtersearch}></SearchBar>
-      <ul className='navbar'>
+    <div className='container_navbar'>
+     
+      
         {/* <li className='content-select'> */}
           <select className='default-select' defaultValue={"DEFAULT"} onChange={e => onChangeAge(e)}>
-            <option value="DEFAULT">Age</option>
+            <option value="DEFAULT" hidden selected>Age</option>
             <option value='Puppy'>Puppy</option>
             <option value='Young'>Young</option>
             <option value='Adult'>Adult</option>
@@ -82,7 +75,7 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
         {/* </li> */}
         {/* <li className='content-select'> */}         
           <select className='default-select' defaultValue={"DEFAULT"} onChange={e => onChangeCategory(e)}>
-            <option value="DEFAULT">Categories</option>
+            <option value="DEFAULT" hidden selected>Categories</option>
             <option value='accessories'>Accessories</option>
             <option value='food'>Food</option>
             <option value='toys'>Toys</option>
@@ -90,18 +83,18 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
         {/* </li> */}
         {/* <li className='content-select'> */}         
           <select className='default-select' defaultValue={"DEFAULT"} onChange={e => handlePrice(e)}>
-            <option value="DEFAULT">Price</option>
+            <option value="DEFAULT" hidden selected>Price</option>
             <option value='higherPrice'>Higher Price</option>
             <option value='lowerPrice'>Lower Price</option>
           </select>
           <select className='default-select' defaultValue={"DEFAULT"} onChange={e => handlePet(e)}>
-            <option value="DEFAULT">Pet</option>
+            <option value="DEFAULT" hidden selected>Pet</option>
             <option value='cat'>Cat</option>
             <option value='dog'>Dog</option>
           </select>
           <button className="allProducts-btn" onClick={e => chargeAllProducts(e)}>All Products</button>
         {/* </li> */}
-      </ul>
+   
     </div >
   )
 }

@@ -13,6 +13,10 @@ module.exports = (sequelize) =>{
     total: {
       type: DataTypes.FLOAT,
       allowNull: false
+    }, 
+    status: {
+      type: DataTypes.ENUM("PENDING", "CANCELLED", "COMPLETED"),
+      allowNull: false
     }
 
   })

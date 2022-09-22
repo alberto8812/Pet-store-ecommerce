@@ -11,6 +11,9 @@ module.exports = (sequelize) =>{
     comment:{
       type: DataTypes.TEXT,
       allowNull: false
+    }, 
+    punctuation:{
+      type: DataTypes.ENUM('1', '2', '3', '4', '5')
     }
   })
 }

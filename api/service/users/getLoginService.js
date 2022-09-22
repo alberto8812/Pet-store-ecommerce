@@ -4,12 +4,14 @@ const axios=require('axios');
 
 const getLoginResponse =async(req)=>{
    /////require token enviado atravez del front 
+
     const accessToken=req.headers.authorization.split(' ')[1];
     ///peticion a auth0 para traer datos de usuario
-
+   
     const response=await axios.get(`https://dev-nzbce16c.us.auth0.com/userinfo`,{headers:{
           authorization:`Bearer ${accessToken}`
-    }})
+          }
+        })
     const userInfo=response.data
     
     ///crear usuarios en la base de datos
@@ -20,8 +22,10 @@ const getLoginResponse =async(req)=>{
         name:userInfo.name,
     }
     })
-   
-    return  createUserDB
+
+    const userDb=await User.findOne({attributes:['city','direction'],where:{email:userInfo.email}})
+    console.log(userDb)
+    return  userDb;
 }
 
 module.exports = {

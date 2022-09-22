@@ -16,12 +16,13 @@ const initialState = {
     products: [],
     allProducts: [],
     details: {},
+    status:true,
 }
 
 function rootReducer(state = initialState, action) {
     switch (action.type) {
         case GET_ALL_PRODUCTS:
-            console.log(action.payload)
+            // console.log(action.payload)
             return {
                 ...state,
                 products: [...action.payload],
@@ -44,14 +45,15 @@ function rootReducer(state = initialState, action) {
         case SORT_BY_PRICE:
             // const newObject3 = {...state.allProducts };
             // console.log('1', newObject3);
-            const priceState = state.allProducts;
+            const priceState = state.products;
             const price = action.payload === 'higherPrice' ?
                 priceState.sort((a, b) => b.price - a.price) :
                 priceState.sort((a, b) => a.price - b.price);
-            console.log(price);
+            // console.log(price);
             return {
                 ...state,
                 products: price
+                ,status:state.status===true?false:true
             };
         case ADD_FAVORITE:
             return {

@@ -25,7 +25,6 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
 
   function handlePrice(e) {
     dispatch(sortByPrice(e.target.value));
-    console.log(sortByPrice(e.target.value));
     setUpdate(update===' '?'probando':' ')
     setOrder(e.target.value);
     setCurrentPage(1);
@@ -76,7 +75,7 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
       <ul className='navbar'>
         {/* <li className='content-select'> */}
           <select className='default-select' defaultValue={"DEFAULT"} onChange={e => onChangeAge(e)}>
-            <option value="DEFAULT">Age</option>
+            <option value="DEFAULT" hidden selected>Age</option>
             <option value='Puppy'>Puppy</option>
             <option value='Young'>Young</option>
             <option value='Adult'>Adult</option>
@@ -84,7 +83,7 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
         {/* </li> */}
         {/* <li className='content-select'> */}         
           <select className='default-select' defaultValue={"DEFAULT"} onChange={e => onChangeCategory(e)}>
-            <option value="DEFAULT">Categories</option>
+            <option value="DEFAULT" hidden selected>Categories</option>
             <option value='accessories'>Accessories</option>
             <option value='food'>Food</option>
             <option value='toys'>Toys</option>
@@ -92,12 +91,12 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
         {/* </li> */}
         {/* <li className='content-select'> */}         
           <select className='default-select' defaultValue={"DEFAULT"} onChange={e => handlePrice(e)}>
-            <option value="DEFAULT">Price</option>
+            <option value="DEFAULT" hidden selected>Price</option>
             <option value='higherPrice'>Higher Price</option>
             <option value='lowerPrice'>Lower Price</option>
           </select>
           <select className='default-select' defaultValue={"DEFAULT"} onChange={e => handlePet(e)}>
-            <option value="DEFAULT">Pet</option>
+            <option value="DEFAULT" hidden selected>Pet</option>
             <option value='cat'>Cat</option>
             <option value='dog'>Dog</option>
           </select>

@@ -17,8 +17,8 @@ export function getAllProducts() {
     return async(dispatch) => {
         try {
             return axios.get('http://localhost:3001/products')
-            .then(res => dispatch({ type: GET_ALL_PRODUCTS, payload: res.data }))
-            .catch(err => dispatch({ type: GET_ALL_PRODUCTS, payload: err.data }))
+                .then(res => dispatch({ type: GET_ALL_PRODUCTS, payload: res.data }))
+                .catch(err => dispatch({ type: GET_ALL_PRODUCTS, payload: err.data }))
         } catch (error) {
             console.log(error)
         }
@@ -77,6 +77,7 @@ export function postContact(payload) {
 }
 
 export function sortByPrice(payload) {
+    console.log(payload)
     return {
         type: SORT_BY_PRICE,
         payload

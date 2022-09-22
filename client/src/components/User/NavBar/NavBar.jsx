@@ -9,6 +9,7 @@ import Filter_Sort from '../Filters_Sort/Filters_Sort';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts, sortByPrice } from '../../../redux/actions';
 import home from './download.png';
+import { Button } from '@mui/material';
 <Icon icon="bx:home" />
 
 const NavBar = () => {
@@ -17,7 +18,7 @@ const NavBar = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const allProducts = useSelector((state) => state.allProducts);
     const dispatch = useDispatch();
-
+    let request=[] 
     useEffect(() => {
         dispatch(getProducts());
     }, [dispatch])
@@ -27,16 +28,18 @@ const NavBar = () => {
 /////// envio de informacion datos de usuarios/////////////////pendiente por chequeo equipo
 useEffect(() => {
     const callProtectAip=async()=>{
+   
         if(isAuthenticated){
         try {
             const token= await getAccessTokenSilently()
-            console.log(token,"front")
-            const request= await axios.get('http://localhost:3001/loginUsers',
-            { headers:{
+      
+           request= await axios.get('http://localhost:3001/loginUsers',
+            {   
+                headers:{
                 authorization: `Bearer ${token}`
-            }})
-        
-          
+                },    
+        })   
+              
         } catch (error) {
             console.log(error.message)
         }   
@@ -46,15 +49,28 @@ useEffect(() => {
 }, [isAuthenticated])  
 
 
+    const prueba=async()=>{
+        const token= await getAccessTokenSilently()
+           const userData= await axios.post('http://localhost:3001/loginUsers/datauser',{direction:"j1232",city:"medellin"},
+            {   
+                headers:{
+                authorization: `Bearer ${token}`
+                },    
+        })
+    }
+
+
     return (
         <div>
             <div className='nav-body'>
                 <div className='nav-header'>
+                   
                     <Link to='/' className='nav-link' >
                         {/* <Icon className='ico_nav' icon="bx:home" width='30px' height='30px' /> */}
                         <img className='img-home-btn' src={home} alt=''/>
                         <h3 className='link_home'>Home</h3>
                     </Link>
+                    <button onClick={prueba}>mis datos</button>
                 </div>
                 <div>
                     {/* <SearchBar /> */}

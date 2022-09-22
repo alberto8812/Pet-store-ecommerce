@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import './Pagination.css';
 
-export default function Pagination({ animalsPerPage, allProducts, currentPage, setCurrentPage }) {
+export default function Pagination({ animalsPerPage, products, currentPage, setCurrentPage }) {
     const pageNumber = [];
     const [input, setInput] = useState(1);
 
-    for (let i = 1; i < Math.ceil(allProducts / animalsPerPage); i++) {
+    for (let i = 1; i < Math.ceil(products / animalsPerPage); i++) {
         pageNumber.push(i);
     }
 
@@ -17,7 +17,6 @@ export default function Pagination({ animalsPerPage, allProducts, currentPage, s
         if (currentPage === pageNumber.length) {
             e.target.name(disable);
         }
-
         const newInputValue = input + 1;
         setInput(newInputValue)
     };
@@ -30,14 +29,13 @@ export default function Pagination({ animalsPerPage, allProducts, currentPage, s
         if (currentPage === 1) {
             e.target.name(disable)
         }
-
         const newInputValuePrev = input - 1;
         setInput(newInputValuePrev)
 
     }
 
     const onKeyDown = (e) => {
-        if (e.keyCode === 'Enter') { // la tecla 13 es el enter
+        if (e.key === 'Enter') { 
             setCurrentPage(parseInt(e.target.value))
             if (parseInt(e.target.value) < 1 || parseInt(e.target.value) > Math.ceil(pageNumber.length) || isNaN(parseInt(e.target.value))) {
                 setCurrentPage(1)
@@ -50,19 +48,20 @@ export default function Pagination({ animalsPerPage, allProducts, currentPage, s
     }
 
     const onChange = (e) => {
-        setInput(e.target.value)
+        setInput(e.target.value);
+
     }
 
     return (
         <div className="paginado">
            
-                    <button name='prev' onClick={e => handlePrev(e)}>Prev</button>
+                    <button className='btn-paginado' name='prev' onClick={e => handlePrev(e)}>Prev</button>
                
                     <input className='input-pag' onChange={e => onChange(e)} onKeyDown={(e) => onKeyDown(e)} name="animalsPerPage" autoComplete="off" value={input} />
                
                     <p className='parrafo-pag'>de {Math.ceil(pageNumber.length)}</p>
                 
-                    <button name='next' onClick={e => handleNext(e)}>Next</button>
+                    <button className='btn-paginado' name='next' onClick={e => handleNext(e)}>Next</button>
              
         </div>
 

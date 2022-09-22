@@ -4,7 +4,32 @@ const axios = require('axios');
 let nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 
-const creds = require('../../credendial.json');
+// const creds = require('../../credendial.json');
+const { auth_mail, pass_mail } = process.env;
+
+
+// router.post('/aboutus', cors(), async(req, res) => {
+//     let { name, email, message } = req.body;
+//     let transporter = nodemailer.createTransport({
+//         host: 'smtp.gmail.com',
+//         port: 587,
+//         // secure: false,
+//         auth: {
+//             user: auth_mail,
+//             pass: pass_mail
+//         },
+//     });
+
+//     await transporter.sendMail({
+//         from: name,
+//         to: email,
+//         subject: 'no reply, test email',
+//         html: `<div>
+//         <h2>Here is your mail</h2>
+//         <p>${message}</p>
+//         </div>`
+//     })
+// })
 
 
 let transporter = nodemailer.createTransport({
@@ -12,21 +37,24 @@ let transporter = nodemailer.createTransport({
     port: 587,
     secure: false,
     auth: {
-        user: creds.auth.user,
-        pass: creds.auth.pass
+        user: auth_mail,
+        pass: pass_mail
     },
 });
 
 
 router.post('/aboutus', (req, res) => {
     try {
-        console.log(req.body);
         let { name, email, message } = req.body;
+        console.log(req.body);
         let mailOptions = {
             from: name,
             to: email,
-            message: message,
-            html: `${name} <noreply@${name}.com> <br/> ${message}`
+            subject: 'test email',
+            html: `<div>
+                <h2>Here is your mail</h2>
+                <p>${message}</p>
+                </div>`
         };
 
         transporter.sendMail(mailOptions, (err, data) => {
@@ -44,7 +72,7 @@ router.post('/aboutus', (req, res) => {
         })
 
     } catch (error) {
-        console.error(JSON.stringify(error));
+        console.error(error);
     }
 
 });

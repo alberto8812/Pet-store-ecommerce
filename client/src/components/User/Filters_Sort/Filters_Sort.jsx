@@ -1,8 +1,6 @@
-// componente con las funciones de filtrado y ordenamiento
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "../Home/Home.css";
-import SearchBar from "../SearchBar/SearchBar";
 import { sortByPrice, getProducts } from "../../../redux/actions";
 import './Filters_Sort.css'
 
@@ -62,16 +60,11 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
   
   }, [filtersearch])
 
-  function onChangeName(e) {
-    console.log(filtersearch,"onchange")
-    dispatch(getProducts(filtersearch));//, filterCategory
-    setCurrentPage(1);
-  }
 
   return (
-    <div>
-        <SearchBar setfiltersearch={setfiltersearch} onChangeName={onChangeName} filtersearch={filtersearch}></SearchBar>
-      <ul className='navbar'>
+    <div className='container_navbar'>
+     
+      
         {/* <li className='content-select'> */}
           <select className='default-select' defaultValue={"DEFAULT"} onChange={e => onChangeAge(e)}>
             <option value="DEFAULT" hidden selected>Age</option>
@@ -101,7 +94,7 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
           </select>
           <button className="allProducts-btn" onClick={e => chargeAllProducts(e)}>All Products</button>
         {/* </li> */}
-      </ul>
+   
     </div >
   )
 }

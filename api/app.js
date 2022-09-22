@@ -6,11 +6,11 @@ const express = require("express"),
     v1ProducstRouter = require('./V1/routes/allProductsRouter'),
     v1UsersRouter = require('./v1/routes/usersRouter'),
     v1AdminRouter = require('./V1/routes/adminRouter'),
-    v1contactUs = require('./V1/routes/contactUsRouter'),
+   //v1contactUs = require('./V1/routes/contactUsRouter'),
     { jwtCheck, checkpermissions } = require('./middleware/jwtLoginUser');
 
 
-let nodemailer = require('nodemailer');
+//let nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 // const path = require("path");
 
@@ -27,7 +27,7 @@ app.use(cors());
 
 //middlewere JSON WEB TOKEN
 
-app.use('/aboutus', v1contactUs);
+//app.use('/aboutus', v1contactUs);
 
 //ruta general  sin registro
 app.use("/products", v1ProducstRouter);

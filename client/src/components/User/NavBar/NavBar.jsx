@@ -9,12 +9,18 @@ import Filter_Sort from '../Filters_Sort/Filters_Sort';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts, sortByPrice } from '../../../redux/actions';
 import home from './download.png';
-import { Button } from '@mui/material';
+import { Avatar,Grid } from '@mui/material';
+import SearchBar from '../SearchBar/SearchBar';
+
+
+
 <Icon icon="bx:home" />
 
 const NavBar = () => {
     const {user,isAuthenticated,getAccessTokenSilently}=useAuth0()
     const [update, setUpdate] = useState(' ');
+    const [filtersearch, setfiltersearch] = useState({age:'',category:'',name:'',genre:''});
+
     const [currentPage, setCurrentPage] = useState(1);
     const allProducts = useSelector((state) => state.allProducts);
     const dispatch = useDispatch();
@@ -24,6 +30,12 @@ const NavBar = () => {
     }, [dispatch])
 
 
+    function onChangeName(e) {
+    /// cuando se genere un cambio del search
+        dispatch(getProducts(filtersearch));//, filterCategory
+        setCurrentPage(1);
+      }
+    
 
 /////// envio de informacion datos de usuarios/////////////////pendiente por chequeo equipo
 useEffect(() => {
@@ -61,45 +73,122 @@ useEffect(() => {
 
 
     return (
-        <div>
-            <div className='nav-body'>
-                <div className='nav-header'>
-                   
+        <Grid container xs={12} sx={{background:'#6200adc9'}} 
+
+           direction="row"
+           justifyContent="center"
+          alignItems="center"
+        >
+          
+           <Grid  
+           xs={12}    
+          
+           container
+           direction="row"
+           justifyContent="center"
+          alignItems="center"
+           
+           >
+                <Grid  
+                xs={1} 
+                container
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+                >  
                     <Link to='/' className='nav-link' >
                         {/* <Icon className='ico_nav' icon="bx:home" width='30px' height='30px' /> */}
                         <img className='img-home-btn' src={home} alt=''/>
                         <h3 className='link_home'>Home</h3>
-                    </Link>
-                    <button onClick={prueba}>mis datos</button>
-                </div>
-                <div>
+                    </Link>                
+                </Grid>
+                <Grid item xs={7} 
+                 container
+                 
+                 direction="row"
+                 justifyContent="center"
+                 alignItems="center"
+              
+                >
                     {/* <SearchBar /> */}
-                    <Filter_Sort update={update} setUpdate={setUpdate} setCurrentPage={setCurrentPage} />
-                </div>
-                <div className='nav_box'>
-                </div>
-                <div className='nav_box'>
-                    <Link to='/' className='nav-link' >
-                        <Icon className='link_home' icon="fa:shopping-cart" width='35px' height='35px' />
+                    <SearchBar setfiltersearch={setfiltersearch} onChangeName={onChangeName} filtersearch={filtersearch}></SearchBar>
+                  
+                </Grid>
+                <Grid   
+                xs={4} 
+                container
+                direction="row"
+                justifyContent="space-evenly"
+                alignItems="center"
+                >
+                <Grid
+                 xs={1}
+               container
+               direction="row"
+               justifyContent="center"
+               alignItems="center"
+                >
+                <Link to='/'  >
+                        <Icon  icon="fa:shopping-cart" width='35px' height='35px' hAlign="left" color= "rgb(234, 208, 240)" />
                         {/* <h3 className='link_home'>shopping</h3> */}
                     </Link>
-                    <Link to='/' className='nav-link' >
-                        <Icon className='link_home' icon="ic:outline-favorite" width='35px' height='35px' />
+                </Grid>
+                <Grid
+                xs={1}
+                container
+                direction="row"
+                justifyContent="space-evenly"
+                alignItems="center"
+              
+                >
+                    <Link to='/'  >
+                        <Icon  icon="ic:outline-favorite" width='35px' height='35px' alignItems="center" color= "rgb(234, 208, 240)" />
                         {/* <h3 className='link_home'>Favorite</h3> */}
                     </Link>
-                    <div>
-                        <LogIn className='nav-link' >
-                        </LogIn>
-                    </div>
-                    {/* enseñar datos de usuario*/}
-                {isAuthenticated && (<div>
-                   
-                    <img src={user.picture}  />
-                    <h5>{user.name}</h5>
+                </Grid>
+                <Grid
+                 xs={2}
+                 container
+                 direction="row"
+                 justifyContent="center"
+                alignItems="stretch"
+               
+                >
+                    <LogIn  ></LogIn>
+                </Grid>
+              
+                    {isAuthenticated && ( 
+                <Grid 
+                xs={4}
+                 container
+                 direction="row"
+                 justifyContent="center"
+                 alignItems="center"
+                 color= "rgb(234, 208, 240)" 
+                 >
+                    <Avatar alt="Remy Sharp" src={user.picture} />
+                    <h5>{user.given_name}</h5>
 
-                </div>)}
-                </div>
-            </div>
+                    </Grid>)}
+                </Grid>
+                
+                </Grid>
+                <Grid
+                 xs={12}
+                 container
+                 direction="row"
+                 justifyContent="center"
+                alignItems="center"
+                >
+                <Filter_Sort update={update} setUpdate={setUpdate} setCurrentPage={setCurrentPage} filtersearch={filtersearch} setfiltersearch={setfiltersearch} />
+                </Grid>
+                   
+               
+                    {/* enseñar datos de usuario*/}
+               
+                {/*<button onClick={prueba}>mis datos</button>*/}
+            
+      
             {/* <nav role="navigation">
                 <div id="menuToggle">
                     <input type="checkbox" />
@@ -113,7 +202,7 @@ useEffect(() => {
                     </ul>
                 </div>
             </nav> */}
-        </div>
+        </Grid>
 
     );
 }

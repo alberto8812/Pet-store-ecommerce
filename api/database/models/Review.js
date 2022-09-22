@@ -13,7 +13,7 @@ module.exports = (sequelize) =>{
       allowNull: false
     }, 
     punctuation:{
-      type: DataTypes.ENUM(1, 2, 3, 4, 5)
+      type: DataTypes.ENUM('1', '2', '3', '4', '5')
     }
   })
 }

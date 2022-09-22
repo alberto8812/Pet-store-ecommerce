@@ -13,12 +13,55 @@ import AddIcon from '@mui/icons-material/Add';
 import Buy from "../Buy/Buy";
 import AddToCart from "../AddToCart/AddToCart";
 
+//Función para validar comentario de Review:
+export function validate (input) {
+    let errors = {}
+
+    if(!input.comment) {
+        errors.comment = 'Your comment is empty.'
+    } else if (/\S+@\S+\.\S+/.test(input.comment)) {
+        errors.comment = 'Your comment cannot be an email. To contact us, go to the "Contact Us" section'
+    } else if (input.comment.length > 500) {
+        errors.comment = 'Comment cannot exceed 500 characters'
+    }
+    return errors
+}
 
 export default function Detail() {
     const [carga, setCarga] = useState(true);
     const { id } = useParams()
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+//PARA REVIEW:
+    const [input, setInput] = React.useState ({ 
+        comment: ''
+    })
+    const [errors, setErrors] = React.useState({});
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const errors = validate(input)
+        if(errors.comment){
+            alert('Your comment could not be published')
+        } else {
+            alert('Comment posted successfully')
+            dispatch(addComment(input))
+        }
+    }
+
+    const handleChange = function (e) {
+        setInput({
+            ...input,
+            [e.target.name]:e.target.value
+        });
+        setErrors(validate({
+            ...input,
+            [e.target.name]:e.target.value
+        }))
+    }
+
+//HASTA ACÁ REVIEW    
 
     const [counter, setCounter] = useState(0);
 
@@ -114,13 +157,30 @@ export default function Detail() {
                                 <div className="clear"></div>
                             </div>
                         </div>
-                        <div class="rating">
-                            <span>★</span>
-                            <span>★</span>
-                            <span>★</span>
-                            <span>★</span>
-                            <span>★</span>
+                        {/* SECCIÓN DE REVIEWS */}
+                        <div className="item-description m-mobile">
+                            <h2 className="title desk">Reviews</h2>
+                            <div class="rating">
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                                <span>★</span>
+                            </div>
+                            <div className="review">
+                                <form onSubmit={(e) => handleSubmit(e)}>
+                                    <h4 className="titleRev">Write a review</h4>
+                                    <div>
+                                        <input className="com" type="text" placeholder="Leave your opinion..." name="comment" onChange={handleChange} value={input.comment}/>
+                                        {errors.comment && (
+                                            <p>{errors.comment}</p>
+                                        )}
+                                    </div>
+                                    <button type="submit" className="btncom">Comment</button>
+                                </form>
+                            </div>
                         </div>
+                        {/* FIN SECCION REVIEWS */}
                         <div className="clear"></div>
                     </div>
                     <div className="b2">

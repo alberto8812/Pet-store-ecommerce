@@ -13,6 +13,7 @@ const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
   //const [filterAge, setFilterAge] = useState('');
   const [filtersearch, setfiltersearch] = useState({age:'',category:'',name:'',genre:''})
   const [order, setOrder] = useState('');
+  
 
   function chargeAllProducts(e){
     e.preventDefault(e);

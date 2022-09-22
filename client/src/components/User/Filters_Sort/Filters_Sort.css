@@ -65,6 +65,7 @@
 
 .allProducts-btn {
     background-color: #fff;
+    
     border: 0.3px solid black;
     border-radius: 1.5rem;
     box-sizing: border-box;
@@ -72,6 +73,7 @@
     cursor: pointer;
     display: flex;
     position: static;
+    justify-content: center;
     font-family: "Basier circle", -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 1rem;
     font-weight: 600;

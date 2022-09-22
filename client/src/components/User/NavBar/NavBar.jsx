@@ -102,7 +102,7 @@ useEffect(() => {
                         <h3 className='link_home'>Home</h3>
                     </Link>                
                 </Grid>
-                <Grid item xs={7} 
+                <Grid item xs={8} 
                  container
                  
                  direction="row"
@@ -115,14 +115,14 @@ useEffect(() => {
                   
                 </Grid>
                 <Grid   
-                xs={4} 
+                xs={3} 
                 container
                 direction="row"
                 justifyContent="space-evenly"
                 alignItems="center"
                 >
                 <Grid
-                 xs={1}
+                 xs={2}
                container
                direction="row"
                justifyContent="center"
@@ -134,7 +134,7 @@ useEffect(() => {
                     </Link>
                 </Grid>
                 <Grid
-                xs={1}
+                xs={2}
                 container
                 direction="row"
                 justifyContent="space-evenly"
@@ -179,6 +179,7 @@ useEffect(() => {
                  direction="row"
                  justifyContent="center"
                 alignItems="center"
+               
                 >
                 <Filter_Sort update={update} setUpdate={setUpdate} setCurrentPage={setCurrentPage} filtersearch={filtersearch} setfiltersearch={setfiltersearch} />
                 </Grid>

@@ -16,9 +16,23 @@
     color: #fff
 } */
 
+.container_navbar{
+    width: 60%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-auto-rows: 1fr;
+    justify-content:space-between;
+    align-items: "center";
+   
+}
+
+
 .navbar {
     color: #fff;
+   
     display: flex;
+    grid-template-columns: repeat(auto-fit,1fr);
+    grid-row: 1fr;
     gap: 1rem;
     /* margin: 0 auto; */
     /* display: inline; */
@@ -26,6 +40,7 @@
     text-decoration: none;
     list-style: none;
     margin-left: 18%;
+    background-color: aqua;
 }
 
 .default-select {
@@ -34,11 +49,12 @@
     /* margin: 0 auto; */
     height: 26px;
     cursor: pointer;
-    width: 15%;
+    width: 80%;
     text-align: center;
     font-size: 14px;
     font-weight: bold;
     display: flex;
+   
     /* display: inline-flex; */
 }
 
@@ -49,6 +65,7 @@
 
 .allProducts-btn {
     background-color: #fff;
+    
     border: 0.3px solid black;
     border-radius: 1.5rem;
     box-sizing: border-box;
@@ -56,6 +73,7 @@
     cursor: pointer;
     display: flex;
     position: static;
+    justify-content: center;
     font-family: "Basier circle", -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 1rem;
     font-weight: 600;

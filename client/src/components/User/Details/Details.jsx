@@ -61,19 +61,19 @@ export default function Detail() {
         }))
     }
 
-    var contador;
-    const calificar = function (e) {
-        console.log(e)
-        contador = e.id[0]
-        let nombre = e.id.substring(1)
-        for(let i = 0; i<5; i++){
-            if(i<contador) {
-                document.getElementById((i+1)+nombre).className='rating span:active'
-            } else {
-                document.getElementById((i+1)+nombre).className='rating span'
-            }
-        }
-    }
+    // var contador;
+    // const calificar = function (e) {
+    //     console.log(e)
+    //     contador = e.id[0]
+    //     let nombre = e.id.substring(1)
+    //     for(let i = 0; i<5; i++){
+    //         if(i<contador) {
+    //             document.getElementById((i+1)+nombre).className='rating span:active'
+    //         } else {
+    //             document.getElementById((i+1)+nombre).className='rating span'
+    //         }
+    //     }
+    // }
 
 //HASTA ACÁ REVIEW    
 

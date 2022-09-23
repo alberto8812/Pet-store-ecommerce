@@ -23,6 +23,8 @@ const NavBar = () => {
 
     const [currentPage, setCurrentPage] = useState(1);
     const allProducts = useSelector((state) => state.allProducts);
+    const numberCart = useSelector(state => state.numberCart)
+
     const dispatch = useDispatch();
     let request=[] 
     useEffect(() => {
@@ -128,7 +130,7 @@ useEffect(() => {
                justifyContent="center"
                alignItems="center"
                 >
-                <Link to='/'  >
+                <Link to='/carrito' > {numberCart}
                         <Icon  icon="fa:shopping-cart" width='35px' height='35px' hAlign="left" color= "rgb(234, 208, 240)" />
                         {/* <h3 className='link_home'>shopping</h3> */}
                     </Link>

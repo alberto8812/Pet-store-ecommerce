@@ -2,28 +2,29 @@ import axios from "axios";
 import {
     GET_ALL_PRODUCTS,
     GET_DETAILS,
-    SEARCH_BY_NAME,
-    ADD_PRODUCT,
     SORT_BY_PRICE,
+    SEARCH_BY_NAME,
     ADD_FAVORITE,
     REMOVE_FAVORITE,
     ADD_TO_CART,
-    REMOVE_OF_CART,
-    PAGINATE,
-    CLEAR
+    GET_NUMBER_CART,
+    INCREASE_QUANTITY,
+    DECREASE_QUANTITY,
+    UPDATE_CART,
+    DELETE_CART
 } from "./constants";
 
 export function getAllProducts() {
     return async(dispatch) => {
         try {
             return axios.get('http://localhost:3001/products')
-                .then(res => dispatch({ type: GET_ALL_PRODUCTS, payload: res.data }))
+                .then(res => dispatch({ type: GET_ALxL_PRODUCTS, payload: res.data }))
                 .catch(err => dispatch({ type: GET_ALL_PRODUCTS, payload: err.data }))
         } catch (error) {
             console.log(error)
         }
     }
-}
+};
 
 export function getProducts(prop) {
     return async function(dispatch) {
@@ -35,7 +36,7 @@ export function getProducts(prop) {
             console.error(err)
         }
     }
-}
+};
 
 export const getDetails = (id) => {
     return async(dispatch) => {
@@ -49,19 +50,12 @@ export const getDetails = (id) => {
             console.error(err);
         }
     };
-}
-
-export function clear() {
-    return {
-        type: CLEAR,
-        payload: {},
-    };
 };
 
 export function postProduct(payload) {
     return async function(dispatch) {
         const response = await axios.post('/create', payload)
-        return response
+        return response;
     }
 };
 
@@ -74,12 +68,52 @@ export function postContact(payload) {
             console.error('Error en postContact --> ', error);
         }
     }
-}
+};
 
 export function sortByPrice(payload) {
-    console.log(payload)
     return {
         type: SORT_BY_PRICE,
+        payload
+    }
+};
+
+export function addToCart(payload) {
+    return {
+        type: ADD_TO_CART,
+        payload
+    }
+};
+
+export function getNumberCart() {
+    return {
+        type: GET_NUMBER_CART
+    }
+};
+
+export function updateCart(payload) {
+    return {
+        type: UPDATE_CART,
+        payload
+    }
+};
+
+export function deleteCart(payload) {
+    return {
+        type: DELETE_CART,
+        payload
+    }
+};
+
+export function increaseCart(payload) {
+    return {
+        type: INCREASE_QUANTITY,
+        payload
+    }
+};
+
+export function decreaseCart(payload) {
+    return {
+        type: DECREASE_QUANTITY,
         payload
     }
 };
@@ -87,16 +121,16 @@ export function sortByPrice(payload) {
 
 ////////////////////////////////test filters/////////////////////////
 
-export const testFilters = ({ name, genre }) => {
-    return async(dispatch) => {
-        try {
-            const { data } = await axios.get(`http://localhost:3001/test?name=${name}&genre=${genre}`);
-            return dispatch({
-                type: "GET_TEST",
-                payload: data,
-            });
-        } catch (err) {
-            console.error(err);
-        }
-    };
-};
+// export const testFilters = ({ name, genre }) => {
+//     return async(dispatch) => {
+//         try {
+//             const { data } = await axios.get(`http://localhost:3001/test?name=${name}&genre=${genre}`);
+//             return dispatch({
+//                 type: "GET_TEST",
+//                 payload: data,
+//             });
+//         } catch (err) {
+//             console.error(err);
+//         }
+//     };
+// };

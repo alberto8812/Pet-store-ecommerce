@@ -38,7 +38,7 @@ export default function PaymentGateway({ image, name, stock, price, id, category
             const { id } = paymentMethod;
             try {
                 const { data } = await axios.post(
-                    "http://localhost:3001/api/checkout",
+                    "http://localhost:3001/loginUsers/checkoutpayment",
                     {
                         id,
                         amount: 10000, //cents

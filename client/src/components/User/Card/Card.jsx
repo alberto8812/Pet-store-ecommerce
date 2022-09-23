@@ -12,8 +12,6 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { purple, } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import Buy from '../Buy/Buy';
-import AddToCart from '../AddToCart/AddToCart';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useDispatch } from 'react-redux';
@@ -38,14 +36,14 @@ export default function CardProduct({ id, image, name, price, rating, category, 
         setExpanded(!expanded);
     };
 
-    function comprar(e) {
-        e.preventDefault
-        console.log('compraste')
-    }
-    function add(e) {
-        e.preventDefault
-        console.log('adderiste')
-    }
+    // function comprar(e) {
+    //     e.preventDefault
+    //     console.log('compraste')
+    // }
+    // function add(e) {
+    //     e.preventDefault
+    //     console.log('adderiste')
+    // }
 
     return (
         <Card sx={{
@@ -91,17 +89,16 @@ export default function CardProduct({ id, image, name, price, rating, category, 
                 <IconButton aria-label="add to favorites">
                     <FavoriteIcon />
                 </IconButton>
-                <IconButton aria-label="share">
+                {/* <IconButton aria-label="share">
                     <ShoppingCartIcon
                         onClick={e => comprar(e)}></ShoppingCartIcon>
 
                 </IconButton>
                 <IconButton aria-label="share">
-                    {/*<AddToCart />*/}
                     <AddShoppingCartIcon
                         onClick={e => add(e)}
                     ></AddShoppingCartIcon>
-                </IconButton>
+                </IconButton> */}
                 <ExpandMore
 
                     onClick={handleExpandClick}

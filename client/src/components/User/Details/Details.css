@@ -21,6 +21,32 @@ user agent stylesheet body {
     margin: 8px;
 }
 
+.btn-section-add-to-cart {
+    background: #3483fa;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 24px 0 0 0;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-sectionadd-to-cart {
+    background: #3483fa;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 24px 0 0 0;
+    font-size: 18px;
+    color: #fff;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 8px 0 0 0;
+    background: #4189e626 !important;
+    color: #3483fa !important;
+}
+
 .contenido {
     width: 100%;
 }
@@ -612,13 +638,14 @@ p:not(.item-description.m-mobile p) {
 }
 
 /* CSS ESTRELLAS: */
+
 .rating {
     unicode-bidi: bidi-override;
     direction: rtl;
     position: absolute;
     left: 2%;
 }
-      
+
 .rating span {
     display: inline-block;
     width: 1.1em;
@@ -627,17 +654,18 @@ p:not(.item-description.m-mobile p) {
     cursor: pointer;
     text-shadow: 0 0 1px #666;
 }
-  
+
 .rating span:hover,
-.rating span:hover ~ span {
+.rating span:hover~span {
     color: gold;
     text-shadow: 0 0 5px #e2e2e2;
 }
-     
+
 .rating span:active,
-.rating span:active ~ span {
+.rating span:active~span {
     color: yellow;
 }
+
 /* FIN CSS ESTRELLAS */
 
 /* CSS REVIEW */

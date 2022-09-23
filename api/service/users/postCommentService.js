@@ -1,25 +1,20 @@
 const {db,Op}=require('../../database/db')
-const {Product, Review, User}=db.models
+const {Review}=db.models
 
 const postCommentUser = async(req, res)=>{
 
-  const {id} = req.params
-  const {comment, userId}= req.body
+  const accessToken=req.headers.authorization.split(' ')[1];
+  const Userdata=await dataUser(accessToken);
 
-    let[newComment, create] = await Review.findOrCreate({
+  const {comment}= req.body
+
+    let commentUser = await Review.findOne({
       where: {
-        comment, 
-        userId,
-        id
+        user: Userdata
       }
     })
 
-    if(!create){
-      res.status(200).send('el comentario ya está')
-    }else{
-      return json(newComment)
-    }
- 
+    commentUser.update(comment, punctuation)
 
 }
 

@@ -13,7 +13,7 @@ router
 
       .post('/productusercart',postUserCart)
 
-      .post('/comment/:id', postComment )
+      .post('/comment', postComment )
 
      
       

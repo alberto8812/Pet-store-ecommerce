@@ -21,8 +21,8 @@ export function validate (input) {
         errors.comment = 'Your comment is empty.'
     } else if (/\S+@\S+\.\S+/.test(input.comment)) {
         errors.comment = 'Your comment cannot be an email. To contact us, go to the "Contact Us" section'
-    } else if (input.comment.length > 500) {
-        errors.comment = 'Comment cannot exceed 500 characters'
+    } else if (input.comment.length > 2000) {
+        errors.comment = 'Comment cannot exceed 2000 characters'
     }
     return errors
 }
@@ -59,6 +59,20 @@ export default function Detail() {
             ...input,
             [e.target.name]:e.target.value
         }))
+    }
+
+    var contador;
+    const calificar = function (e) {
+        console.log(e)
+        contador = e.id[0]
+        let nombre = e.id.substring(1)
+        for(let i = 0; i<5; i++){
+            if(i<contador) {
+                document.getElementById((i+1)+nombre).className='rating span:active'
+            } else {
+                document.getElementById((i+1)+nombre).className='rating span'
+            }
+        }
     }
 
 //HASTA ACÁ REVIEW    
@@ -161,19 +175,19 @@ export default function Detail() {
                         <div className="item-description m-mobile">
                             <h2 className="title desk">Reviews</h2>
                             <div class="rating">
-                                <span>★</span>
-                                <span>★</span>
-                                <span>★</span>
-                                <span>★</span>
-                                <span>★</span>
+                                <span onClick={e => calificar(e)} id="5estrellas">★</span>
+                                <span onClick={e => calificar(e)} id="4estrellas">★</span>
+                                <span onClick={e => calificar(e)} id="3estrellas">★</span>
+                                <span onClick={e => calificar(e)} id="2estrellas">★</span>
+                                <span onClick={e => calificar(e)} id="1estrellas">★</span>
                             </div>
                             <div className="review">
                                 <form onSubmit={(e) => handleSubmit(e)}>
                                     <h4 className="titleRev">Write a review</h4>
                                     <div>
-                                        <input className="com" type="text" placeholder="Leave your opinion..." name="comment" onChange={handleChange} value={input.comment}/>
+                                        <textarea className={errors.comment? 'danger' : 'com'} type="text" placeholder="Leave your opinion..." name="comment" onChange={handleChange} value={input.comment}/>
                                         {errors.comment && (
-                                            <p>{errors.comment}</p>
+                                            <p className='danger'>{errors.comment}</p>
                                         )}
                                     </div>
                                     <button type="submit" className="btncom">Comment</button>

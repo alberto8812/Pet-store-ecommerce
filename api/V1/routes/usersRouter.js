@@ -1,7 +1,7 @@
 const express=require("express"),
       router=express.Router(),
       {jwtCheck,checkpermissions}=require('../../middleware/jwtLoginUser');
-const { getUserLogin, postUserData, postComment,postUserCart } = require("../../controllers/usersController");
+const { getUserLogin, postUserData, postComment,postUserCart,postUserPayment } = require("../../controllers/usersController");
 
 
 
@@ -11,7 +11,10 @@ router
 
       .post('/datauser',postUserData)
 
+      .post("/checkoutpayment",postUserPayment)
+
       .post('/productusercart',postUserCart)
+      
 
       .post('/comment/:id', postComment )
 

@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getDetails } from "../../../redux/actions";
+import { addToCart, getDetails } from "../../../redux/actions";
 import Loading from "../Loading/Loading";
 import './Details.css'
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import Footer from "../Footer/Footer";
-import RemoveIcon from '@mui/icons-material/Remove';
-import AddIcon from '@mui/icons-material/Add';
-import Buy from "../Buy/Buy";
-import AddToCart from "../AddToCart/AddToCart";
+// import RemoveIcon from '@mui/icons-material/Remove';
+// import AddIcon from '@mui/icons-material/Add';
 
 //Función para validar comentario de Review:
 export function validate (input) {
@@ -32,6 +30,7 @@ export default function Detail() {
     const { id } = useParams()
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const myProduct = useSelector(state => state.details);
 
 //PARA REVIEW:
     const [input, setInput] = React.useState ({ 
@@ -81,7 +80,6 @@ export default function Detail() {
 
     function restar(e) {
         e.preventDefault()
-        // return console.log('reste')
         if(counter === 0){
             e.target.value(disable)
         }
@@ -89,12 +87,16 @@ export default function Detail() {
     }
     function sumar(e) {
         e.preventDefault()
-        // return console.log('sumar')
         if(counter === myProduct.stock){
             e.target.value(disable)
         }
          return setCounter(counter +1)
     };
+
+    function handleAddToCart(e){
+        e.preventDefault();
+        dispatch(addToCart(e));
+    }
 
     // function onChange(e){
     //     e.preventDefault();
@@ -105,7 +107,6 @@ export default function Detail() {
         dispatch(getDetails(id)).then(() => setCarga(false))
     }, [dispatch, id])
 
-    const myProduct = useSelector(state => state.details)
 
     if (carga) {
         return <Loading />;
@@ -263,8 +264,8 @@ export default function Detail() {
                                     </div>
                                     <div className="available" id="existencias">{myProduct.stock}</div>
                                     <div className="btn-container">
-                                        <Buy/>
-                                        <AddToCart/>
+                                        <button type="button" className="btn-section-add-to-cart">Buy</button>
+                                        <button type="button" onClick={(e) => handleAddToCart(e)} className="btn-sectionadd-to-cart">Add to cart</button>
                                         {/*<button type="button" className="btn-section add-to-cart" id="comprar" name="comprar">Buy</button>*/}
                                         {/*<button type="button" className="btn-section add-to-cart" id='agregarAlCarrito' name="comprar">Add to cart</button>*/}
                                     </div>

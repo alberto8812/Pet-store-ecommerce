@@ -17,6 +17,11 @@
     align-items: flex-end;
 }
 
+.bi-cart {
+    font-size: 25px;
+    margin-bottom: 45px;
+}
+
 .ico_nav {
     margin: 0;
 }

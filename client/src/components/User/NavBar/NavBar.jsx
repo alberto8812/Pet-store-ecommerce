@@ -16,6 +16,8 @@ const NavBar = () => {
     const [update, setUpdate] = useState(' ');
     const [currentPage, setCurrentPage] = useState(1);
     const allProducts = useSelector((state) => state.allProducts);
+    const numberCart = useSelector(state => state.numberCart)
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -64,7 +66,8 @@ useEffect(() => {
                 </div>
                 <div className='nav_box'>
                     <Link to='/carrito' className='nav-link' >
-                        <Icon className='link_home' icon="fa:shopping-cart" width='35px' height='35px' />
+                        {numberCart} <i className='link_home' class="bi bi-cart"></i>
+                        {/* <Icon className='link_home' icon="fa:shopping-cart" width='35px' height='35px' /> */}
                         {/* <h3 className='link_home'>shopping</h3> */}
                     </Link>
                     <Link to='/' className='nav-link' >

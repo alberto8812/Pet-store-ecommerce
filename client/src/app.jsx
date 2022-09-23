@@ -10,6 +10,10 @@ import PaymentGateway from './components/User/PaymentGateway/PaymentGateway';
 import Registration from './components/User/Registration/Registration';
 import NavBar from './components/User/NavBar/NavBar';
 import Carrito from './components/User/Carrito/Carrito';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe("pk_test_51LkfWEIzGpa9z0EFC6OqfUFPRBmrUIS1nZVezBHgqSh6GBtJ3x5whj06EuCkgwBhls2xwc3M8UI9JKxid7o7Zzni00BiLqFS7P");
 
 function App() {
   return (
@@ -22,7 +26,10 @@ function App() {
         <Route path={'/registration'} element={<Registration />} />
         <Route path={'/profile'} element={<Profile />} />
         <Route path={'/registration'} element={<Registration />} />
-        <Route path={'/paymentgateway'} element={<PaymentGateway />} />
+        <Route path={'/paymentgateway'} element={
+        <Elements stripe={stripePromise}>
+          <PaymentGateway />
+          </Elements>} />
         <Route path={'/create'} element={<Create/>} />
         <Route path={'/carrito'} element={<Carrito/>} />
         <Route path={'*'} element={<NotFound />} />

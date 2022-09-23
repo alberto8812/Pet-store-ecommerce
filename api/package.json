@@ -11,6 +11,8 @@
   "author": "dianaibarra98,alberto88,Fainyer,Ramon181,fgastiarena",
   "license": "ISC",
   "dependencies": {
+    "@stripe/react-stripe-js": "^1.11.0",
+    "@stripe/stripe-js": "^1.37.0",
     "axios": "^0.27.2",
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",

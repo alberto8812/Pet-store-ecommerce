@@ -2,7 +2,7 @@ const { getLoginResponse } = require("../service/users/getLoginService")
 const { postUserDataResponse } = require("../service/users/postUserDataResponse")
 const { postCommentUser } = require("../service/users/postCommentService");
 const { postProductUserCartService } = require("../service/users/postProductUserCartService")
-
+const {postUserPaymentService}=require("../service/users/postUserPaymentService")
 
 ////login de usuario registro en base de datos y retorna infomracion de usuario
 const getUserLogin=async(req,res)=>{
@@ -36,6 +36,18 @@ const postComment = async(req, res)=>{
     }
 }
 
+
+// ruta de medio de pago
+const postUserPayment =async(req, res)=>{
+    const { id, amount } = req.body;
+    try {
+        const paymentUser = await postUserPaymentService(req)
+        res.status(200).json( paymentUser)
+    } catch (error){
+        res.status(400).json({mesg: error.raw.message,id:id,amount:amount})
+    }
+}
+
 // agregar  tablas de compra y de talles
 
 const postUserCart = async(req, res)=>{
@@ -48,9 +60,12 @@ const postUserCart = async(req, res)=>{
     }
 }
 
+
+
 module.exports={
     getUserLogin,
     postUserData, 
     postComment,
-    postUserCart
+    postUserCart,
+    postUserPayment
 }

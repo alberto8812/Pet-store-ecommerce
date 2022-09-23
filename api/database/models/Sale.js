@@ -12,7 +12,8 @@ module.exports = (sequelize) =>{
     }, 
     invoice:{
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique:true
     },
     total: {
       type: DataTypes.FLOAT,
@@ -20,7 +21,8 @@ module.exports = (sequelize) =>{
     }, 
     status: {
       type: DataTypes.ENUM("PENDING", "CANCELLED", "COMPLETED"),
-      allowNull: false
+      allowNull: false,
+      defaultValue:"PENDING"
     }
 
   })

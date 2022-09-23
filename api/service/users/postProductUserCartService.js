@@ -15,18 +15,25 @@ const postProductUserCartService=async(req)=>{
  
 
    const saleDb=await Sale.create({invoice:id,total:total})
-   console.log(Object.keys(saleDb.__proto__));
+
+ //  console.log(Object.keys(saleDb.__proto__));
    for (const iterator of products) {
     const saleDetailDb=await SaleDetail.create({price:iterator.price,quantity:iterator.quantity,subtotal:iterator.subtotal})
-    //console.log(Object.keys(saleDetailDb.__proto__));
-    await saleDb.addSaleDetails(saleDetailDb.id)
-   // await saleDetailDb.setSale(saleDb)
-   console.log(saleDetailDb)
+  
+   // console.log(Object.keys(saleDetailDb.__proto__));
+    const productDb=await Product.findOne({where:{id:iterator.id}})
+
+    await saleDb.addSaleDetails(saleDetailDb)
+    await saleDetailDb.addProduct(productDb)
+    await productDb.update({stock:productDb.stock-iterator.quantity})
+    
+ 
    }
- const dbSearchProduct = await Sale.findAll({
-    where: {invoice:id},
-    include: [{ model: SaleDetail, attributes: ["price","quantity","subtotal"] }]
+ const dbSearchProduct = await Sale.findAll({attributes: ['id','total','invoice'],
+   // where: {invoice:id},
+    include: [{model: SaleDetail,attributes:['id','quantity','price','subtotal'],include:{model:Product,attributes: ['id','name'],include:[{model:Category,attributes: ['name']},{model:Genre,attributes: ['name']}]}}]///tra todso los productos
 })
+
 
     return  dbSearchProduct; //updateUser;
 }

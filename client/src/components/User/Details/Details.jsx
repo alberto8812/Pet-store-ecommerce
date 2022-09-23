@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { getDetails } from "../../../redux/actions";
+import { addToCart, getDetails } from "../../../redux/actions";
 import Loading from "../Loading/Loading";
 import './Details.css'
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import Footer from "../Footer/Footer";
-import RemoveIcon from '@mui/icons-material/Remove';
-import AddIcon from '@mui/icons-material/Add';
-import Buy from "../Buy/Buy";
-import AddToCart from "../AddToCart/AddToCart";
+// import RemoveIcon from '@mui/icons-material/Remove';
+// import AddIcon from '@mui/icons-material/Add';
 
 //Función para validar comentario de Review:
 export function validate (input) {
@@ -21,8 +19,8 @@ export function validate (input) {
         errors.comment = 'Your comment is empty.'
     } else if (/\S+@\S+\.\S+/.test(input.comment)) {
         errors.comment = 'Your comment cannot be an email. To contact us, go to the "Contact Us" section'
-    } else if (input.comment.length > 500) {
-        errors.comment = 'Comment cannot exceed 500 characters'
+    } else if (input.comment.length > 2000) {
+        errors.comment = 'Comment cannot exceed 2000 characters'
     }
     return errors
 }
@@ -32,6 +30,7 @@ export default function Detail() {
     const { id } = useParams()
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const myProduct = useSelector(state => state.details);
 
 //PARA REVIEW:
     const [input, setInput] = React.useState ({ 
@@ -61,13 +60,26 @@ export default function Detail() {
         }))
     }
 
+    var contador;
+    const calificar = function (e) {
+        console.log(e)
+        contador = e.id[0]
+        let nombre = e.id.substring(1)
+        for(let i = 0; i<5; i++){
+            if(i<contador) {
+                document.getElementById((i+1)+nombre).className='rating span:active'
+            } else {
+                document.getElementById((i+1)+nombre).className='rating span'
+            }
+        }
+    }
+
 //HASTA ACÁ REVIEW    
 
     const [counter, setCounter] = useState(0);
 
     function restar(e) {
         e.preventDefault()
-        // return console.log('reste')
         if(counter === 0){
             e.target.value(disable)
         }
@@ -75,12 +87,16 @@ export default function Detail() {
     }
     function sumar(e) {
         e.preventDefault()
-        // return console.log('sumar')
         if(counter === myProduct.stock){
             e.target.value(disable)
         }
          return setCounter(counter +1)
     };
+
+    function handleAddToCart(e){
+        e.preventDefault();
+        dispatch(addToCart(e));
+    }
 
     // function onChange(e){
     //     e.preventDefault();
@@ -91,7 +107,6 @@ export default function Detail() {
         dispatch(getDetails(id)).then(() => setCarga(false))
     }, [dispatch, id])
 
-    const myProduct = useSelector(state => state.details)
 
     if (carga) {
         return <Loading />;
@@ -161,19 +176,19 @@ export default function Detail() {
                         <div className="item-description m-mobile">
                             <h2 className="title desk">Reviews</h2>
                             <div class="rating">
-                                <span>★</span>
-                                <span>★</span>
-                                <span>★</span>
-                                <span>★</span>
-                                <span>★</span>
+                                <span onClick={e => calificar(e)} id="5estrellas">★</span>
+                                <span onClick={e => calificar(e)} id="4estrellas">★</span>
+                                <span onClick={e => calificar(e)} id="3estrellas">★</span>
+                                <span onClick={e => calificar(e)} id="2estrellas">★</span>
+                                <span onClick={e => calificar(e)} id="1estrellas">★</span>
                             </div>
                             <div className="review">
                                 <form onSubmit={(e) => handleSubmit(e)}>
                                     <h4 className="titleRev">Write a review</h4>
                                     <div>
-                                        <input className="com" type="text" placeholder="Leave your opinion..." name="comment" onChange={handleChange} value={input.comment}/>
+                                        <textarea className={errors.comment? 'danger' : 'com'} type="text" placeholder="Leave your opinion..." name="comment" onChange={handleChange} value={input.comment}/>
                                         {errors.comment && (
-                                            <p>{errors.comment}</p>
+                                            <p className='danger'>{errors.comment}</p>
                                         )}
                                     </div>
                                     <button type="submit" className="btncom">Comment</button>
@@ -249,8 +264,8 @@ export default function Detail() {
                                     </div>
                                     <div className="available" id="existencias">{myProduct.stock}</div>
                                     <div className="btn-container">
-                                        <Buy/>
-                                        <AddToCart/>
+                                        <button type="button" className="btn-section-add-to-cart">Buy</button>
+                                        <button type="button" onClick={(e) => handleAddToCart(e)} className="btn-sectionadd-to-cart">Add to cart</button>
                                         {/*<button type="button" className="btn-section add-to-cart" id="comprar" name="comprar">Buy</button>*/}
                                         {/*<button type="button" className="btn-section add-to-cart" id='agregarAlCarrito' name="comprar">Add to cart</button>*/}
                                     </div>

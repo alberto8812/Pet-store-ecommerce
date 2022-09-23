@@ -68,8 +68,8 @@ Sale.belongsTo(User, { foreingKey: "userId", targetId: "id" })
 Sale.hasMany(SaleDetail, { foreingKey: "saleId",  sourceKey: "id"})
 SaleDetail.belongsTo(Sale, { foreingKey: "saleId", targetId: "id"})
 
-SaleDetail.hasMany(Product, { foreingKey: "saleDetailId", sourceKey: "id" })
-Product.belongsTo(SaleDetail, { foreingKey: "saleDetailId", targetId: "id"})
+SaleDetail.belongsToMany(Product, {through: 'product_saledetail'})//SaleDetail.hasMany(Product, { foreingKey: "saleDetailId", sourceKey: "id" })
+Product.belongsToMany(SaleDetail, {through: 'product_saledetail'})//Product.belongsTo(SaleDetail, { foreingKey: "saleDetailId", targetId: "id"})
 
 Genre.hasMany(Product, { foreingKey: "genreId", sourceKey: "id"})///adicional
 Product.belongsTo(Genre, { foreingKey: "genreId", targetId: "id"} )//adicional

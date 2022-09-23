@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './Carrito.css'
 
 
@@ -101,7 +102,7 @@ export default function Carrito({ image, name, stock, price, id, category, genre
                     </div>
                     <div className="cart-form-actions">
                         <a href="/">Comprar mas Productos</a>
-                        <button className="btn-checkout">Continuar</button>
+                        <Link to='/paymentgateway'><button className="btn-checkout">Continuar</button></Link>
                     </div>
                 </div>
             </section>}

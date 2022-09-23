@@ -128,7 +128,7 @@ useEffect(() => {
                justifyContent="center"
                alignItems="center"
                 >
-                <Link to='/'  >
+                <Link to='/carrito'  >
                         <Icon  icon="fa:shopping-cart" width='35px' height='35px' hAlign="left" color= "rgb(234, 208, 240)" />
                         {/* <h3 className='link_home'>shopping</h3> */}
                     </Link>

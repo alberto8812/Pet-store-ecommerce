@@ -11,6 +11,19 @@ import Footer from "../Footer/Footer";
 // import RemoveIcon from '@mui/icons-material/Remove';
 // import AddIcon from '@mui/icons-material/Add';
 
+//Función para validar comentario de Review:
+export function validate (input) {
+    let errors = {}
+
+    if(!input.comment) {
+        errors.comment = 'Your comment is empty.'
+    } else if (/\S+@\S+\.\S+/.test(input.comment)) {
+        errors.comment = 'Your comment cannot be an email. To contact us, go to the "Contact Us" section'
+    } else if (input.comment.length > 2000) {
+        errors.comment = 'Comment cannot exceed 2000 characters'
+    }
+    return errors
+}
 
 export default function Detail() {
     const [carga, setCarga] = useState(true);
@@ -18,6 +31,50 @@ export default function Detail() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const myProduct = useSelector(state => state.details);
+
+//PARA REVIEW:
+    const [input, setInput] = React.useState ({ 
+        comment: ''
+    })
+    const [errors, setErrors] = React.useState({});
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const errors = validate(input)
+        if(errors.comment){
+            alert('Your comment could not be published')
+        } else {
+            alert('Comment posted successfully')
+            dispatch(addComment(input))
+        }
+    }
+
+    const handleChange = function (e) {
+        setInput({
+            ...input,
+            [e.target.name]:e.target.value
+        });
+        setErrors(validate({
+            ...input,
+            [e.target.name]:e.target.value
+        }))
+    }
+
+    var contador;
+    const calificar = function (e) {
+        console.log(e)
+        contador = e.id[0]
+        let nombre = e.id.substring(1)
+        for(let i = 0; i<5; i++){
+            if(i<contador) {
+                document.getElementById((i+1)+nombre).className='rating span:active'
+            } else {
+                document.getElementById((i+1)+nombre).className='rating span'
+            }
+        }
+    }
+
+//HASTA ACÁ REVIEW    
 
     const [counter, setCounter] = useState(0);
 
@@ -115,13 +172,30 @@ export default function Detail() {
                                 <div className="clear"></div>
                             </div>
                         </div>
-                        <div class="rating">
-                            <span>★</span>
-                            <span>★</span>
-                            <span>★</span>
-                            <span>★</span>
-                            <span>★</span>
+                        {/* SECCIÓN DE REVIEWS */}
+                        <div className="item-description m-mobile">
+                            <h2 className="title desk">Reviews</h2>
+                            <div class="rating">
+                                <span onClick={e => calificar(e)} id="5estrellas">★</span>
+                                <span onClick={e => calificar(e)} id="4estrellas">★</span>
+                                <span onClick={e => calificar(e)} id="3estrellas">★</span>
+                                <span onClick={e => calificar(e)} id="2estrellas">★</span>
+                                <span onClick={e => calificar(e)} id="1estrellas">★</span>
+                            </div>
+                            <div className="review">
+                                <form onSubmit={(e) => handleSubmit(e)}>
+                                    <h4 className="titleRev">Write a review</h4>
+                                    <div>
+                                        <textarea className={errors.comment? 'danger' : 'com'} type="text" placeholder="Leave your opinion..." name="comment" onChange={handleChange} value={input.comment}/>
+                                        {errors.comment && (
+                                            <p className='danger'>{errors.comment}</p>
+                                        )}
+                                    </div>
+                                    <button type="submit" className="btncom">Comment</button>
+                                </form>
+                            </div>
                         </div>
+                        {/* FIN SECCION REVIEWS */}
                         <div className="clear"></div>
                     </div>
                     <div className="b2">

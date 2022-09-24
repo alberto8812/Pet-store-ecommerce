@@ -80,8 +80,7 @@ Category.belongsToMany(Genre, {through: 'genre_category'})
 Category.hasMany(Product, { foreingKey: "categoryId", sourceKey: "id"})
 Product.belongsTo(Category, { foreingKey: "categoryId", targetId: "id"})
 
-User.hasMany(Review, { foreingKey: "userId", sourceKey: "id"} )
-Review.belongsTo(User, { foreingKey: "userId", targetId: "id"} )
+
 
 Product.hasMany(Review, { foreingKey: "productId", sourceKey: "id"} )
 Review.belongsTo(Product, { foreingKey: "productId", targetId: "id"})

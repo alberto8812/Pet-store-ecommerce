@@ -11,14 +11,15 @@ import {
     INCREASE_QUANTITY,
     DECREASE_QUANTITY,
     UPDATE_CART,
-    DELETE_CART
+    DELETE_CART,
+    ADD_COMMENT
 } from "./constants";
 
 export function getAllProducts() {
     return async(dispatch) => {
         try {
             return axios.get('http://localhost:3001/products')
-                .then(res => dispatch({ type: GET_ALxL_PRODUCTS, payload: res.data }))
+                .then(res => dispatch({ type: GET_ALL_PRODUCTS, payload: res.data }))
                 .catch(err => dispatch({ type: GET_ALL_PRODUCTS, payload: err.data }))
         } catch (error) {
             console.log(error)
@@ -117,6 +118,18 @@ export function decreaseCart(payload) {
         payload
     }
 };
+
+export function addComment(input) {
+    return async function (dispatch) {
+        axios.put('http://localhost:3001/products/detail/',input)
+        .then ((res) => {
+            dispatch({
+                type: ADD_COMMENT,
+                payload: res.data
+            })
+        })
+    }
+}
 
 
 ////////////////////////////////test filters/////////////////////////

@@ -1,5 +1,5 @@
 const {db,Op}=require('../../database/db')
-const {Product,Genre,Category,User,Sale,SaleDetail}=db.models
+const {Product,Genre,Category,User,Sale,SaleDetail, Review}=db.models
 const axios=require('axios');
 const dataUser=require('../../middleware/loginUser')
 
@@ -23,12 +23,16 @@ const postProductUserCartService=async(req)=>{
    // console.log(Object.keys(saleDetailDb.__proto__));
     const productDb=await Product.findOne({where:{id:iterator.id}})
 
+    const reviews=await Review.create({user:"cvelascosavedra@gmail.com"})
+    await productDb.addReview(reviews)
     await saleDb.addSaleDetails(saleDetailDb)
     await saleDetailDb.addProduct(productDb)
     await productDb.update({stock:productDb.stock-iterator.quantity})
     
  
    }
+
+
  const dbSearchProduct = await Sale.findAll({attributes: ['id','total','invoice'],
    // where: {invoice:id},
     include: [{model: SaleDetail,attributes:['id','quantity','price','subtotal'],include:{model:Product,attributes: ['id','name'],include:[{model:Category,attributes: ['name']},{model:Genre,attributes: ['name']}]}}]///tra todso los productos

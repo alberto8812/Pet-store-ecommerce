@@ -23,7 +23,9 @@ const postProductUserCartService=async(req)=>{
    // console.log(Object.keys(saleDetailDb.__proto__));
     const productDb=await Product.findOne({where:{id:iterator.id}})
 
-    const reviews=await Review.create({user:"cvelascosavedra@gmail.com"})
+    //console.log(Object.keys(productDb.__proto__));
+
+    const reviews=await Review.create({user:"cvelascosaavedra@gmail.com"})
     await productDb.addReview(reviews)
     await saleDb.addSaleDetails(saleDetailDb)
     await saleDetailDb.addProduct(productDb)

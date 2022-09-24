@@ -8,6 +8,7 @@ import StorefrontIcon from '@mui/icons-material/Storefront';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import Footer from "../Footer/Footer";
+import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
 // import RemoveIcon from '@mui/icons-material/Remove';
 // import AddIcon from '@mui/icons-material/Add';
 
@@ -26,17 +27,29 @@ export function validate (data) {
 }
 
 export default function Detail() {
+   const {user,isAuthenticated}=useAuth0()
+
     const [carga, setCarga] = useState(true);
     const { id } = useParams()
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const myProduct = useSelector(state => state.details);
-    console.log(myProduct)
-    // let userLogin = myProduct.reviews.filter (e  => e === user.email );
-    let userLogin = {id: '', comment:'', punctuation:''}
+   // console.log(myProduct,user.email)
+    let userLogin=[]//definimos una variable  para el filtrado
    
 
 //PARA REVIEW:
+ 
+    useEffect(() => {
+       if(isAuthenticated){//pregunta si el usuario tiene login en la pagina
+        
+            //indaga indaga si el usuario realizo compra en el producto
+          userLogin=myProduct.reviews===undefined?[]:myProduct.reviews.find(e  => e.user === user.email )//encuentra
+       }
+      
+    }, [dispatch])
+
+
     const [input, setInput] = React.useState ({ 
         comment: ''
     })

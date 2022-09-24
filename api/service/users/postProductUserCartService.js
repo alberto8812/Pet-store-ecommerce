@@ -17,24 +17,35 @@ const postProductUserCartService=async(req)=>{
    const saleDb=await Sale.create({invoice:id,total:total})
 
  //  console.log(Object.keys(saleDb.__proto__));
+ //ciclo for para destructurar los productos
    for (const iterator of products) {
     const saleDetailDb=await SaleDetail.create({price:iterator.price,quantity:iterator.quantity,subtotal:iterator.subtotal})
   
-   // console.log(Object.keys(saleDetailDb.__proto__));
+ 
     const productDb=await Product.findOne({where:{id:iterator.id}})
+   
+ 
+    //consulta que permite indagar si el usuario ya exite en la tabla de reviews
+    const findReviews=await Review.findOne({where:{user:"cvelascosaavedra@gmail.com",idProduct:iterator.id}});
+    
+    if(findReviews==null){//si el valor es null ingresa para registrar el usuario en la tabla
+    const reviews=await Review.create({user:"cvelascosaavedra@gmail.com",idProduct:iterator.id})
+    await productDb.addReview(reviews)//se realiza la relacion con la tabla de productos
+    }
 
-    const reviews=await Review.create({user:"cvelascosavedra@gmail.com"})
-    await productDb.addReview(reviews)
+    //relaciones  de ña tablas  venta y detalle, relacion entre producto y detalle
     await saleDb.addSaleDetails(saleDetailDb)
     await saleDetailDb.addProduct(productDb)
+
+    //descontamos el stock 
     await productDb.update({stock:productDb.stock-iterator.quantity})
     
  
    }
 
-
+//consulta sobre los productos que estan en la venta
  const dbSearchProduct = await Sale.findAll({attributes: ['id','total','invoice'],
-   // where: {invoice:id},
+    where: {invoice:id},
     include: [{model: SaleDetail,attributes:['id','quantity','price','subtotal'],include:{model:Product,attributes: ['id','name'],include:[{model:Category,attributes: ['name']},{model:Genre,attributes: ['name']}]}}]///tra todso los productos
 })
 

@@ -1,5 +1,5 @@
 const { db, Op } = require('../../database/db')
-const { Product, Genre, Category } = db.models
+const { Product, Genre, Category,Review } = db.models
 
 
 
@@ -34,7 +34,7 @@ const getdbProdcutSearchService=async(req)=>{
 
     const dbSearchProduct = await Product.findAll({
         where: [productCondiction, ageCondition],
-        include: [{ model: Genre, attributes: ['name'], where: genreCondition }, { model: Category, attributes: ['name'], where: categoryCondition }]
+        include: [{ model: Genre, attributes: ['name'], where: genreCondition }, { model: Category, attributes: ['name'], where: categoryCondition },{ model: Review, attributes: ['id','comment','punctuation','user'] }]
     })
 
     return dbSearchProduct;

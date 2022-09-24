@@ -4,7 +4,7 @@ const {Product,Genre,Category}=db.models
 
 const createProductsDb=async(req)=>{
     let {name, price, stock, detail, image, rating, category, genre, age } = req.body
-  console.log(name)
+  //console.log(name)
 
 
  let productCreate = await Product.create({
@@ -29,7 +29,7 @@ const createProductsDb=async(req)=>{
       }
     })
     
-    console.log(genreDb)
+    //console.log(genreDb)
     
     //categoryDb.addGenre(genreDb) 
    // genreDb.addCategory(categoryDb) 

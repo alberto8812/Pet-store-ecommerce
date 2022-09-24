@@ -12,14 +12,14 @@ import Footer from "../Footer/Footer";
 // import AddIcon from '@mui/icons-material/Add';
 
 //Función para validar comentario de Review:
-export function validate (input) {
+export function validate (data) {
     let errors = {}
 
-    if(!input.comment) {
+    if(!data.comment) {
         errors.comment = 'Your comment is empty.'
-    } else if (/\S+@\S+\.\S+/.test(input.comment)) {
+    } else if (/\S+@\S+\.\S+/.test(data.comment)) {
         errors.comment = 'Your comment cannot be an email. To contact us, go to the "Contact Us" section'
-    } else if (input.comment.length > 2000) {
+    } else if (data.comment.length > 2000) {
         errors.comment = 'Comment cannot exceed 2000 characters'
     }
     return errors
@@ -31,6 +31,7 @@ export default function Detail() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const myProduct = useSelector(state => state.details);
+    const userLogin = myProduct.reviews.filter (e  => e === user.email );
 
 //PARA REVIEW:
     const [input, setInput] = React.useState ({ 
@@ -38,41 +39,60 @@ export default function Detail() {
     })
     const [errors, setErrors] = React.useState({});
 
+    const [data, setData] = React.useState({id: userLogin.id, comment:'', punctuation:''})
+
+
+    let render = false;
+
     const handleSubmit = (e) => {
-        e.preventDefault();
-        const errors = validate(input)
-        if(errors.comment){
-            alert('Your comment could not be published')
-        } else {
-            alert('Comment posted successfully')
-            dispatch(addComment(input))
+        // e.preventDefault();
+        // const errors = validate(input)
+        // if(errors.comment){
+        //     alert('Your comment could not be published')
+        // } else if (userLogin.review.length) {
+        //     render = false;
+        //     alert('You already posted a comment on this product')
+        // } else {
+        //     alert('Comment posted successfully')
+        //     render = false
+            dispatch(addComment(data))
         }
-    }
+    
 
     const handleChange = function (e) {
-        setInput({
-            ...input,
+        setData({
+            ...data,
             [e.target.name]:e.target.value
         });
         setErrors(validate({
-            ...input,
+            ...data,
             [e.target.name]:e.target.value
         }))
     }
 
-    // var contador;
-    // const calificar = function (e) {
-    //     console.log(e)
-    //     contador = e.id[0]
-    //     let nombre = e.id.substring(1)
-    //     for(let i = 0; i<5; i++){
-    //         if(i<contador) {
-    //             document.getElementById((i+1)+nombre).className='rating span:active'
-    //         } else {
-    //             document.getElementById((i+1)+nombre).className='rating span'
-    //         }
+    // const canComment = function (e) {
+    //     const userLogin = user.filter (e  => e === user.email );
+    //     if (!userLogin.review.length) {
+            
+    //     } else {
+    //         alert('You already posted a comment on this product')
     //     }
     // }
+
+    // var contador;
+    const calificar = function (e) {
+        setData({...data, punctuation: e})
+        // console.log(e)
+        // contador = e.id[0]
+        // let nombre = e.id.substring(1)
+        // for(let i = 0; i<5; i++){
+        //     if(i<contador) {
+        //         document.getElementById((i+1)+nombre).className='rating span:active'
+        //     } else {
+        //         document.getElementById((i+1)+nombre).className='rating span'
+        //     }
+        // }
+    }
 
 //HASTA ACÁ REVIEW    
 
@@ -176,23 +196,24 @@ export default function Detail() {
                         <div className="item-description m-mobile">
                             <h2 className="title desk">Reviews</h2>
                             <div class="rating">
-                                <span onClick={e => calificar(e)} id="5estrellas">★</span>
-                                <span onClick={e => calificar(e)} id="4estrellas">★</span>
-                                <span onClick={e => calificar(e)} id="3estrellas">★</span>
-                                <span onClick={e => calificar(e)} id="2estrellas">★</span>
-                                <span onClick={e => calificar(e)} id="1estrellas">★</span>
+                                <span onClick={e => calificar(5)} id="5estrellas">★</span>
+                                <span onClick={e => calificar(4)} id="4estrellas">★</span>
+                                <span onClick={e => calificar(3)} id="3estrellas">★</span>
+                                <span onClick={e => calificar(2)} id="2estrellas">★</span>
+                                <span onClick={e => calificar(1)} id="1estrellas">★</span>
                             </div>
                             <div className="review">
+                                {!userLogin.comment.length && 
                                 <form onSubmit={(e) => handleSubmit(e)}>
                                     <h4 className="titleRev">Write a review</h4>
                                     <div>
-                                        <textarea className={errors.comment? 'danger' : 'com'} type="text" placeholder="Leave your opinion..." name="comment" onChange={handleChange} value={input.comment}/>
+                                        <textarea className={errors.comment? 'danger' : 'com'} type="text" placeholder="Leave your opinion..." name="comment" onChange={handleChange} value={data.comment}/>
                                         {errors.comment && (
                                             <p className='danger'>{errors.comment}</p>
                                         )}
                                     </div>
                                     <button type="submit" className="btncom">Comment</button>
-                                </form>
+                                </form>}
                             </div>
                         </div>
                         {/* FIN SECCION REVIEWS */}

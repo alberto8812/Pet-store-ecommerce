@@ -39,12 +39,14 @@ export default function Detail() {
    
 
 //PARA REVIEW:
-
+ 
     useEffect(() => {
-       if(isAuthenticated){//pregunta si el usuario tiene login 
+       if(isAuthenticated){//pregunta si el usuario tiene login en la pagina
+        
+            //indaga indaga si el usuario realizo compra en el producto
           userLogin=myProduct.reviews===undefined?[]:myProduct.reviews.find(e  => e.user === user.email )//encuentra
        }
-       console.log(userLogin)
+      
     }, [dispatch])
 
 

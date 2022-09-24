@@ -18,6 +18,10 @@ module.exports = (sequelize) =>{
     user:{
       type: DataTypes.STRING,
       allowNull: false
+    },
+    idProduct:{
+      type: DataTypes.STRING,
+      allowNull: false
     }
   })
 }

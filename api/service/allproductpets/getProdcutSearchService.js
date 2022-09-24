@@ -36,7 +36,7 @@ const getdbProdcutSearchService=async(req)=>{
         where: [productCondiction, ageCondition],
         include: [{ model: Genre, attributes: ['name'], where: genreCondition }, { model: Category, attributes: ['name'], where: categoryCondition },{ model: Review, attributes: ['id','comment','punctuation','user'] }]
     })
-
+console.log(dbSearchProduct)
     return dbSearchProduct;
 }
 

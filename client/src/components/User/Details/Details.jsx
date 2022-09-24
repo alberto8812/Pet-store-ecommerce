@@ -31,7 +31,10 @@ export default function Detail() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const myProduct = useSelector(state => state.details);
-    const userLogin = myProduct.reviews.filter (e  => e === user.email );
+    console.log(myProduct)
+    // let userLogin = myProduct.reviews.filter (e  => e === user.email );
+    let userLogin = {id: '', comment:'', punctuation:''}
+   
 
 //PARA REVIEW:
     const [input, setInput] = React.useState ({ 
@@ -124,6 +127,7 @@ export default function Detail() {
     // }
 
     useEffect(() => {
+        console.log('useEffect')
         dispatch(getDetails(id)).then(() => setCarga(false))
     }, [dispatch, id])
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { addToCart, getDetails } from "../../../redux/actions";
+import { addToCart, getDetails, addComment } from "../../../redux/actions/index";
 import Loading from "../Loading/Loading";
 import './Details.css'
 import StorefrontIcon from '@mui/icons-material/Storefront';
@@ -140,7 +140,7 @@ export default function Detail() {
     // }
 
     useEffect(() => {
-        console.log('useEffect')
+        //console.log('useEffect')
         dispatch(getDetails(id)).then(() => setCarga(false))
     }, [dispatch, id])
 
@@ -220,7 +220,7 @@ export default function Detail() {
                                 <span onClick={e => calificar(1)} id="1estrellas">★</span>
                             </div>
                             <div className="review">
-                                {!userLogin.comment.length && 
+                                {!userLogin.comment?.length && 
                                 <form onSubmit={(e) => handleSubmit(e)}>
                                     <h4 className="titleRev">Write a review</h4>
                                     <div>

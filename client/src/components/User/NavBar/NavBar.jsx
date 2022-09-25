@@ -23,7 +23,22 @@ const NavBar = () => {
 
     const [currentPage, setCurrentPage] = useState(1);
     const allProducts = useSelector((state) => state.allProducts);
+    const cart = useSelector(state => state.cart)
     const numberCart = useSelector(state => state.numberCart)
+    const [cartQuantity, setcartQuantity] = useState(0)
+
+    const calculateCartQuantity = () => {
+        let counter = 0;
+        cart.forEach(item => {
+            counter += item.quantity
+        });
+        setcartQuantity(counter)
+    }
+
+    useEffect(() => {
+      calculateCartQuantity();
+    }, [numberCart])
+    
 
     const dispatch = useDispatch();
     let request=[] 
@@ -130,7 +145,7 @@ useEffect(() => {
                justifyContent="center"
                alignItems="center"
                 >
-                <Link to='/carrito' > {numberCart}
+                <Link to='/carrito' className='number-cart'> {cartQuantity}
                         <Icon  icon="fa:shopping-cart" width='35px' height='35px' hAlign="left" color= "rgb(234, 208, 240)" />
                         {/* <h3 className='link_home'>shopping</h3> */}
                     </Link>

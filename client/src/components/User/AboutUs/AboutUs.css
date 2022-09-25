@@ -25,6 +25,11 @@
     width: 90%;
 }
 
+textarea{
+    max-height: 10em;
+    min-height: 10em;
+}
+
 .inputAbout {
     gap: 0.5rem;
     width: 100%;
@@ -52,6 +57,7 @@
     justify-content: center;
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-top: 0.2em;
 }
 
 textarea {

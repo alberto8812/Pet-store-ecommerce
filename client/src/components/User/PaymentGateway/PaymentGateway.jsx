@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {withAuthenticationRequired} from '@auth0/auth0-react'
 import "bootswatch/dist/pulse/bootstrap.min.css";
 import './PaymentGateway.css'
 //import { loadStripe } from "@stripe/stripe-js";
@@ -15,10 +16,11 @@ import {
 
 import axios from "axios";
 import { useSelector } from "react-redux";
+import Loading from "../Loading/Loading";
 
 //const stripePromise = loadStripe("pk_test_51LkfWEIzGpa9z0EFC6OqfUFPRBmrUIS1nZVezBHgqSh6GBtJ3x5whj06EuCkgwBhls2xwc3M8UI9JKxid7o7Zzni00BiLqFS7P");
 
-export default function PaymentGateway({ image, name, stock, price, id, category, genre, age }) {
+export default withAuthenticationRequired (function PaymentGateway({ image, name, stock, price, id, category, genre, age }) {
     const stripe = useStripe();
     const elements = useElements();
 
@@ -165,7 +167,7 @@ export default function PaymentGateway({ image, name, stock, price, id, category
                             <div className="form-group">
                                 <CardElement className="pagos"/>
                             </div>
-                            <button disabled={!stripe} className="btn btn-success">
+                          <button disabled={!stripe} className="btn btn-success">
                                 {loading ? (
                                     <div className="spinner-border text-light" role="status">
                                         <span className="sr-only"></span>
@@ -187,7 +189,7 @@ export default function PaymentGateway({ image, name, stock, price, id, category
             </div>
         </div >
     )
-}
+},{onRedirecting:()=><Loading/>});
 
 /*
 <div className="container p-4">

@@ -8,9 +8,10 @@ import StorefrontIcon from '@mui/icons-material/Storefront';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import Footer from "../Footer/Footer";
-import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
-// import RemoveIcon from '@mui/icons-material/Remove';
-// import AddIcon from '@mui/icons-material/Add';
+import { useAuth0 } from '@auth0/auth0-react';//libreia Auth0
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 //Función para validar comentario de Review:
 export function validate (data) {
@@ -72,7 +73,7 @@ export default function Detail() {
         //     alert('Comment posted successfully')
         //     render = false
             dispatch(addComment(data))
-        }
+        };
     
 
     const handleChange = function (e) {
@@ -112,42 +113,61 @@ export default function Detail() {
 
 //HASTA ACÁ REVIEW    
 
-    const [counter, setCounter] = useState(0);
+    const [quantitySelected, setQuantitySelected] = useState(1);
 
     function restar(e) {
         e.preventDefault()
-        if(counter === 0){
-            e.target.value(disable)
+        if(quantitySelected === 1){
+            return
         }
-        return setCounter(counter -1)
+        return setQuantitySelected(quantitySelected -1)
     }
     function sumar(e) {
         e.preventDefault()
-        if(counter === myProduct.stock){
-            e.target.value(disable)
+        if(quantitySelected === myProduct.stock){
+            return
         }
-         return setCounter(counter +1)
+         return setQuantitySelected(quantitySelected +1)
     };
 
-    function handleAddToCart(e){
-        e.preventDefault();
-        dispatch(addToCart(e));
+    useEffect(() => {
+        console.log(quantitySelected)
+    }, [quantitySelected])
+    
+
+    function handleAddToCart(){
+        myProduct.quantitySelected = quantitySelected;
+        dispatch(addToCart(myProduct));
+        notifyOK();
+        setTimeout(() => {
+            navigate('/')
+        }, 3000);
+    };
+
+    const notifyOK = () => {
+        toast.success("Added to cart", {
+          theme: "colored",
+        });
+    };
+
+    function handleBuyCart(){
+        myProduct.quantitySelected = quantitySelected;
+        dispatch(addToCart(myProduct));
+        notifyOK();
+        setTimeout(() => {
+            navigate('/carrito')
+        }, 3000);
     }
 
-    // function onChange(e){
-    //     e.preventDefault();
-    //     {counter}
-    // }
-
     useEffect(() => {
-        //console.log('useEffect')
         dispatch(getDetails(id)).then(() => setCarga(false))
     }, [dispatch, id])
 
 
     if (carga) {
         return <Loading />;
-    }
+    };
+
 
     return (
         <div className="contenido">
@@ -293,7 +313,7 @@ export default function Detail() {
                                             <button type="button" onClick={e => restar(e)} value>
                                             -
                                             </button>
-                                            <p className="counter-detail">{counter}</p>
+                                            <p className="counter-detail">{quantitySelected}</p>
                                             {/* <input onChange={e => onChange(e)} type="text" name="cantidad" id="cantidad" value="1" readOnly /> */}
                                             <button type="button" onClick={e => sumar(e)} value>
                                                 +
@@ -302,13 +322,21 @@ export default function Detail() {
                                     </div>
                                     <div className="available" id="existencias">{myProduct.stock}</div>
                                     <div className="btn-container">
-                                        <button type="button" className="btn-section-add-to-cart">Buy</button>
-                                        <button type="button" onClick={(e) => handleAddToCart(e)} className="btn-sectionadd-to-cart">Add to cart</button>
-                                        {/*<button type="button" className="btn-section add-to-cart" id="comprar" name="comprar">Buy</button>*/}
-                                        {/*<button type="button" className="btn-section add-to-cart" id='agregarAlCarrito' name="comprar">Add to cart</button>*/}
+                                        <button type="button" onClick={handleBuyCart} className="btn-section-add-to-cart" id="comprar">Buy</button>
+                                        <button type="button" onClick={handleAddToCart} id='agregarAlCarrito' className="btn-sectionadd-to-cart">Add to cart</button>
                                     </div>
                                 </div>
-
+                                <ToastContainer
+                                        position="top-center"
+                                        autoClose={2000}
+                                        hideProgressBar={false}
+                                        newestOnTop={false}
+                                        closeOnClick
+                                        rtl={false}
+                                        pauseOnFocusLoss
+                                        draggable
+                                        pauseOnHover
+                                />
                             </form>
                             <div className="clear"></div>
                         </div>

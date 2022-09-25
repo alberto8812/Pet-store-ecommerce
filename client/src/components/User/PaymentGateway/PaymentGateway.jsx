@@ -76,12 +76,12 @@ export default withAuthenticationRequired (function PaymentGateway({ image, name
     return (
         <div className="m7">
             <div className="b1 desk">
-                <div className="title">Pasarela de Pago</div>
+                <div className="title">Payment Gateway</div>
             </div>
             <div className="total-container mobile"></div>
             <div className="notification success desk">
                 <i className="fas fa-truck"></i>
-                "Productos a pagar"
+                "Products to pay"
             </div>
             <section className="cart-products-container">
                 <div className="cart-product">
@@ -94,12 +94,12 @@ export default withAuthenticationRequired (function PaymentGateway({ image, name
                   listCart.map((item) => {
                       return(
                           <div>
-                              <h3 className="image">{item.name}</h3>
+                              <h5 className="name">{item.name}</h5>
                               <img className="image" src={item.image} alt={item.name} height='50px' width='50px'/>
                               <div className="product-info">
-                              <h3 className="name">
-                                <a href={`/products/detail/${id}`} target='_blank'>{item.name}</a>
-                              </h3>
+                              <h5 className="name">
+                                <a href={`/products/detail/${id}`} target='_blank'>Go to product details</a>
+                              </h5>
                               <div className="description">
                                 <ul>
                                     <li>
@@ -125,42 +125,13 @@ export default withAuthenticationRequired (function PaymentGateway({ image, name
                   })
               }
                 </div>
-                    {/* <div className="table">
-                        <div className="image">
-                            <img src='https://d28hi93gr697ol.cloudfront.net/071e89ac-46a5-8ab3/img/Producto/3889dc7d-2110-a629-dcef-d80dfae8c247/royal-canin-mini-adulto-63212df4c6871-thumb.jpeg' alt={name} height='50px' width='50px' />
-                        </div>
-                        <div className="product-info">
-                            <h3 className="name">
-                                <a href={`/products/detail/${id}`} target='_blank'>Nombre del Producto</a>
-                            </h3>
-                            <div className="description">
-                                <ul>
-                                    <li>
-                                        <strong>Age:</strong>
-                                        Puppy
-                                    </li>
-                                    <li>
-                                        <strong>Id Product:</strong>
-                                        AAAA-1111-BBBB-2222
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="quantity" data-id="0">
-                            <div className="qty">
-                                <label type="number" id="cantidad_13854" pattern="[0-9]+" className="count" />  
-                            </div>
-                        </div>
-                        <div className="price">
-                            <div className="price-container">{price}</div>
-                        </div>
-                    </div> */}
+                    
                 </div>
             </section>
             {<section className="cart-totals-container">
                 <div className="fixed-resume">
                     <div className="cart-totals-detail">
-                        <div className="title-total-detail desk">Forma de Pago</div>
+                        <div className="title-total-detail desk">Way to pay</div>
                         <form className="card card-body" onSubmit={handleSubmit}>
                             {/* <h3 className="cart-totals">Total: 100$</h3> */}
                             <h3 className="cart-totals">Total: {Number(totalCart).toLocaleString('en-US')}$</h3>
@@ -191,37 +162,3 @@ export default withAuthenticationRequired (function PaymentGateway({ image, name
     )
 },{onRedirecting:()=><Loading/>});
 
-/*
-<div className="container p-4">
-                <div className="row h-800">
-                    <div className="col-md-4 offset-md-4 h-800">
-                        <form className="card card-body" onSubmit={handleSubmit}>
-                            
-                            <img
-                                src="https://www.corsair.com/medias/sys_master/images/images/h80/hdd/9029904465950/-CH-9109011-ES-Gallery-K70-RGB-MK2-01.png"
-                                alt="Corsair Gaming Keyboard RGB"
-                                className="img-fluid"
-                            />
-
-                            <h3 className="text-center my-2">Price: 100$</h3>
-
-                            
-                            <div className="form-group">
-                                <CardElement />
-                                
-                            </div>
-
-                            <button disabled={!stripe} className="btn btn-success">
-                                {loading ? (
-                                    <div className="spinner-border text-light" role="status">
-                                        <span className="sr-only"></span>
-                                    </div>
-                                ) : (
-                                    "Buy"
-                                )}
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-*/

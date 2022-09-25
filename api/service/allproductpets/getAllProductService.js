@@ -13,6 +13,8 @@ const dogaccessories = require('../../database/dbjson/dogAccesories.json'); //ar
 
 const datos = require('../../database/dbjson/catgen'); //archivo que contiene informacion de genero 
 
+const LoadProduct=require('../../middleware/LoadProduct')
+
 var ArrayAge = ['puppy', 'young', 'adult'];
 var randomAge = Math.floor(Math.random()*ArrayAge.length);
 
@@ -58,124 +60,20 @@ const getBasicProducts = async() => {
 
 
         //////////////// carga de productos en la tabla, asociacion con genero y categoria  /////////////////////////////
-        let dbCreateProducts = [];
-        for (let iterator of catfood) {
-            dbCreateProducts = await Product.create({
-                name: iterator.name,
-                price: iterator.price,
-                stock: iterator.stock,
-                detail: iterator.detail,
-                image: iterator.image,
-                rating: iterator.rating ? iterator.rating : '1',
-                age:iterator.age
 
-            })
+        LoadProduct(dbfood,dbCat,catfood)
+       
 
-            await dbfood.addProducts(dbCreateProducts);
-            await dbCreateProducts.setCategory(dbfood);
-
-            await dbCat.addProducts(dbCreateProducts);
-            await dbCreateProducts.setGenre(dbCat);
-        }
-
-        let dbCatToys = [];
-        for (let iterator of cattoys) {
-            dbCatToys = await Product.create({
-                name: iterator.name,
-                price: iterator.price,
-                stock: iterator.stock,
-                detail: iterator.detail,
-                image: iterator.image,
-                rating: iterator.rating ? iterator.rating : '1',
-                age:iterator.age
-
-            })
-
-            await dbtoys.addProducts(dbCatToys);
-            await dbCatToys.setCategory(dbtoys);
-
-            await dbCat.addProducts(dbCatToys);
-            await dbCatToys.setGenre(dbCat);
-        }
-        let dbcataccessories = [];
-        for (let iterator of cataccessories) {
-            dbcataccessories = await Product.create({
-                name: iterator.name,
-                price: iterator.price,
-                stock: iterator.stock,
-                detail: iterator.detail,
-                image: iterator.image,
-                rating: iterator.rating ? iterator.rating : '1',
-                age:iterator.age
-
-            })
-
-            await dbaccessories.addProducts(dbcataccessories);
-            await dbcataccessories.setCategory(dbaccessories);
-
-            await dbCat.addProducts(dbcataccessories);
-            await dbcataccessories.setGenre(dbCat);
-        }
-
-        let dbDogFood = [];
-        for (let iterator of dogFood) {
-            dbDogFood = await Product.create({
-                name: iterator.name,
-                price: iterator.price,
-                stock: iterator.stock,
-                detail: iterator.detail,
-                image: iterator.image,
-                rating: iterator.rating ? iterator.rating : '1',
-                age:iterator.age
-
-            })
-
-            await dbfood.addProducts(dbDogFood);
-            await dbDogFood.setCategory(dbfood);
-
-            await dbdog.addProducts(dbDogFood);
-            await dbDogFood.setGenre(dbdog);
-        }
-
-        let dbDogToys = [];
-        for (let iterator of dogtoys) {
-            dbDogToys = await Product.create({
-                name: iterator.name,
-                price: iterator.price,
-                stock: iterator.stock,
-                detail: iterator.detail,
-                image: iterator.image,
-                rating: iterator.rating ? iterator.rating : '1',
-                age:iterator.age
-
-            })
-
-            await dbtoys.addProducts(dbDogToys);
-            await dbDogToys.setCategory(dbtoys);
-
-            await dbdog.addProducts(dbDogToys);
-            await dbDogToys.setGenre(dbdog);
-        }
-
-        let dbDogAcesories = [];
-        for (let iterator of dogaccessories) {
-            dbDogAcesories = await Product.create({
-                name: iterator.name,
-                price: iterator.price,
-                stock: iterator.stock,
-                detail: iterator.detail,
-                image: iterator.image,
-                rating: iterator.rating ? iterator.rating : '1',
-                age:iterator.age
-
-            })
-
-            await dbaccessories.addProducts(dbDogAcesories);
-            await dbDogAcesories.setCategory(dbaccessories);
-
-            await dbdog.addProducts(dbDogAcesories);
-            await dbDogAcesories.setGenre(dbdog);
-        }
+        LoadProduct(dbtoys,dbCat,cattoys)
+  
+        LoadProduct(dbaccessories,dbCat,cataccessories)
+  
+        LoadProduct(dbfood,dbdog,dogFood)
+     
+        LoadProduct(dbtoys,dbdog,dogtoys)
+       
+        LoadProduct(dbaccessories,dbdog,dogaccessories)
+     
     }
     ///////////////////////////fin carga de productos iniciales/////////////////////////////////////////
     return;

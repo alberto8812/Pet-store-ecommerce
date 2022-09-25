@@ -48,8 +48,8 @@ export default function Carrito() {
 
   function handleNext() {
     // e.preventDefault();
-    productsInTheCart.quantitySelected = quantitySelected;
-    dispatch(addToCart(productsInTheCart))
+    //productsInTheCart.quantitySelected = quantitySelected;
+    //dispatch(addToCart(productsInTheCart))
     navigate('/paymentgateway');
   }
 

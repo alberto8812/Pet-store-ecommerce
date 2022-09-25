@@ -76,12 +76,12 @@ export default withAuthenticationRequired (function PaymentGateway({ image, name
     return (
         <div className="m7">
             <div className="b1 desk">
-                <div className="title">Pasarela de Pago</div>
+                <div className="title">Payment Gateway</div>
             </div>
             <div className="total-container mobile"></div>
             <div className="notification success desk">
                 <i className="fas fa-truck"></i>
-                "Productos a pagar"
+                "Products to pay"
             </div>
             <section className="cart-products-container">
                 <div className="cart-product">
@@ -94,12 +94,12 @@ export default withAuthenticationRequired (function PaymentGateway({ image, name
                   listCart.map((item) => {
                       return(
                           <div>
-                              <h3 className="image">{item.name}</h3>
+                              <h5 className="name">{item.name}</h5>
                               <img className="image" src={item.image} alt={item.name} height='50px' width='50px'/>
                               <div className="product-info">
-                              <h3 className="name">
-                                <a href={`/products/detail/${id}`} target='_blank'>{item.name}</a>
-                              </h3>
+                              <h5 className="name">
+                                <a href={`/products/detail/${id}`} target='_blank'>Go to product details</a>
+                              </h5>
                               <div className="description">
                                 <ul>
                                     <li>
@@ -160,7 +160,7 @@ export default withAuthenticationRequired (function PaymentGateway({ image, name
             {<section className="cart-totals-container">
                 <div className="fixed-resume">
                     <div className="cart-totals-detail">
-                        <div className="title-total-detail desk">Forma de Pago</div>
+                        <div className="title-total-detail desk">Way to pay</div>
                         <form className="card card-body" onSubmit={handleSubmit}>
                             {/* <h3 className="cart-totals">Total: 100$</h3> */}
                             <h3 className="cart-totals">Total: {Number(totalCart).toLocaleString('en-US')}$</h3>

@@ -6,7 +6,7 @@ import "./Carrito.css";
 
 //{ image, name, stock, price, id, category, genre, age }
 export default function Carrito() {
-//   const [counter, setCounter] = useState(0);
+  //   const [counter, setCounter] = useState(0);
   const productsInTheCart = useSelector(state => state.cart);
   const [quantitySelected, setQuantitySelected] = useState(1);
   const dispatch = useDispatch();
@@ -18,10 +18,10 @@ export default function Carrito() {
   Object.keys(productsInTheCart).forEach(product => {
     totalCart += productsInTheCart[product].quantity * productsInTheCart[product].price;
     listCart.push(productsInTheCart[product]);
-});
+  });
 
-  function totalPrice(price, item){
-      return Number(price * item).toLocaleString('en-US');
+  function totalPrice(price, item) {
+    return Number(price * item).toLocaleString('en-US');
   };
 
   function handleResta(e) {
@@ -41,28 +41,28 @@ export default function Carrito() {
     // return setCounter(counter + 1);
   };
 
-  function handleDelete(e){
+  function handleDelete(e) {
     e.preventDefault(e);
     dispatch(deleteCart());
   };
 
-  function handleNext(){
-      // e.preventDefault();
-      productsInTheCart.quantitySelected = quantitySelected;
-      dispatch(addToCart(productsInTheCart))
-      navigate('/paymentgateway');
+  function handleNext() {
+    // e.preventDefault();
+    productsInTheCart.quantitySelected = quantitySelected;
+    dispatch(addToCart(productsInTheCart))
+    navigate('/paymentgateway');
   }
 
   return (
     <div className="m7">
       <div className="b1 desk">
-        <div className="title">Mi Carrito</div>
+        <div className="title">My Cart</div>
       </div>
       <div className="total-container mobile"></div>
       <div className="notification success desk">
         {/* <i className="fas fa-truck"></i> */}
-        <i class="bi bi-truck"></i>
-        "Envio gratis a partir de $500"
+        <i class="bi bi-shop-window"> </i>
+        Withdrawal by branch
       </div>
       <section className="cart-products-container">
         <div className="cart-product">
@@ -70,25 +70,25 @@ export default function Carrito() {
             {/* <div className="clear"></div> */}
           </div>
           <div className="table">
-              {
-                  listCart.map((item,key) => {
-                      return(
-                          <div key={key}>
-                              <button type="button" onClick={e=> handleDelete(e)}><i class="bi bi-x-circle-fill" style={{ color: "#6200adc9" }}></i></button>
-                              <h3 className="name">{item.name}</h3>
-                              <img className="image" src={item.image} alt={item.name}/>
-                              <ul>
-                                  <li><strong>Age: </strong> {item.age}</li>
-                                  <li><strong>ID Product: </strong>{item.id}</li>
-                              </ul>
-                            <button className="minus disabled" onClick={(e)=>handleResta(e)}>-</button>
-                            <span className="count">{item.quantity}</span>
-                            <button className="plus" onClick={(e)=>handleSuma(e)}>+</button>
-                            <span>Total {totalPrice(item.price, item.quantity)} $</span>
-                          </div>
-                      )
-                  })
-              }
+            {
+              listCart.map((item, key) => {
+                return (
+                  <div key={key}>
+                    <button type="button" onClick={e => handleDelete(e)}><i class="bi bi-x-circle-fill" style={{ color: "#6200adc9" }}></i></button>
+                    <h3 className="name">{item.name}</h3>
+                    <img className="image" src={item.image} alt={item.name} />
+                    <ul>
+                      <li><strong>Age: </strong> {item.age}</li>
+                      <li><strong>ID Product: </strong>{item.id}</li>
+                    </ul>
+                    <button className="minus disabled" onClick={(e) => handleResta(e)}>-</button>
+                    <span className="count">{item.quantity}</span>
+                    <button className="plus" onClick={(e) => handleSuma(e)}>+</button>
+                    <span>Total {totalPrice(item.price, item.quantity)} $</span>
+                  </div>
+                )
+              })
+            }
           </div>
         </div>
       </section>
@@ -96,7 +96,7 @@ export default function Carrito() {
         <section className="cart-totals-container">
           <div className="fixed-resume">
             <div className="cart-totals-detail">
-              <div className="title-total-detail desk">Resumen de compra</div>
+              <div className="title-total-detail desk">Purchase Summary</div>
               <ul className="cart-totals">
                 {/* <li className="desk" id="subtotal">
                   <span>Subtotal</span>
@@ -115,7 +115,7 @@ export default function Carrito() {
                   <span>Total</span>
                   <span id="carritoTotal">$ {Number(totalCart).toLocaleString('en-US')}</span>
                 </li>
-                <div className="cart-additional-title">
+                {/*<div className="cart-additional-title">
                   Descuentos y Cupones
                 </div>
                 <li className="cart-coupon">
@@ -137,12 +137,16 @@ export default function Carrito() {
                       <button className="disabled">Aplicar</button>
                     </div>
                   </div>
-                </li>
+                </li>*/}
               </ul>
             </div>
             <div className="cart-form-actions">
-              <a href="/">Comprar mas Productos</a>
-              <button type="button" onClick={handleNext} className="btn-checkout">Continuar</button>
+              <a href="/">Buy more Products </a>
+            </div>
+            <br />
+            <br />
+            <div className="cart-form-actions">
+              <button type="button" onClick={handleNext} className="btn-checkout">Continue</button>
             </div>
           </div>
         </section>

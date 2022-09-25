@@ -13,6 +13,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
+//BACK --> Falta ruta de post review? 
+//Vamos a validar que la persona seleccione estrellas? Si o si haga puntuación? 
+
+//BACK Y FRONT-->Chequear nombres de propiedades que sean las mismas en el back
+
+//FRONT --> Arreglar estilos de comentarios
+
 //Función para validar comentario de Review:
 export function validate (data) {
     let errors = {}
@@ -62,19 +69,21 @@ export default function Detail() {
     let render = false;
 
     const handleSubmit = (e) => {
-        // e.preventDefault();
-        // const errors = validate(input)
-        // if(errors.comment){
-        //     alert('Your comment could not be published')
-        // } else if (userLogin.review.length) {
-        //     render = false;
-        //     alert('You already posted a comment on this product')
-        // } else {
-        //     alert('Comment posted successfully')
-        //     render = false
+        e.preventDefault();
+        const errors = validate(data)
+        if (!isAuthenticated) {
+            alert('You must be logged to comment')
+        } else if(errors.comment){
+            alert('Your comment could not be published')
+        } else if (userLogin.review.length) {
+            render = false;
+            alert('You already posted a comment on this product')
+        } else {
+            alert('Comment posted successfully')
+            render = false
             dispatch(addComment(data))
-        };
-    
+        }
+    }
 
     const handleChange = function (e) {
         setData({
@@ -87,29 +96,25 @@ export default function Detail() {
         }))
     }
 
-    // const canComment = function (e) {
-    //     const userLogin = user.filter (e  => e === user.email );
-    //     if (!userLogin.review.length) {
-            
-    //     } else {
-    //         alert('You already posted a comment on this product')
-    //     }
-    // }
-
-    // var contador;
     const calificar = function (e) {
         setData({...data, punctuation: e})
-        // console.log(e)
-        // contador = e.id[0]
-        // let nombre = e.id.substring(1)
-        // for(let i = 0; i<5; i++){
-        //     if(i<contador) {
-        //         document.getElementById((i+1)+nombre).className='rating span:active'
-        //     } else {
-        //         document.getElementById((i+1)+nombre).className='rating span'
-        //     }
-        // }
+        console.log({...data, punctuation:e})
+
+        for(var i = 1; i<=5; i++) {
+            const stars = document.getElementById('star' + i)
+            stars.style.color = i<=e?'yellow': 'gray'
+            stars.style.textShadow = i<=e?'0px 0px 5px yellow' : ''
+        }
     }
+
+    const renderizarEstrellas = function (e) {
+        let string = ''
+        for (var i=1; i<=e; i++){
+            string = string + '★'
+        }
+        return string
+    }
+
 
 //HASTA ACÁ REVIEW    
 
@@ -233,11 +238,11 @@ export default function Detail() {
                         <div className="item-description m-mobile">
                             <h2 className="title desk">Reviews</h2>
                             <div class="rating">
-                                <span onClick={e => calificar(5)} id="5estrellas">★</span>
-                                <span onClick={e => calificar(4)} id="4estrellas">★</span>
-                                <span onClick={e => calificar(3)} id="3estrellas">★</span>
-                                <span onClick={e => calificar(2)} id="2estrellas">★</span>
-                                <span onClick={e => calificar(1)} id="1estrellas">★</span>
+                                <span className='star' onClick={e => calificar(5)} id="star5">★</span>
+                                <span className='star' onClick={e => calificar(4)} id="star4">★</span>
+                                <span className='star' onClick={e => calificar(3)} id="star3">★</span>
+                                <span className='star' onClick={e => calificar(2)} id="star2">★</span>
+                                <span className='star' onClick={e => calificar(1)} id="star1">★</span>
                             </div>
                             <div className="review">
                                 {!userLogin.comment?.length && 
@@ -251,6 +256,21 @@ export default function Detail() {
                                     </div>
                                     <button type="submit" className="btncom">Comment</button>
                                 </form>}
+                            </div>
+                            <div>
+                                <h4>Comments</h4>
+                                <div>{myProduct?.reviews?.map( review => {
+                                    return(
+                                        <div>
+                                            <h2>{review.comment}</h2>
+                                            <h2>{renderizarEstrellas(review.punctuation)}</h2>
+                                        </div>
+                                    )
+                                })}</div>
+                                <div>
+                                    <h2>Esto es un comentario de prueba</h2>
+                                    <h2>{renderizarEstrellas(3)}</h2>
+                                </div>
                             </div>
                         </div>
                         {/* FIN SECCION REVIEWS */}

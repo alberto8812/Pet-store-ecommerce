@@ -4,9 +4,6 @@ import "bootswatch/dist/pulse/bootstrap.min.css";
 import './PaymentGateway.css'
 //import { loadStripe } from "@stripe/stripe-js";
 
-//HAY QUE HACER npm i --save @stripe/react-stripe-js @stripe/stripe-js   TANTO EN BACK COMO EN FRONT
-// HAY QUE HACER npm i bootswatch EN FRONT
-
 import {
     //Elements,
     CardElement,
@@ -66,7 +63,7 @@ export default withAuthenticationRequired (function PaymentGateway({ image, name
                 elements.getElement(CardElement).clear();
             } catch (error) {
                 console.log(error);
-            }
+            } 
             setLoading(false);
         }
     };

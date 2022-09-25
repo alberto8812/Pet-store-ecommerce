@@ -121,7 +121,7 @@ export function decreaseCart(payload) {
 
 export function addComment(input) {
     return async function (dispatch) {
-        axios.put('http://localhost:3001/products/detail/',input)
+        axios.post('http://localhost:3001/loginUsers/comment',input)
         .then ((res) => {
             dispatch({
                 type: ADD_COMMENT,

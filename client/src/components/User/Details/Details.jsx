@@ -102,7 +102,7 @@ export default function Detail() {
 
         for(var i = 1; i<=5; i++) {
             const stars = document.getElementById('star' + i)
-            stars.style.color = i<=e?'yellow': 'gray'
+            stars.style.color = i<=e?'rgb(255, 251, 5)': '#ccc'
             stars.style.textShadow = i<=e?'0px 0px 5px yellow' : ''
         }
     }
@@ -253,12 +253,12 @@ export default function Detail() {
                                         {errors.comment && (
                                             <p className='danger'>{errors.comment}</p>
                                         )}
+                                        <button type="submit" className="btncom">Comment</button>
                                     </div>
-                                    <button type="submit" className="btncom">Comment</button>
                                 </form>}
                             </div>
                             <div>
-                                <h4>Comments</h4>
+                                <h2 lassName="title desk">Comments</h2>
                                 <div>{myProduct?.reviews?.map( review => {
                                     return(
                                         <div>
@@ -267,10 +267,14 @@ export default function Detail() {
                                         </div>
                                     )
                                 })}</div>
-                                <div>
-                                    <h2>Esto es un comentario de prueba</h2>
-                                    <h2>{renderizarEstrellas(3)}</h2>
-                                </div>
+                                <div className="comments">
+                                    <div>
+                                        <span className='starComment'>{renderizarEstrellas(3)}</span>
+                                    </div>
+                                    <div>
+                                       <p>Is a good product. I am satisfied with what I bought</p> 
+                                    </div>
+                                </div>     
                             </div>
                         </div>
                         {/* FIN SECCION REVIEWS */}

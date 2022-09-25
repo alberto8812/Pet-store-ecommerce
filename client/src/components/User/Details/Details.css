@@ -666,12 +666,20 @@ p:not(.item-description.m-mobile p) {
     color: yellow;
 }
 
+.starComment{
+    color: gold;
+    text-shadow: 0 0 5px #e2e2e2;
+    width: 1.1em;
+    font-size: 2em;
+}
+
 /* FIN CSS ESTRELLAS */
 
 /* CSS REVIEW */
 .review {
     margin-top: 12%;
     font-family: 'roboto', sans-serif;
+    margin-bottom: 10%;
 }
 
 .titleRev {
@@ -694,8 +702,8 @@ p:not(.item-description.m-mobile p) {
 .btncom{
     position:absolute;
     display: inline-block;
-    margin-left: 67%;
-    bottom: 4%;
+    margin-left: 3%;
+    bottom: 17.9%;
     background: #8442ca;
     width: 20%;
     padding: 12px 20px;
@@ -721,6 +729,16 @@ textarea.danger {
     height: 3em;
     border-radius: 4px;
     resize: vertical;
+    max-height: 20em;
+    min-height: 3em;
+}
+
+.comments {
+    border: 1px solid rgb(220, 216, 216);
+    padding: 1em;
+    padding-top: 0%;
+    border-radius: 2px;
+    background-color: rgba(204, 204, 204, 0.108);
 }
 /* FIN CSS REVIEW */
 

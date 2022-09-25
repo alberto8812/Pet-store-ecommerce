@@ -12,7 +12,8 @@ import {
     DECREASE_QUANTITY,
     UPDATE_CART,
     DELETE_CART,
-    ADD_COMMENT
+    ADD_COMMENT,
+    REFRESH_CART
 } from "./constants";
 
 export function getAllProducts() {
@@ -79,6 +80,7 @@ export function sortByPrice(payload) {
 };
 
 export function addToCart(payload) {
+    console.log('SOY EL ADDTOCART PAYLOAD', payload);
     return {
         type: ADD_TO_CART,
         payload
@@ -121,15 +123,22 @@ export function decreaseCart(payload) {
 
 export function addComment(input) {
     return async function (dispatch) {
-        axios.put('http://localhost:3001/products/detail/',input)
+        axios.post('http://localhost:3001/loginUsers/comment',input)
         .then ((res) => {
             dispatch({
                 type: ADD_COMMENT,
                 payload: res.data
             })
-        })
     }
+    )}
 }
+
+export function refreshCart(payload) {
+    return {
+        type: REFRESH_CART,
+        payload
+    }
+};
 
 
 ////////////////////////////////test filters/////////////////////////
@@ -146,4 +155,3 @@ export function addComment(input) {
 //             console.error(err);
 //         }
 //     };
-// };

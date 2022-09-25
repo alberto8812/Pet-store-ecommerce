@@ -7,7 +7,6 @@ import "./AboutUs.css";
 import { postContact } from "../../../redux/actions";
 
 export default function AboutUs() {
-  // const [submitted, setSubmitted] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch()
   const initialState = {
@@ -89,7 +88,7 @@ export default function AboutUs() {
       </div>
       <ToastContainer
         position="top-center"
-        autoClose={3000}
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

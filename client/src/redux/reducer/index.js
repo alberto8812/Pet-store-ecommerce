@@ -11,6 +11,7 @@ import {
     DECREASE_QUANTITY,
     UPDATE_CART,
     DELETE_CART,
+    REFRESH_CART
 } from "../actions/constants";
 
 export const initialState = {
@@ -60,17 +61,16 @@ function rootReducer(state = initialState, action) {
             if (state.numberCart === 0) {
                 let shoppingCart = {
                     id: action.payload.id,
-                    quantity: 1,
+                    quantity: action.payload.quantitySelected,
                     name: action.payload.name,
                     image: action.payload.image,
                     price: action.payload.price
                 }
                 state.cart.push(shoppingCart);
-                console.log(shoppingCart);
             } else {
                 let check = false;
                 state.cart.map((item, key) => {
-                    if (item.id == action.payload.id) {
+                    if (item.id === action.payload.id) {
                         state.cart[key].quantity++;
                         check = true;
                     }
@@ -79,7 +79,7 @@ function rootReducer(state = initialState, action) {
                     let cartShopping = {
                         id: action.payload.id,
                         age: action.payload.age,
-                        quantity: 1,
+                        quantity: action.payload.quantitySelected,
                         name: action.payload.name,
                         image: action.payload.image,
                         price: action.payload.price
@@ -87,6 +87,7 @@ function rootReducer(state = initialState, action) {
                     state.cart.push(cartShopping);
                 }
             }
+            localStorage.setItem("cart", JSON.stringify(state.cart));
             return {
                 ...state,
                 numberCart: state.numberCart + 1
@@ -115,7 +116,16 @@ function rootReducer(state = initialState, action) {
                     return item.id != state.cart[action.payload].id
                 })
             };
-
+        case REFRESH_CART:
+            let cart = [];
+            if (localStorage.getItem("cart")) {
+                cart = JSON.parse(localStorage.getItem("cart"))
+            }
+            return {
+                ...state,
+                numberCart: 1,
+                cart: cart
+            }
 
             /////////////////////test filters/////////////////////
             // case "GET_TEST":

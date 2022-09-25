@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {withAuthenticationRequired} from '@auth0/auth0-react'
 import "bootswatch/dist/pulse/bootstrap.min.css";
 import './PaymentGateway.css'
 //import { loadStripe } from "@stripe/stripe-js";
@@ -14,14 +15,30 @@ import {
 } from "@stripe/react-stripe-js";
 
 import axios from "axios";
+import { useSelector } from "react-redux";
+import Loading from "../Loading/Loading";
 
 //const stripePromise = loadStripe("pk_test_51LkfWEIzGpa9z0EFC6OqfUFPRBmrUIS1nZVezBHgqSh6GBtJ3x5whj06EuCkgwBhls2xwc3M8UI9JKxid7o7Zzni00BiLqFS7P");
 
-export default function PaymentGateway({ image, name, stock, price, id, category, genre, age }) {
+export default withAuthenticationRequired (function PaymentGateway({ image, name, stock, price, id, category, genre, age }) {
     const stripe = useStripe();
     const elements = useElements();
 
     const [loading, setLoading] = useState(false);
+    const productsInTheCart = useSelector(state => state.cart);
+
+    let listCart = [];
+    let totalCart = 0;
+  
+    Object.keys(productsInTheCart).forEach(product => {
+      totalCart += productsInTheCart[product].quantity * productsInTheCart[product].price;
+      listCart.push(productsInTheCart[product]);
+  });
+  
+    function totalPrice(price, item){
+        return Number(price * item).toLocaleString('en-US');
+    };
+  
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -69,15 +86,46 @@ export default function PaymentGateway({ image, name, stock, price, id, category
             <section className="cart-products-container">
                 <div className="cart-product">
                     <div className="product-head desk">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
                         <div className="clear"></div>
                     </div>
+                    
                     <div className="table">
+                    {
+                  listCart.map((item) => {
+                      return(
+                          <div>
+                              <h3 className="image">{item.name}</h3>
+                              <img className="image" src={item.image} alt={item.name} height='50px' width='50px'/>
+                              <div className="product-info">
+                              <h3 className="name">
+                                <a href={`/products/detail/${id}`} target='_blank'>{item.name}</a>
+                              </h3>
+                              <div className="description">
+                                <ul>
+                                    <li>
+                                        <strong>Age:</strong>
+                                        {item.age}
+                                    </li>
+                                    <li>
+                                        <strong>Id Product:</strong>
+                                        {item.id}
+                                    </li>
+                                </ul>
+                            </div>
+                            </div>
+                            <div className="quantity" data-id="0">
+                            <div className="qty">
+                                <label type="number" id="cantidad_13854" pattern="[0-9]+" className="count" /> 
+                                {item.quantity} 
+                            </div>
+                            </div>
+                            <span>Total {totalPrice(item.price, item.quantity)} $</span>
+                          </div>
+                      )
+                  })
+              }
+                </div>
+                    {/* <div className="table">
                         <div className="image">
                             <img src='https://d28hi93gr697ol.cloudfront.net/071e89ac-46a5-8ab3/img/Producto/3889dc7d-2110-a629-dcef-d80dfae8c247/royal-canin-mini-adulto-63212df4c6871-thumb.jpeg' alt={name} height='50px' width='50px' />
                         </div>
@@ -106,7 +154,7 @@ export default function PaymentGateway({ image, name, stock, price, id, category
                         <div className="price">
                             <div className="price-container">{price}</div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </section>
             {<section className="cart-totals-container">
@@ -114,11 +162,12 @@ export default function PaymentGateway({ image, name, stock, price, id, category
                     <div className="cart-totals-detail">
                         <div className="title-total-detail desk">Forma de Pago</div>
                         <form className="card card-body" onSubmit={handleSubmit}>
-                            <h3 className="cart-totals">Total: 100$</h3>
+                            {/* <h3 className="cart-totals">Total: 100$</h3> */}
+                            <h3 className="cart-totals">Total: {Number(totalCart).toLocaleString('en-US')}$</h3>
                             <div className="form-group">
                                 <CardElement className="pagos"/>
                             </div>
-                            <button disabled={!stripe} className="btn btn-success">
+                          <button disabled={!stripe} className="btn btn-success">
                                 {loading ? (
                                     <div className="spinner-border text-light" role="status">
                                         <span className="sr-only"></span>
@@ -140,7 +189,7 @@ export default function PaymentGateway({ image, name, stock, price, id, category
             </div>
         </div >
     )
-}
+},{onRedirecting:()=><Loading/>});
 
 /*
 <div className="container p-4">

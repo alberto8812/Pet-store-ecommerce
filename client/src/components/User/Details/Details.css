@@ -687,7 +687,8 @@ p:not(.item-description.m-mobile p) {
     padding: 2%;
     height: 3em;
     resize: vertical;
-   /* Ver si pongo un minimo y un maximo para agrandar y achicar */
+    max-height: 20em;
+    min-height: 3em;
 }
 
 .btncom{

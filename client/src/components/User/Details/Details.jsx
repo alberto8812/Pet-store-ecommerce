@@ -179,7 +179,7 @@ export default function Detail() {
             <div className="m3">
                 <div className="b5 desk">
                     <li><a href="/">Home</a></li>
-                    <li><a href="/">"CATEGORIA DEL PRODUCTO"</a></li>
+                    {/*<li><a href="/"></a></li>*/}
                     <div className="clear"></div>
                 </div>
                 <div className="product-container">
@@ -213,15 +213,17 @@ export default function Detail() {
                             <div className="item-description m-mobile">
                                 <h2 className="title desk">Description</h2>
                                 <div className="text c-mobile">
-                                    <p>{myProduct.genre.name} {myProduct.category.name} {myProduct.name}</p>
+                                    <p>{myProduct.name}</p>
+                                    <br />
+                                    <p>{myProduct.genre.name} {myProduct.category.name} </p>
+                                    <br />
                                     <p>
-                                        <span className="span1">
-                                            "Por si queremos agregar la edad recomendada EJ: Alimento para perros adultos de talla pequeña (peso adulto hasta 10 kg). De 10 meses a 8 años de edad."
+                                        <span className="span1"> ideal for {myProduct.age}
                                             <br />
                                         </span>
                                         <br />
                                         <b>
-                                            <span className="span2">Full Description:</span>
+                                            <span className="span2">Full Description: </span>
                                         </b>
                                     </p>
                                     <p>
@@ -288,16 +290,16 @@ export default function Detail() {
                             <input type="hidden" value={myProduct.price} id="priceProduct" />
                             <h1 className="item-title">{myProduct.name}</h1>
                             <div className="price-container">
-                                <span className="old bloquePrecio" id="precioLista">Precio sin descuento.. EJ: $100.000</span>
+                                {/*<span className="old bloquePrecio" id="precioLista">Precio sin descuento.. EJ: $100.000</span>*/}
                                 <span className="price" id="precioPromo">US$ {myProduct.price}</span>
-                                <span className="discont bloquePrecio" id="porcentajePromo">15% OFF</span>
-                                <span className="item-descuento-fp">
+                                {/*<span className="discont bloquePrecio" id="porcentajePromo">15% OFF</span>*/}
+                                {/*<span className="item-descuento-fp">
                                     "5% de descuento"
                                     <span className="fp">pagando en Efectivo</span>
-                                </span>
+                            </span>*/}
                             </div>
                             <div className="producto-information">
-                                <span className="tag free">Free shipping</span>
+                                <span className="tag free">Available now</span>
                             </div>
                             <div className="delivery">
                                 <ul>
@@ -306,11 +308,11 @@ export default function Detail() {
                                             <StorefrontIcon width='20px' height='20px' viewBox="0 0 20 20" className="Store"/>
                                         </div>
                                         <div className="body">
-                                            <p>Free withdrawal per branch</p>
-                                            <a className="more" href="/sucursales/listado">see branches</a>
+                                            <p>Withdrawal per branch</p>
+                                            {/*<a className="more" href="/sucursales/listado">see branches</a>*/}
                                         </div>
                                     </li>
-                                    <li>
+                                    {/*<li>
                                         <div className="icon">
                                             <LocalShippingIcon width='20px' height='20px' viewBox="0 0 20 20" className="Local" />
                                         </div>
@@ -320,7 +322,7 @@ export default function Detail() {
 
                                         </div>
 
-                                    </li>
+                        </li>*/}
                                 </ul>
                             </div>
                             <form action='/carrito/agregar/${id}' name="form" method="post">

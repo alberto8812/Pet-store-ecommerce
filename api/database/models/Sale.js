@@ -23,6 +23,16 @@ module.exports = (sequelize) =>{
       type: DataTypes.ENUM("PENDING", "CANCELLED", "COMPLETED"),
       allowNull: false,
       defaultValue:"PENDING"
+    },
+    month: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+     
+    },
+    year: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+     
     }
 
   })

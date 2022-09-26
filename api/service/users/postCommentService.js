@@ -7,16 +7,16 @@ const postCommentUser = async(req, res)=>{
   //const Userdata=await dataUser(accessToken);
 
   const {comment,punctuation}= req.body
-  console.log(punctuation)
+  console.log(punctuation,comment)
     let commentUser = await Review.findOne({
       where: {
-        id: "6e89d268-7b78-4802-bfb1-28bd0c53427b"
+        idProduct:"d770bd1b-9276-4ac8-9109-0900c5a686c7"
       }
     })
-
+ console.log(commentUser)
     await commentUser.update({comment, punctuation})
 
-    return  await Product.findOne({where:{id:"7351cc30-62f1-4c84-87db-8dbef5378446"},include:{model:Review}})
+    return  await Product.findOne({where:{id:"d770bd1b-9276-4ac8-9109-0900c5a686c7"},include:{model:Review}})
 
 }
 

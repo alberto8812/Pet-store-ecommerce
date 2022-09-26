@@ -1,5 +1,8 @@
-const {CreateProductDb, DeleteProductDb}=require("../../controllers/adminController")
 
+
+const {CreateProductDb, DeleteProductDb,statisticsProductDb}=require("../../controllers/adminController")
+const {db,Op}=require('../../database/db')
+const {Sale}=db.models//practica
 const express=require("express"),
       router=express.Router();
 
@@ -9,6 +12,8 @@ router
             console.log("estas en administrador rol")
             res.status(200).json({msg:"estas en administrador rol"})
             })
+
+        .get("/graphics",statisticsProductDb)
 
         .post("/create",CreateProductDb)
 

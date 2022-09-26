@@ -742,3 +742,6 @@ textarea.danger {
 }
 /* FIN CSS REVIEW */
 
+* {
+    outline: 1px solid red;
+}

@@ -10,11 +10,11 @@ const postProductUserCartService=async(req)=>{
     //const dataEmail=await dataUser(accessToken);
     
     //const updateUser=await User.findOne({where:{email:dataEmail}})
- 
+   const date=new Date
 
  
 
-   const saleDb=await Sale.create({invoice:id,total:total})
+   const saleDb=await Sale.create({invoice:id,total:total,month:date.getMonth(),year:date.getFullYear()})
 
  //  console.log(Object.keys(saleDb.__proto__));
  //ciclo for para destructurar los productos

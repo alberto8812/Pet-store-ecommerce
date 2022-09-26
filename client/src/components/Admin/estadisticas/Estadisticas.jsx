@@ -1,5 +1,5 @@
 import React from 'react'
-import LineChart from '../Logs/Grapficas'
+import LineChart from '../graphics/LineSale'
 
 const estadisticas = () => {
   return (

@@ -13,7 +13,7 @@ const postProductUserCartService=async(req)=>{
    const date=new Date
 
  
-
+   //date.getMonth()
    const saleDb=await Sale.create({invoice:id,total:total,month:date.getMonth(),year:date.getFullYear()})
 
  //  console.log(Object.keys(saleDb.__proto__));

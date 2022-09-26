@@ -1,4 +1,5 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
+import axios from "axios"
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -23,9 +24,9 @@ ChartJS.register(
   Filler
 );
 
-const scores = [6, 5, 5, 5, 3, 4, 6, 4, 5];
-const scores2 = [1, 3, 2, 2, 4, 4, 5, 3, 2];
-const labels = [100, 200, 300, 400, 500, 600, 700];
+
+
+
 
 const options = {
   
@@ -42,12 +43,32 @@ const options = {
   },
 };
 
-export default function LineChart() {
-  const data = useMemo(function () {
-    return {
+export default function LineSell() {
+const [lineGraphics, setLineGraphics] = useState({});
+
+const labels =lineGraphics.month;
+const scores = lineGraphics.total;
+console.log(lineGraphics)
+
+useEffect(() => {
+   const lineGraphicsdb=async()=>{
+    const data2=(await axios.get('http://localhost:3001/loginAdmin/graphics')).data
+    setLineGraphics(()=>data2)
+  }
+  lineGraphicsdb()
+
+ }, [])
+
+
+
+ 
+
+
+  const data = {
+
       datasets: [
         {
-          label: "Mis datos",
+          label: "Ventas",
           data: scores,
           tension: 0.3,
           borderColor: "rgb(75, 192, 192)",
@@ -59,7 +80,10 @@ export default function LineChart() {
       ],
       labels,
     };
-  }, []);
+
+
+
+  
 
   return <Line data={data} options={options} />;
 }

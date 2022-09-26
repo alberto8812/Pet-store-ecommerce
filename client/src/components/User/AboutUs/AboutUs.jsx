@@ -25,7 +25,7 @@ export default function AboutUs() {
   }
 
   const notifyOK = () => {
-      toast.success("Thank you! We will be in touch soon 🐶", {
+      toast.success(`Thank you ${input.name}! We will be in touch soon 🐶`, {
         theme: "colored",
       });
   };

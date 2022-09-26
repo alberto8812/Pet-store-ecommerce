@@ -55,22 +55,22 @@ const Carousel = props => {
         }
     }
 
- useEffect(() => {
-    intervalSlideshow.current=setInterval(() => {
-        next();
-   }, 5000);
+//  useEffect(() => {
+//     intervalSlideshow.current=setInterval(() => {
+//         next();
+//    }, 5000);
 
-   //elimnar intervalos
-   slideshow.current.addEventListener('mouseenter',()=>{
-    clearInterval(intervalSlideshow.current);
-   })
-   //reanidar el intervalo
-   slideshow.current.addEventListener('mouseleave',()=>{
-    intervalSlideshow.current=setInterval(() => {
-        next();
-   }, 5000);
-   })
- }, [])
+//    //elimnar intervalos
+//    slideshow.current.addEventListener('mouseenter',()=>{
+//     clearInterval(intervalSlideshow.current);
+//    })
+//    //reanidar el intervalo
+//    slideshow.current.addEventListener('mouseleave',()=>{
+//     intervalSlideshow.current=setInterval(() => {
+//         next();
+//    }, 5000);
+//    })
+//  }, [])
 
 
   return (

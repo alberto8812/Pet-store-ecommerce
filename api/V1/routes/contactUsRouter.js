@@ -25,7 +25,7 @@ router.post('/', (req, res) => {
             to: auth_mail,
             subject: 'test email',
             html: `<div>
-                <h2>Here is your mail</h2>
+                <h2>You have a new message</h2>
                 <p>${message}</p>
                 <p>${email}</p>
                 </div>`

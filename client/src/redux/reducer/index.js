@@ -64,7 +64,8 @@ function rootReducer(state = initialState, action) {
                     quantity: action.payload.quantitySelected,
                     name: action.payload.name,
                     image: action.payload.image,
-                    price: action.payload.price
+                    price: action.payload.price,
+                    stock: action.payload.stock
                 }
                 state.cart.push(shoppingCart);
             } else {
@@ -82,7 +83,8 @@ function rootReducer(state = initialState, action) {
                         quantity: action.payload.quantitySelected,
                         name: action.payload.name,
                         image: action.payload.image,
-                        price: action.payload.price
+                        price: action.payload.price,
+                        stock: action.payload.stock
                     }
                     state.cart.push(cartShopping);
                 }

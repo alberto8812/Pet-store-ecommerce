@@ -1,30 +1,29 @@
-[
-    {
-        "name":"Besties - Meat and Chicken Flavor Cat Food",
-        "stock":30,
-        "price":20,
-        "detail":"Besties - Meat and Chicken Flavor Cat Food is a complete food for adult cats of all breeds, meat and chicken flavor (or just one). 100% complete and balanced food for cats of all breeds, contains fish oil, without the addition of artificial colors or flavors, fortified with vitamins and minerals, prebiotic fiber for intestinal health, essential taurine for healthy vision and heart.",
-        "image":"https://laika.com.co/cdn-cgi/image/onerror=redirect,format=auto,fit=scale-down,width=600,quality=80/https://laikapp.s3.amazonaws.com/dev_images_products/79319_183176_Besties___Alimento_Gatos_Sabor_Carne_y_Pollo_1659726452_800x800.jpg",
-        "rating":"3",
-        "age":"puppy"
+[{
+        "name": "Besties - Meat and Chicken Flavor Cat Food",
+        "stock": 30,
+        "price": 20,
+        "detail": "Besties - Meat and Chicken Flavor Cat Food is a complete food for adult cats of all breeds, meat and chicken flavor (or just one). 100% complete and balanced food for cats of all breeds, contains fish oil, without the addition of artificial colors or flavors, fortified with vitamins and minerals, prebiotic fiber for intestinal health, essential taurine for healthy vision and heart.",
+        "image": "https://laika.com.co/cdn-cgi/image/onerror=redirect,format=auto,fit=scale-down,width=600,quality=80/https://laikapp.s3.amazonaws.com/dev_images_products/79319_183176_Besties___Alimento_Gatos_Sabor_Carne_y_Pollo_1659726452_800x800.jpg",
+        "rating": "3",
+        "age": "puppy"
     },
     {
-        "name":"Chunky Delicat Salmon Pot",
-        "stock":55,
-        "price":30,
-        "detail":"Chunky delicat salmon pot, Your feline deserves the best food, which gives real nutrients and benefits to your body, the omegas it contains improves your vision, helps improve stress, improves the digestive system and excess fat, prevents heart disease , this wonderful potted food for cats, provides a very complete nutrition to your pet.",
-        "image":"https://laika.com.co/cdn-cgi/image/onerror=redirect,format=auto,fit=scale-down,width=600,quality=80/https://s3.us-east-1.amazonaws.com/laikapp/images_products/f8a0b84ddd9586d4f34556636f636e63.png",
-        "rating":"4",
-        "age":"adutl"
-       
+        "name": "Chunky Delicat Salmon Pot",
+        "stock": 55,
+        "price": 30,
+        "detail": "Chunky delicat salmon pot, Your feline deserves the best food, which gives real nutrients and benefits to your body, the omegas it contains improves your vision, helps improve stress, improves the digestive system and excess fat, prevents heart disease , this wonderful potted food for cats, provides a very complete nutrition to your pet.",
+        "image": "https://laika.com.co/cdn-cgi/image/onerror=redirect,format=auto,fit=scale-down,width=600,quality=80/https://s3.us-east-1.amazonaws.com/laikapp/images_products/f8a0b84ddd9586d4f34556636f636e63.png",
+        "rating": "4",
+        "age": "adult"
+
     },
     {
-        "name":"Pet Brunch Pasteurized Wet Food Chicken Carrot",
-        "stock":5,
-        "price":50,
-        "detail":"Hypoallergenic complete natural food, with the best existing balance for the daily nutrition of dogs, very palatable, with a soft bite and easy absorption for the digestive system; formulated to stimulate the immune system of dogs and cats",
-        "image":"https://laika.com.co/cdn-cgi/image/onerror=redirect,format=auto,fit=scale-down,width=600,quality=80/https://laikapp.s3.amazonaws.com/dev_images_products/57080_Pet_Brunch_Alimento_H__medo_Pasteurizado_Pollo_Zanahoria_1621626956_0_500x500.png",
-        "rating":"5",
-        "age":"young"
+        "name": "Pet Brunch Pasteurized Wet Food Chicken Carrot",
+        "stock": 5,
+        "price": 50,
+        "detail": "Hypoallergenic complete natural food, with the best existing balance for the daily nutrition of dogs, very palatable, with a soft bite and easy absorption for the digestive system; formulated to stimulate the immune system of dogs and cats",
+        "image": "https://laika.com.co/cdn-cgi/image/onerror=redirect,format=auto,fit=scale-down,width=600,quality=80/https://laikapp.s3.amazonaws.com/dev_images_products/57080_Pet_Brunch_Alimento_H__medo_Pasteurizado_Pollo_Zanahoria_1621626956_0_500x500.png",
+        "rating": "5",
+        "age": "young"
     }
-        ]
+]

@@ -6,8 +6,9 @@ import "./Carrito.css";
 
 //{ image, name, stock, price, id, category, genre, age }
 export default function Carrito() {
-  //   const [counter, setCounter] = useState(0);
   const productsInTheCart = useSelector(state => state.cart);
+    // const [counter, setCounter] = useState(0);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -30,7 +31,7 @@ export default function Carrito() {
 
   function handleIncrease(e) {
     e.preventDefault();
-    dispatch(increaseCart(e.target.id));
+      dispatch(increaseCart(e.target.id));
   };
 
   function handleDelete(e) {
@@ -51,8 +52,9 @@ export default function Carrito() {
       <div className="total-container mobile"></div>
       <div className="notification success desk">
         {/* <i className="fas fa-truck"></i> */}
-        <i class="bi bi-shop-window"> </i>
-        Withdrawal by branch
+        {/* <i class="bi bi-shop-window"> </i> */}
+        <i class="bi bi-truck"></i>
+        Free shipping from $500
       </div>
       <section className="cart-products-container">
         <div className="cart-product">
@@ -70,9 +72,10 @@ export default function Carrito() {
                     <ul>
                       <li><strong>Age: </strong> {item.age}</li>
                       <li><strong>ID Product: </strong>{item.id}</li>
+                      <li><strong>Stock: </strong>{item.stock}</li>
                     </ul>
                     <button className="minus disabled" onClick={e => handleDecrease(e)} id={item.id}>-</button>
-                    <span className="count" id={item.id}>{item.quantity}</span>
+                    <span className="count">{item.quantity}</span>
                     <button className="plus" onClick={e => handleIncrease(e)} id={item.id}>+</button>
                     <span>Total $ {totalPrice(item.price, item.quantity)} </span>
                   </div>

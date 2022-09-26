@@ -21,10 +21,6 @@ module.exports = (sequelize)=>{
     subtotal: {
       type: DataTypes.FLOAT,
       allowNull: false
-    },
-    date: {
-      type: DataTypes.DATE,
-      allowNull: true
     }
   })
 }

@@ -269,14 +269,29 @@ export default function Detail() {
                                         </div>
                                     )
                                 })}</div>
+                                <scroll-container>
                                 <div className="comments">
+                                    <scroll-page>
+                                    <div className="comments">
                                     <div>
                                         <span className='starComment'>{renderizarEstrellas(3)}</span>
                                     </div>
                                     <div>
                                        <p>Is a good product. I am satisfied with what I bought</p> 
                                     </div>
-                                </div>     
+                                    </div>
+                                    </scroll-page>
+                                    <scroll-page>
+                                    <div className="comments">
+                                    <div>
+                                        <span className='starComment'>{renderizarEstrellas(2)}</span>
+                                    </div>
+                                    <div>
+                                       <p>Probando como queda</p> 
+                                    </div></div>
+                                    </scroll-page>
+                                </div>  
+                                </scroll-container>   
                             </div>
                         </div>
                         {/* FIN SECCION REVIEWS */}

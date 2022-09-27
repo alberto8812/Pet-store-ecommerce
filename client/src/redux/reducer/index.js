@@ -64,7 +64,8 @@ function rootReducer(state = initialState, action) {
                     quantity: action.payload.quantitySelected,
                     name: action.payload.name,
                     image: action.payload.image,
-                    price: action.payload.price
+                    price: action.payload.price,
+                    stock: action.payload.stock
                 }
                 state.cart.push(shoppingCart);
             } else {
@@ -82,7 +83,8 @@ function rootReducer(state = initialState, action) {
                         quantity: action.payload.quantitySelected,
                         name: action.payload.name,
                         image: action.payload.image,
-                        price: action.payload.price
+                        price: action.payload.price,
+                        stock: action.payload.stock
                     }
                     state.cart.push(cartShopping);
                 }
@@ -93,7 +95,7 @@ function rootReducer(state = initialState, action) {
                 numberCart: state.numberCart + 1
             };
         case INCREASE_QUANTITY:
-            const increaseItem = state.cart.find(x => x.id === action.payload)
+            const increaseItem = state.cart.find(x => x.id === action.payload);
             state.numberCart++
                 increaseItem.quantity++;
             return {

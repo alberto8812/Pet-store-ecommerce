@@ -250,7 +250,7 @@ export default function Detail() {
                                 {!userLogin.comment?.length && 
                                 <form onSubmit={(e) => handleSubmit(e)}>
                                     <h4 className="titleRev">Write a review</h4>
-                                    <div>
+                                    <div className="comarea">
                                         <textarea className={errors.comment? 'danger' : 'com'} type="text" placeholder="Leave your opinion..." name="comment" onChange={handleChange} value={data.comment}/>
                                         {errors.comment && (
                                             <p className='danger'>{errors.comment}</p>
@@ -299,16 +299,21 @@ export default function Detail() {
                             </span>*/}
                             </div>
                             <div className="producto-information">
-                                <span className="tag free">Available now</span>
+                            <div className="icon">
+                                            <StorefrontIcon width='20px' height='20px' viewBox="0 0 25 25" className="Store"/><span className="tag free">Available now</span>
+                                        </div>
                             </div>
                             <div className="delivery">
                                 <ul>
                                     <li>
-                                        <div className="icon">
-                                            <StorefrontIcon width='20px' height='20px' viewBox="0 0 20 20" className="Store"/>
-                                        </div>
                                         <div className="body">
-                                            <p>Withdrawal per branch</p>
+                                            {/* <p>Withdrawal per branch</p> */}
+                                            <ul>
+                                                <li><strong>Age: </strong> {myProduct.age}</li>
+                                                <li><strong>ID Product: </strong>{myProduct.id}</li>
+                                                <li><strong>Stock: </strong>{myProduct.stock}</li>
+                                            </ul>
+
                                             {/*<a className="more" href="/sucursales/listado">see branches</a>*/}
                                         </div>
                                     </li>

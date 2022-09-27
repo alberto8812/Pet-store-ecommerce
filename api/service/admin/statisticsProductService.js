@@ -1,5 +1,5 @@
 const {db,Op}=require('../../database/db')
-const {Product,Genre,Category,User,Sale}=db.models
+const {Product,Genre,Category,User,Sale,SaleDetail}=db.models
 
 
 
@@ -26,4 +26,12 @@ const LineGraphicsSale=async(req)=>{
     return saleByMonthOrder;
 }
 
-module.exports={LineGraphicsSale}
+const pieGraphicscategory=async(req)=>{
+const categoryByMonth=await SaleDetail.findAll({include:{model:Product,include:[{model:Category,attributes: ['name']}]}})
+
+
+  
+ return categoryByMonth;
+}
+
+module.exports={LineGraphicsSale,pieGraphicscategory}

@@ -250,7 +250,7 @@ export default function Detail() {
                                 {!userLogin.comment?.length && 
                                 <form onSubmit={(e) => handleSubmit(e)}>
                                     <h4 className="titleRev">Write a review</h4>
-                                    <div>
+                                    <div className="comarea">
                                         <textarea className={errors.comment? 'danger' : 'com'} type="text" placeholder="Leave your opinion..." name="comment" onChange={handleChange} value={data.comment}/>
                                         {errors.comment && (
                                             <p className='danger'>{errors.comment}</p>

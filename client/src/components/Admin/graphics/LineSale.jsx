@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
 import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
-
 import axios from "axios"
 import {
   Chart as ChartJS,
@@ -48,10 +47,9 @@ const options = {
 export default function LineSell() {
   const {isAuthenticated,getAccessTokenSilently}=useAuth0()
 const [lineGraphics, setLineGraphics] = useState({});
+let labels =Object.keys(lineGraphics).length>0?lineGraphics.statisticsProduct.month:[];
+let scores = Object.keys(lineGraphics).length>0?lineGraphics.statisticsProduct.total:[];
 
-const labels =lineGraphics.month;
-const scores = lineGraphics.total;
-console.log(lineGraphics)
 
 useEffect(() => {
   
@@ -71,10 +69,11 @@ useEffect(() => {
 
 
 
+
  
 
 
-  const data = {
+const data = {
 
       datasets: [
         {
@@ -92,8 +91,8 @@ useEffect(() => {
     };
 
 
-
   
 
   return <Line data={data} options={options} />;
+
 }

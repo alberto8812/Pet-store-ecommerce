@@ -93,27 +93,28 @@ function rootReducer(state = initialState, action) {
                 numberCart: state.numberCart + 1
             };
         case INCREASE_QUANTITY:
+            const increaseItem = state.cart.find(x => x.id === action.payload)
             state.numberCart++
-                state.cart[action.payload].quantity++;
+                increaseItem.quantity++;
             return {
                 ...state
             };
         case DECREASE_QUANTITY:
-            let quantity = state.cart[action.payload].quantity;
-            if (quantity > 1) {
+            const decreaseItem = state.cart.find(x => x.id === action.payload);
+            if (decreaseItem.quantity > 1) {
                 state.numberCart--;
-                state.cart[action.payload].quantity--;
+                decreaseItem.quantity--;
             }
             return {
                 ...state
             }
         case DELETE_CART:
-            let deleteQuantity = state.cart[action.payload].quantity;
+            const deleteItem = state.cart.find(x => x.id === action.payload);
             return {
                 ...state,
-                numberCart: state.numberCart - deleteQuantity,
+                numberCart: state.numberCart - deleteItem.quantity,
                 cart: state.cart.filter(item => {
-                    return item.id != state.cart[action.payload].id
+                    return item.id != deleteItem.id
                 })
             };
         case REFRESH_CART:

@@ -750,5 +750,15 @@ textarea.danger {
     padding-top: 0%;
     border-radius: 2px;
     background-color: rgba(204, 204, 204, 0.108);
+    margin: 1em
 }
+
+scroll-container {
+    display: block;
+    width: 48em;
+    height: 7em;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+
 /* FIN CSS REVIEW */

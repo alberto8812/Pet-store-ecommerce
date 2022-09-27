@@ -95,7 +95,7 @@ function rootReducer(state = initialState, action) {
                 numberCart: state.numberCart + 1
             };
         case INCREASE_QUANTITY:
-            const increaseItem = state.cart.find(x => x.id === action.payload)
+            const increaseItem = state.cart.find(x => x.id === action.payload);
             state.numberCart++
                 increaseItem.quantity++;
             return {

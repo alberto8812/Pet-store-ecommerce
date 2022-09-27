@@ -74,6 +74,11 @@ export default function LogIn() {
         setOpen(false);
     };
 
+    function handleLogout(){
+        window.localStorage.clear();
+        logout();
+    }
+
     return (
         <div>
             
@@ -95,7 +100,7 @@ export default function LogIn() {
                     </button>
                     <p>Login</p>
                     <br />
-                    <button onClick={()=>logout()}>{/*crear boton para el logout */}
+                    <button onClick={()=>handleLogout()}>{/*crear boton para el logout */}
                     {/*<IconButton onClick="{}">*/}
                     <LogoutIcon/>
                     {/* </IconButton> */}

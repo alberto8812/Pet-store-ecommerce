@@ -8,7 +8,6 @@ import "./Carrito.css";
 export default function Carrito() {
   //   const [counter, setCounter] = useState(0);
   const productsInTheCart = useSelector(state => state.cart);
-  const [quantitySelected, setQuantitySelected] = useState(1);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -24,32 +23,23 @@ export default function Carrito() {
     return Number(price * item).toLocaleString('en-US');
   };
 
-  function handleResta(e) {
+  function handleDecrease(e) {
     e.preventDefault();
-    dispatch(decreaseCart());
-    // if (counter === 0) {
-    //   e.target.value(false);
-    // }
-    // return setCounter(counter - 1);
+    dispatch(decreaseCart(e.target.id));
   };
-  function handleSuma(e) {
+
+  function handleIncrease(e) {
     e.preventDefault();
-    dispatch(increaseCart());
-    // if (counter === stock) {
-    //   e.target.value(false);
-    // }
-    // return setCounter(counter + 1);
+    dispatch(increaseCart(e.target.id));
   };
 
   function handleDelete(e) {
-    e.preventDefault(e);
-    dispatch(deleteCart());
+    e.preventDefault();
+    dispatch(deleteCart(e.target.id));
   };
 
   function handleNext() {
     // e.preventDefault();
-    //productsInTheCart.quantitySelected = quantitySelected;
-    //dispatch(addToCart(productsInTheCart))
     navigate('/paymentgateway');
   }
 
@@ -74,17 +64,17 @@ export default function Carrito() {
               listCart.map((item, key) => {
                 return (
                   <div key={key}>
-                    <button type="button" onClick={e => handleDelete(e)}><i class="bi bi-x-circle-fill" style={{ color: "#6200adc9" }}></i></button>
+                    <button id={item.id} onClick={e => handleDelete(e)}>❌</button>
                     <h3 className="name">{item.name}</h3>
                     <img className="image" src={item.image} alt={item.name} />
                     <ul>
                       <li><strong>Age: </strong> {item.age}</li>
                       <li><strong>ID Product: </strong>{item.id}</li>
                     </ul>
-                    <button className="minus disabled" onClick={(e) => handleResta(e)}>-</button>
-                    <span className="count">{item.quantity}</span>
-                    <button className="plus" onClick={(e) => handleSuma(e)}>+</button>
-                    <span>Total {totalPrice(item.price, item.quantity)} $</span>
+                    <button className="minus disabled" onClick={e => handleDecrease(e)} id={item.id}>-</button>
+                    <span className="count" id={item.id}>{item.quantity}</span>
+                    <button className="plus" onClick={e => handleIncrease(e)} id={item.id}>+</button>
+                    <span>Total $ {totalPrice(item.price, item.quantity)} </span>
                   </div>
                 )
               })

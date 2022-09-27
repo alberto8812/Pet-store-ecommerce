@@ -122,15 +122,15 @@ export function decreaseCart(payload) {
 };
 
 export function addComment(input) {
-    return async function (dispatch) {
-        axios.post('http://localhost:3001/loginUsers/comment',input)
-        .then ((res) => {
-            dispatch({
-                type: ADD_COMMENT,
-                payload: res.data
+    return async function(dispatch) {
+        axios.post('http://localhost:3001/loginUsers/comment', input)
+            .then((res) => {
+                dispatch({
+                    type: ADD_COMMENT,
+                    payload: res.data
+                })
             })
     }
-    )}
 }
 
 export function refreshCart(payload) {

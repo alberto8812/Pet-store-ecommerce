@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import {withAuthenticationRequired} from '@auth0/auth0-react'
 import "bootswatch/dist/pulse/bootstrap.min.css";
 import './PaymentGateway.css'
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 //import { loadStripe } from "@stripe/stripe-js";
 
 import {
@@ -14,6 +17,7 @@ import {
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Loading from "../Loading/Loading";
+import { useNavigate } from "react-router-dom";
 
 //const stripePromise = loadStripe("pk_test_51LkfWEIzGpa9z0EFC6OqfUFPRBmrUIS1nZVezBHgqSh6GBtJ3x5whj06EuCkgwBhls2xwc3M8UI9JKxid7o7Zzni00BiLqFS7P");
 
@@ -23,6 +27,7 @@ export default withAuthenticationRequired (function PaymentGateway({ image, name
 
     const [loading, setLoading] = useState(false);
     const productsInTheCart = useSelector(state => state.cart);
+    const navigate = useNavigate();
 
     let listCart = [];
     let totalCart = 0;
@@ -36,6 +41,12 @@ export default withAuthenticationRequired (function PaymentGateway({ image, name
         return Number(price * item).toLocaleString('en-US');
     };
   
+    const notifyOK = () => {
+        toast.success(`Payment complete!`, {
+          theme: "colored",
+        });
+    };
+  
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -46,6 +57,7 @@ export default withAuthenticationRequired (function PaymentGateway({ image, name
             card: elements.getElement(CardElement),
         });
         setLoading(true);
+        notifyOK();
 
         if (!error) {
             // console.log(paymentMethod)
@@ -67,6 +79,15 @@ export default withAuthenticationRequired (function PaymentGateway({ image, name
             setLoading(false);
         }
     };
+
+    function handleClean(e){
+        // e.preventDefault();
+        window.localStorage.clear();
+        // setTimeout(() => {
+        //     navigate('/')
+        // }, 3000);
+
+    }
 
     console.log(!stripe || loading);
 
@@ -135,7 +156,7 @@ export default withAuthenticationRequired (function PaymentGateway({ image, name
                             <div className="form-group">
                                 <CardElement className="pagos"/>
                             </div>
-                          <button disabled={!stripe} className="btn btn-success">
+                          <button disabled={!stripe} onClick={e => handleClean(e)} className="btn btn-success">
                                 {loading ? (
                                     <div className="spinner-border text-light" role="status">
                                         <span className="sr-only"></span>
@@ -144,6 +165,18 @@ export default withAuthenticationRequired (function PaymentGateway({ image, name
                                     "Buy"
                                 )}
                             </button>
+                            <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+
                         </form>
                     </div>
                 </div>

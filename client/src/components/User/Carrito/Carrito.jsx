@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addToCart, decreaseCart, deleteCart, increaseCart } from "../../../redux/actions";
+import {decreaseCart, deleteCart, increaseCart } from "../../../redux/actions";
 import "./Carrito.css";
+import {withAuthenticationRequired} from '@auth0/auth0-react'
+import Loading from "../Loading/Loading";
+
 
 //{ image, name, stock, price, id, category, genre, age }
-export default function Carrito() {
-  //   const [counter, setCounter] = useState(0);
+export default withAuthenticationRequired ( function Carrito() {
   const productsInTheCart = useSelector(state => state.cart);
+  const numberCart = useSelector(state => state.numberCart);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -18,6 +22,14 @@ export default function Carrito() {
     totalCart += productsInTheCart[product].quantity * productsInTheCart[product].price;
     listCart.push(productsInTheCart[product]);
   });
+
+  const quantityState = listCart.map(el => el.quantity);
+  console.log('HOLUUUU', quantityState);
+
+  useEffect(() => {
+    quantityState;
+  }, [numberCart])
+  
 
   function totalPrice(price, item) {
     return Number(price * item).toLocaleString('en-US');
@@ -30,16 +42,16 @@ export default function Carrito() {
 
   function handleIncrease(e) {
     e.preventDefault();
-    dispatch(increaseCart(e.target.id));
+      dispatch(increaseCart(e.target.id));
   };
 
   function handleDelete(e) {
     e.preventDefault();
+    window.confirm('Do you want to delete this product from the cart?');
     dispatch(deleteCart(e.target.id));
   };
 
   function handleNext() {
-    // e.preventDefault();
     navigate('/paymentgateway');
   }
 
@@ -51,8 +63,9 @@ export default function Carrito() {
       <div className="total-container mobile"></div>
       <div className="notification success desk">
         {/* <i className="fas fa-truck"></i> */}
-        <i class="bi bi-shop-window"> </i>
-        Withdrawal by branch
+        {/* <i class="bi bi-shop-window"> </i> */}
+        <i class="bi bi-truck"></i>
+        Free shipping from $500
       </div>
       <section className="cart-products-container">
         <div className="cart-product">
@@ -63,18 +76,22 @@ export default function Carrito() {
             {
               listCart.map((item, key) => {
                 return (
-                  <div key={key}>
-                    <button id={item.id} onClick={e => handleDelete(e)}>❌</button>
-                    <h3 className="name">{item.name}</h3>
+                  <div className="item-cart" key={key}>
+                    <button className="btn-delete" id={item.id} onClick={e => handleDelete(e)}>❌</button>
+                    <h3 className="name" style={{'fontWeight': 'bold'}}>{item.name.toUpperCase()}</h3>
                     <img className="image" src={item.image} alt={item.name} />
                     <ul>
-                      <li><strong>Age: </strong> {item.age}</li>
-                      <li><strong>ID Product: </strong>{item.id}</li>
+                      {/* <li><strong>Age: </strong> {item.age}</li>
+                      <li><strong>ID Product: </strong>{item.id}</li> */}
+                      <li><strong>Stock: </strong>{item.stock}</li>
                     </ul>
-                    <button className="minus disabled" onClick={e => handleDecrease(e)} id={item.id}>-</button>
-                    <span className="count" id={item.id}>{item.quantity}</span>
-                    <button className="plus" onClick={e => handleIncrease(e)} id={item.id}>+</button>
+                    <div className="div-contador">
+                    <button className="minus" onClick={e => handleDecrease(e)} id={item.id}>−</button>
+                    <span className="count" id={item.id}>{quantityState.shift()}</span>
+                    <button className="plus" onClick={e => handleIncrease(e)} id={item.id}>＋</button>
+                    </div>
                     <span>Total $ {totalPrice(item.price, item.quantity)} </span>
+                    <hr/>
                   </div>
                 )
               })
@@ -149,4 +166,4 @@ export default function Carrito() {
       </div>
     </div>
   );
-}
+}, {onRedirecting:()=><Loading/>}) ;

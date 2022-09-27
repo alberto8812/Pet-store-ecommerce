@@ -33,11 +33,11 @@ app.use('/aboutus', v1contactUs);
 app.use("/products", v1ProducstRouter);
 
 //ruta para usuarios registrados
-app.use("/loginUsers",jwtCheck,v1UsersRouter);
+app.use("/loginUsers",v1UsersRouter);
 // jwtCheck
 
 ///proximamente ruta para roll admi
-app.use("/loginAdmin",jwtCheck, checkpermissions,v1AdminRouter)
+app.use("/loginAdmin",v1AdminRouter)
 //jwtCheck, checkpermissions
 
 module.exports = app

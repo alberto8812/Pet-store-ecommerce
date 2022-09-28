@@ -1,7 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
-import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
+import { useMemo, useState } from "react";
+import { useSelector } from "react-redux";
 
-import axios from "axios"
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from "react-chartjs-2";
 
@@ -18,26 +17,11 @@ const options = {
 };
 
 const PieCategory = () => {
-  const {isAuthenticated,getAccessTokenSilently}=useAuth0()
-  const [pieGraphics, setPieGraphics] = useState({});
+  const pieGraphics = useSelector(state => state.statistics);
+
   let labels =Object.keys(pieGraphics).length>0?Object.keys(pieGraphics.statisticsProductpie):[];
   let scores = Object.keys(pieGraphics).length>0?Object.values(pieGraphics.statisticsProductpie):[];
-  console.log(labels,scores)
-  useEffect(() => {
-  
-    const lineGraphicsdb=async()=>{
-     const token= await getAccessTokenSilently()
-     const data2=(await axios.get('http://localhost:3001/loginAdmin/graphics',
-     {   
-         headers:{
-         authorization: `Bearer ${token}`
-         },    
- })).data
- setPieGraphics(()=>data2)
-   }
-   lineGraphicsdb()
- 
-  }, [])
+
 
 
  const data = {

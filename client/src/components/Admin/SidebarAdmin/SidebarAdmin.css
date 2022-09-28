@@ -3,11 +3,16 @@
   height: calc(100vh - 52px);
 
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 150px 1fr;
   grid-row: 1fr;
 }
 
 .sidebar-admin-rute{
   border-right: 2px solid gray;
   max-width: 150px;
+}
+
+.sidebar-admin-componete{
+
+ 
 }

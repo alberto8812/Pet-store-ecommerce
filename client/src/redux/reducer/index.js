@@ -1,17 +1,9 @@
 import {
-    GET_ALL_PRODUCTS,
-    GET_DETAILS,
-    SEARCH_BY_NAME,
-    SORT_BY_PRICE,
-    ADD_FAVORITE,
-    REMOVE_FAVORITE,
-    ADD_TO_CART,
-    GET_NUMBER_CART,
-    INCREASE_QUANTITY,
-    DECREASE_QUANTITY,
-    UPDATE_CART,
-    DELETE_CART,
-    REFRESH_CART
+    GET_ALL_PRODUCTS,GET_DETAILS,SEARCH_BY_NAME,
+    SORT_BY_PRICE,ADD_FAVORITE,REMOVE_FAVORITE,
+    ADD_TO_CART,GET_NUMBER_CART,INCREASE_QUANTITY,
+    DECREASE_QUANTITY,UPDATE_CART,DELETE_CART,
+    REFRESH_CART,GET_ADMINROLL, GET_GRAPHICS_DATA
 } from "../actions/constants";
 
 export const initialState = {
@@ -21,6 +13,8 @@ export const initialState = {
     status: true,
     cart: [],
     numberCart: 0,
+    statistics:[],/////contiene informacion para las graficas
+
 }
 
 function rootReducer(state = initialState, action) {
@@ -130,12 +124,25 @@ function rootReducer(state = initialState, action) {
                 cart: cart
             }
 
-            /////////////////////test filters/////////////////////
-            // case "GET_TEST":
-            //     return {
-            //         ...state,
-            //         allProducts: action.payload
-            //     };
+/////////////////////////////////////ADMINS REDUCER/////////////////////////////////////////////////
+
+        case GET_ADMINROLL:
+            //identifica el tipo de roll user admin
+            return state;
+        
+        case  GET_GRAPHICS_DATA:
+        //infomracion para las graficas admin
+        return {...state,statistics:action.payload}
+
+
+
+
+
+
+
+
+
+
         default:
             return state
     }

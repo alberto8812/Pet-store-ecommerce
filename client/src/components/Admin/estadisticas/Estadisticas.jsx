@@ -1,39 +1,35 @@
 import React,{useEffect} from 'react'
 import LineChart from '../graphics/LineSale'
 import { Avatar,Grid,Box } from '@mui/material';
-import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
 import PieCategory from '../graphics/PieCategory';
+import { useDispatch } from "react-redux";
+import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
+import { getgraphicsData } from '../../../redux/actions';
 
 
 
 const estadisticas = () => {
-  const {isAuthenticated,getAccessTokenSilently}=useAuth0()
+  const dispatch = useDispatch();
+  const {isAuthenticated,getAccessTokenSilently}=useAuth0()//componete de hook auth0
 
   useEffect(() => {
-    const callProtectAip=async()=>{
-   
-        if(isAuthenticated){
-        try {
-            const token= await getAccessTokenSilently()
-      
-           request= await axios.get('http://localhost:3001/loginUsers',
-            {   
-                headers:{
-                authorization: `Bearer ${token}`
-                },    
-        })   
-              
-        } catch (error) {
-            console.log(error.message)
-        }   
+    const getToken=async()=>{
+      //pedimisn el token
+      const token= await getAccessTokenSilently()
+      //realizamon un arreglo con los header
+      const headers= {   
+        headers:{
+        authorization: `Bearer ${token}`
+        },    
+        }
+      dispatch(getgraphicsData(headers))
     }
-}
-    callProtectAip()
-}, [isAuthenticated])  
 
+    getToken()
 
+  }, [])
 
-
+  
 
 
   return (

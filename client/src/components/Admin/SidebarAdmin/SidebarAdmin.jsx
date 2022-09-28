@@ -1,26 +1,30 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, Outlet} from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 import './SidebarAdmin.css'
 import * as FaIcons from 'react-icons/fa'
 
 const SidebarAdmin = () => {
   return (
     <div className='sidebar-admin'>
-        <div>
+        <div className='sidebar-admin-rute'>
           <ul>
             <li>
-              <Link to="admin/logs" ><FaIcons.FaHome/> Home de Admin</Link>          
+              <NavLink to="logs" ><FaIcons.FaHome/> Home de Admin</NavLink>          
             </li>
             <li>
-              <Link to="admin/statistics"><FaIcons.FaChartBar/> Statistics </Link>          
+              <Link to="statistics"><FaIcons.FaChartBar/> Statistics </Link>          
             </li>
             <li>
               <Link to="adminusers"><FaIcons.FaUsers/> Users</Link>          
             </li>
             <li>
-              <Link to="admin/productsAdm"> <FaIcons.FaBone/> Products</Link>          
+              <Link to="productsAdm"> <FaIcons.FaBone/> Products</Link>          
             </li>
           </ul>
+        </div>
+        <div div className='sidebar-admin-componete'>
+          <Outlet/>
         </div>
     </div>
   )

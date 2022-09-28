@@ -54,9 +54,9 @@ function App() {
      {/* < NavbarAdmin /> */ }
     
       <Routes>
-      <Route  path={"/admin"} element={< SidebarAdmin />}>
-        <Route path={"logs"} element={<HomeAdmin />}/>
-        <Route path={"statistics"} element={<Estadisticas />}/>
+      <Route  path={"/admin/*"} element={< SidebarAdmin />}>
+        <Route path={"logs"} element={<HomeAdmin/>}/>
+        <Route path={"statistics"} element={<Estadisticas/>}/>
         <Route path={"productsAdm"} element={<ProductsAdm />}/>
         <Route path={"users"} element={<Users/>}/>
         <Route path={"*"} element={<NotFound />} />

@@ -51,14 +51,16 @@ function App() {
         <Route path={"/carrito"} element={<Carrito />} />
       </Routes> 
       {/* dashboard de admin */}
-      < NavbarAdmin />  
-      < SidebarAdmin />
+     {/* < NavbarAdmin /> */ }
+    
       <Routes>
-        <Route path={"/logs"} element={<HomeAdmin />}/>
-        <Route path={"/logs/statistics"} element={<Estadisticas />}/>
-        <Route path={"/logs/productsAdm"} element={<ProductsAdm />}/>
-        <Route path={"/logs/users"} element={<Users/>}/>
+      <Route  path={"/admin"} element={< SidebarAdmin />}>
+        <Route path={"logs"} element={<HomeAdmin />}/>
+        <Route path={"statistics"} element={<Estadisticas />}/>
+        <Route path={"productsAdm"} element={<ProductsAdm />}/>
+        <Route path={"users"} element={<Users/>}/>
         <Route path={"*"} element={<NotFound />} />
+        </Route>
       </Routes> 
 
     </div>

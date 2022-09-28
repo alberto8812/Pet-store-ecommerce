@@ -10,7 +10,6 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const options = {
   
   responsive: true,
-
   plugins: {
     legend: {
       display: true,

@@ -40,7 +40,7 @@ const SidebarAdmin = () => {
               <Link to="statistics"><FaIcons.FaChartBar/> Statistics </Link>          
             </li>
             <li>
-              <Link to="adminusers"><FaIcons.FaUsers/> Users</Link>          
+              <Link to="users"><FaIcons.FaUsers/> Users</Link>          
             </li>
             <li>
               <Link to="productsAdm"> <FaIcons.FaBone/> Products</Link>          

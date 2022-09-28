@@ -17,3 +17,5 @@ export const REFRESH_CART = 'REFRESH_CART';
 ////////////////ADMIN CONSTAN///////////////////////////////////
 export const GET_ADMINROLL = 'GET_ADMINROLL';
 export const GET_GRAPHICS_DATA='GET_GRAPHICS_DATA'
+export const GET_CUSTOMER_SHOPPING='GET_CUSTOMER_SHOPPIN'
+

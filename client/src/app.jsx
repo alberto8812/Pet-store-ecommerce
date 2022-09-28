@@ -16,6 +16,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { refreshCart } from "./redux/actions";
 import Estadisticas from "./components/Admin/estadisticas/Estadisticas";
+import NavbarAdmin from "./components/Admin/NavbarAdmin/NavbarAdmin";
+import HomeAdmin from "./components/Admin/HomeAdmin/HomeAdmin";
+import SidebarAdmin from "./components/Admin/SidebarAdmin/SidebarAdmin";
+import ProductsAdm from "./components/Admin/ProductsAdm/ProductsAdm"
+import Users from "./components/Admin/Users/Users"
+
 
 const stripePromise = loadStripe(
   "pk_test_51LkfWEIzGpa9z0EFC6OqfUFPRBmrUIS1nZVezBHgqSh6GBtJ3x5whj06EuCkgwBhls2xwc3M8UI9JKxid7o7Zzni00BiLqFS7P"
@@ -31,6 +37,7 @@ function App() {
 
   return (
     <div className="App">
+      {/* zona de users e invitados  */}
       <NavBar />
       <Routes>
         <Route path={"/"} element={<Home />} />
@@ -39,19 +46,21 @@ function App() {
         <Route path={"/registration"} element={<Registration />} />
         <Route path={"/profile"} element={<Profile />} />
         <Route path={"/registration"} element={<Registration />} />
-        <Route
-          path={"/paymentgateway"}
-          element={
-            <Elements stripe={stripePromise}>
-              <PaymentGateway />
-            </Elements>
-          }
-        />
+        <Route path={"/paymentgateway"} element={<Elements stripe={stripePromise}><PaymentGateway /></Elements>}/>
         <Route path={"/create"} element={<Create />} />
         <Route path={"/carrito"} element={<Carrito />} />
-        <Route path={"/logs"} element={<Estadisticas/>} />
+      </Routes> 
+      {/* dashboard de admin */}
+      < NavbarAdmin />  
+      < SidebarAdmin />
+      <Routes>
+        <Route path={"/logs"} element={<HomeAdmin />}/>
+        <Route path={"/logs/statistics"} element={<Estadisticas />}/>
+        <Route path={"/logs/productsAdm"} element={<ProductsAdm />}/>
+        <Route path={"/logs/users"} element={<Users/>}/>
         <Route path={"*"} element={<NotFound />} />
-      </Routes>
+      </Routes> 
+
     </div>
   );
 }

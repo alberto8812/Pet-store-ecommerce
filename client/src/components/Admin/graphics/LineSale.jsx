@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
+import { useSelector } from "react-redux";
 
-import axios from "axios"
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -46,35 +45,15 @@ const options = {
 };
 
 export default function LineSell() {
-  const {isAuthenticated,getAccessTokenSilently}=useAuth0()
-const [lineGraphics, setLineGraphics] = useState({});
-
-const labels =lineGraphics.month;
-const scores = lineGraphics.total;
-console.log(lineGraphics)
-
-useEffect(() => {
-  
-   const lineGraphicsdb=async()=>{
-    const token= await getAccessTokenSilently()
-    const data2=(await axios.get('http://localhost:3001/loginAdmin/graphics',
-    {   
-        headers:{
-        authorization: `Bearer ${token}`
-        },    
-})).data
-    setLineGraphics(()=>data2)
-  }
-  lineGraphicsdb()
-
- }, [])
-
+const lineGraphics = useSelector(state => state.statistics);
+let labels =Object.keys(lineGraphics).length>0?lineGraphics.statisticsProduct.month:[];
+let scores = Object.keys(lineGraphics).length>0?lineGraphics.statisticsProduct.total:[];
 
 
  
 
 
-  const data = {
+const data = {
 
       datasets: [
         {
@@ -92,8 +71,8 @@ useEffect(() => {
     };
 
 
-
   
 
   return <Line data={data} options={options} />;
+
 }

@@ -9,13 +9,15 @@ const postProductUserCartService=async(req)=>{
     //const accessToken=req.headers.authorization.split(' ')[1];
     //const dataEmail=await dataUser(accessToken);
     
-    //const updateUser=await User.findOne({where:{email:dataEmail}})
+    const updateUser=await User.findOne({where:{email:"cvelascosaavedra@gmail.com"}})
    const date=new Date
 
  
    //date.getMonth()
    const saleDb=await Sale.create({invoice:id,total:total,month:date.getMonth(),year:date.getFullYear()})
+ 
 
+   await updateUser.addSale(saleDb)
  //  console.log(Object.keys(saleDb.__proto__));
  //ciclo for para destructurar los productos
    for (const iterator of products) {

@@ -1,19 +1,11 @@
 import axios from "axios";
 import {
-    GET_ALL_PRODUCTS,
-    GET_DETAILS,
-    SORT_BY_PRICE,
-    SEARCH_BY_NAME,
-    ADD_FAVORITE,
-    REMOVE_FAVORITE,
-    ADD_TO_CART,
-    GET_NUMBER_CART,
-    INCREASE_QUANTITY,
-    DECREASE_QUANTITY,
-    UPDATE_CART,
-    DELETE_CART,
-    ADD_COMMENT,
-    REFRESH_CART
+    GET_ALL_PRODUCTS,GET_DETAILS,SORT_BY_PRICE,
+    SEARCH_BY_NAME,ADD_FAVORITE,REMOVE_FAVORITE,
+    ADD_TO_CART,GET_NUMBER_CART,INCREASE_QUANTITY,
+    DECREASE_QUANTITY,UPDATE_CART,DELETE_CART,
+    ADD_COMMENT,REFRESH_CART,GET_ADMINROLL,
+    GET_GRAPHICS_DATA
 } from "./constants";
 
 export function getAllProducts() {
@@ -139,6 +131,48 @@ export function refreshCart(payload) {
         payload
     }
 };
+
+////////////////////////************Admind*******************/////////////////////////////////// /
+ 
+
+
+
+//verifica que tipo de roll de usuario
+
+export const getRollAdmin=(token)=>{
+    return async(dispatch) => {
+        try {
+            const { data } = await axios.get(`http://localhost:3001/loginAdmin`,token);
+            return dispatch({
+                type: GET_ADMINROLL,
+                payload: data,
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    };
+ }
+
+ //consigue todos los datos de las graficas 
+ export const getgraphicsData=(token)=>{
+    return async(dispatch) => {
+        try {
+            const { data } = await axios.get(`http://localhost:3001/loginAdmin/graphics`,token);
+            return dispatch({
+                type: GET_GRAPHICS_DATA,
+                payload: data,
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    };
+ }
+
+
+
+
+
+
 
 
 ////////////////////////////////test filters/////////////////////////

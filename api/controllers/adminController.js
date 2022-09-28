@@ -18,7 +18,7 @@ const DeleteProductDb = async(req, res)=>{
 const statisticsProductDb=async(req,res)=>{
     const statisticsProduct = await LineGraphicsSale(req)
     const statisticsProductpie=await pieGraphicscategory(req)
-    res.status(202).json(statisticsProduct);
+    res.status(202).json({statisticsProductpie:statisticsProductpie,statisticsProduct:statisticsProduct});
 }
 
 module.exports={

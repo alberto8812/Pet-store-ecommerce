@@ -1,6 +1,6 @@
 
 
-const {CreateProductDb, DeleteProductDb,statisticsProductDb}=require("../../controllers/adminController")
+const {CreateProductDb, DeleteProductDb,statisticsProductDb,customerShoppingDb}=require("../../controllers/adminController")
 const {db,Op}=require('../../database/db')
 const {Sale}=db.models//practica
 const express=require("express"),
@@ -14,6 +14,8 @@ router
             })
 
         .get("/graphics",statisticsProductDb)
+
+        .get("/customerShopping",customerShoppingDb)
 
         .post("/create",CreateProductDb)
 

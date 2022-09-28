@@ -9,16 +9,16 @@ const SidebarAdmin = () => {
         <div>
           <ul>
             <li>
-              <Link to="/logs/" ><FaIcons.FaHome/> Home de Admin</Link>          
+              <Link to="admin/logs" ><FaIcons.FaHome/> Home de Admin</Link>          
             </li>
             <li>
-              <Link to="/logs/statistics"><FaIcons.FaChartBar/> Statistics </Link>          
+              <Link to="admin/statistics"><FaIcons.FaChartBar/> Statistics </Link>          
             </li>
             <li>
-              <Link to="/logs/users"><FaIcons.FaUsers/> Users</Link>          
+              <Link to="adminusers"><FaIcons.FaUsers/> Users</Link>          
             </li>
             <li>
-              <Link to="/logs/productsAdm"> <FaIcons.FaBone/> Products</Link>          
+              <Link to="admin/productsAdm"> <FaIcons.FaBone/> Products</Link>          
             </li>
           </ul>
         </div>

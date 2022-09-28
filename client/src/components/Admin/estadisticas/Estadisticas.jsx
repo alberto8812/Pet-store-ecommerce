@@ -38,15 +38,7 @@ const estadisticas = () => {
 
   return (
     <Grid>
-      <Box
-       sx={{
-        width: 300,
-        height: 300,
-        
-      }}
-      >
-        <h1>Data admind</h1>
-      </Box> 
+  
       <Box
       sx={{
         width: 500,

@@ -686,9 +686,19 @@ p:not(.item-description.m-mobile p) {
     margin-bottom: 1%;
 }
 
-.com {
+.comarea {
+    /* display: grid;
+    grid-template-columns: repeat(2); */
     display: inline-block;
-    width: 70%;
+    height: 3.5em;
+}
+
+.com {
+    /* display: inline-block; */
+    position: relative;
+    grid-column: 1;
+    border-top: 5.em;
+    width: 35em;
     margin-left: 0%;
     border-radius: 4px;
     border-color: #ababab;
@@ -700,10 +710,11 @@ p:not(.item-description.m-mobile p) {
 }
 
 .btncom{
-    position:absolute;
-    display: inline-block;
-    margin-left: 3%;
-    bottom: 17.9%;
+    position:relative;
+    /* display: inline-block; */
+    grid-column: 2;
+    margin-left: 32em;
+    bottom: 3.1em;
     background: #8442ca;
     width: 20%;
     padding: 12px 20px;
@@ -739,6 +750,15 @@ textarea.danger {
     padding-top: 0%;
     border-radius: 2px;
     background-color: rgba(204, 204, 204, 0.108);
+    margin: 1em
 }
-/* FIN CSS REVIEW */
 
+scroll-container {
+    display: block;
+    width: 48em;
+    height: 7em;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+
+/* FIN CSS REVIEW */

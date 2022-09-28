@@ -21,7 +21,7 @@ const jwtCheck = jwt({
 
 
 //verifica el rol///////////////////////////
-var checkpermissions=jwtAuthz(['read:message'],{
+var checkpermissions=jwtAuthz(['read:message','write:message'],{
       customScopeKey:"permissions",
       customUserKey: 'auth'
   })

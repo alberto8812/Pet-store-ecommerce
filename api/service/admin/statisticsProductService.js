@@ -1,5 +1,5 @@
 const {db,Op}=require('../../database/db')
-const {Product,Genre,Category,User,Sale}=db.models
+const {Product,Genre,Category,User,Sale,SaleDetail}=db.models
 
 
 
@@ -21,9 +21,44 @@ const LineGraphicsSale=async(req)=>{
         return data;
     })
  
-   console.log(saleByMonthOrder)
+  
 
     return saleByMonthOrder;
 }
 
-module.exports={LineGraphicsSale}
+const pieGraphicscategory=async(req)=>{
+//trae todos las categorias
+const categoryDb=await SaleDetail.findAll({attributes: [ "id", "subtotal"],include:{model:Product, attributes: { exclude: ["id", "detail","stock","price","stock","image","rating","age"] },include:[{model:Category,attributes: ['name']}]}})
+
+//variable para al macenar  estadistica 
+const category={}
+
+//extraemos la categoria
+const getCategory=categoryDb.map(data=>{
+    return(
+        data.products[0].category)
+    
+})
+
+//conteo de categorias 
+const arrayCategory=getCategory.map(element => {
+            const name=element.name;
+           if(category[name]===undefined){
+                category[name]=0
+           }
+            
+         return category[name]=category[name]+1;
+        
+         }
+            );
+
+
+
+
+
+
+  
+ return category;
+}
+
+module.exports={LineGraphicsSale,pieGraphicscategory}

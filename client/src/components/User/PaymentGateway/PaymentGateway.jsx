@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 //import { loadStripe } from "@stripe/stripe-js";
-import StripeCheckout from 'react-stripe-checkout'
+// import StripeCheckout from 'react-stripe-checkout'
 
 import {
     //Elements,
@@ -169,7 +169,7 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
                                 />
                             </div>
 
-                            <button disabled={!stripe} className="btn btn-success">
+                            <button disabled={!stripe} className="btn btn-success"/>
 
                           <button disabled={!stripe} onClick={e => handleClean(e)} className="btn btn-success">
 

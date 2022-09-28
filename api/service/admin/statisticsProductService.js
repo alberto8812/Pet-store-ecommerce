@@ -52,12 +52,6 @@ const arrayCategory=getCategory.map(element => {
          }
             );
 
-
-
-
-
-
-  
  return category;
 }
 

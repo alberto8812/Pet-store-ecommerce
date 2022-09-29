@@ -20,12 +20,8 @@ const express=require("express"),
 
         .post("/create",CreateProductDb)
 
-<<<<<<< HEAD
-    
-=======
         .put("/edit/:id", EditProductDb )
 
->>>>>>> 1c2df9adeb0ffe09eeb1aa4ddc9256fa2c30e02f
         .delete("/delete/:id", DeleteProductDb)
 
        

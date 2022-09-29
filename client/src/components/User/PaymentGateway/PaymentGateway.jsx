@@ -191,7 +191,6 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
                                     draggable
                                     pauseOnHover
                                 />
-
                         </form>
                     </div>
                 </div>

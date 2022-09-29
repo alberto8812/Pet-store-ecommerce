@@ -20,7 +20,7 @@ const Auth0ProviderWithHistory =({children}) => {
     domain={DOMAIN}
     clientId={CLIENTID}
     redirectUri={window.location.origin}
-    audience= {AUDIENCE}
+    audience= 'http://www.pet-love-api.com'
     onRedirectCallback={onRedirectCallback}
    >
         {children}

@@ -1,22 +1,21 @@
 const express=require("express"),
-      router=express.Router(),
-      {jwtCheck,checkpermissions}=require('../../middleware/jwtLoginUser');
+      router=express.Router();
 const { getUserLogin, postUserData, postComment,postUserCart,postUserPayment } = require("../../controllers/usersController");
 
 
 
 
-router
-      .get('/',getUserLogin)
 
-      .post('/datauser',postUserData)
+router.get('/',getUserLogin)
 
-      .post("/checkoutpayment",postUserPayment)
+router.post('/datauser',postUserData)
 
-      .post('/productusercart',postUserCart)
+router.post("/checkoutpayment",postUserPayment)
+
+router.post('/productusercart',postUserCart)
       
 
-      .post('/comment', postComment )
+router.post('/comment', postComment )
 
      
       

@@ -7,22 +7,21 @@ const express=require("express"),
       router=express.Router();
 
 
-      router
 
-        .get("/",(req,res)=>{
+router.get("/",(req,res)=>{
             console.log("estas en administrador rol")
             res.status(200).json({msg:"estas en administrador rol"})
             })
 
-        .get("/graphics",statisticsProductDb)
+router.get("/graphics",statisticsProductDb)
 
-        .get("/customerShopping",customerShoppingDb)
+router.get("/customerShopping",customerShoppingDb)
 
-        .post("/create",CreateProductDb)
+router.post("/create",CreateProductDb)
 
-        .put("/edit/:id", EditProductDb )
+router.put("/edit/:id", EditProductDb )
 
-        .delete("/delete/:id", DeleteProductDb)
+router.delete("/delete/:id", DeleteProductDb)
 
        
 

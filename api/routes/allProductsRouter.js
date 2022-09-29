@@ -1,6 +1,6 @@
 const express=require("express"),
       router=express.Router(),
-      { getAllProductsData,getProductDetail,getProductSearch}=require('../../controllers/productsController')
+      { getAllProductsData,getProductDetail,getProductSearch}=require('../controllers/productsController')
 
 
 

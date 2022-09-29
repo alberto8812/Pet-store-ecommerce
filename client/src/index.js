@@ -1,4 +1,6 @@
 import React from 'react';
+//import dotenv from 'dotenv'
+
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './app';
@@ -7,9 +9,9 @@ import { Provider } from 'react-redux'
 import store from './redux/store/index'
 import { BrowserRouter } from 'react-router-dom'
 import  Auth0ProviderWithHistory  from './middleware/Auth0ProviderHistory';
-dotenv.config()
+//dotenv.config()
 
-axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
+//axios.defaults.baseURL=process.env.REACT_APP_API || "http://localhost:3001"
 
 ReactDOM.render(
   <Provider store={store}>

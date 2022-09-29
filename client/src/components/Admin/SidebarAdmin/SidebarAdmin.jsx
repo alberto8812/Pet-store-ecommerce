@@ -45,6 +45,9 @@ const SidebarAdmin = () => {
             <li>
               <Link to="productsAdm"> <FaIcons.FaBone/> Products</Link>          
             </li>
+            <li>
+              <Link to="create"> + Add Product</Link>          
+            </li>
           </ul>
         </div>
         <div div className='sidebar-admin-componete'>

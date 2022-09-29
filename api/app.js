@@ -27,10 +27,10 @@ app.use(cors());
 
 //middlewere JSON WEB TOKEN
 
-app.use('/aboutus', v1contactUs);
+//app.use('/aboutus', v1contactUs);
 
 //ruta general  sin registro
-app.use("/products", v1ProducstRouter);
+//app.use("/products", v1ProducstRouter);
 
 //ruta para usuarios registrados
 //app.use("/loginUsers",v1UsersRouter);

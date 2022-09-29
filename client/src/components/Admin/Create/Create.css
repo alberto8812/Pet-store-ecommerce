@@ -1,0 +1,11 @@
+.supercontainer{
+    background-color:#e3d6eb;
+}
+
+
+.errors {
+    color: red;
+    font-weight: bolder;
+    font-size: 12px;
+    
+}

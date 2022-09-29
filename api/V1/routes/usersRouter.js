@@ -5,17 +5,17 @@ const { getUserLogin, postUserData, postComment,postUserCart,postUserPayment } =
 
 
 
-router
-      .get('/',getUserLogin)
 
-      .post('/datauser',postUserData)
+router.get('/',getUserLogin)
 
-      .post("/checkoutpayment",postUserPayment)
+router.post('/datauser',postUserData)
 
-      .post('/productusercart',postUserCart)
+router.post("/checkoutpayment",postUserPayment)
+
+router.post('/productusercart',postUserCart)
       
 
-      .post('/comment', postComment )
+router.post('/comment', postComment )
 
      
       

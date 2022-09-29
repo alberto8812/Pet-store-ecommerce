@@ -1,8 +1,16 @@
 //Formulario para que el propietario de la pagina pueda cargar sus productos y modificar stock
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { postProduct } from "../../../redux/actions";
+import './Create.css'
+import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Alert from 'react-bootstrap/Alert';
+import Stack from 'react-bootstrap/Row';
 
 function validate(input) {
     let errors = {}
@@ -21,7 +29,7 @@ function validate(input) {
         errors.price = 'The value must be greater than 0'
     }
 
-    if(!input.race) {
+    if (!input.race) {
         errors.race = "Race is required"
     } else if (input.race.length > 50) {
         errors.race = "Race name must not exceed 50 characters"
@@ -71,8 +79,8 @@ export default function Create() {
         detail: '',
         image: '',
         rating: '',
-        category: [],
-        genre: [],
+        category: 'food',
+        genre: 'cat',
     })
 
     /*
@@ -94,7 +102,6 @@ export default function Create() {
             ...input,
             [e.target.name]: e.target.value,
         }))
-        console.log(input)
     }
     /*
         function handleSelectCategory(e) {
@@ -168,89 +175,98 @@ export default function Create() {
                 detail: '',
                 image: '',
                 rating: '',
-                category: [],
-                genre: [],
+                category: 'food',
+                genre: 'cat',
             })
-            navigate('/')
+            // navigate('/')
         } else {
             alert('There is incomplete data')
         }
     }
 
     return (
-        <div>
-            <h1>Add products to Pets Love</h1>
-            <div>
+        <Container>
+            
+            <br />
+            <div className="supercontainer">
+            <h1>
+                <Badge  bg="primary">Add products to Pets Love</Badge>
+            </h1>
+            <br />
+            <Container>
                 <form onSubmit={e => handleSubmit(e)}>
-                    <div>
-                        <label><strong>Name: </strong></label>
-                        <input type="text" value={input.name} name='name' onChange={e => handleChange(e)} />
+                    <Row>
+                    <Col sm={2}> <label><strong>Name: </strong></label></Col>
+                    <Col sm={6}><input type="text" value={input.name} name='name' onChange={e => handleChange(e)} /> </Col>
                         {errors.name && (
-                            <p>{errors.name}</p>
+                           <p className="errors">{errors.name}</p>
                         )}
-                    </div>
-
-                    <div>
-                        <label><strong>Price: $ </strong></label>
-                        <input type="text" value={input.price} name='price' onChange={e => handleChange(e)} />
+                    </Row>
+                    <br />
+                    <Row>
+                        <Col sm={2}>  <label><strong>Price: $ </strong></label></Col>
+                        <Col sm={6}>   <input type="text" value={input.price} name='price' onChange={e => handleChange(e)} /> </Col>
                         {errors.price && (
-                            <p>{errors.price}</p>
+                          <p className="errors">{errors.price}</p>
                         )}
-                    </div>
-
-                    <div>
-                        <label><strong>Age: </strong></label>
-                        <div><select name="age" onChange={e => handleChange(e)}>
+                    </Row>
+                    <br />
+                    <Row>
+                        <Col sm={2}> <label><strong>Age: </strong></label> </Col>
+                        <Col sm={6}>  <div><select name="age" onChange={e => handleChange(e)}>
                             <option disabled selected>Select an age</option>
-                            <option value= 'Puppy'>Puppy</option>
-                            <option value= 'Young'>Young</option>
-                            <option value= 'Adult'>Adult</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label><strong>Race: </strong></label>
-                        <input type="text" value={input.race} name='race' onChange={e => handleChange(e)} />
+                            <option value='Puppy'>Puppy</option>
+                            <option value='Young'>Young</option>
+                            <option value='Adult'>Adult</option>
+                        </select>
+                        </div> </Col>
+                    </Row>
+                    <br />
+                    <Row>
+                        <Col sm={2}>  <label><strong>Race: </strong></label> </Col>
+                        <Col sm={6}>  <input type="text" value={input.race} name='race' onChange={e => handleChange(e)} /> </Col>
                         {errors.race && (
-                            <p>{errors.race}</p>
+                            <p className="errors">{errors.race}</p>
                         )}
-                    </div>
-
-                    <div>
-                        <label><strong>Stock: </strong></label>
-                        <input type="text" value={input.stock} name='stock' onChange={e => handleChange(e)} />
-                        <label><strong> u.</strong></label>
+                    </Row>
+                    <br />
+                    <Row>
+                        <Col sm={2}> <label><strong>Stock: </strong></label></Col>
+                        <Col sm={6}>   <input type="text" value={input.stock} name='stock' placeholder="units" onChange={e => handleChange(e)} />
+                            <label><strong> u.</strong></label></Col>
                         {errors.stock && (
-                            <p >{errors.stock}</p>
+                            <p className="errors">{errors.stock}</p>
                         )}
-                    </div>
-
-                    <div>
-                        <label><strong>Rating: </strong></label>
-                        <input type="text" value={input.rating} name='rating' onChange={e => handleChange(e)} />
-                        <label><strong> STARS </strong></label>
+                    </Row>
+                    <br />
+                    <Row>
+                        <Col sm={2}><label><strong>Rating: </strong></label> </Col>
+                        <Col sm={6}><input type="text" value={input.rating} name='rating' placeholder="STARS" onChange={e => handleChange(e)} />
+                            <label><strong> STARS </strong></label></Col>
                         {errors.rating && (
-                            <p >{errors.rating}</p>
+                            <p className="errors">{errors.rating}</p>
                         )}
-                    </div>
+                    </Row>
+                    <br />
 
-                    <div>
-                        <label><strong>Detail: </strong></label>
-                        <input type="text" value={input.detail} name='detail' onChange={e => handleChange(e)} />
+                    <Row>
+                        <Col sm={2}><label><strong>Detail: </strong></label></Col>
+                        <Col sm={6}><input type="text" value={input.detail} name='detail' onChange={e => handleChange(e)} /> </Col>
                         {errors.detail && (
-                            <p >{errors.detail}</p>
+                            <p className="errors">{errors.detail}</p>
                         )}
-                    </div>
-                    <div>
-                        <label><strong>Image: </strong></label>
-                        <input type="text" value={input.image} name='image' onChange={e => handleChange(e)} />
+                    </Row>
+                    <br />
+                    <Row>
+                        <Col sm={2}><label><strong>Image: </strong></label></Col>
+                        <Col sm={6}><input type="text" value={input.image} name='image' onChange={e => handleChange(e)} /></Col>
                         {errors.image && (
-                            <p >{errors.image}</p>
+                            <p className="errors">{errors.image}</p>
                         )}
-                    </div>
+                    </Row>
+                    <br />
                     {/*
-                    <div>
+                    
                         <select onChange={e => handleSelectCategory(e)}>
                             <option value='selected' hidden >Category:</option>
                             {allCategorys?.sort(function (a, b) {
@@ -273,9 +289,9 @@ export default function Create() {
                                 </ul>
                             )
                         })}
-                    </div>
+                    
                    
-                    <div>
+                    
                         <select onChange={e => handleSelectGenre(e)}>
                             <option value='selected' hidden >Genres:</option>
                             {allGenres?.sort(function (a, b) {
@@ -298,15 +314,24 @@ export default function Create() {
                                 </ul>
                             )
                         })}
-                    </div>
+                    
 
+ */} 
+
+ {/*
+        Si quieren dejar los botones siempre activos solo reemplacen la linea  327  x esto:
+        <Col sm={4}><Button variant="primary" size="md" type="submit" disabled={false} ><strong>Create</strong></Button> </Col>
+        y listo
  */}
-                    <button type="submit"><strong>Create</strong></button>
-                    <Link to="/home">
-                        <button>Cancel</button>
-                    </Link>
+                    <Stack gap={2} className="col-md-15-mx-auto"><Col sm={2}></Col>
+                    <Col sm={4}> {Object.values(errors).join('') == false ? <Button variant="primary" size="md" type="submit" disabled={false} ><strong>Create</strong></Button> : <Button variant="dark" size="md" type="submit" disabled={true} ><strong>Create</strong></Button>} </Col>
+
+                    <Col >   <Link to="/home"><Button variant="danger" size="md" active>Cancel</Button></Link> </Col>
+                    </Stack>
                 </form>
+            </Container>
+            <br />
             </div>
-        </div>
+        </Container>
     )
 }

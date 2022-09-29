@@ -45,6 +45,11 @@ module.exports = (sequelize) => {
     age:{
       type: DataTypes.STRING,
       allowNull: false, 
+    }, 
+    
+    deleted: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
 
   })

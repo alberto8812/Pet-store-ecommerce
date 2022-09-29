@@ -5,7 +5,8 @@ import {
     ADD_TO_CART,GET_NUMBER_CART,INCREASE_QUANTITY,
     DECREASE_QUANTITY,UPDATE_CART,DELETE_CART,
     ADD_COMMENT,REFRESH_CART,GET_ADMINROLL,
-    GET_GRAPHICS_DATA,GET_CUSTOMER_SHOPPING
+    GET_GRAPHICS_DATA, DELETE_PRODUCT,
+    GET_CUSTOMER_SHOPPING
 } from "./constants";
 
 export function getAllProducts() {
@@ -48,7 +49,7 @@ export const getDetails = (id) => {
 
 export function postProduct(payload) {
     return async function(dispatch) {
-        const response = await axios.post('/create', payload)
+        const response = await axios.post('http://localhost:3001/loginAdmin/create', payload)
         return response;
     }
 };
@@ -168,8 +169,8 @@ export const getRollAdmin=(token)=>{
     };
  }
 
-  //consigue todos los datos de los usuarios que realizaron las compras
-  export const getCustomerShopping=(token)=>{
+//consigue todos los datos de los usuarios que realizaron las compras
+export const getCustomerShopping=(token)=>{
     return async(dispatch) => {
         try {
             const { data } = await axios.get(`http://localhost:3001/loginAdmin/customerShopping`,token);
@@ -181,9 +182,21 @@ export const getRollAdmin=(token)=>{
             console.error(err);
         }
     };
- }
+}
 
-
+ export function deleteProducts(id, setFlag) {
+    return async(dispatch) => {
+        try {
+            return axios.delete(`http://localhost:3001/loginAdmin/delete/${id}`)
+                .then(res => {
+                    setFlag((flag) => !flag)
+                    return dispatch({ type: DELETE_PRODUCT, payload: res.data })})
+                .catch(err => dispatch({ type: DELETE_PRODUCT, payload: err.data }))
+        } catch (error) {
+            console.log(error)
+        }
+    }
+};
 
 
 

@@ -1,6 +1,6 @@
 const {createProductsDb}=require('../service/admin/createProductDb')
 const {deleteProductsDb} = require ('../service/admin/deleteProductDb')
-const {LineGraphicsSale,pieGraphicscategory}=require('../service/admin/statisticsProductService')
+const {LineGraphicsSale,pieGraphicscategory,piestatusProducts}=require('../service/admin/statisticsProductService')
 const {customerShoppinService}=require('../service/admin/customerShoppinService')
 
 const CreateProductDb=async(req,res)=>{
@@ -19,7 +19,8 @@ const DeleteProductDb = async(req, res)=>{
 const statisticsProductDb=async(req,res)=>{
     const statisticsProduct = await LineGraphicsSale(req)
     const statisticsProductpie=await pieGraphicscategory(req)
-    res.status(202).json({statisticsProductpie:statisticsProductpie,statisticsProduct:statisticsProduct});
+    const statisticsStatusProductpie=await piestatusProducts(req)
+    res.status(202).json({statisticsProductpie:statisticsProductpie,statisticsProduct:statisticsProduct,statisticsStatusProductpie:statisticsStatusProductpie});
 }
 
 const  customerShoppingDb=async(req,res)=>{

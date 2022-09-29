@@ -22,7 +22,7 @@ import SidebarAdmin from "./components/Admin/SidebarAdmin/SidebarAdmin";
 import ProductsAdm from "./components/Admin/ProductsAdm/ProductsAdm"
 import Users from "./components/Admin/Users/Users"
 
-
+//////////////////////
 const stripePromise = loadStripe(
   "pk_test_51LkfWEIzGpa9z0EFC6OqfUFPRBmrUIS1nZVezBHgqSh6GBtJ3x5whj06EuCkgwBhls2xwc3M8UI9JKxid7o7Zzni00BiLqFS7P"
 );

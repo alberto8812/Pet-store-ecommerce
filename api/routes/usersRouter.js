@@ -1,6 +1,6 @@
 const express=require("express"),
       router=express.Router();
-const { getUserLogin, postUserData, postComment,postUserCart,postUserPayment } = require("../../controllers/usersController");
+const { getUserLogin, postUserData, postComment,postUserCart,postUserPayment } = require("../controllers/usersController");
 
 
 

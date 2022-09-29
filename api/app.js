@@ -3,10 +3,10 @@ const express = require("express"),
     morgan = require('morgan'),
     cors = require('cors'), // providing a Connect/Express middleware that can be used to enable CORS with various options.
     helmet = require("helmet"),
-    v1ProducstRouter = require('./V1/routes/allProductsRouter'),
-    v1UsersRouter = require('./v1/routes/usersRouter'),
-    v1AdminRouter = require('./V1/routes/adminRouter'),
-    v1contactUs = require('./V1/routes/contactUsRouter'),
+    v1ProducstRouter = require('./routes/allProductsRouter'),
+    v1UsersRouter = require('./routes/usersRouter'),
+    v1AdminRouter = require('./routes/adminRouter'),
+    v1contactUs = require('./routes/contactUsRouter'),
     { jwtCheck, checkpermissions } = require('./middleware/jwtLoginUser');
 
 

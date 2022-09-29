@@ -1,8 +1,7 @@
 
 
-const {CreateProductDb, EditProductDb, DeleteProductDb,statisticsProductDb,customerShoppingDb }=require("../../controllers/adminController")
-const {db,Op}=require('../../database/db')
-const {Sale}=db.models//practica
+const {CreateProductDb, EditProductDb, DeleteProductDb,statisticsProductDb,customerShoppingDb }=require("../controllers/adminController")
+
 const express=require("express"),
       router=express.Router();
 

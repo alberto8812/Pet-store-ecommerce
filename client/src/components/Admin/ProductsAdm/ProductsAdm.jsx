@@ -10,7 +10,7 @@ import Paper from '@mui/material/Paper';
 import { deleteProducts, getAllProducts} from '../../../redux/actions/index';
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-
+/* */
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {

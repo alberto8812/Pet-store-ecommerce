@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
 import { getgraphicsData } from '../../../redux/actions';
 
-
+////
 
 const estadisticas = () => {
   const dispatch = useDispatch();

@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./AboutUs.css";
 import { postContact } from "../../../redux/actions";
-
+////
 export default function AboutUs() {
   const navigate = useNavigate();
   const dispatch = useDispatch()

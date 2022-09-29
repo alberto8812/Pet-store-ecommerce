@@ -47,7 +47,6 @@ function App() {
         <Route path={"/profile"} element={<Profile />} />
         <Route path={"/registration"} element={<Registration />} />
         <Route path={"/paymentgateway"} element={<Elements stripe={stripePromise}><PaymentGateway /></Elements>}/>
-        <Route path={"/create"} element={<Create />} />
         <Route path={"/carrito"} element={<Carrito />} />
       </Routes> 
       {/* dashboard de admin */}
@@ -59,6 +58,7 @@ function App() {
         <Route path={"statistics"} element={<Estadisticas/>}/>
         <Route path={"productsAdm"} element={<ProductsAdm />}/>
         <Route path={"users"} element={<Users/>}/>
+        <Route path={"create"} element={<Create />} />
         <Route path={"*"} element={<NotFound />} />
         </Route>
       </Routes> 

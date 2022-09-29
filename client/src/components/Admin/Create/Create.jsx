@@ -1,6 +1,6 @@
 //Formulario para que el propietario de la pagina pueda cargar sus productos y modificar stock
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { postProduct } from "../../../redux/actions";
 
@@ -71,8 +71,8 @@ export default function Create() {
         detail: '',
         image: '',
         rating: '',
-        category: [],
-        genre: [],
+        category: 'food',
+        genre: 'cat',
     })
 
     /*
@@ -94,7 +94,6 @@ export default function Create() {
             ...input,
             [e.target.name]: e.target.value,
         }))
-        console.log(input)
     }
     /*
         function handleSelectCategory(e) {
@@ -168,10 +167,10 @@ export default function Create() {
                 detail: '',
                 image: '',
                 rating: '',
-                category: [],
-                genre: [],
+                category: 'food',
+                genre: 'cat',
             })
-            navigate('/')
+            // navigate('/')
         } else {
             alert('There is incomplete data')
         }

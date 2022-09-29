@@ -1,1 +1,0 @@
-// componente para mostrar errores 

@@ -32,20 +32,12 @@ const PieStatus = ({statusGraphics}) => {
       backgroundColor: [
         'rgb(255, 99, 132)',
         'rgb(54, 162, 235)',
-        'rgb(255, 205, 86)',
-        'rgb(66, 235, 54)',
-        'rgb(207, 39, 151)',
-        'rgb(181, 224, 61)',
-        'rgb(101, 15, 94)'  
+        
       ],
       borderColor: [
         'rgba(255, 99, 132, 1)',
         'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgb(66, 235, 54)',
-        'rgb(207, 39, 151)',
-        'rgb(181, 224, 61)',
-        'rgb(101, 15, 94)'  ,
+      
       ],
       hoverOffset: 4,
       borderWidth: 1,

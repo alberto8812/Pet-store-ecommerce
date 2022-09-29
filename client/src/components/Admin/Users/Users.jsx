@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import { useDispatch } from "react-redux";
 import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
 import { getCustomerShopping,getgraphicsData } from '../../../redux/actions';
@@ -8,6 +8,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { Grid } from '@mui/material';
 import PieStatus from '../graphics/PieStatus';
 import CardStatus from './component/CardStatus';
+import InputsChangueState from './component/InputsChangueState';
 
 const Users = () => {
   const dispatch = useDispatch();
@@ -16,14 +17,15 @@ const Users = () => {
   const statusGraphicsdb = useSelector(state => state.statistics.statisticsStatusProductpie);
   const custumerData=custumerDataDb!==undefined?custumerDataDb:[];
   const statusGraphics=statusGraphicsdb!==undefined?statusGraphicsdb:[];
-   console.log(statusGraphics)
+  const [rowInf, setRowInf] = useState({})
   let rows=[]
 
   
   useEffect(() => {
     const getToken=async()=>{
+
       //pedimisn el token
-      const token= await getAccessTokenSilently()
+  const token= await getAccessTokenSilently()
       //realizamon un arreglo con los header
       const headers= {   
         headers:{
@@ -37,6 +39,11 @@ const Users = () => {
     getToken()
 
   }, [])
+
+
+  const handleRowInfo=(data)=>{
+    setRowInf(data)
+  }
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 150 },
@@ -107,7 +114,7 @@ const Users = () => {
 
   return (
     <Box sx={{ height: '100%', width: '100%'}}>
-      <Box sx={{ height: '30%', width: '100%',border:'1px solid'}}> 
+      <Box sx={{ height: 'auto', width: '100%',border:'1px solid'}}> 
 
      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}
      
@@ -129,6 +136,7 @@ const Users = () => {
     })}
      <Grid item xs={4}
        container
+      
       direction="row"
       justifyContent="center"
       alignItems="center"
@@ -138,6 +146,10 @@ const Users = () => {
       </Box>
      </Grid>
 
+     </Grid>
+     <Grid container  gap={2}  sx={{padding:'20px'}}>
+
+      <InputsChangueState rowInf={rowInf}/>
      </Grid>
 
      </Box>
@@ -151,7 +163,7 @@ const Users = () => {
         //checkboxSelection
         disableSelectionOnClick
         experimentalFeatures={{ newEditingApi: true }}
-        onRowClick={(e)=>console.log(e.row)}
+        onRowClick={(e)=>handleRowInfo(e.row)}
       />
     </Box>
  

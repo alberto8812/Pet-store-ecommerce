@@ -1,3 +1,5 @@
+require('dotenv').config()
+const{JWK_SURI,ISSUER}=process.env
 const { expressjwt: jwt } = require("express-jwt"),////Express middleware for validating JWTs (JSON Web Tokens)
       jwks=require('jwks-rsa'),
       jwtAuthz=require("express-jwt-authz");
@@ -12,10 +14,10 @@ const jwtCheck = jwt({
         cache: true,
         rateLimit: true,
         jwksRequestsPerMinute: 5,
-        jwksUri: 'https://dev-nzbce16c.us.auth0.com/.well-known/jwks.json'
+        jwksUri: `https://${JWK_SURI}/.well-known/jwks.json`
   }),
   audience: 'http://www.pet-love-api.com',
-  issuer: 'https://dev-nzbce16c.us.auth0.com/',
+  issuer: `${ISSUER}`,
   algorithms: ['RS256']
 })
 

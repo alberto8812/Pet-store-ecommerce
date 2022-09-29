@@ -4,9 +4,8 @@ import "bootswatch/dist/pulse/bootstrap.min.css";
 import './PaymentGateway.css'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 //import { loadStripe } from "@stripe/stripe-js";
-// import StripeCheckout from 'react-stripe-checkout'
+//import StripeCheckout from 'react-stripe-checkout'
 
 import {
     //Elements,
@@ -47,7 +46,7 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
 
     const notifyOK = () => {
         toast.success(`Payment complete!`, {
-          theme: "colored",
+            theme: "colored",
         });
     };
 
@@ -90,7 +89,7 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
         }
     };
 
-    function handleClean(e){
+    function handleClean(e) {
         // e.preventDefault();
         window.localStorage.clear();
         // setTimeout(() => {
@@ -171,27 +170,27 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
 
                             <button disabled={!stripe} className="btn btn-success"/>
 
-                          <button disabled={!stripe} onClick={e => handleClean(e)} className="btn btn-success">
+                                <button disabled={!stripe} onClick={e => handleClean(e)} className="btn btn-success">
 
-                                {loading ? (
-                                    <div className="spinner-border text-light" role="status">
-                                        <span className="sr-only"></span>
-                                    </div>
-                                ) : (
-                                    "Buy"
-                                )}
-                            </button>
-                            <ToastContainer
-        position="top-center"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+                                    {loading ? (
+                                        <div className="spinner-border text-light" role="status">
+                                            <span className="sr-only"></span>
+                                        </div>
+                                    ) : (
+                                        "Buy"
+                                    )}
+                                </button>
+                                <ToastContainer
+                                    position="top-center"
+                                    autoClose={2000}
+                                    hideProgressBar={false}
+                                    newestOnTop={false}
+                                    closeOnClick
+                                    rtl={false}
+                                    pauseOnFocusLoss
+                                    draggable
+                                    pauseOnHover
+                                />
 
                         </form>
                     </div>

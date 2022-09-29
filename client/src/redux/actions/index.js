@@ -6,7 +6,7 @@ import {
     DECREASE_QUANTITY,UPDATE_CART,DELETE_CART,
     ADD_COMMENT,REFRESH_CART,GET_ADMINROLL,
     GET_GRAPHICS_DATA, DELETE_PRODUCT,
-    GET_GRAPHICS_DATA,GET_CUSTOMER_SHOPPING
+    GET_CUSTOMER_SHOPPING
 } from "./constants";
 
 export function getAllProducts() {
@@ -168,6 +168,21 @@ export const getRollAdmin=(token)=>{
         }
     };
  }
+
+//consigue todos los datos de los usuarios que realizaron las compras
+export const getCustomerShopping=(token)=>{
+    return async(dispatch) => {
+        try {
+            const { data } = await axios.get(`http://localhost:3001/loginAdmin/customerShopping`,token);
+            return dispatch({
+                type: GET_CUSTOMER_SHOPPING,
+                payload: data,
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    };
+}
 
  export function deleteProducts(id, setFlag) {
     return async(dispatch) => {

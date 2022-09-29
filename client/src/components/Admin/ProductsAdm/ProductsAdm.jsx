@@ -7,6 +7,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import {RiDeleteBin6Line} from 'react-icons/ri';
+import {GrEdit} from 'react-icons/gr';
 import { deleteProducts, getAllProducts} from '../../../redux/actions/index';
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
@@ -52,25 +54,26 @@ const ProductsAdm= () => {
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Product Name</StyledTableCell>
-            <StyledTableCell align="right">ID</StyledTableCell>
-            <StyledTableCell align="right">Price&nbsp;</StyledTableCell>
-            <StyledTableCell align="right">Stock&nbsp;</StyledTableCell>
-            <StyledTableCell align="right">Category&nbsp;</StyledTableCell>
+            <StyledTableCell  align="center">Product Name</StyledTableCell>
+            <StyledTableCell align="center">ID</StyledTableCell>
+            <StyledTableCell align="center">Price&nbsp;</StyledTableCell>
+            <StyledTableCell align="center">Stock&nbsp;</StyledTableCell>
+            <StyledTableCell align="center">Category&nbsp;</StyledTableCell>
+            <StyledTableCell align="center" colSpan={2}>Options</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {products?.map((row) => (
             <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
+              <StyledTableCell  align="center" component="th" scope="row">
                 {row.name}
               </StyledTableCell>
-              <StyledTableCell align="right">{row.id}</StyledTableCell>
-              <StyledTableCell align="right">{row.price}</StyledTableCell>
-              <StyledTableCell align="right">{row.stock}</StyledTableCell>
-              <StyledTableCell align="right">{row.category?.name}</StyledTableCell>
-              <StyledTableCell align="right" onClick={() => {handleDelete(row.id)}}>Delete</StyledTableCell>
-              <StyledTableCell align="right"> Edit </StyledTableCell>
+              <StyledTableCell align="center">{row.id}</StyledTableCell>
+              <StyledTableCell align="center">{row.price}</StyledTableCell>
+              <StyledTableCell align="center">{row.stock}</StyledTableCell>
+              <StyledTableCell align="center">{row.category?.name}</StyledTableCell>
+              <StyledTableCell align="center" onClick={() => {handleDelete(row.id)}}><RiDeleteBin6Line/></StyledTableCell>
+              <StyledTableCell align="center"><GrEdit/></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

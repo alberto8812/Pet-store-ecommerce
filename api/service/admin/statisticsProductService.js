@@ -54,5 +54,11 @@ const arrayCategory=getCategory.map(element => {
 
  return category;
 }
+const piestatusProducts=async(req)=>{
+    
+    const statusProducts=await Sale.findAll({attributes:["status",[db.fn('COUNT', db.col('status')),'status_count']],group:['status']})
+    
+     return statusProducts ;
+    }
 
-module.exports={LineGraphicsSale,pieGraphicscategory}
+module.exports={LineGraphicsSale,pieGraphicscategory,piestatusProducts}

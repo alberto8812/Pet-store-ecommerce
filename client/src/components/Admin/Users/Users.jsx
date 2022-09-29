@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react'
 import { useDispatch } from "react-redux";
 import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
-import { getCustomerShopping } from '../../../redux/actions';
+import { getCustomerShopping } from '../../../redux/actions/index.js';
 import { useSelector } from "react-redux";
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';

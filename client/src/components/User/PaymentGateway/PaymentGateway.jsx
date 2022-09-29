@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import {withAuthenticationRequired} from '@auth0/auth0-react'
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
 import "bootswatch/dist/pulse/bootstrap.min.css";
 import './PaymentGateway.css'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 //import { loadStripe } from "@stripe/stripe-js";
+// import StripeCheckout from 'react-stripe-checkout'
 
 import {
     //Elements,
@@ -21,7 +22,8 @@ import { useNavigate } from "react-router-dom";
 
 //const stripePromise = loadStripe("pk_test_51LkfWEIzGpa9z0EFC6OqfUFPRBmrUIS1nZVezBHgqSh6GBtJ3x5whj06EuCkgwBhls2xwc3M8UI9JKxid7o7Zzni00BiLqFS7P");
 
-export default withAuthenticationRequired (function PaymentGateway({ image, name, stock, price, id, category, genre, age }) {
+export default withAuthenticationRequired(function PaymentGateway({ image, name, stock, price, id, category, genre, age }) {
+    const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
     const stripe = useStripe();
     const elements = useElements();
 
@@ -31,22 +33,23 @@ export default withAuthenticationRequired (function PaymentGateway({ image, name
 
     let listCart = [];
     let totalCart = 0;
-  
+
     Object.keys(productsInTheCart).forEach(product => {
-      totalCart += productsInTheCart[product].quantity * productsInTheCart[product].price;
-      listCart.push(productsInTheCart[product]);
-  });
-  
-    function totalPrice(price, item){
+        totalCart += productsInTheCart[product].quantity * productsInTheCart[product].price;
+        listCart.push(productsInTheCart[product]);
+    });
+
+    const idList = listCart.map(e => e.id).toString()
+
+    function totalPrice(price, item) {
         return Number(price * item).toLocaleString('en-US');
     };
-  
+
     const notifyOK = () => {
         toast.success(`Payment complete!`, {
           theme: "colored",
         });
     };
-  
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -60,14 +63,21 @@ export default withAuthenticationRequired (function PaymentGateway({ image, name
         notifyOK();
 
         if (!error) {
-            // console.log(paymentMethod)
+            console.log(paymentMethod)
             const { id } = paymentMethod;
             try {
+                const token = await getAccessTokenSilently()
                 const { data } = await axios.post(
                     "http://localhost:3001/loginUsers/checkoutpayment",
                     {
                         id,
-                        amount: 10000, //cents
+                        amount: totalCart * 100,
+                        description: idList
+                    },
+                    {
+                        headers: {
+                            authorization: `Bearer ${token}`
+                        },
                     }
                 );
                 console.log(data);
@@ -75,7 +85,7 @@ export default withAuthenticationRequired (function PaymentGateway({ image, name
                 elements.getElement(CardElement).clear();
             } catch (error) {
                 console.log(error);
-            } 
+            }
             setLoading(false);
         }
     };
@@ -90,6 +100,7 @@ export default withAuthenticationRequired (function PaymentGateway({ image, name
     }
 
     console.log(!stripe || loading);
+
 
     return (
         <div className="m7">
@@ -106,44 +117,44 @@ export default withAuthenticationRequired (function PaymentGateway({ image, name
                     <div className="product-head desk">
                         <div className="clear"></div>
                     </div>
-                    
+
                     <div className="table">
-                    {
-                  listCart.map((item) => {
-                      return(
-                          <div>
-                              <h5 className="name">{item.name}</h5>
-                              <img className="image" src={item.image} alt={item.name} height='50px' width='50px'/>
-                              <div className="product-info">
-                              <h5 className="name">
-                                <a href={`/products/detail/${id}`} target='_blank'>Go to product details</a>
-                              </h5>
-                              <div className="description">
-                                <ul>
-                                    <li>
-                                        <strong>Age:</strong>
-                                        {item.age}
-                                    </li>
-                                    <li>
-                                        <strong>Id Product:</strong>
-                                        {item.id}
-                                    </li>
-                                </ul>
-                            </div>
-                            </div>
-                            <div className="quantity" data-id="0">
-                            <div className="qty">
-                                <label type="number" id="cantidad_13854" pattern="[0-9]+" className="count" /> 
-                                {item.quantity} 
-                            </div>
-                            </div>
-                            <span>Total {totalPrice(item.price, item.quantity)} $</span>
-                          </div>
-                      )
-                  })
-              }
-                </div>
-                    
+                        {
+                            listCart.map((item) => {
+                                return (
+                                    <div>
+                                        <h5 className="name">{item.name}</h5>
+                                        <img className="image" src={item.image} alt={item.name} height='50px' width='50px' />
+                                        <div className="product-info">
+                                            <h5 className="name">
+                                                <a href={`/products/detail/${id}`} target='_blank'>Go to product details</a>
+                                            </h5>
+                                            <div className="description">
+                                                <ul>
+                                                    <li>
+                                                        <strong>Age:</strong>
+                                                        {item.age}
+                                                    </li>
+                                                    <li>
+                                                        <strong>Id Product:</strong>
+                                                        {item.id}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div className="quantity" data-id="0">
+                                            <div className="qty">
+                                                <label type="number" id="cantidad_13854" pattern="[0-9]+" className="count" />
+                                                {item.quantity}
+                                            </div>
+                                        </div>
+                                        <span>Total {totalPrice(item.price, item.quantity)} $</span>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+
                 </div>
             </section>
             {<section className="cart-totals-container">
@@ -154,9 +165,14 @@ export default withAuthenticationRequired (function PaymentGateway({ image, name
                             {/* <h3 className="cart-totals">Total: 100$</h3> */}
                             <h3 className="cart-totals">Total: {Number(totalCart).toLocaleString('en-US')}$</h3>
                             <div className="form-group">
-                                <CardElement className="pagos"/>
+                                <CardElement
+                                />
                             </div>
+
+                            <button disabled={!stripe} className="btn btn-success"/>
+
                           <button disabled={!stripe} onClick={e => handleClean(e)} className="btn btn-success">
+
                                 {loading ? (
                                     <div className="spinner-border text-light" role="status">
                                         <span className="sr-only"></span>
@@ -190,5 +206,5 @@ export default withAuthenticationRequired (function PaymentGateway({ image, name
             </div>
         </div >
     )
-},{onRedirecting:()=><Loading/>});
+}, { onRedirecting: () => <Loading /> });
 

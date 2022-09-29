@@ -3,10 +3,13 @@ const {Product}=db.models
 
 const deleteProductsDb = async (req, res)=>{
 
-    let id = req.params.id 
-    await Product.destroy({where:{
-      id, 
-    }   }) //Aca en lugar de destroy es update actualizando la prop deleted a true 
+    
+    let id = req.params.id
+    await Product.update({deleted:true},
+      {where:{
+      id,
+    }}) 
+    //Aca en lugar de destroy es update actualizando la prop deleted a true 
     // await Product.update({deleted:true}, 
     //{where:{
     //   id, 

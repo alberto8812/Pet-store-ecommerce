@@ -7,7 +7,7 @@ const { getUserLogin, postUserData, postComment,postUserCart,postUserPayment } =
 
 
 router
-      .get('/',getUserLogin)
+      //.get('/',getUserLogin)
 
       .post('/datauser',postUserData)
 

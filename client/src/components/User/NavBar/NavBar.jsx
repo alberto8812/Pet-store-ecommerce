@@ -117,7 +117,12 @@ useEffect(() => {
                         {/* <Icon className='ico_nav' icon="bx:home" width='30px' height='30px' /> */}
                         <img className='img-home-btn' src={home} alt=''/>
                         <h3 className='link_home'>Home</h3>
-                    </Link>                
+                    </Link>  
+                    <Link to='/admin/' className='nav-link' >
+                        
+                       
+                        <h3 className='link_home'>admin</h3>
+                    </Link>               
                 </Grid>
                 <Grid item xs={8} 
                  container

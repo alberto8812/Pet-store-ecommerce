@@ -7,6 +7,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { deleteProducts, getAllProducts} from '../../../redux/actions/index';
+import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect } from "react";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -30,23 +33,19 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
-function createData(name, id, price, stock, category) {
-  return { name, id, price, stock, category };
-}
-
-
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  
-
-];
-
 const ProductsAdm= () => {
+
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.products);
+  const [flag, setFlag] = useState(false)
+
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, [dispatch, flag]);
+
+  const handleDelete = (id) =>{
+    dispatch(deleteProducts(id, setFlag));
+  }
 
   return (
     <TableContainer component={Paper}>
@@ -61,7 +60,7 @@ const ProductsAdm= () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {products?.map((row) => (
             <StyledTableRow key={row.name}>
               <StyledTableCell component="th" scope="row">
                 {row.name}
@@ -69,7 +68,9 @@ const ProductsAdm= () => {
               <StyledTableCell align="right">{row.id}</StyledTableCell>
               <StyledTableCell align="right">{row.price}</StyledTableCell>
               <StyledTableCell align="right">{row.stock}</StyledTableCell>
-              <StyledTableCell align="right">{row.category}</StyledTableCell>
+              <StyledTableCell align="right">{row.category?.name}</StyledTableCell>
+              <StyledTableCell align="right" onClick={() => {handleDelete(row.id)}}>Delete</StyledTableCell>
+              <StyledTableCell align="right"> Edit </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
@@ -79,3 +80,5 @@ const ProductsAdm= () => {
 }
 
 export default ProductsAdm
+
+

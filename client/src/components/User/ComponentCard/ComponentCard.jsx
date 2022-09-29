@@ -6,7 +6,9 @@ import { getProducts } from '../../../redux/actions/index';
 import Loading from '../Loading/Loading'
 import CardProduct from "../Card/Card";
 import { Grid,Box } from "@mui/material";
-import '../Home/Home.css'
+import './ComponentCard.css';
+import '../Home/Home.css';
+
 
 export const ComponentCard = ({animalsInCurrentPage}) => {
     const dispatch = useDispatch()
@@ -15,7 +17,6 @@ export const ComponentCard = ({animalsInCurrentPage}) => {
     useEffect(() => {
         dispatch(getProducts()).then(() => setCarga(false)) 
     }, [dispatch])
-
  
 
     if (carga) {
@@ -43,7 +44,9 @@ export const ComponentCard = ({animalsInCurrentPage}) => {
                     rating={v.rating}
                     />
                      </Box>
-                    )}) : `We couldn't load the products, refresh the page`}
+                    )}) : <div className="not-found-msg-container">
+                        <p className="not-found-msg">Product not found!</p>
+                        </div>}
 
        {/* </div>*/}
         </Grid>

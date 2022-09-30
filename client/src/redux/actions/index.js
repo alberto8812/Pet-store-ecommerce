@@ -6,7 +6,7 @@ import {
     DECREASE_QUANTITY,UPDATE_CART,DELETE_CART,
     ADD_COMMENT,REFRESH_CART,GET_ADMINROLL,
     GET_GRAPHICS_DATA, DELETE_PRODUCT,
-    GET_CUSTOMER_SHOPPING
+    GET_CUSTOMER_SHOPPING,GET_CUSTOMER_SHOPPING_STATUS
 } from "./constants";
 //http://localhost:3001
 export function getAllProducts() {
@@ -176,6 +176,22 @@ export const getCustomerShopping=(token)=>{
             const { data } = await axios.get(`/loginAdmin/customerShopping`,token);
             return dispatch({
                 type: GET_CUSTOMER_SHOPPING,
+                payload: data,
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    };
+}
+
+// cambiar el status de la compra 
+export const putCustomerShoppingStatus=(token,status,invoice)=>{
+    console.log(status)
+    return async(dispatch) => {
+        try {
+            const { data } = await axios.put(`/loginAdmin/customerShopping/${invoice}`,{status:status},token);
+            return dispatch({
+                type: GET_CUSTOMER_SHOPPING_STATUS,
                 payload: data,
             });
         } catch (err) {

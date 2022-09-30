@@ -51,7 +51,7 @@ const PieCategory = () => {
       borderWidth: 1,
     }]}
 
-
+/** */
   return (
     <Doughnut data={data} options={options} />
   )

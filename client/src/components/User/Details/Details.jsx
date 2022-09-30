@@ -11,7 +11,7 @@ import Footer from "../Footer/Footer";
 import { useAuth0 } from '@auth0/auth0-react';//libreia Auth0
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+////////////
 
 //BACK --> Falta ruta de post review? 
 //Vamos a validar que la persona seleccione estrellas? Si o si haga puntuación? 

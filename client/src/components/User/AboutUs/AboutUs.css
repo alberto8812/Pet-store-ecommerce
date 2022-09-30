@@ -1,6 +1,6 @@
 /* * {
     box-sizing: border-box;
-} */
+} ****/
 
 .form-aboutus {
     display: flex;
@@ -20,7 +20,7 @@
     align-items: center;
     gap: 0.5rem;
 }
-
+/**/
 .div-inputs {
     width: 90%;
 }

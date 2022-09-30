@@ -8,7 +8,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useAuth0 } from '@auth0/auth0-react';//peticion  libreria auth0 para registros de usuario
-
+////////////
 import './Login.css'
 const style = {
     position: 'absolute',

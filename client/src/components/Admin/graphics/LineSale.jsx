@@ -43,7 +43,7 @@ const options = {
     },
   },
 };
-
+/* */
 export default function LineSell() {
 const lineGraphics = useSelector(state => state.statistics);
 let labels =Object.keys(lineGraphics).length>0?lineGraphics.statisticsProduct.month:[];

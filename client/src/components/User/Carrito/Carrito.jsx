@@ -6,7 +6,7 @@ import "./Carrito.css";
 import {withAuthenticationRequired} from '@auth0/auth0-react'
 import Loading from "../Loading/Loading";
 
-
+/**/
 //{ image, name, stock, price, id, category, genre, age }
 export default withAuthenticationRequired ( function Carrito() {
   const productsInTheCart = useSelector(state => state.cart);

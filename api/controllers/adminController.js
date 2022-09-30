@@ -1,7 +1,7 @@
 const {createProductsDb}=require('../service/admin/createProductDb')
 const {deleteProductsDb} = require ('../service/admin/deleteProductDb')
 const {LineGraphicsSale,pieGraphicscategory,piestatusProducts}=require('../service/admin/statisticsProductService')
-const {customerShoppinService}=require('../service/admin/customerShoppinService')
+const {customerShoppinService,customerShoppingStatusService}=require('../service/admin/customerShoppinService')
 const {editProductsDb}=require('../service/admin/editProductDb')
 
 const CreateProductDb=async(req,res)=>{
@@ -35,6 +35,11 @@ const  customerShoppingDb=async(req,res)=>{
     res.status(202).json(listCustomerShopping);
 }
 
+const customerShoppingStatusDb=async(req,res)=>{
+    const customerShoppingStatus=await customerShoppingStatusService(req)
+    res.status(202).json(customerShoppingStatus);
+}
+
 
 
 module.exports={
@@ -42,5 +47,6 @@ module.exports={
         DeleteProductDb,
         statisticsProductDb,
         customerShoppingDb,
-        EditProductDb
+        EditProductDb,
+        customerShoppingStatusDb
     }

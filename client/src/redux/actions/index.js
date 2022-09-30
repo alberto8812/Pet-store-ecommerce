@@ -196,6 +196,22 @@ export const getCustomerShopping=(token)=>{
     };
 }
 
+// cambiar el status de la compra 
+export const putCustomerShoppingStatus=(token,status,invoice)=>{
+    console.log(status)
+    return async(dispatch) => {
+        try {
+            const { data } = await axios.put(`/loginAdmin/customerShopping/${invoice}`,{status:status},token);
+            return dispatch({
+                type: GET_CUSTOMER_SHOPPING_STATUS,
+                payload: data,
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    };
+}
+
  export function deleteProducts(id, setFlag) {
     return async(dispatch) => {
         try {

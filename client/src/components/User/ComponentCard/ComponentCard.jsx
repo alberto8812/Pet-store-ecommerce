@@ -7,7 +7,7 @@ import Loading from '../Loading/Loading'
 import CardProduct from "../Card/Card";
 import { Grid,Box } from "@mui/material";
 import '../Home/Home.css'
-
+////////
 export const ComponentCard = ({animalsInCurrentPage}) => {
     const dispatch = useDispatch()
     const [carga, setCarga] = useState(true);

@@ -7,7 +7,7 @@ import img4 from "../../../img/foto_4.jpg"
 import {ReactComponent as FlechaIzquieRda} from "../../../img/reshot-icon-arrow-first-page-SAHP576EN2.svg"
 import {ReactComponent as FlechaDerecha} from "../../../img/reshot-icon-arrow-last-page-98L6DTREBQ.svg"
 import styled from 'styled-components';
-
+/////////
 const Carousel = props => {
     const slideshow = useRef(null)
     const intervalSlideshow=useRef(null)

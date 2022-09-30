@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "../Home/Home.css";
 import { sortByPrice, getProducts } from "../../../redux/actions";
 import './Filters_Sort.css'
-
+////////////////
 const Filter_Sort = ({update, setUpdate, setCurrentPage}) => {
   const dispatch = useDispatch();
   //const [filterCategory, setFilterCategory] = useState(''); 

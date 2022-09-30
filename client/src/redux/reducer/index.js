@@ -134,18 +134,11 @@ function rootReducer(state = initialState, action) {
         
         case  GET_GRAPHICS_DATA:
         //infomracion para las graficas admin
-        return {...state,statistics:action.payload}
-
+            return {...state,statistics:action.payload}
 
         case GET_CUSTOMER_SHOPPING:
 
             return {...state,customerShopping:action.payload}
-
-
-
-
-
-
 
         default:
             return state

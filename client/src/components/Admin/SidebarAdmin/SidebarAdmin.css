@@ -8,11 +8,17 @@
 }
 
 .sidebar-admin-rute{
+  padding-left: 0.25em;
   border-right: 2px solid gray;
   max-width: 150px;
+  
 }
-/**/
-.sidebar-admin-componete{
+
+:link{
+  text-decoration: none;
+}
+
+/* .sidebar-admin-componete{
 
  
-}
+} */

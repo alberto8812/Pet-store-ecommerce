@@ -50,7 +50,7 @@ function App() {
         <Route path={"/carrito"} element={<Carrito />} />
       </Routes> 
       {/* dashboard de admin */}
-     {/* ////////< NavbarAdmin /> */ }
+     {/* < NavbarAdmin /> */ }
     
       <Routes>
       <Route  path={"/admin/"} element={< SidebarAdmin />}>

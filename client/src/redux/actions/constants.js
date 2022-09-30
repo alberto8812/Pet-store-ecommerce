@@ -14,7 +14,7 @@ export const ADD_COMMENT = 'ADD_COMMENT';
 export const REFRESH_CART = 'REFRESH_CART';
 
 
-////////////////ADMIN CONSTAN///////////////////////////////////
+////////////////ADMIN CONSTANTS///////////////////////////////////
 export const GET_ADMINROLL = 'GET_ADMINROLL';
 export const GET_GRAPHICS_DATA='GET_GRAPHICS_DATA';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';

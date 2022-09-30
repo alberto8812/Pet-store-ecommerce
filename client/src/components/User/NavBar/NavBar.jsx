@@ -11,7 +11,7 @@ import { getProducts, sortByPrice } from '../../../redux/actions';
 import home from './download.png';
 import { Avatar,Grid } from '@mui/material';
 import SearchBar from '../SearchBar/SearchBar';
-
+/////////////////
 
 
 <Icon icon="bx:home" />
@@ -62,7 +62,7 @@ useEffect(() => {
         try {
             const token= await getAccessTokenSilently()
       
-           request= await axios.get('http://localhost:3001/loginUsers',
+           request= await axios.get('/loginUsers',
             {   
                 headers:{
                 authorization: `Bearer ${token}`
@@ -80,7 +80,7 @@ useEffect(() => {
 
     const prueba=async()=>{
         const token= await getAccessTokenSilently()
-           const userData= await axios.post('http://localhost:3001/loginUsers/datauser',{direction:"j1232",city:"medellin"},
+           const userData= await axios.post('/loginUsers/datauser',{direction:"j1232",city:"medellin"},
             {   
                 headers:{
                 authorization: `Bearer ${token}`
@@ -117,12 +117,7 @@ useEffect(() => {
                         {/* <Icon className='ico_nav' icon="bx:home" width='30px' height='30px' /> */}
                         <img className='img-home-btn' src={home} alt=''/>
                         <h3 className='link_home'>Home</h3>
-                    </Link>  
-                    <Link to='/admin/' className='nav-link' >
-                        
-                       
-                        <h3 className='link_home'>admin</h3>
-                    </Link>               
+                    </Link>                
                 </Grid>
                 <Grid item xs={8} 
                  container

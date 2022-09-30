@@ -6,7 +6,7 @@ import "./Carrito.css";
 import {withAuthenticationRequired} from '@auth0/auth0-react'
 import Loading from "../Loading/Loading";
 
-
+/**/
 //{ image, name, stock, price, id, category, genre, age }
 export default withAuthenticationRequired ( function Carrito() {
   const productsInTheCart = useSelector(state => state.cart);
@@ -24,6 +24,7 @@ export default withAuthenticationRequired ( function Carrito() {
   });
 
   const quantityState = listCart.map(el => el.quantity);
+  console.log('HOLUUUU', quantityState);
 
   useEffect(() => {
     quantityState;
@@ -57,7 +58,7 @@ export default withAuthenticationRequired ( function Carrito() {
   return (
     <div className="m7">
       <div className="b1 desk">
-        <div className="title">My cart ({numberCart})</div>
+        <div className="title">My Cart</div>
       </div>
       <div className="total-container mobile"></div>
       <div className="notification success desk">
@@ -77,22 +78,19 @@ export default withAuthenticationRequired ( function Carrito() {
                 return (
                   <div className="item-cart" key={key}>
                     <button className="btn-delete" id={item.id} onClick={e => handleDelete(e)}>❌</button>
-                    <img className="image" src={item.image} alt={item.name} />
                     <h3 className="name" style={{'fontWeight': 'bold'}}>{item.name.toUpperCase()}</h3>
-                    {/* <ul> */}
+                    <img className="image" src={item.image} alt={item.name} />
+                    <ul>
                       {/* <li><strong>Age: </strong> {item.age}</li>
                       <li><strong>ID Product: </strong>{item.id}</li> */}
-                      {/* <p><strong>Stock:</strong>{item.stock}</p> */}
-                    {/* </ul> */}
-                    <div className="div-total-contador">
-                      <div className="div-contador">
+                      <li><strong>Stock: </strong>{item.stock}</li>
+                    </ul>
+                    <div className="div-contador">
                     <button className="minus" onClick={e => handleDecrease(e)} id={item.id}>−</button>
                     <span className="count" id={item.id}>{quantityState.shift()}</span>
                     <button className="plus" onClick={e => handleIncrease(e)} id={item.id}>＋</button>
-                      </div>
-                    <p className="available-cart">{item.stock} disponibles</p>
                     </div>
-                    <span className="totalPrice-cart"> $ {totalPrice(item.price, item.quantity)} </span>
+                    <span>Total $ {totalPrice(item.price, item.quantity)} </span>
                     <hr/>
                   </div>
                 )

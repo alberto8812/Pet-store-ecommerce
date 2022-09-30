@@ -1,1 +1,1 @@
-// componente para mostrar errores 
+// componente para mostrar errores /////////

@@ -11,7 +11,7 @@ import {
   getProducts,
   getAllProducts,
 } from "../../../redux/actions";
-
+///////////////
 export default function Home() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);

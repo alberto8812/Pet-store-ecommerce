@@ -28,7 +28,7 @@ function validate(input) {
     } else if (input.price <= 0) {
         errors.price = 'The value must be greater than 0'
     }
-
+/**/
     if (!input.race) {
         errors.race = "Race is required"
     } else if (input.race.length > 50) {

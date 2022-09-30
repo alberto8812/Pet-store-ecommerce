@@ -1,19 +1,9 @@
 import {
-    GET_ALL_PRODUCTS,
-    GET_DETAILS,
-    SEARCH_BY_NAME,
-    SORT_BY_PRICE,
-    ADD_FAVORITE,
-    REMOVE_FAVORITE,
-    ADD_TO_CART,
-    GET_NUMBER_CART,
-    INCREASE_QUANTITY,
-    DECREASE_QUANTITY,
-    UPDATE_CART,
-    DELETE_CART,
-    REFRESH_CART,
-    GET_ADMINROLL,
-    GET_GRAPHICS_DATA,
+    GET_ALL_PRODUCTS,GET_DETAILS,SEARCH_BY_NAME,
+    SORT_BY_PRICE,ADD_FAVORITE,REMOVE_FAVORITE,
+    ADD_TO_CART,GET_NUMBER_CART,INCREASE_QUANTITY,
+    DECREASE_QUANTITY,UPDATE_CART,DELETE_CART,
+    REFRESH_CART,GET_ADMINROLL, GET_GRAPHICS_DATA,
     GET_CUSTOMER_SHOPPING
 } from "../actions/constants";
 
@@ -24,8 +14,8 @@ export const initialState = {
     status: true,
     cart: [],
     numberCart: 0,
-    statistics: [], /////contiene informacion para las graficas
-    CustomerShopping: [], //contienes infomracion de las compras de cada usario para el admind
+    statistics:[],/////contiene informacion para las graficas
+    CustomerShopping:[], //contienes infomracion de las compras de cada usario para el admind
 
 }
 
@@ -102,12 +92,8 @@ function rootReducer(state = initialState, action) {
             };
         case INCREASE_QUANTITY:
             const increaseItem = state.cart.find(x => x.id === action.payload);
-            if (increaseItem.quantity === increaseItem.stock) {
-                return
-            } else {
-                state.numberCart++
-                    increaseItem.quantity++;
-            }
+            state.numberCart++
+                increaseItem.quantity++;
             return {
                 ...state
             };
@@ -140,20 +126,20 @@ function rootReducer(state = initialState, action) {
                 cart: cart
             }
 
-            /////////////////////////////////////ADMINS REDUCER/////////////////////////////////////////////////
+/////////////////////////////////////ADMINS REDUCER/////////////////////////////////////////////////
 
         case GET_ADMINROLL:
             //identifica el tipo de roll user admin
             return state;
-
-        case GET_GRAPHICS_DATA:
-            //infomracion para las graficas admin
-            return {...state, statistics: action.payload }
+        
+        case  GET_GRAPHICS_DATA:
+        //infomracion para las graficas admin
+        return {...state,statistics:action.payload}
 
 
         case GET_CUSTOMER_SHOPPING:
 
-            return {...state, customerShopping: action.payload }
+            return {...state,customerShopping:action.payload}
 
 
 

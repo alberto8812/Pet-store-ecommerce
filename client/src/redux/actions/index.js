@@ -20,11 +20,11 @@ import {
     GET_CUSTOMER_SHOPPING,
     EDIT_PRODUCT
 } from "./constants";
-
+//http://localhost:3001
 export function getAllProducts() {
     return async(dispatch) => {
         try {
-            return axios.get('http://localhost:3001/products')
+            return axios.get('/products')
                 .then(res => dispatch({ type: GET_ALL_PRODUCTS, payload: res.data }))
                 .catch(err => dispatch({ type: GET_ALL_PRODUCTS, payload: err.data }))
         } catch (error) {
@@ -36,7 +36,7 @@ export function getAllProducts() {
 export function getProducts(prop) {
     return async function(dispatch) {
         try {
-            return axios.get('http://localhost:3001/products/search?name=' + prop.name + '&category=' + prop.category + '&genre=' + prop.genre + '&age=' + prop.age)
+            return axios.get('/products/search?name=' + prop.name + '&category=' + prop.category + '&genre=' + prop.genre + '&age=' + prop.age)
                 .then(res => dispatch({ type: GET_ALL_PRODUCTS, payload: res.data }))
                 .catch(err => dispatch({ type: GET_ALL_PRODUCTS, payload: err.data }))
         } catch (err) {
@@ -48,7 +48,7 @@ export function getProducts(prop) {
 export const getDetails = (id) => {
     return async(dispatch) => {
         try {
-            const { data } = await axios.get(`http://localhost:3001/products/detail/${id}`);
+            const { data } = await axios.get(`/products/detail/${id}`);
             return dispatch({
                 type: GET_DETAILS,
                 payload: data,
@@ -61,7 +61,7 @@ export const getDetails = (id) => {
 
 export function postProduct(payload) {
     return async function(dispatch) {
-        const response = await axios.post('http://localhost:3001/loginAdmin/create', payload)
+        const response = await axios.post('/loginAdmin/create', payload)
         return response;
     }
 };
@@ -69,7 +69,7 @@ export function postProduct(payload) {
 export function postContact(payload) {
     return async function() {
         try {
-            let newEmail = await axios.post('http://localhost:3001/aboutus', payload)
+            let newEmail = await axios.post('/aboutus', payload)
             return newEmail;
         } catch (error) {
             console.error('Error en postContact --> ', error);
@@ -85,6 +85,7 @@ export function sortByPrice(payload) {
 };
 
 export function addToCart(payload) {
+    console.log('SOY EL ADDTOCART PAYLOAD', payload);
     return {
         type: ADD_TO_CART,
         payload
@@ -127,7 +128,7 @@ export function decreaseCart(payload) {
 
 export function addComment(input) {
     return async function(dispatch) {
-        axios.post('http://localhost:3001/loginUsers/comment', input)
+        axios.post('/loginUsers/comment', input)
             .then((res) => {
                 dispatch({
                     type: ADD_COMMENT,
@@ -145,16 +146,16 @@ export function refreshCart(payload) {
 };
 
 ////////////////////////************Admind*******************/////////////////////////////////// /
-
+ 
 
 
 
 //verifica que tipo de roll de usuario
 
-export const getRollAdmin = (token) => {
+export const getRollAdmin=(token)=>{
     return async(dispatch) => {
         try {
-            const { data } = await axios.get(`http://localhost:3001/loginAdmin`, token);
+            const { data } = await axios.get(`/loginAdmin`,token);
             return dispatch({
                 type: GET_ADMINROLL,
                 payload: data,
@@ -163,13 +164,13 @@ export const getRollAdmin = (token) => {
             console.error(err);
         }
     };
-}
+ }
 
-//consigue todos los datos de las graficas 
-export const getgraphicsData = (token) => {
+ //consigue todos los datos de las graficas 
+ export const getgraphicsData=(token)=>{
     return async(dispatch) => {
         try {
-            const { data } = await axios.get(`http://localhost:3001/loginAdmin/graphics`, token);
+            const { data } = await axios.get(`/loginAdmin/graphics`,token);
             return dispatch({
                 type: GET_GRAPHICS_DATA,
                 payload: data,
@@ -178,13 +179,13 @@ export const getgraphicsData = (token) => {
             console.error(err);
         }
     };
-}
+ }
 
 //consigue todos los datos de los usuarios que realizaron las compras
-export const getCustomerShopping = (token) => {
+export const getCustomerShopping=(token)=>{
     return async(dispatch) => {
         try {
-            const { data } = await axios.get(`http://localhost:3001/loginAdmin/customerShopping`, token);
+            const { data } = await axios.get(`/loginAdmin/customerShopping`,token);
             return dispatch({
                 type: GET_CUSTOMER_SHOPPING,
                 payload: data,
@@ -195,14 +196,13 @@ export const getCustomerShopping = (token) => {
     };
 }
 
-export function deleteProducts(id, setFlag) {
+ export function deleteProducts(id, setFlag) {
     return async(dispatch) => {
         try {
-            return axios.delete(`http://localhost:3001/loginAdmin/delete/${id}`)
+            return axios.delete(`/loginAdmin/delete/${id}`)
                 .then(res => {
                     setFlag((flag) => !flag)
-                    return dispatch({ type: DELETE_PRODUCT, payload: res.data })
-                })
+                    return dispatch({ type: DELETE_PRODUCT, payload: res.data })})
                 .catch(err => dispatch({ type: DELETE_PRODUCT, payload: err.data }))
         } catch (error) {
             console.log(error)

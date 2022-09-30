@@ -11,7 +11,7 @@ import Footer from "../Footer/Footer";
 import { useAuth0 } from '@auth0/auth0-react';//libreia Auth0
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+////////////
 
 //BACK --> Falta ruta de post review? 
 //Vamos a validar que la persona seleccione estrellas? Si o si haga puntuación? 
@@ -30,10 +30,9 @@ export function validate (data) {
         errors.comment = 'Your comment cannot be an email. To contact us, go to the "Contact Us" section'
     } else if (data.comment.length > 2000) {
         errors.comment = 'Comment cannot exceed 2000 characters'
-    } 
+    }
     return errors
-};
-
+}
 
 export default function Detail() {
    const {user,isAuthenticated}=useAuth0()
@@ -45,8 +44,7 @@ export default function Detail() {
     const myProduct = useSelector(state => state.details);
    // console.log(myProduct,user.email)
     let userLogin=[]//definimos una variable  para el filtrado
-
-    
+   
 
 //PARA REVIEW:
  
@@ -123,17 +121,17 @@ export default function Detail() {
     const [quantitySelected, setQuantitySelected] = useState(1);
 
     function restar(e) {
-        e.preventDefault();
+        e.preventDefault()
         if(quantitySelected === 1){
             return
         }
         return setQuantitySelected(quantitySelected -1)
     }
     function sumar(e) {
-        e.preventDefault();
+        e.preventDefault()
         if(quantitySelected === myProduct.stock){
-            return 
-        };
+            return
+        }
          return setQuantitySelected(quantitySelected +1)
     };
 
@@ -328,7 +326,7 @@ export default function Detail() {
                                             <ul>
                                                 <li><strong>Age: </strong> {myProduct.age}</li>
                                                 <li><strong>ID Product: </strong>{myProduct.id}</li>
-                                                {/* <li><strong>Stock: </strong>{myProduct.stock}</li> */}
+                                                <li><strong>Stock: </strong>{myProduct.stock}</li>
                                             </ul>
 
                                             {/*<a className="more" href="/sucursales/listado">see branches</a>*/}
@@ -368,7 +366,7 @@ export default function Detail() {
                                             </button>
                                         </div>
                                     </div>
-                                    <div className="available" id="existencias">{myProduct.stock} disponibles</div>
+                                    <div className="available" id="existencias">{myProduct.stock}</div>
                                     <div className="btn-container">
                                         <button type="button" onClick={handleBuyCart} className="btn-section-add-to-cart" id="comprar">Buy</button>
                                         <button type="button" onClick={handleAddToCart} id='agregarAlCarrito' className="btn-sectionadd-to-cart">Add to cart</button>

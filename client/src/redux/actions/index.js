@@ -211,12 +211,12 @@ export const getCustomerShopping=(token)=>{
 };
 
 
-export function editProducts(id){
+export function editProducts(id, headers){
     try{
-       let getProducts = axios.get('http://localhost:3001/products/search?name=' + prop.name + '&category=' + prop.category + '&genre=' + prop.genre + '&age=' + prop.age)
-        .then(res => dispatch({ type: GET_ALL_PRODUCTS, payload: res.data }))
-        .catch(err => dispatch({ type: GET_ALL_PRODUCTS, payload: err.data }))
-        let editProduct = axios.put(`http://localhost:3001/loginAdmin/edit/${id}`)
+        // axios.get('http://localhost:3001/products/search?name=' + prop.name + '&category=' + prop.category + '&genre=' + prop.genre + '&age=' + prop.age)
+        // .then(res => dispatch({ type: GET_ALL_PRODUCTS, payload: res.data }))
+        // .catch(err => dispatch({ type: GET_ALL_PRODUCTS, payload: err.data }))
+        axios.get(`http://localhost:3001/loginAdmin/edit/${id}`, headers)
         .then(res => {
             return dispatch({ type: EDIT_PRODUCT, payload: res.data})
         })

@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {RiDeleteBin6Line} from 'react-icons/ri';
 import {GrEdit} from 'react-icons/gr';
-import { deleteProducts, getAllProducts} from '../../../redux/actions/index';
+import { deleteProducts, getAllProducts, editProducts} from '../../../redux/actions/index';
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
@@ -46,7 +46,26 @@ const ProductsAdm= () => {
   }, [dispatch, flag]);
 
   const handleDelete = (id) =>{
+    console.log(id)
     dispatch(deleteProducts(id, setFlag));
+  }
+
+const handleEdit = (id) =>{
+    console.log(id) 
+    const getToken=async()=>{
+        //pedimisn el token
+      const token= await getAccessTokenSilently()
+        //realizamon un arreglo con los header
+      const headers= {   
+          headers:{
+          authorization: `Bearer ${token}`
+          },    
+          }
+      dispatch(editProducts(id, headers))
+    }
+  
+    getToken()
+  
   }
 
   return (
@@ -73,7 +92,7 @@ const ProductsAdm= () => {
               <StyledTableCell align="center">{row.stock}</StyledTableCell>
               <StyledTableCell align="center">{row.category?.name}</StyledTableCell>
               <StyledTableCell align="center" onClick={() => {handleDelete(row.id)}}><RiDeleteBin6Line/></StyledTableCell>
-              <StyledTableCell align="center"><GrEdit/></StyledTableCell>
+              <StyledTableCell align="center" onClick={() => {handleEdit(row.id)}}><GrEdit/></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

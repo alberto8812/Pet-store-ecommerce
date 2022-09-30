@@ -17,7 +17,8 @@ import {
     GET_ADMINROLL,
     GET_GRAPHICS_DATA,
     DELETE_PRODUCT,
-    GET_CUSTOMER_SHOPPING
+    GET_CUSTOMER_SHOPPING,
+    EDIT_PRODUCT
 } from "./constants";
 
 export function getAllProducts() {
@@ -210,8 +211,20 @@ export function deleteProducts(id, setFlag) {
 };
 
 
-
-
+export function editProducts(id){
+    try{
+       let getProducts = axios.get('http://localhost:3001/products/search?name=' + prop.name + '&category=' + prop.category + '&genre=' + prop.genre + '&age=' + prop.age)
+        .then(res => dispatch({ type: GET_ALL_PRODUCTS, payload: res.data }))
+        .catch(err => dispatch({ type: GET_ALL_PRODUCTS, payload: err.data }))
+        let editProduct = axios.put(`http://localhost:3001/loginAdmin/edit/${id}`)
+        .then(res => {
+            return dispatch({ type: EDIT_PRODUCT, payload: res.data})
+        })
+        .catch(err => dispatch({ type: EDIT_PRODUCT, payoad: err.data}))
+    }catch(error){
+        console.log(error)
+    }
+}
 
 
 

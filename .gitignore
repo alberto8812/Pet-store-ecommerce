@@ -4,5 +4,5 @@
 # ignore arch node modules
 node_modules/
 
-#ignore arch .npmrc
+#ignore arch .npmrc///
 .npmrc

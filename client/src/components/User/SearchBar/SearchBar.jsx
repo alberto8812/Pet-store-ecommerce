@@ -4,7 +4,7 @@ import { testFilters } from "../../../redux/actions";
 import { Avatar,Grid,Box } from '@mui/material';
 import './SearchBar.css';
 
-
+////////////
 export default function SearchBar({onChangeName, setfiltersearch,filtersearch}) {
   
     function handleChange(e) {

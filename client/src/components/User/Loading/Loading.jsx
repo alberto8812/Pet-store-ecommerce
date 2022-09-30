@@ -9,5 +9,5 @@ export default function Loading() {
             <img src={loading} alt="" />
           </div>
     )}
-
+///
     //FALTA BUSCAR AL IMAGEN DE CARGA QUE QUEREMOS USAR

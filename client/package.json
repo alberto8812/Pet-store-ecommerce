@@ -60,5 +60,6 @@
   },
   "devDependencies": {
     "@iconify/react": "^4.0.0"
-  }
+  },
+  {/**/}
 }

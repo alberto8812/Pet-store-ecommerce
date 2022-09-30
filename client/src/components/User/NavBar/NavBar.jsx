@@ -11,7 +11,7 @@ import { getProducts, sortByPrice } from '../../../redux/actions';
 import home from './download.png';
 import { Avatar,Grid } from '@mui/material';
 import SearchBar from '../SearchBar/SearchBar';
-
+/////////////////
 
 
 <Icon icon="bx:home" />

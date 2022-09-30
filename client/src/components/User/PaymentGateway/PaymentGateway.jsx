@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 //import { loadStripe } from "@stripe/stripe-js";
 //import StripeCheckout from 'react-stripe-checkout'
-
+/////
 import {
     //Elements,
     CardElement,

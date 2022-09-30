@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Pagination.css';
-
+/* */
 export default function Pagination({ animalsPerPage, products, currentPage, setCurrentPage }) {
     const pageNumber = [];
     const [input, setInput] = useState(1);

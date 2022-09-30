@@ -187,7 +187,7 @@ export const getCustomerShopping=(token)=>{
  export function deleteProducts(id, setFlag) {
     return async(dispatch) => {
         try {
-            return axios.delete(`/loginAdmin/delete/${id}`)
+            return axios.delete(`http://localhost:3001/loginAdmin/delete/${id}`)
                 .then(res => {
                     setFlag((flag) => !flag)
                     return dispatch({ type: DELETE_PRODUCT, payload: res.data })})

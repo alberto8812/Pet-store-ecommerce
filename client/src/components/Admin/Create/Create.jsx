@@ -29,11 +29,23 @@ function validate(input) {
         errors.price = 'The value must be greater than 0'
     }
 
-    if (!input.race) {
-        errors.race = "Race is required"
-    } else if (input.race.length > 50) {
-        errors.race = "Race name must not exceed 50 characters"
+    if(!input.genre) {
+        errors.genre = "Product genre is required"
     }
+
+    if(!input.category) {
+        errors.category = "Product category is required"
+    }
+
+    if(!input.age) {
+        errors.age = "Age is required"
+    }
+
+    // if (!input.race) {
+    //     errors.race = "Race is required"
+    // } else if (input.race.length > 50) {
+    //     errors.race = "Race name must not exceed 50 characters"
+    // }
 
     if (!input.stock) {
         errors.stock = 'Product stock is required'
@@ -53,8 +65,8 @@ function validate(input) {
         errors.rating = 'Product rating is required'
     } else if (isNaN(parseInt(input.rating))) {
         errors.rating = 'Enter only numeric values'
-    } else if (input.rating <= 0) {
-        errors.rating = 'The value must be greater than 0'
+    } else if (input.rating <= 0 || input.rating > 5) {
+        errors.rating = 'The value must be a number between 1 and 5'
     }
 
     if (!input.image) {
@@ -74,13 +86,13 @@ export default function Create() {
         name: '',
         price: '',
         age: '',
-        race: '',
+        // race: '',
         stock: '',
         detail: '',
         image: '',
-        rating: '',
-        category: 'food',
-        genre: 'cat',
+        rating: 0,
+        category: '',
+        genre: '',
     })
 
     /*
@@ -154,7 +166,7 @@ export default function Create() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        if (!Object.getOwnPropertyNames(errors).length && input.name && input.price && input.stock && input.detail && input.rating && input.image /*&& input.category.length && input.genre.length*/) {
+        if (!Object.getOwnPropertyNames(errors).length && input.name && input.price && input.genre && input.category && input.age && input.stock && input.detail && input.rating && input.image /*&& input.category.length && input.genre.length*/) {
 
             /*
             Si queremos poner una imagen por defecto cuando no se ingresa una 
@@ -170,13 +182,13 @@ export default function Create() {
                 name: '',
                 price: '',
                 age: '',
-                race: '',
+                // race: '',
                 stock: '',
                 detail: '',
                 image: '',
-                rating: '',
-                category: 'food',
-                genre: 'cat',
+                rating: 0,
+                category: '',
+                genre: '',
             })
             // navigate('/')
         } else {
@@ -190,7 +202,7 @@ export default function Create() {
             <br />
             <div className="supercontainer">
             <h1>
-                <Badge  bg="primary">Add products to Pets Love</Badge>
+                <Badge  bg="primary">Add products to Developets</Badge>
             </h1>
             <br />
             <Container>
@@ -212,24 +224,54 @@ export default function Create() {
                     </Row>
                     <br />
                     <Row>
+                        <Col sm={2}>  <label><strong>Genre </strong></label></Col>
+                        <Col sm={6}>  <div><select name="genre" onChange={e => {handleChange(e)}}>
+                            <option disabled selected>Select a genre</option>
+                            <option value='cat'>Cat</option>
+                            <option value='dog'>Dog</option>
+                        </select>
+                        </div> </Col>
+                        {errors.genre && (
+                            <p className="errors">{errors.genre}</p>
+                        )}
+                    </Row>
+                    <br />
+                    <Row>
+                        <Col sm={2}>  <label><strong>Category </strong></label></Col>
+                        <Col sm={6}>  <div><select name="category" onChange={e => {handleChange(e)}}>
+                            <option disabled selected>Select a category</option>
+                            <option value='accesories'>Accesories</option>
+                            <option value='food'>Food</option>
+                            <option value='toys'>Toys</option>
+                        </select>
+                        </div> </Col>
+                        {errors.category && (
+                            <p className="errors">{errors.category}</p>
+                        )}
+                    </Row>
+                    <br />
+                    <Row>
                         <Col sm={2}> <label><strong>Age: </strong></label> </Col>
-                        <Col sm={6}>  <div><select name="age" onChange={e => handleChange(e)}>
+                        <Col sm={6}>  <div><select name="age" onChange={e => {handleChange(e)}}>
                             <option disabled selected>Select an age</option>
                             <option value='Puppy'>Puppy</option>
                             <option value='Young'>Young</option>
                             <option value='Adult'>Adult</option>
                         </select>
                         </div> </Col>
+                        {errors.age && (
+                                <p className="errors">{errors.age}</p>
+                        )}
                     </Row>
                     <br />
-                    <Row>
+                    {/* <Row>
                         <Col sm={2}>  <label><strong>Race: </strong></label> </Col>
                         <Col sm={6}>  <input type="text" value={input.race} name='race' onChange={e => handleChange(e)} /> </Col>
                         {errors.race && (
                             <p className="errors">{errors.race}</p>
                         )}
                     </Row>
-                    <br />
+                    <br /> */}
                     <Row>
                         <Col sm={2}> <label><strong>Stock: </strong></label></Col>
                         <Col sm={6}>   <input type="text" value={input.stock} name='stock' placeholder="units" onChange={e => handleChange(e)} />
@@ -241,7 +283,7 @@ export default function Create() {
                     <br />
                     <Row>
                         <Col sm={2}><label><strong>Rating: </strong></label> </Col>
-                        <Col sm={6}><input type="text" value={input.rating} name='rating' placeholder="STARS" onChange={e => handleChange(e)} />
+                        <Col sm={6}><input type="number" value={input.rating} name='rating' placeholder="STARS" onChange={e => handleChange(e)} />
                             <label><strong> STARS </strong></label></Col>
                         {errors.rating && (
                             <p className="errors">{errors.rating}</p>

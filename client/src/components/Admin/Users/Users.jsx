@@ -18,6 +18,8 @@ const Users = () => {
   const custumerData=custumerDataDb!==undefined?custumerDataDb:[];
   const statusGraphics=statusGraphicsdb!==undefined?statusGraphicsdb:[];
   const [rowInf, setRowInf] = useState({})
+  const [render, setRender] = useState('')
+  console.log(render)
   let rows=[]
  let headers={}
 
@@ -39,7 +41,7 @@ const Users = () => {
 
     getToken()
 
-  }, [])
+  }, [render])
 
 
   const handleRowInfo=(data)=>{
@@ -150,7 +152,7 @@ const Users = () => {
      </Grid>
      <Grid container  gap={2}  sx={{padding:'20px'}}>
 
-      <InputsChangueState rowInf={rowInf} headers={headers}/>
+      <InputsChangueState rowInf={rowInf} headers={headers} setRender={setRender} render={render}/>
      </Grid>
 
      </Box>

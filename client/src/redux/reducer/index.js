@@ -6,7 +6,7 @@ import {
     REFRESH_CART,GET_ADMINROLL, GET_GRAPHICS_DATA,
     GET_CUSTOMER_SHOPPING
 } from "../actions/constants";
-/**/
+
 export const initialState = {
     products: [],
     allProducts: [],

@@ -6,13 +6,30 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Grid } from '@mui/material';
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
+import Stack from '@mui/material/Stack';
+import { useDispatch } from "react-redux";
+import { putCustomerShoppingStatus } from '../../../../redux/actions';
 ///
-const InputsChangueState = ({rowInf}) => {
+const InputsChangueState = ({rowInf,headers}) => {
+  const dispatch = useDispatch();
     const [status, setStatus] = useState('');
-  console.log(rowInf)
+
   const handleChange = (event) => {
+   
     setStatus(event.target.value);
   };
+
+
+ const handleSubmitSend=()=>{
+  dispatch(putCustomerShoppingStatus(headers,status,rowInf.invoice))
+  setStatus('')
+ }
+
+
+
+
   return (
     <Grid container
     
@@ -49,7 +66,7 @@ const InputsChangueState = ({rowInf}) => {
                 />
         <Box sx={{ minWidth: '200px' }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Status</InputLabel>
+        <InputLabel id="demo-simple-select-label">{rowInf.status}</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
@@ -62,7 +79,13 @@ const InputsChangueState = ({rowInf}) => {
           <MenuItem value={'CANCELED'}>CANCELED</MenuItem>
         </Select>
       </FormControl>
+      <Stack direction="row" spacing={2}>
+    </Stack>
     </Box>
+    {/*envia informacion del estado del status nuevo  */}
+    {status!=='' && <Button variant="contained" endIcon={<SendIcon />} onClick={()=>handleSubmitSend()}>
+        Send
+      </Button>}
 
             
   </Grid>

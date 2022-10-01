@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
 import { useNavigate, Link, useParams } from "react-router-dom";
+import './ProductsAdm.css'
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -88,9 +89,9 @@ const ProductsAdm= () => {
               <StyledTableCell align="center">{row.stock}</StyledTableCell>
               <StyledTableCell align="center">{row.category?.name}</StyledTableCell>
               <StyledTableCell align="center">{row.deleted?"deleted":"deletedn't"}</StyledTableCell>
-              <StyledTableCell align="center" onClick={() => {handleDelete(row.id)}} ><RiDeleteBin6Line/></StyledTableCell>
-              <StyledTableCell align="center" onClick={() => {handleEdit(row.id)}} ><GrEdit/></StyledTableCell>
-              <StyledTableCell align="center" onClick={() => {handleActive(row.id)}} ><HiPlus/></StyledTableCell>
+              <StyledTableCell align="center" onClick={() => {handleDelete(row.id)}} ><span data-tooltip = "delete"><RiDeleteBin6Line className='btnOptions'/></span></StyledTableCell>
+              <StyledTableCell align="center" onClick={() => {handleEdit(row.id)}} ><span data-tooltip = "edit"><GrEdit className='btnOptions'/></span></StyledTableCell>
+              <StyledTableCell align="center" onClick={() => {handleActive(row.id)}} ><span data-tooltip = "activate"><HiPlus className='btnOptions'/></span></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

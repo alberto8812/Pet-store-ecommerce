@@ -36,6 +36,11 @@ module.exports = (sequelize) => {
      
        
     },
+    blockUser:{
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue:false             
+    },
     
 
     flagAdmin:{

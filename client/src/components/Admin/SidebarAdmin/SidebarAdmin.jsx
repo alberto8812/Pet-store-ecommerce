@@ -7,7 +7,7 @@ import {CgAddR} from 'react-icons/cg'
 import { useDispatch } from "react-redux";
 import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
 import { getRollAdmin } from '../../../redux/actions';
-
+import StorefrontIcon from '@mui/icons-material/Storefront';
 
 const SidebarAdmin = () => {
   const dispatch = useDispatch();
@@ -41,7 +41,10 @@ const SidebarAdmin = () => {
               <Link to="statistics"><FaIcons.FaChartBar/> Statistics </Link>          
             </li>
             <li>
-              <Link to="users"><FaIcons.FaUsers/> Users</Link>          
+              <Link to="users"><FaIcons.FaUsers/> uUsers</Link>          
+            </li>
+            <li>
+              <Link to="buyers"><FaIcons.FaTags/>buyers</Link>          
             </li>
             <li>
               <Link to="productsAdm"> <FaIcons.FaBone/> Products</Link>          

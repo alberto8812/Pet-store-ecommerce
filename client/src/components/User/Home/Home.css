@@ -33,6 +33,28 @@
 }
 */
 
+.not-found-message-container {
+    display: grid;
+    font-size: 35px;
+    letter-spacing: -1px;
+    color: #9e200f;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0 #000;
+    /* margin: 10px 0 24px; */
+    text-align: center;
+    line-height: 50px;
+}
+
+.not-found-message {
+    background-color: rgba(255, 255, 255, 0.514);
+}
+
+.img-notFound {
+    margin: 0 40px !important;
+    height: 300px;
+    width: 350px;
+}
+
 .home {
     position: absolute;
     width: 100%;

@@ -9,9 +9,11 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {RiDeleteBin6Line} from 'react-icons/ri';
 import {GrEdit} from 'react-icons/gr';
-import { deleteProducts, getAllProducts} from '../../../redux/actions/index';
+import { deleteProducts, getAllProducts, editProducts} from '../../../redux/actions/index';
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
+import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
+import { useNavigate, Link, useParams } from "react-router-dom";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -40,13 +42,20 @@ const ProductsAdm= () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
   const [flag, setFlag] = useState(false)
+  const navigate = useNavigate()
+  const {isAuthenticated,getAccessTokenSilently}=useAuth0()//componete de hook auth0
 
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch, flag]);
 
   const handleDelete = (id) =>{
+    console.log(id)
     dispatch(deleteProducts(id, setFlag));
+  }
+
+const handleEdit = (id) =>{
+    navigate('/admin/edit/' + id)
   }
 
   return (
@@ -75,7 +84,7 @@ const ProductsAdm= () => {
               <StyledTableCell align="center">{row.category?.name}</StyledTableCell>
               <StyledTableCell align="center">{row.deleted?"deleted":"deletedn't"}</StyledTableCell>
               <StyledTableCell align="center" onClick={() => {handleDelete(row.id)}}><RiDeleteBin6Line/></StyledTableCell>
-              <StyledTableCell align="center"><GrEdit/></StyledTableCell>
+              <StyledTableCell align="center" onClick={() => {handleEdit(row.id)}}><GrEdit/></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
@@ -85,4 +94,5 @@ const ProductsAdm= () => {
 }
 
 export default ProductsAdm
+
   

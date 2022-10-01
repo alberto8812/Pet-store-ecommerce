@@ -46,7 +46,7 @@ export const ComponentCard = ({animalsInCurrentPage}) => {
                      </Box>
                     )}) : `We couldn't load the products, refresh the page`}
 
-       {/* </div>*/}
+                    {/* </div>*/}
         </Grid>
     )
 }

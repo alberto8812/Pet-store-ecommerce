@@ -28,7 +28,9 @@ export const ComponentCard = ({animalsInCurrentPage}) => {
         justifyContent="center"
         alignItems="center">
         {/*<div className='container'>*/}
-            {animalsInCurrentPage?.map(v => {
+            {animalsInCurrentPage.length > 0 ?
+            animalsInCurrentPage?.map(v => {
+                if (v.deleted) return <></>
                 return (
                     <Box sx={{display:'grid',columnGap:1,rowGap:1,gridTemplateColumns:'repeat(.5,500px)',}}>{/*ajuste dinamica de las cards */}
                     <CardProduct className='cardHome'
@@ -42,9 +44,9 @@ export const ComponentCard = ({animalsInCurrentPage}) => {
                     rating={v.rating}
                     />
                      </Box>
-                    )})}
+                    )}) : `We couldn't load the products, refresh the page`}
 
-       {/* </div>*/}
+                    {/* </div>*/}
         </Grid>
     )
 }

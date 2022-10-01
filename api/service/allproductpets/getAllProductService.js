@@ -158,7 +158,8 @@ const getAllProudctsservice = async() => {
             rating: res.rating,
             genre: res.genre,
             category: res.category,
-            age:res.age
+            age:res.age,
+            deleted:res.deleted
         }
     })
 

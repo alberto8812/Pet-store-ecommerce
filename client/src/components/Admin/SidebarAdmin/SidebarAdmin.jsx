@@ -41,10 +41,10 @@ const SidebarAdmin = () => {
               <Link to="statistics"><FaIcons.FaChartBar/> Statistics </Link>          
             </li>
             <li>
-              <Link to="users"><FaIcons.FaUsers/> uUsers</Link>          
+              <Link to="users"><FaIcons.FaUsers/> Users</Link>          
             </li>
             <li>
-              <Link to="buyers"><FaIcons.FaTags/>buyers</Link>          
+              <Link to="buyers"><FaIcons.FaTags/> Buyers</Link>          
             </li>
             <li>
               <Link to="productsAdm"> <FaIcons.FaBone/> Products</Link>          

@@ -46,13 +46,21 @@ const postProductUserCartService = async(req) => {
     }
 
     //consulta sobre los productos que estan en la venta
-    const dbSearchProduct = await Sale.findAll({
+    //const dbSearchProduct = await Sale.findAll({
+        //attributes: ['id', 'total', 'invoice'],
+        //where: { invoice: id },
+        //include: [{ model: SaleDetail, attributes: ['id', 'quantity', 'price', 'subtotal'], include: { model: Product, attributes: ['id', 'name'], include: [{ model: Category, attributes: ['name'] }, { model: Genre, attributes: ['name'] }] } }] ///tra todso los productos
+    //})
+
+    const dbSearchProduct = await User.findAll({ attributes: [ 'email'],
+        where:{email:'cvelascosaavedra@gmail.com'},
+        include:[{model: Sale,
         attributes: ['id', 'total', 'invoice'],
         where: { invoice: id },
-        include: [{ model: SaleDetail, attributes: ['id', 'quantity', 'price', 'subtotal'], include: { model: Product, attributes: ['id', 'name'], include: [{ model: Category, attributes: ['name'] }, { model: Genre, attributes: ['name'] }] } }] ///tra todso los productos
+        include: [{ model: SaleDetail, attributes: ['id', 'quantity', 'price', 'subtotal'], include: { model: Product, attributes: ['id', 'name'], include: [{ model: Category, attributes: ['name'] }, { model: Genre, attributes: ['name'] }] } }]}]///tra todso los productos
     })
 
-
+  
     return dbSearchProduct; //updateUser;
 }
 

@@ -44,7 +44,7 @@ function App() {
         <Route path={"/products/detail/:id"} element={<Detail />} />
         <Route path={"/aboutus"} element={<AboutUs />} />
         <Route path={"/registration"} element={<Registration />} />
-        <Route path={"/profile"} element={<Profile />} />
+        <Route path={"/profile/:email"} element={<Profile />} />
         <Route path={"/registration"} element={<Registration />} />
         <Route path={"/paymentgateway"} element={<Elements stripe={stripePromise}><PaymentGateway /></Elements>}/>
         <Route path={"/carrito"} element={<Carrito />} />

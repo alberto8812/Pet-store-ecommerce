@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import Box from '@mui/material/Box';
+import { Grid,Box } from '@mui/material';
 import PieUsers from '../graphics/PieUsers';
 
 PieUsers
@@ -56,9 +56,9 @@ const Users = () => {
         
           </Grid>
        )})*/}
-        <Grid item  xs={4} key={data.status}> 
+        <Grid item  xs={4} > 
         
-        <div>holll</div>
+        
        
          </Grid>
         <Grid item xs={4}
@@ -69,13 +69,14 @@ const Users = () => {
 
             <Box sx={{ height: '100px',width:'100px',minWidth:'100px',display:'flex',justifyContent:'center'}}>
               {/*<PieUsers statusGraphics={statusGraphics}/>*/}
-              <h1>holll</h1>
+            
             </Box>
         </Grid>
 
   </Grid>
   <Grid container  gap={2}  sx={{padding:'20px'}}>
       {/*<InputsChangueState rowInf={rowInf} headers={headers} setRender={setRender} render={render}/>*/}
+      <Box></Box>
   </Grid>
 
 </Box>

@@ -22,7 +22,7 @@ import HomeAdmin from "./components/Admin/HomeAdmin/HomeAdmin";
 import SidebarAdmin from "./components/Admin/SidebarAdmin/SidebarAdmin";
 import ProductsAdm from "./components/Admin/ProductsAdm/ProductsAdm"
 import Users from "./components/Admin/Users/Users"
-
+import Buyers from "./components/Admin/Buyers/Buyers"
 //////////////////////
 const stripePromise = loadStripe(
   "pk_test_51LkfWEIzGpa9z0EFC6OqfUFPRBmrUIS1nZVezBHgqSh6GBtJ3x5whj06EuCkgwBhls2xwc3M8UI9JKxid7o7Zzni00BiLqFS7P"
@@ -58,6 +58,7 @@ function App() {
         <Route path={"logs"} element={<HomeAdmin/>}/>
         <Route path={"statistics"} element={<Estadisticas/>}/>
         <Route path={"productsAdm"} element={<ProductsAdm />}/>
+        <Route path={"buyers"} element={<Buyers/>}/>
         <Route path={"users"} element={<Users/>}/>
         <Route path={"create"} element={<Create />} />
         <Route path={"edit/:id"} element={<Edit />} />

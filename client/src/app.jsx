@@ -5,6 +5,7 @@ import AboutUs from "./components/User/AboutUs/AboutUs";
 import Detail from "./components/User/Details/Details";
 import Profile from "./components/User/Profile/Profile";
 import Create from "./components/Admin/Create/Create";
+import Edit from "./components/Admin/editProduct/EditProduct"
 import Home from "./components/User/Home/Home";
 import PaymentGateway from "./components/User/PaymentGateway/PaymentGateway";
 import Registration from "./components/User/Registration/Registration";
@@ -44,7 +45,7 @@ function App() {
         <Route path={"/products/detail/:id"} element={<Detail />} />
         <Route path={"/aboutus"} element={<AboutUs />} />
         <Route path={"/registration"} element={<Registration />} />
-        <Route path={"/profile"} element={<Profile />} />
+        <Route path={"/profile/:email"} element={<Profile />} />
         <Route path={"/registration"} element={<Registration />} />
         <Route path={"/paymentgateway"} element={<Elements stripe={stripePromise}><PaymentGateway /></Elements>}/>
         <Route path={"/carrito"} element={<Carrito />} />
@@ -59,6 +60,7 @@ function App() {
         <Route path={"productsAdm"} element={<ProductsAdm />}/>
         <Route path={"users"} element={<Users/>}/>
         <Route path={"create"} element={<Create />} />
+        <Route path={"edit/:id"} element={<Edit />} />
         <Route path={"*"} element={<NotFound />} />
         </Route>
       </Routes> 

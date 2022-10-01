@@ -18,7 +18,10 @@ const Users = () => {
   const custumerData=custumerDataDb!==undefined?custumerDataDb:[];
   const statusGraphics=statusGraphicsdb!==undefined?statusGraphicsdb:[];
   const [rowInf, setRowInf] = useState({})
+  const [render, setRender] = useState('')
+  console.log(render)
   let rows=[]
+ let headers={}
 
   
   useEffect(() => {
@@ -27,7 +30,7 @@ const Users = () => {
       //pedimisn el token
   const token= await getAccessTokenSilently()
       //realizamon un arreglo con los header
-      const headers= {   
+      headers= {   
         headers:{
         authorization: `Bearer ${token}`
         },    
@@ -38,7 +41,7 @@ const Users = () => {
 
     getToken()
 
-  }, [])
+  }, [render])
 
 
   const handleRowInfo=(data)=>{
@@ -149,7 +152,7 @@ const Users = () => {
      </Grid>
      <Grid container  gap={2}  sx={{padding:'20px'}}>
 
-      <InputsChangueState rowInf={rowInf}/>
+      <InputsChangueState rowInf={rowInf} headers={headers} setRender={setRender} render={render}/>
      </Grid>
 
      </Box>

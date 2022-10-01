@@ -2,13 +2,15 @@
 
 import React from 'react'
 import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
-import './Profile.css' 
-import Formulario from './Formulario'
-import FormularioDireccionMain from './Formulario'
+import './Profile.css'
+import ModalDireccionPri from './ModalDireccionPri'
+import ModalDireccionSec from './ModalDireccionSec'
+import ModalParaOtraCosa from './ModalParaOtraCosa'
+import ModalCreditCard from './ModalCreditCard'
 
-/**/ 
+/**/
 export default function Profile() {
-    const {user,isAuthenticated,getAccessTokenSilently}=useAuth0()
+    const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
 
 
 
@@ -73,7 +75,7 @@ export default function Profile() {
 </div>*/}
                         </div>
                         <div className="andes-card andes-card--flat andes-card--default profile-card andes-card--padding-default">
-                            <div className="field-value field-value--button"  role="button">
+                            <div className="field-value field-value--button" role="button">
                                 <div className="field-value__group">
                                     <div className="field-value__field ">
                                         <span>Direccion</span>
@@ -84,12 +86,11 @@ export default function Profile() {
                                 </div>
                                 <div className="field-value__action">
                                     <div className="chevron--icon">
-                                    <FormularioDireccionMain> <svg width="20" height="20" viewBox="0 0 20 20" fill="#3483fa">
-                                            <path d="M8.27686 4.34644L7.42834 5.19496L12.224 9.99059L7.42334 14.7912L8.27187 15.6397L13.921 9.99059L8.27686 4.34644Z" 
-                                            fill="#3483fa" ></path>
+                                        <ModalDireccionPri> <svg width="20" height="20" viewBox="0 0 20 20" fill="#3483fa">
+                                            <path d="M8.27686 4.34644L7.42834 5.19496L12.224 9.99059L7.42334 14.7912L8.27187 15.6397L13.921 9.99059L8.27686 4.34644Z"
+                                                fill="#3483fa" ></path>
                                         </svg>
-                                        </FormularioDireccionMain>
-
+                                        </ModalDireccionPri>
                                     </div>
                                 </div>
                             </div>
@@ -104,10 +105,11 @@ export default function Profile() {
                                 </div>
                                 <div className="field-value__action">
                                     <div className="chevron--icon">
-                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#3483fa">
-                                            <path d="M8.27686 4.34644L7.42834 5.19496L12.224 9.99059L7.42334 14.7912L8.27187 15.6397L13.921 9.99059L8.27686 4.34644Z" fill="#3483fa"></path>
+                                        <ModalDireccionSec> <svg width="20" height="20" viewBox="0 0 20 20" fill="#3483fa">
+                                            <path d="M8.27686 4.34644L7.42834 5.19496L12.224 9.99059L7.42334 14.7912L8.27187 15.6397L13.921 9.99059L8.27686 4.34644Z"
+                                                fill="#3483fa" ></path>
                                         </svg>
-
+                                        </ModalDireccionSec>
                                     </div>
                                 </div>
                             </div>
@@ -122,10 +124,11 @@ export default function Profile() {
                                 </div>
                                 <div className="field-value__action">
                                     <div className="chevron--icon">
-                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#3483fa">
-                                            <path d="M8.27686 4.34644L7.42834 5.19496L12.224 9.99059L7.42334 14.7912L8.27187 15.6397L13.921 9.99059L8.27686 4.34644Z" fill="#3483fa"></path>
+                                        <ModalCreditCard> <svg width="20" height="20" viewBox="0 0 20 20" fill="#3483fa">
+                                            <path d="M8.27686 4.34644L7.42834 5.19496L12.224 9.99059L7.42334 14.7912L8.27187 15.6397L13.921 9.99059L8.27686 4.34644Z"
+                                                fill="#3483fa" ></path>
                                         </svg>
-
+                                        </ModalCreditCard>
                                     </div>
                                 </div>
                             </div>
@@ -140,10 +143,11 @@ export default function Profile() {
                                 </div>
                                 <div className="field-value__action">
                                     <div className="chevron--icon">
-                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#3483fa">
-                                            <path d="M8.27686 4.34644L7.42834 5.19496L12.224 9.99059L7.42334 14.7912L8.27187 15.6397L13.921 9.99059L8.27686 4.34644Z" fill="#3483fa"></path>
+                                        <ModalParaOtraCosa> <svg width="20" height="20" viewBox="0 0 20 20" fill="#3483fa">
+                                            <path d="M8.27686 4.34644L7.42834 5.19496L12.224 9.99059L7.42334 14.7912L8.27187 15.6397L13.921 9.99059L8.27686 4.34644Z"
+                                                fill="#3483fa" ></path>
                                         </svg>
-
+                                        </ModalParaOtraCosa>
                                     </div>
                                 </div>
                             </div>
@@ -154,6 +158,6 @@ export default function Profile() {
                 </div>
             </div >
         </div >
-               
+
     )
 }

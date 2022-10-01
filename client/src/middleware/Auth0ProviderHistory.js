@@ -2,6 +2,9 @@ import React from 'react'
 import { Auth0Provider } from "@auth0/auth0-react";
 import { useNavigate } from 'react-router-dom';
 
+
+
+
 ///midlewere para autenticar con Atuh0
 const Auth0ProviderWithHistory =({children}) => {
     let navigate = useNavigate();
@@ -17,8 +20,8 @@ const Auth0ProviderWithHistory =({children}) => {
 
   return (
    <Auth0Provider
-    domain='dev-nzbce16c.us.auth0.com'
-    clientId='xpTJOpGvy4CasA55LyMNy5q96o7D38PA'
+    domain={process.env.REACT_APP_DOMIAN}
+    clientId={process.env.REACT_APP_DOMIAN_CLIENT}
     redirectUri={window.location.origin}
     audience= 'http://www.pet-love-api.com'
     onRedirectCallback={onRedirectCallback}

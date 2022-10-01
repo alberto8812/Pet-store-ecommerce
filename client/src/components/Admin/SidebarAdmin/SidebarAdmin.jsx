@@ -2,11 +2,12 @@ import React,{useEffect} from 'react'
 import {Link, Outlet} from 'react-router-dom';
 import { NavLink } from "react-router-dom";
 import './SidebarAdmin.css'
-import * as FaIcons from 'react-icons/fa'
+import * as FaIcons from 'react-icons/fa';
+import {CgAddR} from 'react-icons/cg'
 import { useDispatch } from "react-redux";
 import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
 import { getRollAdmin } from '../../../redux/actions';
-/** */
+
 
 const SidebarAdmin = () => {
   const dispatch = useDispatch();
@@ -46,7 +47,7 @@ const SidebarAdmin = () => {
               <Link to="productsAdm"> <FaIcons.FaBone/> Products</Link>          
             </li>
             <li>
-              <Link to="create"> + Add Product</Link>          
+              <Link to="create"><CgAddR/> Add Product</Link>          
             </li>
           </ul>
         </div>

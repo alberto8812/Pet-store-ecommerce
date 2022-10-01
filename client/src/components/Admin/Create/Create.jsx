@@ -106,6 +106,8 @@ export default function Create() {
     */
 
     function handleChange(e) {
+        const {name,value} = e.target
+        console.log({name,value})
         setInput({
             ...input,
             [e.target.name]: e.target.value,

@@ -59,6 +59,7 @@ const ProductsAdm= () => {
             <StyledTableCell align="center">Price&nbsp;</StyledTableCell>
             <StyledTableCell align="center">Stock&nbsp;</StyledTableCell>
             <StyledTableCell align="center">Category&nbsp;</StyledTableCell>
+            <StyledTableCell align="center">status&nbsp;</StyledTableCell>
             <StyledTableCell align="center" colSpan={2}>Options</StyledTableCell>
           </TableRow>
         </TableHead>
@@ -72,6 +73,7 @@ const ProductsAdm= () => {
               <StyledTableCell align="center">{row.price}</StyledTableCell>
               <StyledTableCell align="center">{row.stock}</StyledTableCell>
               <StyledTableCell align="center">{row.category?.name}</StyledTableCell>
+              <StyledTableCell align="center">{row.deleted?"deleted":"deletedn't"}</StyledTableCell>
               <StyledTableCell align="center" onClick={() => {handleDelete(row.id)}}><RiDeleteBin6Line/></StyledTableCell>
               <StyledTableCell align="center"><GrEdit/></StyledTableCell>
             </StyledTableRow>

@@ -1,12 +1,24 @@
 import axios from "axios";
 import {
-    GET_ALL_PRODUCTS,GET_DETAILS,SORT_BY_PRICE,
-    SEARCH_BY_NAME,ADD_FAVORITE,REMOVE_FAVORITE,
-    ADD_TO_CART,GET_NUMBER_CART,INCREASE_QUANTITY,
-    DECREASE_QUANTITY,UPDATE_CART,DELETE_CART,
-    ADD_COMMENT,REFRESH_CART,GET_ADMINROLL,
-    GET_GRAPHICS_DATA, DELETE_PRODUCT,
-    GET_CUSTOMER_SHOPPING,GET_CUSTOMER_SHOPPING_STATUS
+    GET_ALL_PRODUCTS,
+    GET_DETAILS,
+    SORT_BY_PRICE,
+    SEARCH_BY_NAME,
+    ADD_FAVORITE,
+    REMOVE_FAVORITE,
+    ADD_TO_CART,
+    GET_NUMBER_CART,
+    INCREASE_QUANTITY,
+    DECREASE_QUANTITY,
+    UPDATE_CART,
+    DELETE_CART,
+    ADD_COMMENT,
+    REFRESH_CART,
+    GET_ADMINROLL,
+    GET_GRAPHICS_DATA,
+    DELETE_PRODUCT,
+    GET_CUSTOMER_SHOPPING,
+    EDIT_PRODUCT
 } from "./constants";
 //http://localhost:3001
 export function getAllProducts() {
@@ -215,8 +227,21 @@ export const putCustomerShoppingStatus=(token,status,invoice)=>{
 };
 
 
+export function editProducts(id, headers, payload){
+    console.log(editProducts)
+    return async function(dispatch) {
+    try{
+        axios.put(`/loginAdmin/edit/${id}`, payload, headers)
+        .then(res => {
+            return dispatch({ type: EDIT_PRODUCT, payload: res.data})
+        })
+        .catch(err => dispatch({ type: EDIT_PRODUCT, payoad: err.data}))
 
-
+    }catch(error){
+        console.log(error)
+    }
+}
+}
 
 
 

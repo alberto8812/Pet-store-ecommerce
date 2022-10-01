@@ -21,6 +21,11 @@
     font-size: 25px;
     margin-bottom: 45px;
 }
+.fotito{
+    display: flex;
+    margin-top: 2rem;
+
+}
 
 .ico_nav {
     margin: 0;

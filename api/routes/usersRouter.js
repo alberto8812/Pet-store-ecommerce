@@ -8,7 +8,7 @@ const { getUserLogin, postUserData, postComment,postUserCart,postUserPayment } =
 
 router.get('/',getUserLogin)
 
-router.get('/datauser',postUserData)
+router.post('/datauser',postUserData)
 
 router.post("/checkoutpayment",postUserPayment)
 

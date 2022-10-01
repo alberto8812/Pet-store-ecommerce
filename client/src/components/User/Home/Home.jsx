@@ -11,6 +11,7 @@ import {
   getProducts,
   getAllProducts,
 } from "../../../redux/actions";
+import notFound from './giphy.gif';
 ///////////////
 export default function Home() {
   const dispatch = useDispatch();
@@ -48,12 +49,20 @@ export default function Home() {
             <Carousel />
           </Box>
         </Grid>
-          <Pagination
+        {(products.length === 0) && (<div className="not-found-message-container"><p className="not-found-message">Product not Found!</p>
+          <img className="img-notFound"src={notFound} alt='not found'/></div>)}
+
+
+        <div>
+        <Pagination
             animalsPerPage={animalsPerPage}
             products={products.length}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
           />
+        </div>
+
+        
         <div>
           <ComponentCard animalsInCurrentPage={animalsInCurrentPage} />
         </div>

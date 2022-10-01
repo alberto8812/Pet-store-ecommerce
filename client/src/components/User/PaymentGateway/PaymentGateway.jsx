@@ -15,9 +15,10 @@ import {
 } from "@stripe/react-stripe-js";
 
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Loading from "../Loading/Loading";
 import { useNavigate } from "react-router-dom";
+import { postConfirm } from "../../../redux/actions";
 
 //const stripePromise = loadStripe("pk_test_51LkfWEIzGpa9z0EFC6OqfUFPRBmrUIS1nZVezBHgqSh6GBtJ3x5whj06EuCkgwBhls2xwc3M8UI9JKxid7o7Zzni00BiLqFS7P");
 
@@ -25,6 +26,7 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
     const stripe = useStripe();
     const elements = useElements();
+    const dispatch = useDispatch();
 
     const [loading, setLoading] = useState(false);
     const productsInTheCart = useSelector(state => state.cart);
@@ -50,8 +52,20 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
         });
     };
 
+    const notifyError = () => {
+        toast.error(`ERROR`, {
+            theme: "colored",
+        });
+    };
+
+
+    const eachProduct = listCart.map(el => el.name);
+    console.log('CADA PRODUCTO', eachProduct);
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        dispatch(postConfirm(eachProduct))
         console.log(<CardElement />)
 
         const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -59,7 +73,7 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
             card: elements.getElement(CardElement),
         });
         setLoading(true);
-        notifyOK();
+        // notifyOK();
 
         if (!error) {
             console.log(paymentMethod)
@@ -82,12 +96,17 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
                 console.log(data);
 
                 elements.getElement(CardElement).clear();
+                notifyOK();
             } catch (error) {
+                notifyError();
                 console.log(error);
+
             }
             setLoading(false);
-        }
+        } 
     };
+
+
 
     function handleClean(e) {
         // e.preventDefault();
@@ -168,10 +187,9 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
                                 />
                             </div>
 
-                            <button disabled={!stripe} className="btn btn-success"/>
+                            {/* <button disabled={!stripe} className="btn btn-success"/> */}
 
                                 <button disabled={!stripe} onClick={e => handleClean(e)} className="btn btn-success">
-
                                     {loading ? (
                                         <div className="spinner-border text-light" role="status">
                                             <span className="sr-only"></span>

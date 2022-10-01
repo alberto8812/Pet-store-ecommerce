@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 
 
-export default function FormularioDireccionMain() {
+export default function ModalDireccionPri() {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -22,7 +22,6 @@ export default function FormularioDireccionMain() {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                 
-                Aca podemos poner un formulario para cambiar los datos
 
                 </Offcanvas.Body>
             </Offcanvas>

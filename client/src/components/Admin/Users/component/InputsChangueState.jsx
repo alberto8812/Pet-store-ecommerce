@@ -12,8 +12,9 @@ import Stack from '@mui/material/Stack';
 import { useDispatch } from "react-redux";
 import { putCustomerShoppingStatus } from '../../../../redux/actions';
 ///
-const InputsChangueState = ({rowInf,headers}) => {
+const InputsChangueState = ({rowInf,headers,setRender,render}) => {
   const dispatch = useDispatch();
+    console.log(rowInf.firstName)
     const [status, setStatus] = useState('');
 
   const handleChange = (event) => {
@@ -24,11 +25,12 @@ const InputsChangueState = ({rowInf,headers}) => {
 
  const handleSubmitSend=()=>{
   dispatch(putCustomerShoppingStatus(headers,status,rowInf.invoice))
+  setRender(()=>render===''?'_':'')
   setStatus('')
+
+  rowInf=[]
+  
  }
-
-
-
 
   return (
     <Grid container
@@ -37,10 +39,11 @@ const InputsChangueState = ({rowInf,headers}) => {
     justifyContent="space-around"
     alignItems="center"
     >
+   
             <TextField
                 id="outlined-read-only-input"
                 label="Read Only"
-                defaultValue="Hello World"
+                defaultValue="Usuario"
                 value={rowInf.firstName}
                 InputProps={{
                 readOnly: true,
@@ -49,7 +52,7 @@ const InputsChangueState = ({rowInf,headers}) => {
                     <TextField
                 id="outlined-read-only-input"
                 label="Read Only"
-                defaultValue="Hello World"
+                defaultValue="Emial"
                 value={rowInf.email}
                 InputProps={{
                 readOnly: true,
@@ -58,7 +61,7 @@ const InputsChangueState = ({rowInf,headers}) => {
                     <TextField
                 id="outlined-read-only-input"
                 label="Read Only"
-                defaultValue="Hello World"
+                defaultValue="Invoice"
                 value={rowInf.invoice}
                 InputProps={{
                 readOnly: true,
@@ -66,7 +69,7 @@ const InputsChangueState = ({rowInf,headers}) => {
                 />
         <Box sx={{ minWidth: '200px' }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">{rowInf.status}</InputLabel>
+        <InputLabel id="demo-simple-select-label">Status</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"

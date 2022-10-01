@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
+import Box from '@mui/material/Box';
+import PieUsers from '../graphics/PieUsers';
 
+PieUsers
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
   { field: 'firstName', headerName: 'First name', width: 130 },
@@ -36,7 +39,47 @@ const rows = [
 
 const Users = () => {
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <Box sx={{ height: '100%', width: '100%'}}>
+      <Box sx={{ height: 'auto', width: '100%',border:'1px solid'}}> 
+
+        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+
+          direction="row"
+          justifyContent="center"
+          alignItems="center">
+
+   {/*statusGraphics.length>0 && statusGraphics.map(data=>{
+       return (
+        <Grid item  xs={4} key={data.status}> 
+        
+         <CardStatus status={data.status} statusCount={data.status_count}/>
+        
+          </Grid>
+       )})*/}
+        <Grid item  xs={4} key={data.status}> 
+        
+        <div>holll</div>
+       
+         </Grid>
+        <Grid item xs={4}
+          container
+          direction="row"
+          justifyContent="center"
+          alignItems="center">
+
+            <Box sx={{ height: '100px',width:'100px',minWidth:'100px',display:'flex',justifyContent:'center'}}>
+              {/*<PieUsers statusGraphics={statusGraphics}/>*/}
+              <h1>holll</h1>
+            </Box>
+        </Grid>
+
+  </Grid>
+  <Grid container  gap={2}  sx={{padding:'20px'}}>
+      {/*<InputsChangueState rowInf={rowInf} headers={headers} setRender={setRender} render={render}/>*/}
+  </Grid>
+
+</Box>
+    <Box sx={{ height: 500, width: '100%'}}>
       <DataGrid
         rows={rows}
         columns={columns}
@@ -44,7 +87,8 @@ const Users = () => {
         rowsPerPageOptions={[1]}
        // checkboxSelection
       />
-    </div>
+      </Box>
+      </Box>
   )
 }
 

@@ -9,11 +9,13 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {RiDeleteBin6Line} from 'react-icons/ri';
 import {GrEdit} from 'react-icons/gr';
-import { deleteProducts, getAllProducts, editProducts} from '../../../redux/actions/index';
+import {HiPlus} from 'react-icons/hi';
+import { deleteProducts, getAllProducts, editProducts, activeProducts} from '../../../redux/actions/index';
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
 import { useNavigate, Link, useParams } from "react-router-dom";
+import './ProductsAdm.css'
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -54,7 +56,11 @@ const ProductsAdm= () => {
     dispatch(deleteProducts(id, setFlag));
   }
 
-const handleEdit = (id) =>{
+  const handleActive = (id) => {
+    dispatch(activeProducts(id, setFlag))
+  }
+
+  const handleEdit = (id) =>{
     navigate('/admin/edit/' + id)
   }
 
@@ -68,8 +74,8 @@ const handleEdit = (id) =>{
             <StyledTableCell align="center">Price&nbsp;</StyledTableCell>
             <StyledTableCell align="center">Stock&nbsp;</StyledTableCell>
             <StyledTableCell align="center">Category&nbsp;</StyledTableCell>
-            <StyledTableCell align="center">status&nbsp;</StyledTableCell>
-            <StyledTableCell align="center" colSpan={2}>Options</StyledTableCell>
+            <StyledTableCell align="center">Status&nbsp;</StyledTableCell>
+            <StyledTableCell align="center" colSpan={3}>Options</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -83,8 +89,9 @@ const handleEdit = (id) =>{
               <StyledTableCell align="center">{row.stock}</StyledTableCell>
               <StyledTableCell align="center">{row.category?.name}</StyledTableCell>
               <StyledTableCell align="center">{row.deleted?"deleted":"deletedn't"}</StyledTableCell>
-              <StyledTableCell align="center" onClick={() => {handleDelete(row.id)}}><RiDeleteBin6Line/></StyledTableCell>
-              <StyledTableCell align="center" onClick={() => {handleEdit(row.id)}}><GrEdit/></StyledTableCell>
+              <StyledTableCell align="center" onClick={() => {handleDelete(row.id)}} ><span data-tooltip = "delete"><RiDeleteBin6Line className='btnOptions'/></span></StyledTableCell>
+              <StyledTableCell align="center" onClick={() => {handleEdit(row.id)}} ><span data-tooltip = "edit"><GrEdit className='btnOptions'/></span></StyledTableCell>
+              <StyledTableCell align="center" onClick={() => {handleActive(row.id)}} ><span data-tooltip = "activate"><HiPlus className='btnOptions'/></span></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

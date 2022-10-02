@@ -20,9 +20,10 @@ import {
     GET_CUSTOMER_SHOPPING,
     EDIT_PRODUCT,
     GET_CUSTOMER_DATA,
-    GET_CUSTOMER_SHOPPING_STATUS
+    GET_CUSTOMER_SHOPPING_STATUS,
+    ACTIVE_PRODUCT
 } from "./constants";
-//http://localhost:3001
+
 export function getAllProducts() {
     return async(dispatch) => {
         try {
@@ -258,6 +259,20 @@ export function deleteProducts(id, setFlag) {
     }
 };
 
+export function activeProducts(id, setFlag) {
+    return async(dispatch) => {
+        try {
+            return axios.put(`http://localhost:3001/loginAdmin/delete/${id}`)
+                .then(res => {
+                    setFlag((flag) => !flag)
+                    return dispatch({ type: ACTIVE_PRODUCT, payload: res.data })
+                })
+                .catch(err => dispatch({ type: ACTIVE_PRODUCT, payload: err.data }))
+        } catch (error) {
+            console.log(error)
+        }
+    }
+};
 
 export function editProducts(id, headers, payload) {
     console.log(editProducts)

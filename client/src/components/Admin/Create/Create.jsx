@@ -208,18 +208,18 @@ export default function Create() {
             </h1>
             <br />
             <Container>
-                <form onSubmit={e => handleSubmit(e)}>
+                <form onSubmit={e => handleSubmit(e)} className='form'>
                     <Row>
                     <Col sm={2}> <label><strong>Name: </strong></label></Col>
-                    <Col sm={6}><input type="text" value={input.name} name='name' onChange={e => handleChange(e)} /> </Col>
+                    <Col sm={6}><input className='inputs' type="text" value={input.name} name='name' onChange={e => handleChange(e)} /> </Col>
                         {errors.name && (
                            <p className="errors">{errors.name}</p>
                         )}
                     </Row>
                     <br />
                     <Row>
-                        <Col sm={2}>  <label><strong>Price: $ </strong></label></Col>
-                        <Col sm={6}>   <input type="text" value={input.price} name='price' onChange={e => handleChange(e)} /> </Col>
+                        <Col sm={2}>  <label><strong>Price:$ </strong></label></Col>
+                        <Col sm={6}>   <input className='inputs' type="text" value={input.price} name='price' onChange={e => handleChange(e)} /> </Col>
                         {errors.price && (
                           <p className="errors">{errors.price}</p>
                         )}
@@ -227,7 +227,7 @@ export default function Create() {
                     <br />
                     <Row>
                         <Col sm={2}>  <label><strong>Genre </strong></label></Col>
-                        <Col sm={6}>  <div><select name="genre" onChange={e => {handleChange(e)}}>
+                        <Col sm={6}>  <div><select className='inputs' name="genre" onChange={e => {handleChange(e)}}>
                             <option disabled selected>Select a genre</option>
                             <option value='cat'>Cat</option>
                             <option value='dog'>Dog</option>
@@ -240,7 +240,7 @@ export default function Create() {
                     <br />
                     <Row>
                         <Col sm={2}>  <label><strong>Category </strong></label></Col>
-                        <Col sm={6}>  <div><select name="category" onChange={e => {handleChange(e)}}>
+                        <Col sm={6}>  <div><select className='inputs' name="category" onChange={e => {handleChange(e)}}>
                             <option disabled selected>Select a category</option>
                             <option value='accesories'>Accesories</option>
                             <option value='food'>Food</option>
@@ -254,7 +254,7 @@ export default function Create() {
                     <br />
                     <Row>
                         <Col sm={2}> <label><strong>Age: </strong></label> </Col>
-                        <Col sm={6}>  <div><select name="age" onChange={e => {handleChange(e)}}>
+                        <Col sm={6}>  <div><select className='inputs' name="age" onChange={e => {handleChange(e)}}>
                             <option disabled selected>Select an age</option>
                             <option value='Puppy'>Puppy</option>
                             <option value='Young'>Young</option>
@@ -276,8 +276,9 @@ export default function Create() {
                     <br /> */}
                     <Row>
                         <Col sm={2}> <label><strong>Stock: </strong></label></Col>
-                        <Col sm={6}>   <input type="text" value={input.stock} name='stock' placeholder="units" onChange={e => handleChange(e)} />
-                            <label><strong> u.</strong></label></Col>
+                        <Col sm={6}>   <input className='inputs' type="text" value={input.stock} name='stock' placeholder="units" onChange={e => handleChange(e)} />
+                            {/* <label><strong> u.</strong></label> */}
+                        </Col>
                         {errors.stock && (
                             <p className="errors">{errors.stock}</p>
                         )}
@@ -285,8 +286,9 @@ export default function Create() {
                     <br />
                     <Row>
                         <Col sm={2}><label><strong>Rating: </strong></label> </Col>
-                        <Col sm={6}><input type="number" value={input.rating} name='rating' placeholder="STARS" onChange={e => handleChange(e)} />
-                            <label><strong> STARS </strong></label></Col>
+                        <Col sm={6}><input className='inputs' type="number" value={input.rating} name='rating' placeholder="STARS" onChange={e => handleChange(e)} />
+                            {/* <label><strong> STARS </strong></label> */}
+                        </Col>
                         {errors.rating && (
                             <p className="errors">{errors.rating}</p>
                         )}
@@ -295,7 +297,7 @@ export default function Create() {
 
                     <Row>
                         <Col sm={2}><label><strong>Detail: </strong></label></Col>
-                        <Col sm={6}><input type="text" value={input.detail} name='detail' onChange={e => handleChange(e)} /> </Col>
+                        <Col sm={6}><input className='inputs' type="text" value={input.detail} name='detail' onChange={e => handleChange(e)} /> </Col>
                         {errors.detail && (
                             <p className="errors">{errors.detail}</p>
                         )}
@@ -303,7 +305,7 @@ export default function Create() {
                     <br />
                     <Row>
                         <Col sm={2}><label><strong>Image: </strong></label></Col>
-                        <Col sm={6}><input type="text" value={input.image} name='image' onChange={e => handleChange(e)} /></Col>
+                        <Col sm={6}><input className='inputs' type="text" value={input.image} name='image' onChange={e => handleChange(e)} /></Col>
                         {errors.image && (
                             <p className="errors">{errors.image}</p>
                         )}
@@ -368,9 +370,9 @@ export default function Create() {
         y listo
  */}
                     <Stack gap={2} className="col-md-15-mx-auto"><Col sm={2}></Col>
-                    <Col sm={4}> {Object.values(errors).join('') == false ? <Button variant="primary" size="md" type="submit" disabled={false} ><strong>Create</strong></Button> : <Button variant="dark" size="md" type="submit" disabled={true} ><strong>Create</strong></Button>} </Col>
+                    <Col sm={4}> {Object.values(errors).join('') == false ? <Button variant="primary" size="md" type="submit" disabled={false}  className='btnCreate'><strong>Create</strong></Button> : <Button variant="dark" size="md" type="submit" disabled={true} className='btnCreate'><strong>Create</strong></Button>} </Col>
 
-                    <Col >   <Link to="/home"><Button variant="danger" size="md" active>Cancel</Button></Link> </Col>
+                    <Col >   <Link to="/home"><Button variant="danger" size="md" active className='btnCreate'>Cancel</Button></Link> </Col>
                     </Stack>
                 </form>
             </Container>

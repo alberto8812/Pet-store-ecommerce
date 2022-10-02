@@ -63,7 +63,7 @@ const piestatusProducts=async(req)=>{
 
 const piestatususers=async(req)=>{
     
-        const statusUsers=await User.findAll({attributes:["blockUser",[db.fn('COUNT', db.col('blockUser')),'status_blocK']],group:['blockUser']})
+        const statusUsers=await User.findAll({attributes:["enabled",[db.fn('COUNT', db.col('enabled')),'status_blocK']],group:['enabled']})
 
          return statusUsers ;
         }

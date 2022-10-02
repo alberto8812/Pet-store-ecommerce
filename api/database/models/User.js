@@ -36,10 +36,10 @@ module.exports = (sequelize) => {
      
        
     },
-    blockUser:{
+    enabled:{
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue:false             
+      defaultValue:true            
     },
     
 

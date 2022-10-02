@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { getCustomerData, getgraphicsData } from '../../../redux/actions';
 import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
 import { useDispatch } from "react-redux";
+import clsx from 'clsx';//permite crear condicionales con la clases
 import CardStatus from './../Buyers/component/CardStatus';
 
 const columns = [
@@ -14,7 +15,17 @@ const columns = [
   { field: 'userName', headerName: 'UserName', width: 230 },
   { field: 'direction', headerName: 'Direction', width: 230 },
   { field: 'city', headerName: 'City', width: 130 },
-  { field: 'blockUser', headerName: 'BlockUser', width: 130 },
+  { field: 'enabled', headerName: 'Enabled', width: 130,
+  cellClassName: (params) => {
+    if (params.value == null) {
+      return '';
+    }
+    return clsx('super-app', {
+      negative:params.value==true,
+      positive: params.value==false,
+    });
+  },
+    },
   {
     field: 'email',
     headerName: 'Email',
@@ -46,7 +57,7 @@ const Users = () => {
         authorization: `Bearer ${token}`
         },    
         }
-      //dispatch(getCustomerShopping(headers))
+      //dispatch(getCustomerData)
       dispatch(getgraphicsData(headers))
       dispatch(getCustomerData(headers))
     }
@@ -57,7 +68,7 @@ const Users = () => {
 
   if(datosUsuario.length){
     for (const users of datosUsuario) {
-      rows.push( { id: users.id,firstName: users.name, email: users.email, userName:users.userName,direction:users.direction,city:users.city,blockUser:users.blockUser })
+      rows.push( { id: users.id,firstName: users.name, email: users.email, userName:users.userName,direction:users.direction,city:users.city,enabled:users.enabled })
     }
     
     }
@@ -77,7 +88,7 @@ const Users = () => {
        return (
         <Grid item  xs={4} key={index}> 
        
-        <CardStatus status={data.blockUser?'block':'available'} statusCount={data.status_blocK}/>
+        <CardStatus status={data.enabled?'enabled':'block'} statusCount={data.status_blocK}/>
         
           </Grid>
        )})}
@@ -105,13 +116,29 @@ const Users = () => {
   </Grid>
 
 </Box>
-    <Box sx={{ height: 500, width: '100%'}}>
+    <Box sx={{ height: 500, width: '100%',
+
+   '& .super-app.negative': {
+    backgroundColor: 'rgb(54, 162, 235)',
+    color: '#020202',
+    fontWeight: '600',
+  },
+  '& .super-app.positive': {
+    backgroundColor: '#d47483',
+    color: '#000000',
+    fontWeight: '600',
+  },
+  
+  
+  }}
+    
+    >
       <DataGrid
         rows={rows}
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[1]}
-       // checkboxSelection
+  
       />
       </Box>
       </Box>

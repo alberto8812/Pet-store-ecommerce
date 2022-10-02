@@ -9,6 +9,7 @@ import { Grid } from '@mui/material';
 import PieStatus from '../graphics/PieStatus';
 import CardStatus from './component/CardStatus';
 import InputsChangueState from './component/InputsChangueState';
+import clsx from 'clsx';
 //
 const Users = () => {
   const dispatch = useDispatch();
@@ -83,6 +84,16 @@ const Users = () => {
       //type: 'number',
       width: 110,
       editable: true,
+      cellClassName: (params) => {
+        if (params.value == null) {
+          return '';
+        }
+        return clsx('super-app', {
+          pending:params.value=='PENDING',
+          completed: params.value=='COMPLETED',
+          cancelled: params.value=='CANCELLED',
+        });
+      },
     },
     {
       field: 'quantity',
@@ -157,7 +168,25 @@ const Users = () => {
 
      </Box>
 
-    <Box sx={{ height: 500, width: '100%'}}>
+    <Box sx={{ height: 500, width: '100%',
+    
+            '& .super-app.completed': {
+            backgroundColor: 'rgb(54, 162, 235)',
+            color: '#020202',
+              fontWeight: '600',
+            },
+            '& .super-app.cancelled': {
+             backgroundColor: '#272727',
+            color: '#e2e2e2',
+            fontWeight: '600',
+           },
+            '& .super-app.pending': {
+             backgroundColor: 'rgb(255, 99, 132)',
+            color: '#000000',
+            fontWeight: '600',
+           },
+  
+      }}>
       <DataGrid
         rows={rows}
         columns={columns}

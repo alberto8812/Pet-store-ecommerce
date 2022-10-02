@@ -4,7 +4,7 @@ const {Product,Genre,Category,User}=db.models
 const dataUserstoreService = async (req) => {
 
 
-  const AllDataUser = await User.findAll({attributes:['id','name','email','userName','direction','city','blockUser']})
+  const AllDataUser = await User.findAll({attributes:['id','name','email','userName','direction','city','enabled']})
 
   return AllDataUser
 }

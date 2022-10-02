@@ -272,7 +272,7 @@ export default function Detail() {
                                         <span className='starComment'>{renderizarEstrellas(3)}</span>
                                     </div>
                                     <div>
-                                       <p>Is a good product. I am satisfied with what I bought</p> 
+                                       <p>Is a good product. I am satisfied with what I bought.</p> 
                                     </div>
                                     </div>
                                     </scroll-page>
@@ -282,7 +282,34 @@ export default function Detail() {
                                         <span className='starComment'>{renderizarEstrellas(2)}</span>
                                     </div>
                                     <div>
-                                       <p>I don't recommend it. It's very expensive</p> 
+                                       <p>I don't recommend it. It's very expensive.</p> 
+                                    </div></div>
+                                    </scroll-page>
+                                    <scroll-page>
+                                    <div className="comments">
+                                    <div>
+                                        <span className='starComment'>{renderizarEstrellas(5)}</span>
+                                    </div>
+                                    <div>
+                                       <p>I love the quality of this product. My pet is enjoying it.</p> 
+                                    </div></div>
+                                    </scroll-page>
+                                    <scroll-page>
+                                    <div className="comments">
+                                    <div>
+                                        <span className='starComment'>{renderizarEstrellas(4)}</span>
+                                    </div>
+                                    <div>
+                                       <p>I liked the product. I would like more variety.</p> 
+                                    </div></div>
+                                    </scroll-page>
+                                    <scroll-page>
+                                    <div className="comments">
+                                    <div>
+                                        <span className='starComment'>{renderizarEstrellas(1)}</span>
+                                    </div>
+                                    <div>
+                                       <p>Very bad. I wouldn't buy it again.</p> 
                                     </div></div>
                                     </scroll-page>
                                 </div>  

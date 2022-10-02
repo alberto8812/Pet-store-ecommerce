@@ -11,14 +11,9 @@ import Footer from "../Footer/Footer";
 import { useAuth0 } from '@auth0/auth0-react';//libreia Auth0
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-////////////
 
-//BACK --> Falta ruta de post review? 
+
 //Vamos a validar que la persona seleccione estrellas? Si o si haga puntuación? 
-
-//BACK Y FRONT-->Chequear nombres de propiedades que sean las mismas en el back
-
-//FRONT --> Arreglar estilos de comentarios
 
 //Función para validar comentario de Review:
 export function validate (data) {
@@ -277,7 +272,7 @@ export default function Detail() {
                                         <span className='starComment'>{renderizarEstrellas(3)}</span>
                                     </div>
                                     <div>
-                                       <p>Is a good product. I am satisfied with what I bought</p> 
+                                       <p>Is a good product. I am satisfied with what I bought.</p> 
                                     </div>
                                     </div>
                                     </scroll-page>
@@ -287,7 +282,34 @@ export default function Detail() {
                                         <span className='starComment'>{renderizarEstrellas(2)}</span>
                                     </div>
                                     <div>
-                                       <p>Probando como queda</p> 
+                                       <p>I don't recommend it. It's very expensive.</p> 
+                                    </div></div>
+                                    </scroll-page>
+                                    <scroll-page>
+                                    <div className="comments">
+                                    <div>
+                                        <span className='starComment'>{renderizarEstrellas(5)}</span>
+                                    </div>
+                                    <div>
+                                       <p>I love the quality of this product. My pet is enjoying it.</p> 
+                                    </div></div>
+                                    </scroll-page>
+                                    <scroll-page>
+                                    <div className="comments">
+                                    <div>
+                                        <span className='starComment'>{renderizarEstrellas(4)}</span>
+                                    </div>
+                                    <div>
+                                       <p>I liked the product. I would like more variety.</p> 
+                                    </div></div>
+                                    </scroll-page>
+                                    <scroll-page>
+                                    <div className="comments">
+                                    <div>
+                                        <span className='starComment'>{renderizarEstrellas(1)}</span>
+                                    </div>
+                                    <div>
+                                       <p>Very bad. I wouldn't buy it again.</p> 
                                     </div></div>
                                     </scroll-page>
                                 </div>  

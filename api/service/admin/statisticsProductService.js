@@ -61,4 +61,11 @@ const piestatusProducts=async(req)=>{
      return statusProducts ;
     }
 
-module.exports={LineGraphicsSale,pieGraphicscategory,piestatusProducts}
+const piestatususers=async(req)=>{
+    
+        const statusUsers=await User.findAll({attributes:["enabled",[db.fn('COUNT', db.col('enabled')),'status_blocK']],group:['enabled']})
+
+         return statusUsers ;
+        }
+
+module.exports={LineGraphicsSale,pieGraphicscategory,piestatusProducts,piestatususers}

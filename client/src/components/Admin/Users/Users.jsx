@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { getCustomerData, getgraphicsData } from '../../../redux/actions';
 import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
 import { useDispatch } from "react-redux";
+import clsx from 'clsx';
 import CardStatus from './../Buyers/component/CardStatus';
 
 const columns = [
@@ -14,7 +15,17 @@ const columns = [
   { field: 'userName', headerName: 'UserName', width: 230 },
   { field: 'direction', headerName: 'Direction', width: 230 },
   { field: 'city', headerName: 'City', width: 130 },
-  { field: 'blockUser', headerName: 'BlockUser', width: 130 },
+  { field: 'blockUser', headerName: 'BlockUser', width: 130,
+  cellClassName: (params) => {
+    if (params.value == null) {
+      return '';
+    }
+    return clsx('super-app', {
+      negative:params.value==true,
+      positive: params.value==false,
+    });
+  },
+    },
   {
     field: 'email',
     headerName: 'Email',
@@ -105,12 +116,41 @@ const Users = () => {
   </Grid>
 
 </Box>
-    <Box sx={{ height: 500, width: '100%'}}>
+    <Box sx={{ height: 500, width: '100%',
+   // '& .true': {
+     // backgroundColor: '#f6562991',
+    //  color: '#eaedf1',
+  //  },
+   // '& .false': {
+   //   backgroundColor: '#ffffff',
+   //   color: '#000000',
+   // },
+   '& .super-app.negative': {
+    backgroundColor: 'rgba(157, 255, 118, 0.49)',
+    color: '#1a3e72',
+    fontWeight: '600',
+  },
+  '& .super-app.positive': {
+    backgroundColor: '#d47483',
+    color: '#1a3e72',
+    fontWeight: '600',
+  },
+  
+  
+  }}
+    
+    >
       <DataGrid
         rows={rows}
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[1]}
+      //  getCellClassName={(params) => {
+       //   if (params.field === 'blockUser' || params.value == null) {
+       //     return 'false';
+      //    }
+       //   return params.value==true ? 'true' : 'false';
+        //}}
        // checkboxSelection
       />
       </Box>

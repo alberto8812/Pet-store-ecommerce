@@ -36,15 +36,7 @@ export default function CardProduct({ id, image, name, price, rating, category, 
         setExpanded(!expanded);
     };
 
-    // function comprar(e) {
-    //     e.preventDefault
-    //     console.log('compraste')
-    // }
-    // function add(e) {
-    //     e.preventDefault
-    //     console.log('adderiste')
-    // }
-
+    
     return (
         <Card sx={{
             width: 400,
@@ -89,18 +81,7 @@ export default function CardProduct({ id, image, name, price, rating, category, 
                 <IconButton aria-label="add to favorites">
                     <FavoriteIcon />
                 </IconButton>
-                {/* <IconButton aria-label="share">
-                    <ShoppingCartIcon
-                        onClick={e => comprar(e)}></ShoppingCartIcon>
-
-                </IconButton>
-                <IconButton aria-label="share">
-                    <AddShoppingCartIcon
-                        onClick={e => add(e)}
-                    ></AddShoppingCartIcon>
-                </IconButton> */}
                 <ExpandMore
-
                     onClick={handleExpandClick}
                     aria-expanded={expanded}
                     aria-label="show more"

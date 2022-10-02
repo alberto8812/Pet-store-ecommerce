@@ -146,10 +146,11 @@ const NavBar = () => {
                         justifyContent="center"
                         alignItems="center"
                     >
-                        <Link to='/carrito' className='number-cart'> {cartQuantity}
-                            <Icon icon="fa:shopping-cart" width='35px' height='35px' hAlign="left" color="rgb(234, 208, 240)" />
+                        {/* <Link to='/carrito' className='number-cart'>  */}
+                        <i class="bi bi-cart"><Link to='/carrito' className='number-cart'>{cartQuantity}</Link></i>
+                            {/* <Icon icon="fa:shopping-cart" width='35px' height='35px' hAlign="left" color="rgb(234, 208, 240)" /> */}
                             {/* <h3 className='link_home'>shopping</h3> */}
-                        </Link>
+                        {/* </Link> */}
                     </Grid>
                     <Grid
                         xs={2}

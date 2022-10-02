@@ -18,7 +18,9 @@ import {
     GET_GRAPHICS_DATA,
     DELETE_PRODUCT,
     GET_CUSTOMER_SHOPPING,
-    EDIT_PRODUCT, 
+    EDIT_PRODUCT,
+    GET_CUSTOMER_DATA,
+    GET_CUSTOMER_SHOPPING_STATUS,
     ACTIVE_PRODUCT
 } from "./constants";
 
@@ -222,6 +224,25 @@ export const putCustomerShoppingStatus = (token, status, invoice) => {
         }
     };
 }
+
+///// trae todos los datos del usuario de la base de datos
+export const getCustomerData = (token) => {
+    return async(dispatch) => {
+        try {
+            const { data } = await axios.get(`/loginAdmin/datausers`, token);
+            return dispatch({
+                type: GET_CUSTOMER_DATA,
+                payload: data,
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    };
+}
+
+
+
+
 
 export function deleteProducts(id, setFlag) {
     return async(dispatch) => {

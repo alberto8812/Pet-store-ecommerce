@@ -1,6 +1,6 @@
 
 
-const {CreateProductDb, EditProductDb, DeleteProductDb,statisticsProductDb,customerShoppingDb,customerShoppingStatusDb }=require("../controllers/adminController")
+const {CreateProductDb, EditProductDb, DeleteProductDb,statisticsProductDb,customerShoppingDb,customerShoppingStatusDb,dataUserstoreDb }=require("../controllers/adminController")
 
 const express=require("express"),
       router=express.Router();
@@ -13,6 +13,8 @@ router.get("/",(req,res)=>{
             })
 
 router.get("/graphics",statisticsProductDb)//ruta para obtener todas las graficas
+
+router.get('/datausers',dataUserstoreDb)
 
 router.get("/customerShopping",customerShoppingDb)//ruta que envia informacion de los estados de compra
 

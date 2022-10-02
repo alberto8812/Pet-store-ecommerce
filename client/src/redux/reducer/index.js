@@ -4,7 +4,7 @@ import {
     ADD_TO_CART,GET_NUMBER_CART,INCREASE_QUANTITY,
     DECREASE_QUANTITY,UPDATE_CART,DELETE_CART,
     REFRESH_CART,GET_ADMINROLL, GET_GRAPHICS_DATA,
-    GET_CUSTOMER_SHOPPING
+    GET_CUSTOMER_SHOPPING,GET_CUSTOMER_DATA,GET_CUSTOMER_SHOPPING_STATUS
 } from "../actions/constants";
 
 export const initialState = {
@@ -16,6 +16,7 @@ export const initialState = {
     numberCart: 0,
     statistics:[],/////contiene informacion para las graficas
     CustomerShopping:[], //contienes infomracion de las compras de cada usario para el admind
+    userStatus:[]//almacenas los datos de todos los usuarios
 
 }
 
@@ -139,6 +140,9 @@ function rootReducer(state = initialState, action) {
         case GET_CUSTOMER_SHOPPING:
 
             return {...state,customerShopping:action.payload}
+
+        case GET_CUSTOMER_DATA:
+            return {...state, userStatus:action.payload}
 
         default:
             return state

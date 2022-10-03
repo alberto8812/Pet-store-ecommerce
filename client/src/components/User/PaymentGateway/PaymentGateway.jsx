@@ -38,8 +38,8 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
 
 
     let enviar = {
-        products:'',
-        payment:'',
+        products: '',
+        payment: '',
     }
 
     Object.keys(productsInTheCart).forEach(product => {
@@ -101,7 +101,18 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
                         },
                     }
                 );
-                console.log('Soy Data 104',data);
+                console.log('Soy Data 104', data);
+
+                enviar = {
+                    products: listCart,
+                    payment: data
+                }
+                dispatch(postSendProds(enviar , {
+                    headers: {
+                        authorization: `Bearer ${token}`
+                    },
+                }))
+                dispatch()
 
                 elements.getElement(CardElement).clear();
                 notifyOK();
@@ -111,7 +122,7 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
 
             }
             setLoading(false);
-        } 
+        }
     };
 
 
@@ -197,26 +208,26 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
 
                             {/* <button disabled={!stripe} className="btn btn-success"/> */}
 
-                                <button disabled={!stripe} onClick={e => handleClean(e)} className="btn btn-success">
-                                    {loading ? (
-                                        <div className="spinner-border text-light" role="status">
-                                            <span className="sr-only"></span>
-                                        </div>
-                                    ) : (
-                                        "Buy"
-                                    )}
-                                </button>
-                                <ToastContainer
-                                    position="top-center"
-                                    autoClose={2000}
-                                    hideProgressBar={false}
-                                    newestOnTop={false}
-                                    closeOnClick
-                                    rtl={false}
-                                    pauseOnFocusLoss
-                                    draggable
-                                    pauseOnHover
-                                />
+                            <button disabled={!stripe} onClick={e => handleClean(e)} className="btn btn-success">
+                                {loading ? (
+                                    <div className="spinner-border text-light" role="status">
+                                        <span className="sr-only"></span>
+                                    </div>
+                                ) : (
+                                    "Buy"
+                                )}
+                            </button>
+                            <ToastContainer
+                                position="top-center"
+                                autoClose={2000}
+                                hideProgressBar={false}
+                                newestOnTop={false}
+                                closeOnClick
+                                rtl={false}
+                                pauseOnFocusLoss
+                                draggable
+                                pauseOnHover
+                            />
 
                         </form>
                     </div>

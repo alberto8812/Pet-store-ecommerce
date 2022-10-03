@@ -26,7 +26,7 @@ export default function Home() {
     dispatch(getAllProducts());
   }, []);
 
-  console.log(ALLproducts,products)
+  // console.log(ALLproducts,products)
   useEffect(() => {
   ////se ejecuta para update del home 
   }, [status]);

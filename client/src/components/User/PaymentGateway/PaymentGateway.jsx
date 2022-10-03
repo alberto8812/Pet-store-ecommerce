@@ -129,6 +129,7 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
     function handleClean(e) {
         // e.preventDefault();
         window.localStorage.clear();
+        window.location.reload()
         // setTimeout(() => {
         //     navigate('/')
         // }, 3000);

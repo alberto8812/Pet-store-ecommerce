@@ -45,7 +45,6 @@ export default function CardProduct({ id, image, name, price, rating, category, 
         dispatch(addToFav(products));
         const heart = document.getElementById('favItem');
         heart.style.color = 'red';
-        
     }; 
 
     

@@ -17,7 +17,9 @@ import Recomendations from "../Recomendations/Recomendations";
 export default function Home() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
-  const allProducts = useSelector(state => state.allProducts);
+
+  const ALLproducts = useSelector((state) => state.allProducts);
+  const allproducts2 = useSelector((state) => state.allProducts2);
   const status = useSelector((state) => state.status);
 
   console.log('ALLPRODUCTS', allProducts);
@@ -27,7 +29,7 @@ export default function Home() {
     dispatch(getAllProducts());
   }, []);
 
-
+  console.log(ALLproducts,products,allproducts2)
   useEffect(() => {
   ////se ejecuta para update del home 
   }, [status]);

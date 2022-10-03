@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
 import {
     GET_ALL_PRODUCTS,
     GET_DETAILS,
@@ -20,7 +21,9 @@ import {
     EDIT_PRODUCT,
     GET_CUSTOMER_DATA,
     GET_CUSTOMER_SHOPPING_STATUS,
-    ACTIVE_PRODUCT
+    ACTIVE_PRODUCT,
+    POST_CUSTOMER_EDIT_DATA,
+    POST_SEND_PRODS
 } from "./constants";
 
 export function getAllProducts() {
@@ -165,6 +168,23 @@ export function refreshCart(payload) {
     }
 };
 
+export const postSendProds = (payload) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.post(
+                `/loginUsers/productusercart`,
+                payload
+            );
+            return dispatch({
+                type: POST_SEND_PRODS,
+                payload: data,
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    };
+};
+
 ////////////////////////************Admind*******************/////////////////////////////////// /
 
 
@@ -218,7 +238,7 @@ export const getCustomerShopping = (token) => {
 
 // cambiar el status de la compra 
 export const putCustomerShoppingStatus = (token, status, invoice) => {
-    console.log(status)
+ 
     return async(dispatch) => {
         try {
             const { data } = await axios.put(`/loginAdmin/customerShopping/${invoice}`, { status: status }, token);
@@ -247,6 +267,21 @@ export const getCustomerData = (token) => {
     };
 }
 
+///// edita todos los datos del usuario de la base de datos
+export const postCustomerData = (dataUser,headers) => {
+  
+    return async(dispatch) => {
+        try {
+            const { data } = await axios.post(`/loginAdmin/editUsersAdmin`,dataUser,headers);
+            return dispatch({
+                type: POST_CUSTOMER_EDIT_DATA,
+                payload: data,
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    };
+}
 
 
 
@@ -282,7 +317,7 @@ export function activeProducts(id, setFlag) {
 };
 
 export function editProducts(id, headers, payload) {
-    console.log(editProducts)
+
     return async function(dispatch) {
         try {
             axios.put(`/loginAdmin/edit/${id}`, payload, headers)
@@ -313,3 +348,4 @@ export function editProducts(id, headers, payload) {
 //             console.error(err);
 //         }
 //     };
+

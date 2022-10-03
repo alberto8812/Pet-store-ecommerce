@@ -35,7 +35,7 @@
 
 .not-found-message-container {
     display: grid;
-    font-size: 30px;
+    font-size: 20px;
     letter-spacing: -1px;
     color: #9e200f;
     text-transform: uppercase;

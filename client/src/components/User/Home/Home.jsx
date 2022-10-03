@@ -11,8 +11,8 @@ import {
   getProducts,
   getAllProducts,
 } from "../../../redux/actions";
-import notFound from './giphy.gif';
 import Recomendations from "../Recomendations/Recomendations";
+
 ///////////////
 export default function Home() {
   const dispatch = useDispatch();
@@ -55,9 +55,6 @@ export default function Home() {
           </Box>
         </Grid>
 
-        {(products.length === 0) && (<div className="not-found-message-container"><p className="not-found-message">Product not Found!</p>
-        <Recomendations/>  </div>)}   {/*<img className="img-notFound"src={notFound} alt='not found'/>*/}
-
 
         <div>
         <Pagination
@@ -67,11 +64,15 @@ export default function Home() {
             setCurrentPage={setCurrentPage}
           />
         </div>
+
         
         <div>
           <ComponentCard animalsInCurrentPage={animalsInCurrentPage} />
         </div>
       </Grid>
+
+        {(products.length === 0) && (<div className="not-found-message-container"><p >Product not Found!</p>
+        <Recomendations />  </div>)}   {/*<img className="img-notFound"src={notFound} alt='not found'/>*/}
 
               <a style={{'textDecoration': 'none'}} href="#">
                   <button className="goUp-btn">Go Up</button>

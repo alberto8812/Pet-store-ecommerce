@@ -9,7 +9,6 @@ import {
     GET_NUMBER_CART,
     INCREASE_QUANTITY,
     DECREASE_QUANTITY,
-    UPDATE_CART,
     DELETE_CART,
     REFRESH_CART,
     GET_ADMINROLL,
@@ -28,7 +27,8 @@ export const initialState = {
     numberCart: 0,
     statistics: [], /////contiene informacion para las graficas
     CustomerShopping: [], //contienes infomracion de las compras de cada usario para el admind
-    userStatus: [] //almacenas los datos de todos los usuarios
+    userStatus: [], //almacenas los datos de todos los usuarios
+    favorite: [],
 
 }
 
@@ -67,6 +67,21 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state
             };
+
+        case ADD_FAVORITE:
+            let favItem = {
+                id: action.payload.id,
+                quantity: action.payload.quantitySelected,
+                name: action.payload.name,
+                image: action.payload.image,
+                price: action.payload.price,
+                stock: action.payload.stock
+            }
+            state.favorite.push(favItem);
+            return {
+                ...state
+            }
+
         case ADD_TO_CART:
             if (state.numberCart === 0) {
                 let shoppingCart = {

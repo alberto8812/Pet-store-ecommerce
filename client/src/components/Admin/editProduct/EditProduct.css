@@ -1,11 +1,12 @@
-.supercontainer{
+.supercontainer2{
   background-color:#e3d6eb;
   width: 25em;
 }
 
 .title{
-  left: 3em;
-  position: relative
+  left: 0em;
+  position: relative;
+  width: 13.3em;
 }
 
 

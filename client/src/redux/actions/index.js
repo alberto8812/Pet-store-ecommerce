@@ -23,7 +23,9 @@ import {
     GET_CUSTOMER_DATA,
     GET_CUSTOMER_SHOPPING_STATUS,
     ACTIVE_PRODUCT,
-    POST_CUSTOMER_EDIT_DATA
+    POST_CUSTOMER_EDIT_DATA,
+    POST_SEND_PRODS,
+    PROFILE_DATA
 } from "./constants";
 
 export function getAllProducts() {
@@ -159,6 +161,30 @@ export function refreshCart(payload) {
         payload
     }
 };
+
+export const postSendProds = (payload) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.post(
+                `/loginUsers/productusercart`,
+                payload
+            );
+            return dispatch({
+                type: POST_SEND_PRODS,
+                payload: data,
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    };
+};
+
+export function getProfileData(payload){
+    return{
+        type: PROFILE_DATA,
+        payload
+    }
+}
 
 ////////////////////////************Admind*******************/////////////////////////////////// /
 

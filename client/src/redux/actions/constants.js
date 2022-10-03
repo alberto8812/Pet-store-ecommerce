@@ -12,7 +12,8 @@ export const UPDATE_CART = 'UPDATE_CART';
 export const DELETE_CART = 'DELETE_CART';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const REFRESH_CART = 'REFRESH_CART';
-
+export const POST_SEND_PRODS = 'POST_SEND_PRODS'
+export const PROFILE_DATA = 'PROFILE_DATA'
 
 ////////////////ADMIN CONSTANTS///////////////////////////////////
 export const GET_ADMINROLL = 'GET_ADMINROLL';

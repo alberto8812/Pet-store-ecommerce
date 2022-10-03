@@ -35,11 +35,12 @@ app.use('/paymentgateway', v1confirmRoute);
 app.use("/products", v1ProducstRouter);
 
 //ruta para usuarios registrados
-app.use("/loginUsers", v1UsersRouter);
+app.use("/loginUsers",jwtCheck,v1UsersRouter);
 // jwtCheck
 
 ///proximamente ruta para roll admi
 app.use("/loginAdmin", v1AdminRouter)
+
     //jwtCheck, checkpermissions
 
 module.exports = app

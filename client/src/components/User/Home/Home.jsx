@@ -11,20 +11,22 @@ import {
   getProducts,
   getAllProducts,
 } from "../../../redux/actions";
-import notFound from './giphy.gif';
+import Recomendations from "../Recomendations/Recomendations";
+
 ///////////////
 export default function Home() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
+
   const ALLproducts = useSelector((state) => state.allProducts);
-  const allproducts2 = useSelector((state) => state.allProducts2);
   const status = useSelector((state) => state.status);
+
   
   useEffect(() => {
     dispatch(getAllProducts());
   }, []);
 
-  console.log(ALLproducts,products,allproducts2)
+  console.log(ALLproducts,products)
   useEffect(() => {
   ////se ejecuta para update del home 
   }, [status]);
@@ -51,8 +53,6 @@ export default function Home() {
             <Carousel />
           </Box>
         </Grid>
-        {(products.length === 0) && (<div className="not-found-message-container"><p className="not-found-message">Product not Found!</p>
-          <img className="img-notFound"src={notFound} alt='not found'/></div>)}
 
 
         <div>
@@ -69,6 +69,9 @@ export default function Home() {
           <ComponentCard animalsInCurrentPage={animalsInCurrentPage} />
         </div>
       </Grid>
+
+        {(products.length === 0) && (<div className="not-found-message-container"><p >Product not Found!</p>
+        <Recomendations />  </div>)}   {/*<img className="img-notFound"src={notFound} alt='not found'/>*/}
 
               <a style={{'textDecoration': 'none'}} href="#">
                   <button className="goUp-btn">Go Up</button>

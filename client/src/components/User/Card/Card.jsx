@@ -14,7 +14,11 @@ import { purple, } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import './Card.css';
+import { addToFav } from '../../../redux/actions';
+import { useState } from "react";
+
 
 ////
 const ExpandMore = styled((props) => {
@@ -32,19 +36,16 @@ const ExpandMore = styled((props) => {
 export default function CardProduct({ id, image, name, price, rating, category, genre }) {
     const [expanded, setExpanded] = React.useState(false);
     const dispatch = useDispatch()
+    const products = useSelector(state => state.products);
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
 
-    // function comprar(e) {
-    //     e.preventDefault
-    //     console.log('compraste')
-    // }
-    // function add(e) {
-    //     e.preventDefault
-    //     console.log('adderiste')
-    // }
+    function handleFav(){
+        dispatch(addToFav(products))
+    }; 
 
+    
     return (
         <Card sx={{
             width: 400,
@@ -86,27 +87,18 @@ export default function CardProduct({ id, image, name, price, rating, category, 
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
+            
+                {/* <IconButton aria-label="add to favorites">
                     <FavoriteIcon />
-                </IconButton>
-                {/* <IconButton aria-label="share">
-                    <ShoppingCartIcon
-                        onClick={e => comprar(e)}></ShoppingCartIcon>
-
-                </IconButton>
-                <IconButton aria-label="share">
-                    <AddShoppingCartIcon
-                        onClick={e => add(e)}
-                    ></AddShoppingCartIcon>
                 </IconButton> */}
                 <ExpandMore
-
                     onClick={handleExpandClick}
                     aria-expanded={expanded}
                     aria-label="show more"
                 >
                     {rating} ⭐
                 </ExpandMore>
+                <button onClick={handleFav} type='button' className='btn-fav' id='favItem'><i class="bi bi-heart"></i></button>
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>

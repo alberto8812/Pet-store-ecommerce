@@ -67,13 +67,13 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
     };
 
 
-    const eachProduct = listCart.map(el => el.name);
-    console.log('CADA PRODUCTO', eachProduct);
+    // const eachProduct = listCart.map(el => el.name);
+    // console.log('CADA PRODUCTO', eachProduct);
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(postConfirm(eachProduct))
+        dispatch(postConfirm())
         console.log(<CardElement />)
 
         const { error, paymentMethod } = await stripe.createPaymentMethod({

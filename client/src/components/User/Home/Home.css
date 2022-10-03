@@ -35,7 +35,7 @@
 
 .not-found-message-container {
     display: grid;
-    font-size: 35px;
+    font-size: 20px;
     letter-spacing: -1px;
     color: #9e200f;
     text-transform: uppercase;
@@ -45,9 +45,10 @@
     line-height: 50px;
 }
 
-.not-found-message {
+
+/* .not-found-message {
     background-color: rgba(255, 255, 255, 0.514);
-}
+} */
 
 .img-notFound {
     margin: 0 40px !important;

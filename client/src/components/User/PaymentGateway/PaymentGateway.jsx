@@ -32,8 +32,15 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
     const productsInTheCart = useSelector(state => state.cart);
     const navigate = useNavigate();
 
+
     let listCart = [];
     let totalCart = 0;
+
+
+    let enviar = {
+        products:'',
+        payment:'',
+    }
 
     Object.keys(productsInTheCart).forEach(product => {
         totalCart += productsInTheCart[product].quantity * productsInTheCart[product].price;
@@ -41,6 +48,7 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
     });
 
     const idList = listCart.map(e => e.id).toString()
+    console.log(listCart)
 
     function totalPrice(price, item) {
         return Number(price * item).toLocaleString('en-US');
@@ -93,7 +101,7 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
                         },
                     }
                 );
-                console.log(data);
+                console.log('Soy Data 104',data);
 
                 elements.getElement(CardElement).clear();
                 notifyOK();

@@ -4,7 +4,7 @@ import {
     ADD_TO_CART,GET_NUMBER_CART,INCREASE_QUANTITY,
     DECREASE_QUANTITY,UPDATE_CART,DELETE_CART,
     REFRESH_CART,GET_ADMINROLL, GET_GRAPHICS_DATA,
-    GET_CUSTOMER_SHOPPING,GET_CUSTOMER_DATA,GET_CUSTOMER_SHOPPING_STATUS,POST_CUSTOMER_EDIT_DATA
+    GET_CUSTOMER_SHOPPING,GET_CUSTOMER_DATA,GET_CUSTOMER_SHOPPING_STATUS,POST_CUSTOMER_EDIT_DATA, POST_SEND_PRODS
 } from "../actions/constants";
 
 export const initialState = {
@@ -130,6 +130,11 @@ function rootReducer(state = initialState, action) {
                 numberCart: 1,
                 cart: cart
             }
+
+            case POST_SEND_PRODS:
+                return {
+                    ...state,
+                }
 
 /////////////////////////////////////ADMINS REDUCER/////////////////////////////////////////////////
 

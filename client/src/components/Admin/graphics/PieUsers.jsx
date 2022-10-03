@@ -18,7 +18,7 @@ const options = {
 };
  
 const PieUsers = ({statusUserGraphics}) => {
-  //const pieGraphics = useSelector(state => state.statistics);
+  //datos de los usuarios activos para las graficas
 
   let labels =statusUserGraphics.length>0?statusUserGraphics.map(res=>{if(res.blockUser===true||res.blockUser===false){return res.blockUser} } ):[];//statusGraphics.length>0?statusGraphics.map(res=>{if(res.status==='PENDING'||res.status==='COMPLETED'){return res.status} } ):[];
   let scores = statusUserGraphics.length>0?statusUserGraphics.map(res=>{if(res.status_blocK>=0){return res.status_blocK} } ):[];

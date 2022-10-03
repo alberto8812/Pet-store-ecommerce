@@ -83,16 +83,16 @@ export function postContact(payload) {
     }
 };
 
-//export function postConfirm(payload) {
-    //return async function() {
-       // try {
-          //  let newConfirmEmail = await axios.post('http://localhost:3001/paymentgateway', payload)
-          //  return newConfirmEmail;
-        //} catch (error) {
-        //    console.error('Error en postConfirm --> ', error);
-        //}
-    ///}
-//};
+// export function postConfirm(payload) {
+//     return async function() {
+//         try {
+//             let newConfirmEmail = await axios.post('http://localhost:3001/paymentgateway', payload)
+//             return newConfirmEmail;
+//         } catch (error) {
+//             console.error('Error en postConfirm --> ', error);
+//         }
+//     }
+// };
 
 export function sortByPrice(payload) {
     return {
@@ -186,18 +186,12 @@ export const postSendProds = (payload) => {
     };
 };
 
-export function getProfileData() {
-    return async(dispatch) => {
-        try {
-            return axios.get('/loginUsers')
-                .then(res => dispatch({ type: PROFILE_DATA, payload: res.data }))
-                .catch(err => dispatch({ type: PROFILE_DATA, payload: err.data }))
-        } catch (error) {
-            console.log(error)
-        }
+export function getProfileData(payload) {
+    return {
+        type: PROFILE_DATA,
+        payload
     }
-};
-
+}
 
 ////////////////////////************Admind*******************/////////////////////////////////// /
 

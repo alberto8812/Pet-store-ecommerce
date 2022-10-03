@@ -18,7 +18,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../Loading/Loading";
 import { useNavigate } from "react-router-dom";
-// import { postConfirm } from "../../../redux/actions";
+import {  postSendProds } from "../../../redux/actions";
 
 //const stripePromise = loadStripe("pk_test_51LkfWEIzGpa9z0EFC6OqfUFPRBmrUIS1nZVezBHgqSh6GBtJ3x5whj06EuCkgwBhls2xwc3M8UI9JKxid7o7Zzni00BiLqFS7P");
 
@@ -73,7 +73,6 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // dispatch(postConfirm())
         console.log(<CardElement />)
 
         const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -102,8 +101,8 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
                     }
                 );
                 console.log('Soy Data 104', data);
-
-                enviar = {
+                
+                {enviar = {
                     products: listCart,
                     payment: data
                 }
@@ -111,11 +110,11 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
                     headers: {
                         authorization: `Bearer ${token}`
                     },
-                }))
-                dispatch()
-
-                elements.getElement(CardElement).clear();
+                }))}
+                
+                
                 notifyOK();
+                elements.getElement(CardElement).clear();
             } catch (error) {
                 notifyError();
                 console.log(error);
@@ -130,7 +129,6 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
     function handleClean(e) {
         // e.preventDefault();
         window.localStorage.clear();
-        window.location.reload()
         // setTimeout(() => {
         //     navigate('/')
         // }, 3000);

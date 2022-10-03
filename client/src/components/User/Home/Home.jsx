@@ -19,17 +19,14 @@ export default function Home() {
   const products = useSelector((state) => state.products);
 
   const ALLproducts = useSelector((state) => state.allProducts);
-  const allproducts2 = useSelector((state) => state.allProducts2);
   const status = useSelector((state) => state.status);
 
-  console.log('ALLPRODUCTS', allProducts);
-  console.log('PRODUCTSS', products);
   
   useEffect(() => {
     dispatch(getAllProducts());
   }, []);
 
-  console.log(ALLproducts,products,allproducts2)
+  console.log(ALLproducts,products)
   useEffect(() => {
   ////se ejecuta para update del home 
   }, [status]);

@@ -26,7 +26,7 @@ router.put("/customerShopping/:id",customerShoppingStatusDb)//ruta para cambiar 
 
 router.put("/edit/:id", EditProductDb )
 
-router.delete("/delete/:id", DeleteProductDb)
+router.put("/delete/:id", DeleteProductDb)
 
        
 

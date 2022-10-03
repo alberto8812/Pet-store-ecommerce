@@ -300,30 +300,15 @@ export const postCustomerData = (dataUser, headers) => {
 
 
 
-export function deleteProducts(id, setFlag) {
+export function deleteProducts(id, setFlag, value) {
     return async(dispatch) => {
         try {
-            return axios.delete(`http://localhost:3001/loginAdmin/delete/${id}`)
+            return axios.put(`http://localhost:3001/loginAdmin/delete/${id}`, {value})
                 .then(res => {
                     setFlag((flag) => !flag)
                     return dispatch({ type: DELETE_PRODUCT, payload: res.data })
                 })
                 .catch(err => dispatch({ type: DELETE_PRODUCT, payload: err.data }))
-        } catch (error) {
-            console.log(error)
-        }
-    }
-};
-
-export function activeProducts(id, setFlag) {
-    return async(dispatch) => {
-        try {
-            return axios.put(`http://localhost:3001/loginAdmin/delete/${id}`)
-                .then(res => {
-                    setFlag((flag) => !flag)
-                    return dispatch({ type: ACTIVE_PRODUCT, payload: res.data })
-                })
-                .catch(err => dispatch({ type: ACTIVE_PRODUCT, payload: err.data }))
         } catch (error) {
             console.log(error)
         }

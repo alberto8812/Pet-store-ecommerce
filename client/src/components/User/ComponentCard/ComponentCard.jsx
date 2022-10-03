@@ -30,6 +30,7 @@ export const ComponentCard = ({animalsInCurrentPage}) => {
         {/*<div className='container'>*/}
             {animalsInCurrentPage.length > 0 ?
             animalsInCurrentPage?.map(v => {
+                if (v.deleted) return <></>
                 return (
                     <Box sx={{display:'grid',columnGap:1,rowGap:1,gridTemplateColumns:'repeat(.5,500px)',}}>{/*ajuste dinamica de las cards */}
                     <CardProduct className='cardHome'
@@ -45,7 +46,7 @@ export const ComponentCard = ({animalsInCurrentPage}) => {
                      </Box>
                     )}) : `We couldn't load the products, refresh the page`}
 
-       {/* </div>*/}
+                    {/* </div>*/}
         </Grid>
     )
 }

@@ -1,12 +1,18 @@
 .paginado {
-    display: flex;
+    display: flex !important;
     text-align: center;
-    margin: 0 auto;
-    margin-top: 15px;
+    margin: 0 auto !important;
+    /* margin-top: 15px; */
     align-content: center;
     overflow: hidden;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
 }
+
+
 /**/
+
 .btn-paginado {
     /* float: left; */
     padding: 8px 18px;

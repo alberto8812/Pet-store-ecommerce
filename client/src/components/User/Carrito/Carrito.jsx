@@ -24,7 +24,6 @@ export default withAuthenticationRequired ( function Carrito() {
   });
 
   const quantityState = listCart.map(el => el.quantity);
-  console.log('HOLUUUU', quantityState);
 
   useEffect(() => {
     quantityState;

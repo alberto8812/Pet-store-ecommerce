@@ -16,6 +16,7 @@ const createProductsDb=async(req)=>{
           rating,
           age
       })
+      console.log({body:req.body})
 
       let categoryDb= await Category.findOne({ //buscamos en el modelo category todas las que coincidan con el nombre que llega por body. 
         where:{
@@ -33,7 +34,7 @@ const createProductsDb=async(req)=>{
     
     //categoryDb.addGenre(genreDb) 
    // genreDb.addCategory(categoryDb) 
-
+    
    // categoryDb.addProduct(productCreate) 
     await productCreate.setCategory(categoryDb.id)
    

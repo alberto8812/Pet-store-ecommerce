@@ -1,9 +1,9 @@
 //Formulario para que el propietario de la pagina pueda cargar sus productos y modificar stock
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
-import { postProduct } from "../../../redux/actions";
-import './Create.css'
+import { editProducts, getDetails } from "../../../redux/actions";
+import './EditProduct.css'
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -11,6 +11,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Alert from 'react-bootstrap/Alert';
 import Stack from 'react-bootstrap/Row';
+import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
 
 function validate(input) {
     let errors = {}
@@ -41,12 +42,6 @@ function validate(input) {
         errors.age = "Age is required"
     }
 
-    // if (!input.race) {
-    //     errors.race = "Race is required"
-    // } else if (input.race.length > 50) {
-    //     errors.race = "Race name must not exceed 50 characters"
-    // }
-
     if (!input.stock) {
         errors.stock = 'Product stock is required'
     } else if (isNaN(parseInt(input.stock))) {
@@ -75,13 +70,14 @@ function validate(input) {
     return errors
 }
 
-export default function Create() {
+export default function Edit() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    // allCategorys = useSelector((state) => state.categorys)
-    // allGenres = useSelector((state) => state.genres)
+    const {id}= useParams();
+    const {details} = useSelector(state => state)
     const [errors, setErrors] = useState({})
+    const {isAuthenticated,getAccessTokenSilently}=useAuth0()//componete de hook auth0
     const [input, setInput] = useState({
         name: '',
         price: '',
@@ -95,19 +91,33 @@ export default function Create() {
         genre: '',
     })
 
-    /*
+   
     useEffect(()=>{
-        dispatch(getCategory())
-    }, [dispatch])
+      id && dispatch(getDetails(id))
+    }, [id])
 
     useEffect(()=>{
-        dispatch(getGenre())
-    }, [dispatch])
-    */
+      if (details.name){const { name,
+      price,
+      age,
+      stock,
+      detail,
+      image,
+      rating,
+      category,
+      genre} = details
+      setInput({name,
+        price,
+        age,
+        stock,
+        detail,
+        image,
+        rating,
+        category: category.name,
+        genre: genre.name})}
+  }, [details])
 
     function handleChange(e) {
-        const {name,value} = e.target
-        console.log({name,value})
         setInput({
             ...input,
             [e.target.name]: e.target.value,
@@ -117,69 +127,22 @@ export default function Create() {
             [e.target.name]: e.target.value,
         }))
     }
-    /*
-        function handleSelectCategory(e) {
-            if (!input.category.includes(e.target.value)) {
-                setInput({
-                    ...input,
-                    category: [...input.category, e.target.value]
-                })
-                console.log(input)
-            }
-        }
-    
-        function handleSelectGenre(e) {
-            if (!input.genre.includes(e.target.value)) {
-                setInput({
-                    ...input,
-                    genre: [...input.genre, e.target.value]
-                })
-                console.log(input)
-            }
-        }
-    
-    
-    function handleDeleteCategory(e) {
-        setInput({
-            ...input,
-            category: input.category.filter(cate => cate !== e)
-        })
-    }
-    
-    function handleDeleteGenre(e) {
-        setInput({
-            ...input,
-            genre: input.genre.filter(gen => gen !== e)
-        })
-    }
+  
 
-        name: '',
-        price: '',
-        age: '',
-        race: '',
-        stock: '',
-        detail: '',
-        image: '',
-        rating: '',
-        category: [],
-        genre: [],
-    */
-
-
-    function handleSubmit(e) {
+  function handleSubmit(e) {
         e.preventDefault()
+        console.log('holiiiiiasyich')
         if (!Object.getOwnPropertyNames(errors).length && input.name && input.price && input.genre && input.category && input.age && input.stock && input.detail && input.rating && input.image /*&& input.category.length && input.genre.length*/) {
-
-            /*
-            Si queremos poner una imagen por defecto cuando no se ingresa una 
-            
-            if (!input.image) {
-                   input.image = ''
-               }
-               */
-
-            dispatch(postProduct(input))
-            alert('The product was added')
+          async  function editPP(){
+            const token = await getAccessTokenSilently()
+            const headers= {   
+              headers:{
+              authorization: `Bearer ${token}`
+              },    
+              }
+            console.log('2222holii')
+            dispatch(editProducts(id, headers, input))
+            alert('The product was edited')
             setInput({
                 name: '',
                 price: '',
@@ -191,7 +154,10 @@ export default function Create() {
                 rating: 0,
                 category: '',
                 genre: '',
-            })
+            })}
+
+            editPP()
+            
             // navigate('/')
         } else {
             alert('There is incomplete data')
@@ -204,14 +170,14 @@ export default function Create() {
             <br />
             <div className="supercontainer">
             <h1>
-                <Badge  bg="primary">Add products to Developets</Badge>
+                <Badge className="title" bg="primary">Edit products</Badge>
             </h1>
             <br />
             <Container>
-                <form onSubmit={e => handleSubmit(e)} className='form'>
+                <form onSubmit={e => handleSubmit(e)}>
                     <Row>
                     <Col sm={2}> <label><strong>Name: </strong></label></Col>
-                    <Col sm={6}><input className='inputs' type="text" value={input.name} name='name' onChange={e => handleChange(e)} /> </Col>
+                    <Col sm={6}><input className= 'inputsEdit' type="text" value={input.name} name='name' onChange={e => handleChange(e)} /> </Col>
                         {errors.name && (
                            <p className="errors">{errors.name}</p>
                         )}
@@ -219,7 +185,7 @@ export default function Create() {
                     <br />
                     <Row>
                         <Col sm={2}>  <label><strong>Price:$ </strong></label></Col>
-                        <Col sm={6}>   <input className='inputs' type="text" value={input.price} name='price' onChange={e => handleChange(e)} /> </Col>
+                        <Col sm={6}>   <input className= 'inputsEdit' type="text" value={input.price} name='price' onChange={e => handleChange(e)} /> </Col>
                         {errors.price && (
                           <p className="errors">{errors.price}</p>
                         )}
@@ -227,7 +193,7 @@ export default function Create() {
                     <br />
                     <Row>
                         <Col sm={2}>  <label><strong>Genre </strong></label></Col>
-                        <Col sm={6}>  <div><select className='inputs' name="genre" onChange={e => {handleChange(e)}}>
+                        <Col sm={6}>  <div><select className= 'inputsEdit' name="genre" onChange={e => {handleChange(e)}}>
                             <option disabled selected>Select a genre</option>
                             <option value='cat'>Cat</option>
                             <option value='dog'>Dog</option>
@@ -240,7 +206,7 @@ export default function Create() {
                     <br />
                     <Row>
                         <Col sm={2}>  <label><strong>Category </strong></label></Col>
-                        <Col sm={6}>  <div><select className='inputs' name="category" onChange={e => {handleChange(e)}}>
+                        <Col sm={6}>  <div><select className= 'inputsEdit'  name="category" onChange={e => {handleChange(e)}}>
                             <option disabled selected>Select a category</option>
                             <option value='accesories'>Accesories</option>
                             <option value='food'>Food</option>
@@ -254,7 +220,7 @@ export default function Create() {
                     <br />
                     <Row>
                         <Col sm={2}> <label><strong>Age: </strong></label> </Col>
-                        <Col sm={6}>  <div><select className='inputs' name="age" onChange={e => {handleChange(e)}}>
+                        <Col sm={6}>  <div><select className= 'inputsEdit' name="age" onChange={e => {handleChange(e)}}>
                             <option disabled selected>Select an age</option>
                             <option value='Puppy'>Puppy</option>
                             <option value='Young'>Young</option>
@@ -276,7 +242,7 @@ export default function Create() {
                     <br /> */}
                     <Row>
                         <Col sm={2}> <label><strong>Stock: </strong></label></Col>
-                        <Col sm={6}>   <input className='inputs' type="text" value={input.stock} name='stock' placeholder="units" onChange={e => handleChange(e)} />
+                        <Col sm={6}>   <input className= 'inputsEdit' type="text" value={input.stock} name='stock' placeholder="units" onChange={e => handleChange(e)} />
                             {/* <label><strong> u.</strong></label> */}
                         </Col>
                         {errors.stock && (
@@ -286,7 +252,7 @@ export default function Create() {
                     <br />
                     <Row>
                         <Col sm={2}><label><strong>Rating: </strong></label> </Col>
-                        <Col sm={6}><input className='inputs' type="number" value={input.rating} name='rating' placeholder="STARS" onChange={e => handleChange(e)} />
+                        <Col sm={6}><input className= 'inputsEdit' type="number" value={input.rating} name='rating' placeholder="STARS" onChange={e => handleChange(e)} />
                             {/* <label><strong> STARS </strong></label> */}
                         </Col>
                         {errors.rating && (
@@ -297,7 +263,7 @@ export default function Create() {
 
                     <Row>
                         <Col sm={2}><label><strong>Detail: </strong></label></Col>
-                        <Col sm={6}><input className='inputs' type="text" value={input.detail} name='detail' onChange={e => handleChange(e)} /> </Col>
+                        <Col sm={6}><input className= 'inputsEdit' type="text" value={input.detail} name='detail' onChange={e => handleChange(e)} /> </Col>
                         {errors.detail && (
                             <p className="errors">{errors.detail}</p>
                         )}
@@ -305,74 +271,22 @@ export default function Create() {
                     <br />
                     <Row>
                         <Col sm={2}><label><strong>Image: </strong></label></Col>
-                        <Col sm={6}><input className='inputs' type="text" value={input.image} name='image' onChange={e => handleChange(e)} /></Col>
+                        <Col sm={6}><input className= 'inputsEdit' type="text" value={input.image} name='image' onChange={e => handleChange(e)} /></Col>
                         {errors.image && (
                             <p className="errors">{errors.image}</p>
                         )}
                     </Row>
                     <br />
-                    {/*
                     
-                        <select onChange={e => handleSelectCategory(e)}>
-                            <option value='selected' hidden >Category:</option>
-                            {allCategorys?.sort(function (a, b) {
-                                if (a.name < b.name) return -1
-                                if (a.name > b.name) return 1
-                                return 0
-                            }).map(cate => {
-                                return (
-                                    <option value={cate.name} key={cate.id}>{cate.name}</option>
-                                )
-                            })}
-                        </select>
-                        {input.category.map(e => {
-                            return (
-                                <ul key={e}>
-                                    <li>
-                                        <p><strong>{e}</strong></p>
-                                        <button onClick={() => handleDeleteCategory(e)}>X</button>
-                                    </li>
-                                </ul>
-                            )
-                        })}
-                    
-                   
-                    
-                        <select onChange={e => handleSelectGenre(e)}>
-                            <option value='selected' hidden >Genres:</option>
-                            {allGenres?.sort(function (a, b) {
-                                if (a.name < b.name) return -1
-                                if (a.name > b.name) return 1
-                                return 0
-                            }).map(gen => {
-                                return (
-                                    <option value={gen.name} key={gen.id}>{gen.name}</option>
-                                )
-                            })}
-                        </select>
-                        {input.genres.map(e => {
-                            return (
-                                <ul key={e}>
-                                    <li>
-                                        <p><strong>{e}</strong></p>
-                                        <button onClick={() => handleDeleteGenre(e)}>X</button>
-                                    </li>
-                                </ul>
-                            )
-                        })}
-                    
-
- */} 
-
  {/*
         Si quieren dejar los botones siempre activos solo reemplacen la linea  327  x esto:
         <Col sm={4}><Button variant="primary" size="md" type="submit" disabled={false} ><strong>Create</strong></Button> </Col>
         y listo
  */}
                     <Stack gap={2} className="col-md-15-mx-auto"><Col sm={2}></Col>
-                    <Col sm={4}> {Object.values(errors).join('') == false ? <Button variant="primary" size="md" type="submit" disabled={false}  className='btnCreate'><strong>Create</strong></Button> : <Button variant="dark" size="md" type="submit" disabled={true} className='btnCreate'><strong>Create</strong></Button>} </Col>
+                    <Col sm={4}> {Object.values(errors).join('') == false ? <Button className='btnEdit' variant="primary" size="md" type="submit" disabled={false} ><strong>Edit</strong></Button> : <Button className='btnEdit' variant="dark" size="md" type="submit" disabled={true} ><strong>Edit </strong></Button>} </Col>
 
-                    <Col >   <Link to="/home"><Button variant="danger" size="md" active className='btnCreate'>Cancel</Button></Link> </Col>
+                    <Col >   <Link to="/home"><Button className='btnEdit' variant="danger" size="md" active>Cancel</Button></Link> </Col>
                     </Stack>
                 </form>
             </Container>

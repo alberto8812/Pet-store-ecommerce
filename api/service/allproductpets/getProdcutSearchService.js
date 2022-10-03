@@ -1,23 +1,23 @@
 const { db, Op } = require('../../database/db')
-const { Product, Genre, Category,Review } = db.models
+const { Product, Genre, Category, Review } = db.models
 
 
 
 
 ///peticion a la api  para encontrar tos los productos que contengan la palabra de busqueda//
-const getdbProdcutSearchService=async(req)=>{
-    const {genre,name,category,age}=req.query
-    const productCondiction={}
-    const genreCondition={};
-    const categoryCondition={};
-    const ageCondition={};
+const getdbProdcutSearchService = async(req) => {
+    const { genre, name, category, age } = req.query
+    const productCondiction = {}
+    const genreCondition = {};
+    const categoryCondition = {};
+    const ageCondition = {};
 
-    if(age){
-        ageCondition.age={[Op.iLike]:`%${age}%`}
-       }
- 
-    if(category){
-     categoryCondition.name=category
+    if (age) {
+        ageCondition.age = {
+            [Op.iLike]: `%${age}%` }
+    }
+    if (category) {
+        categoryCondition.name = category
     }
 
     if (category) {
@@ -25,7 +25,8 @@ const getdbProdcutSearchService=async(req)=>{
     }
     if (name) {
         productCondiction.name = {
-            [Op.iLike]: `%${name}%` }
+            [Op.iLike]: `%${name}%`
+        }
     }
 
     if (genre) {
@@ -33,10 +34,10 @@ const getdbProdcutSearchService=async(req)=>{
     }
 
     const dbSearchProduct = await Product.findAll({
-        where: [productCondiction, ageCondition],
-        include: [{ model: Genre, attributes: ['name'], where: genreCondition }, { model: Category, attributes: ['name'], where: categoryCondition },{ model: Review, attributes: ['id','comment','punctuation','user'] }]
-    })
-// console.log(dbSearchProduct)
+            where: [productCondiction, ageCondition],
+            include: [{ model: Genre, attributes: ['name'], where: genreCondition }, { model: Category, attributes: ['name'], where: categoryCondition }, { model: Review, attributes: ['id', 'comment', 'punctuation', 'user'] }]
+        })
+        // console.log(dbSearchProduct)
     return dbSearchProduct;
 }
 

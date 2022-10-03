@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
+import { useAuth0 } from '@auth0/auth0-react' //libreia Auth0
 import {
     GET_ALL_PRODUCTS,
     GET_DETAILS,
@@ -11,7 +11,6 @@ import {
     GET_NUMBER_CART,
     INCREASE_QUANTITY,
     DECREASE_QUANTITY,
-    UPDATE_CART,
     DELETE_CART,
     ADD_COMMENT,
     REFRESH_CART,
@@ -58,7 +57,7 @@ export const getDetails = (id) => {
             const { data } = await axios.get(`/products/detail/${id}`);
             return dispatch({
                 type: GET_DETAILS,
-                payload: data,
+                payload: { data },
             });
         } catch (err) {
             console.error(err);
@@ -102,6 +101,20 @@ export function sortByPrice(payload) {
     }
 };
 
+export function addToFav(payload) {
+    return {
+        type: ADD_FAVORITE,
+        payload
+    }
+};
+
+export function removeFromFav(payload) {
+    return {
+        type: REMOVE_FAVORITE,
+        payload
+    }
+};
+
 export function addToCart(payload) {
     return {
         type: ADD_TO_CART,
@@ -115,12 +128,6 @@ export function getNumberCart() {
     }
 };
 
-export function updateCart(payload) {
-    return {
-        type: UPDATE_CART,
-        payload
-    }
-};
 
 export function deleteCart(payload) {
     return {
@@ -163,7 +170,7 @@ export function refreshCart(payload) {
 };
 
 export const postSendProds = (payload) => {
-    return async (dispatch) => {
+    return async(dispatch) => {
         try {
             const { data } = await axios.post(
                 `/loginUsers/productusercart`,
@@ -179,12 +186,18 @@ export const postSendProds = (payload) => {
     };
 };
 
-export function getProfileData(payload){
-    return{
-        type: PROFILE_DATA,
-        payload
+export function getProfileData() {
+    return async(dispatch) => {
+        try {
+            return axios.get('/loginUsers')
+                .then(res => dispatch({ type: PROFILE_DATA, payload: res.data }))
+                .catch(err => dispatch({ type: PROFILE_DATA, payload: err.data }))
+        } catch (error) {
+            console.log(error)
+        }
     }
-}
+};
+
 
 ////////////////////////************Admind*******************/////////////////////////////////// /
 
@@ -239,7 +252,7 @@ export const getCustomerShopping = (token) => {
 
 // cambiar el status de la compra 
 export const putCustomerShoppingStatus = (token, status, invoice) => {
- 
+
     return async(dispatch) => {
         try {
             const { data } = await axios.put(`/loginAdmin/customerShopping/${invoice}`, { status: status }, token);
@@ -269,11 +282,11 @@ export const getCustomerData = (token) => {
 }
 
 ///// edita todos los datos del usuario de la base de datos
-export const postCustomerData = (dataUser,headers) => {
-  
+export const postCustomerData = (dataUser, headers) => {
+
     return async(dispatch) => {
         try {
-            const { data } = await axios.post(`/loginAdmin/editUsersAdmin`,dataUser,headers);
+            const { data } = await axios.post(`/loginAdmin/editUsersAdmin`, dataUser, headers);
             return dispatch({
                 type: POST_CUSTOMER_EDIT_DATA,
                 payload: data,
@@ -349,4 +362,3 @@ export function editProducts(id, headers, payload) {
 //             console.error(err);
 //         }
 //     };
-

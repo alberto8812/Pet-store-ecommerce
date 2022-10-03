@@ -1,10 +1,10 @@
 import {
-    GET_ALL_PRODUCTS,GET_DETAILS,SEARCH_BY_NAME,
-    SORT_BY_PRICE,ADD_FAVORITE,REMOVE_FAVORITE,
-    ADD_TO_CART,GET_NUMBER_CART,INCREASE_QUANTITY,
-    DECREASE_QUANTITY,UPDATE_CART,DELETE_CART,
-    REFRESH_CART,GET_ADMINROLL, GET_GRAPHICS_DATA,
-    GET_CUSTOMER_SHOPPING,GET_CUSTOMER_DATA,GET_CUSTOMER_SHOPPING_STATUS,POST_CUSTOMER_EDIT_DATA, POST_SEND_PRODS,PROFILE_DATA
+    GET_ALL_PRODUCTS, GET_DETAILS, SEARCH_BY_NAME,
+    SORT_BY_PRICE, ADD_FAVORITE, REMOVE_FAVORITE,
+    ADD_TO_CART, GET_NUMBER_CART, INCREASE_QUANTITY,
+    DECREASE_QUANTITY, UPDATE_CART, DELETE_CART,
+    REFRESH_CART, GET_ADMINROLL, GET_GRAPHICS_DATA,
+    GET_CUSTOMER_SHOPPING, GET_CUSTOMER_DATA, GET_CUSTOMER_SHOPPING_STATUS, POST_CUSTOMER_EDIT_DATA, POST_SEND_PRODS, PROFILE_DATA
 } from "../actions/constants";
 
 export const initialState = {
@@ -14,10 +14,10 @@ export const initialState = {
     status: true,
     cart: [],
     numberCart: 0,
-    statistics:[],/////contiene informacion para las graficas
-    CustomerShopping:[], //contienes infomracion de las compras de cada usario para el admind
-    userStatus:[]//almacenas los datos de todos los usuarios
-
+    statistics: [],/////contiene informacion para las graficas
+    CustomerShopping: [], //contienes infomracion de las compras de cada usario para el admind
+    userStatus: [],//almacenas los datos de todos los usuarios
+    userProfile: {}
 }
 
 function rootReducer(state = initialState, action) {
@@ -25,22 +25,22 @@ function rootReducer(state = initialState, action) {
 
 
         case GET_ALL_PRODUCTS:
-            state.allProducts= [...action.payload]
+            state.allProducts = [...action.payload]
 
             return {
                 ...state,
                 products: [...action.payload],
-               
+
             };
         case GET_DETAILS:
             return {
                 ...state,
-                details: {...action.payload }
+                details:  action.payload.data
             };
         case SEARCH_BY_NAME:
             return {
                 ...state,
-                products: [...action.payload],
+                products: [...action.payload]
             };
         case SORT_BY_PRICE:
             // const newObject3 = {...state.allProducts };
@@ -58,6 +58,21 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state
             };
+
+        case ADD_FAVORITE:
+            let favItem = {
+                id: action.payload.id,
+                quantity: action.payload.quantitySelected,
+                name: action.payload.name,
+                image: action.payload.image,
+                price: action.payload.price,
+                stock: action.payload.stock
+            }
+            state.favorite.push(favItem);
+            return {
+                ...state
+            }
+
         case ADD_TO_CART:
             if (state.numberCart === 0) {
                 let shoppingCart = {
@@ -98,7 +113,7 @@ function rootReducer(state = initialState, action) {
         case INCREASE_QUANTITY:
             const increaseItem = state.cart.find(x => x.id === action.payload);
             state.numberCart++
-                increaseItem.quantity++;
+            increaseItem.quantity++;
             return {
                 ...state
             };
@@ -131,29 +146,34 @@ function rootReducer(state = initialState, action) {
                 cart: cart
             }
 
-            case POST_SEND_PRODS:
-                return {
-                    ...state,
-                }
+        case POST_SEND_PRODS:
+            return {
+                ...state,
+            }
+        case PROFILE_DATA:
+            return {
+                ...state,
+                userProfile: { ...action.payload }
+            }
 
-/////////////////////////////////////ADMINS REDUCER/////////////////////////////////////////////////
+        /////////////////////////////////////ADMINS REDUCER/////////////////////////////////////////////////
 
         case GET_ADMINROLL:
             //identifica el tipo de roll user admin
             return state;
-        
-        case  GET_GRAPHICS_DATA:
-        //infomracion para las graficas admin
-            return {...state,statistics:action.payload}
+
+        case GET_GRAPHICS_DATA:
+            //infomracion para las graficas admin
+            return { ...state, statistics: action.payload }
 
         case GET_CUSTOMER_SHOPPING:
 
-            return {...state,customerShopping:action.payload}
+            return { ...state, customerShopping: action.payload }
 
         case GET_CUSTOMER_DATA:
-            return {...state, userStatus:action.payload}
+            return { ...state, userStatus: action.payload }
 
-        case  POST_CUSTOMER_EDIT_DATA:
+        case POST_CUSTOMER_EDIT_DATA:
             console.log("data")
             return state
         default:
@@ -162,3 +182,38 @@ function rootReducer(state = initialState, action) {
 }
 
 export default rootReducer; 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//comentario

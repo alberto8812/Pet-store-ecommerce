@@ -7,12 +7,22 @@ import ModalDireccionPri from './ModalDireccionPri'
 import ModalDireccionSec from './ModalDireccionSec'
 import ModalParaOtraCosa from './ModalParaOtraCosa'
 import ModalCreditCard from './ModalCreditCard'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProfileData } from '../../../redux/actions'
 
 /**/
 export default function Profile() {
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
 
-
+    const token = getAccessTokenSilently()
+    const userProfile = useSelector(state => state.userProfile);
+    
+    useDispatch(getProfileData({
+        headers: {
+            authorization: `Bearer ${token}`
+        },
+    }))
+    console.log(userProfile)
 
     return (
         <div className="app-wrapper">
@@ -42,7 +52,7 @@ export default function Profile() {
                                         <span>User:</span>
                                     </div>
                                     <div className="field-value__value">
-                                        <span>Aca va el nombre del Usuario</span>
+                                        <span>{userProfile.name}</span>
                                     </div>
                                 </div>
                                 <div className="field-value__action">
@@ -54,7 +64,7 @@ export default function Profile() {
                                     <div className="field-value__field ">
                                         <span>E-mail</span>
                                     </div>
-                                    <div className="field-value__value"><span>ACA VA EL EMAIL</span></div>
+                                    <div className="field-value__value"><span>{userProfile.email}</span></div>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +91,7 @@ export default function Profile() {
                                         <span>Direccion</span>
                                     </div>
                                     <div className="field-value__value">
-                                        <span>Aca la direccion</span>
+                                        <span>{userProfile.name}</span>
                                     </div>
                                 </div>
                                 <div className="field-value__action">

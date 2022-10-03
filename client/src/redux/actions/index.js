@@ -169,12 +169,12 @@ export function refreshCart(payload) {
     }
 };
 
-export const postSendProds = (payload) => {
+export const postSendProds = (enviar,headers) => {
     return async(dispatch) => {
         try {
             const { data } = await axios.post(
                 `/loginUsers/productusercart`,
-                payload
+                enviar,headers
             );
             return dispatch({
                 type: POST_SEND_PRODS,

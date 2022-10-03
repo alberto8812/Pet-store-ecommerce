@@ -1,5 +1,5 @@
-import  React,{useEffect} from 'react';
-import { DataGrid, useGridSelector } from '@mui/x-data-grid';
+import  React,{useEffect,useState} from 'react';
+import { DataGrid } from '@mui/x-data-grid';
 import { Grid,Box } from '@mui/material';
 import PieUsers from '../graphics/PieUsers';
 import { useSelector } from "react-redux";
@@ -8,6 +8,7 @@ import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
 import { useDispatch } from "react-redux";
 import clsx from 'clsx';//permite crear condicionales con la clases
 import CardStatus from './../Buyers/component/CardStatus';
+import InputUserStatus from './componet/InputUserStatus';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 230 },
@@ -36,15 +37,16 @@ const columns = [
 
 
 
-      //statusGraphics={statusGraphics}
 const Users = () => {
   const dispatch = useDispatch();
+  const [rowData, setRowData] = useState('');//almacena informacion de una celda de la tabla
   const {isAuthenticated,getAccessTokenSilently}=useAuth0()
   const datosUsuario=useSelector(state=>state.userStatus)
   const statusUserGraphicsdb = useSelector(state => state.statistics.statisticsStatusUserpie);
   const statusUserGraphics=statusUserGraphicsdb!==undefined?statusUserGraphicsdb:[];
+  const [update, setupdate] = useState('down')
   let rows=[];
-  console.log(datosUsuario)
+ 
 
   useEffect(() => {
     const getToken=async()=>{
@@ -64,16 +66,20 @@ const Users = () => {
 
     getToken()
 
-  }, [])
+  }, [update])
 
-  if(datosUsuario.length){
+  if(datosUsuario.length){//identifica si hay informacion en la varible de usuarios
     for (const users of datosUsuario) {
       rows.push( { id: users.id,firstName: users.name, email: users.email, userName:users.userName,direction:users.direction,city:users.city,enabled:users.enabled })
     }
     
     }
+    
+  const handleRowInfo=(data)=>{
+    setRowData(data) //guarda la informacion de la fila seleccionada 
+  }
  
-  
+
   return (
     <Box sx={{ height: '100%', width: '100%'}}>
       <Box sx={{ height: 'auto', width: '100%',border:'1px solid'}}> 
@@ -85,7 +91,7 @@ const Users = () => {
           alignItems="center">
 
    {statusUserGraphics.length>0 && statusUserGraphics.map((data,index)=>{
-       return (
+       return (//infomracion de los banner de cantidades 
         <Grid item  xs={4} key={index}> 
        
         <CardStatus status={data.enabled?'enabled':'block'} statusCount={data.status_blocK}/>
@@ -104,15 +110,19 @@ const Users = () => {
           alignItems="center">
       
             <Box sx={{ height: '100px',width:'100px',minWidth:'100px',display:'flex',justifyContent:'center'}}>
-              <PieUsers statusUserGraphics={statusUserGraphics}/>
+              <PieUsers statusUserGraphics={statusUserGraphics}
+              //grafica de pie de usuarios bloqueados o activos
+              />
             
             </Box>
         </Grid>
 
   </Grid>
   <Grid container  gap={2}  sx={{padding:'20px'}}>
-      {/*<InputsChangueState rowInf={rowInf} headers={headers} setRender={setRender} render={render}/>*/}
-      <Box></Box>
+     <InputUserStatus  rowData={rowData} update={update} setupdate={setupdate}
+     //formulario para actualizar datos de usuarios
+     />
+     
   </Grid>
 
 </Box>
@@ -127,18 +137,14 @@ const Users = () => {
     backgroundColor: '#d47483',
     color: '#000000',
     fontWeight: '600',
-  },
-  
-  
-  }}
-    
-    >
+  },}}>
       <DataGrid
         rows={rows}
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[1]}
-  
+        onRowClick={(e)=>handleRowInfo(e.row)}
+       //implenetacion de la tabla
       />
       </Box>
       </Box>

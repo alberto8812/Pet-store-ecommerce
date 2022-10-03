@@ -83,16 +83,16 @@ export function postContact(payload) {
     }
 };
 
-export function postConfirm(payload) {
-    return async function() {
-        try {
-            let newConfirmEmail = await axios.post('http://localhost:3001/paymentgateway', payload)
-            return newConfirmEmail;
-        } catch (error) {
-            console.error('Error en postConfirm --> ', error);
-        }
-    }
-};
+//export function postConfirm(payload) {
+    //return async function() {
+       // try {
+          //  let newConfirmEmail = await axios.post('http://localhost:3001/paymentgateway', payload)
+          //  return newConfirmEmail;
+        //} catch (error) {
+        //    console.error('Error en postConfirm --> ', error);
+        //}
+    ///}
+//};
 
 export function sortByPrice(payload) {
     return {

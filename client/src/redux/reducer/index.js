@@ -1,11 +1,25 @@
 import {
 
-    GET_ALL_PRODUCTS,GET_DETAILS,SEARCH_BY_NAME,
-    SORT_BY_PRICE,ADD_FAVORITE,REMOVE_FAVORITE,
-    ADD_TO_CART,GET_NUMBER_CART,INCREASE_QUANTITY,
-    DECREASE_QUANTITY,UPDATE_CART,DELETE_CART,
-    REFRESH_CART,GET_ADMINROLL, GET_GRAPHICS_DATA,
-    GET_CUSTOMER_SHOPPING,GET_CUSTOMER_DATA,GET_CUSTOMER_SHOPPING_STATUS,POST_CUSTOMER_EDIT_DATA, POST_SEND_PRODS
+    GET_ALL_PRODUCTS,
+    GET_DETAILS,
+    SEARCH_BY_NAME,
+    SORT_BY_PRICE,
+    ADD_FAVORITE,
+    REMOVE_FAVORITE,
+    ADD_TO_CART,
+    GET_NUMBER_CART,
+    INCREASE_QUANTITY,
+    DECREASE_QUANTITY,
+    UPDATE_CART,
+    DELETE_CART,
+    REFRESH_CART,
+    GET_ADMINROLL,
+    GET_GRAPHICS_DATA,
+    GET_CUSTOMER_SHOPPING,
+    GET_CUSTOMER_DATA,
+    GET_CUSTOMER_SHOPPING_STATUS,
+    POST_CUSTOMER_EDIT_DATA,
+    POST_SEND_PRODS
 
 } from "../actions/constants";
 
@@ -29,17 +43,17 @@ function rootReducer(state = initialState, action) {
 
         case GET_ALL_PRODUCTS:
 
-            state.allProducts= [...action.payload]
+            state.allProducts = [...action.payload]
 
             return {
                 ...state,
                 products: [...action.payload],
-               
+
             };
         case GET_DETAILS:
             return {
                 ...state,
-                details: [...action.payload]
+                details: action.payload.data
             };
         case SEARCH_BY_NAME:
             return {
@@ -150,12 +164,12 @@ function rootReducer(state = initialState, action) {
                 cart: cart
             }
 
-            case POST_SEND_PRODS:
-                return {
-                    ...state,
-                }
+        case POST_SEND_PRODS:
+            return {
+                ...state,
+            }
 
-/////////////////////////////////////ADMINS REDUCER/////////////////////////////////////////////////
+            /////////////////////////////////////ADMINS REDUCER/////////////////////////////////////////////////
 
 
         case GET_ADMINROLL:
@@ -173,7 +187,7 @@ function rootReducer(state = initialState, action) {
         case GET_CUSTOMER_DATA:
             return {...state, userStatus: action.payload }
 
-        case  POST_CUSTOMER_EDIT_DATA:
+        case POST_CUSTOMER_EDIT_DATA:
             console.log("data")
             return state
         default:

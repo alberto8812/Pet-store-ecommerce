@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
+import { useAuth0 } from '@auth0/auth0-react' //libreia Auth0
 import {
     GET_ALL_PRODUCTS,
     GET_DETAILS,
@@ -56,7 +56,7 @@ export const getDetails = (id) => {
             const { data } = await axios.get(`/products/detail/${id}`);
             return dispatch({
                 type: GET_DETAILS,
-                payload: data,
+                payload: { data },
             });
         } catch (err) {
             console.error(err);
@@ -169,7 +169,7 @@ export function refreshCart(payload) {
 };
 
 export const postSendProds = (payload) => {
-    return async (dispatch) => {
+    return async(dispatch) => {
         try {
             const { data } = await axios.post(
                 `/loginUsers/productusercart`,
@@ -238,7 +238,7 @@ export const getCustomerShopping = (token) => {
 
 // cambiar el status de la compra 
 export const putCustomerShoppingStatus = (token, status, invoice) => {
- 
+
     return async(dispatch) => {
         try {
             const { data } = await axios.put(`/loginAdmin/customerShopping/${invoice}`, { status: status }, token);
@@ -268,11 +268,11 @@ export const getCustomerData = (token) => {
 }
 
 ///// edita todos los datos del usuario de la base de datos
-export const postCustomerData = (dataUser,headers) => {
-  
+export const postCustomerData = (dataUser, headers) => {
+
     return async(dispatch) => {
         try {
-            const { data } = await axios.post(`/loginAdmin/editUsersAdmin`,dataUser,headers);
+            const { data } = await axios.post(`/loginAdmin/editUsersAdmin`, dataUser, headers);
             return dispatch({
                 type: POST_CUSTOMER_EDIT_DATA,
                 payload: data,
@@ -348,4 +348,3 @@ export function editProducts(id, headers, payload) {
 //             console.error(err);
 //         }
 //     };
-

@@ -24,7 +24,8 @@ import {
     GET_CUSTOMER_SHOPPING_STATUS,
     ACTIVE_PRODUCT,
     POST_CUSTOMER_EDIT_DATA,
-    POST_SEND_PRODS
+    POST_SEND_PRODS,
+    PROFILE_DATA
 } from "./constants";
 
 export function getAllProducts() {
@@ -177,6 +178,13 @@ export const postSendProds = (payload) => {
         }
     };
 };
+
+export function getProfileData(payload){
+    return{
+        type: PROFILE_DATA,
+        payload
+    }
+}
 
 ////////////////////////************Admind*******************/////////////////////////////////// /
 

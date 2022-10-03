@@ -40,7 +40,7 @@ function rootReducer(state = initialState, action) {
         case SEARCH_BY_NAME:
             return {
                 ...state,
-                products: [...action.payload],
+                products: [...action.payload]
             };
         case SORT_BY_PRICE:
             // const newObject3 = {...state.allProducts };
@@ -58,6 +58,21 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state
             };
+
+        case ADD_FAVORITE:
+            let favItem = {
+                id: action.payload.id,
+                quantity: action.payload.quantitySelected,
+                name: action.payload.name,
+                image: action.payload.image,
+                price: action.payload.price,
+                stock: action.payload.stock
+            }
+            state.favorite.push(favItem);
+            return {
+                ...state
+            }
+
         case ADD_TO_CART:
             if (state.numberCart === 0) {
                 let shoppingCart = {

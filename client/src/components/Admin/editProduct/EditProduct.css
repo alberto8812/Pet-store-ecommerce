@@ -1,5 +1,11 @@
 .supercontainer{
   background-color:#e3d6eb;
+  width: 25em;
+}
+
+.title{
+  left: 3em;
+  position: relative
 }
 
 
@@ -7,5 +13,19 @@
   color: red;
   font-weight: bolder;
   font-size: 12px;
-  
-}/**/
+  left: 10em;
+  position: relative
+}
+
+.btnEdit{
+  border-radius: 10px;
+}
+
+.inputsEdit{
+  background-color: rgb(246, 225, 255);
+  font-size: 95%;
+  border-radius: 5px;
+  border-color: rgb(52, 50, 173);
+  color: #000;
+  margin-left: 2em;
+}

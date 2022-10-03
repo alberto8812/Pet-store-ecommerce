@@ -16,13 +16,15 @@ import notFound from './giphy.gif';
 export default function Home() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
+  const ALLproducts = useSelector((state) => state.allProducts);
+  const allproducts2 = useSelector((state) => state.allProducts2);
   const status = useSelector((state) => state.status);
   
   useEffect(() => {
     dispatch(getAllProducts());
   }, []);
 
-
+  console.log(ALLproducts,products,allproducts2)
   useEffect(() => {
   ////se ejecuta para update del home 
   }, [status]);

@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { useSelector } from "react-redux";
+
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from "react-chartjs-2";
@@ -17,7 +17,7 @@ const options = {
 };
 
 const PieStatus = ({statusGraphics}) => {
-  const pieGraphics = useSelector(state => state.statistics);
+//datos  para graficar el estado de entregas de productos
 
   let labels =statusGraphics.length>0?statusGraphics.map(res=>{if(res.status==='PENDING'||res.status==='COMPLETED'){return res.status} } ):[];
   let scores = statusGraphics.length>0?statusGraphics.map(res=>{if(res.status_count>=0){return res.status_count} } ):[];

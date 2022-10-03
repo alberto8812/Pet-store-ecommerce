@@ -2,9 +2,12 @@
     display: flex;
     padding: 2em;
     margin: 2em;
-  }
-  /**/
-  .cards .flip-card {
+}
+
+
+/**/
+
+.cards .flip-card {
     background-color: transparent;
     width: 750px;
     height: 600px;
@@ -12,10 +15,26 @@
     border: solid 1px #121212;
     box-shadow: 30px 40px 15px 0px #121212;
     border-radius: 10%;
-  
-  }
-  
-  .cards .flip-card .flip-card-inner {
+}
+
+.bi-heart {
+    font-size: 20px;
+    color: rgb(173, 38, 38);
+    margin-left: 7px;
+    margin-top: 5px;
+}
+
+.btn-fav {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+.cards .flip-card .flip-card-inner {
     position: relative;
     width: 100%;
     height: 100%;
@@ -23,38 +42,37 @@
     transition: transform 0.5s ease-in-out;
     transform-style: preserve-3d;
     border-radius: 10%
-  }
-  
-  .cards .flip-card:hover .flip-card-inner {
+}
+
+.cards .flip-card:hover .flip-card-inner {
     transform: rotateY(180deg);
-  }
-  
-  .cards .flip-card .flip-card-front,
-  .cards .flip-card .flip-card-back {
+}
+
+.cards .flip-card .flip-card-front,
+.cards .flip-card .flip-card-back {
     position: absolute;
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
     border-radius: 10%
-  }
-  
-  .cards .flip-card .flip-card-front {
+}
+
+.cards .flip-card .flip-card-front {
     background-color: #63247ae0;
     color: #fff;
+}
 
-  }
-  
-  .cards .flip-card .flip-card-back {
+.cards .flip-card .flip-card-back {
     background-color: #63247a98;
     color: #fff;
     transform: rotateY(180deg);
     border-radius: 10%
-  }
-  
-  .imageProduct {
+}
+
+.imageProduct {
     object-fit: contain;
     object-position: top;
     width: 600px;
     height: 400px;
     border-radius: 10%
-  }
+}

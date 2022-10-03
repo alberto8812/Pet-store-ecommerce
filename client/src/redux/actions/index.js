@@ -11,7 +11,6 @@ import {
     GET_NUMBER_CART,
     INCREASE_QUANTITY,
     DECREASE_QUANTITY,
-    UPDATE_CART,
     DELETE_CART,
     ADD_COMMENT,
     REFRESH_CART,
@@ -101,6 +100,20 @@ export function sortByPrice(payload) {
     }
 };
 
+export function addToFav(payload) {
+    return {
+        type: ADD_FAVORITE,
+        payload
+    }
+};
+
+export function removeFromFav(payload) {
+    return {
+        type: REMOVE_FAVORITE,
+        payload
+    }
+};
+
 export function addToCart(payload) {
     return {
         type: ADD_TO_CART,
@@ -114,12 +127,6 @@ export function getNumberCart() {
     }
 };
 
-export function updateCart(payload) {
-    return {
-        type: UPDATE_CART,
-        payload
-    }
-};
 
 export function deleteCart(payload) {
     return {

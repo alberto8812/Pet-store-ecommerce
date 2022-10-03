@@ -84,14 +84,14 @@ export function postContact(payload) {
 };
 
 export function postConfirm(payload) {
-    return async function() {
-        try {
-            let newConfirmEmail = await axios.post('http://localhost:3001/paymentgateway', payload)
-            return newConfirmEmail;
-        } catch (error) {
-            console.error('Error en postConfirm --> ', error);
-        }
-    }
+    //return async function() {
+       // try {
+          //  let newConfirmEmail = await axios.post('http://localhost:3001/paymentgateway', payload)
+          //  return newConfirmEmail;
+        //} catch (error) {
+        //    console.error('Error en postConfirm --> ', error);
+        //}
+    ///}
 };
 
 export function sortByPrice(payload) {
@@ -169,12 +169,12 @@ export function refreshCart(payload) {
     }
 };
 
-export const postSendProds = (payload) => {
+export const postSendProds = (enviar,headers) => {
     return async(dispatch) => {
         try {
             const { data } = await axios.post(
                 `/loginUsers/productusercart`,
-                payload
+                enviar,headers
             );
             return dispatch({
                 type: POST_SEND_PRODS,

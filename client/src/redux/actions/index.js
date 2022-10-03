@@ -179,12 +179,18 @@ export const postSendProds = (payload) => {
     };
 };
 
-export function getProfileData(payload){
-    return{
-        type: PROFILE_DATA,
-        payload
+export function getProfileData() {
+    return async(dispatch) => {
+        try {
+            return axios.get('/loginUsers')
+                .then(res => dispatch({ type: PROFILE_DATA, payload: res.data }))
+                .catch(err => dispatch({ type: PROFILE_DATA, payload: err.data }))
+        } catch (error) {
+            console.log(error)
+        }
     }
-}
+};
+
 
 ////////////////////////************Admind*******************/////////////////////////////////// /
 

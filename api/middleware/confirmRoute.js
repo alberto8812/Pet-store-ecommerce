@@ -23,9 +23,9 @@ let transporter = nodemailer.createTransport({
 function confirmationEmail(userData, products) {
     // console.log(products);
 
-    // let namesShops = Object(products).map(el => el.name);
-    // let imagenProducts = Object(products).map(x => x.image);
-    // let quantity = Object(products).map(x => x.quantity);
+    let namesShops = Object(products).map(el => el.name);
+    let quantity = Object(products).map(x => x.quantity);
+    // let imagenProducts = Object(products).forEach(el => { return el.image });
 
     try {
         let mailToCompanyOptions = {
@@ -44,6 +44,8 @@ function confirmationEmail(userData, products) {
             html: `<div>
                 <h2>Thank you for your purchase!</h2>
                 <p>We'll send you an other email when it's ready!</p><br/>
+                <strong><p>Your item (s): </p></strong>
+                <p>(${quantity}) ${namesShops}</p>
                 <img src="cid:download"/>
                 </div>`,
             attachments: [{

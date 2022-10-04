@@ -97,6 +97,18 @@ function rootReducer(state = initialState, action) {
                 })
             };
 
+            // case REFRESH_CART:
+            //     let cart = [];
+            //     if (localStorage.getItem("cart")) {
+            //         cart = JSON.parse(localStorage.getItem("cart"))
+            //     }
+            //     return {
+            //         ...state,
+            //         numberCart: 1,
+            //         cart: cart
+            //     }
+
+
             /////////////////// CART ///////////////////
 
         case GET_NUMBER_CART:

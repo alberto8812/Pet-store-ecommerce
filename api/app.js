@@ -7,7 +7,7 @@ const express = require("express"),
     v1UsersRouter = require('./routes/usersRouter'),
     v1AdminRouter = require('./routes/adminRouter'),
     v1contactUs = require('./routes/contactUsRouter'),
-    v1confirmRoute = require('./routes/confirmRoute'),
+    // v1confirmRoute = require('./routes/confirmRoute'),
     { jwtCheck, checkpermissions } = require('./middleware/jwtLoginUser');
 
 
@@ -29,18 +29,18 @@ app.use(cors());
 //middlewere JSON WEB TOKEN
 
 app.use('/aboutus', v1contactUs);
-app.use('/paymentgateway', v1confirmRoute);
+// app.use('/paymentgateway', v1confirmRoute);
 
 //ruta general  sin registro
 app.use("/products", v1ProducstRouter);
 
 //ruta para usuarios registrados
-app.use("/loginUsers",jwtCheck,v1UsersRouter);
+app.use("/loginUsers", jwtCheck, v1UsersRouter);
 // jwtCheck
 
 ///proximamente ruta para roll admi
 app.use("/loginAdmin",jwtCheck, checkpermissions,v1AdminRouter)
 
-    //jwtCheck, checkpermissions
+//jwtCheck, checkpermissions
 
 module.exports = app

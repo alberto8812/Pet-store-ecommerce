@@ -114,7 +114,7 @@ const NavBar = () => {
                     justifyContent="center"
                     alignItems="center"
                 >
-                    <Link to='/' onClick={() => window.location.reload()} target='_self' className='nav-link' >
+                    <Link to='/' onClick={() => window.location.redirect()} target='_self' className='nav-link' >
                         {/* <Icon className='ico_nav' icon="bx:home" width='30px' height='30px' /> */}
                         <img className='img-home-btn' src={home} alt='' />
                         <h3 className='link_home'>Home</h3>

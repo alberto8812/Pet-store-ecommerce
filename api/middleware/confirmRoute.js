@@ -18,7 +18,10 @@ let transporter = nodemailer.createTransport({
 });
 
 function confirmationEmail(userData, products) {
-    console.log('BUENAS BUENAS', userData);
+    console.log(products);
+
+    let namesShops = Object(products).map(el => el.name);
+    // let quantity = Object(products).map(x => x.quantity);
     try {
         let mailToCompanyOptions = {
             from: userData,
@@ -26,7 +29,6 @@ function confirmationEmail(userData, products) {
             subject: 'NEW ORDER',
             html: `<div>
                 <h2>You have a new order to prepare</h2>
-                <p>${products}</p>
                 </div>`
         };
 
@@ -38,7 +40,8 @@ function confirmationEmail(userData, products) {
                 <h2>Thank you for your purchase!</h2>
                 <p>We receive your purchase for 
                     <div>
-                        ${products}
+                    <p>${namesShops}</p> 
+                    <hr/>
                     </div>
                 </p>
                 </div>`
@@ -78,8 +81,8 @@ function confirmationEmail(userData, products) {
             console.log('Server is ready to take the emails');
         }
     });
-    
-    
+
+
 
 };
 

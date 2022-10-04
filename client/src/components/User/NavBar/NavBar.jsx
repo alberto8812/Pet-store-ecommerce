@@ -62,7 +62,7 @@ const NavBar = () => {
             if (isAuthenticated) {
                 try {
                     const token = await getAccessTokenSilently()
-             
+                    // console.log(token)
                     request = await axios.get('/loginUsers',
                         {
                             headers: {

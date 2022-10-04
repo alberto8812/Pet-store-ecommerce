@@ -35,7 +35,7 @@ app.use('/aboutus', v1contactUs);
 app.use("/products", v1ProducstRouter);
 
 //ruta para usuarios registrados
-app.use("/loginUsers", jwtCheck, v1UsersRouter);
+app.use("/loginUsers",jwtCheck,v1UsersRouter);
 // jwtCheck
 
 ///proximamente ruta para roll admi

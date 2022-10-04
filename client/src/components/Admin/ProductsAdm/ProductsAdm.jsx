@@ -48,27 +48,6 @@ const ProductsAdm= () => {
   const {getAccessTokenSilently}=useAuth0()//componete de hook auth0
   let headers={}
 
-  useEffect(() => {
-    console.log("entre2")
-    const getToken=async()=>{
-    console.log("entre2")
-      //pedimisn el token
-      const token= await getAccessTokenSilently()
-      console.log(token)
-      //realizamon un arreglo con los header
-      headers= {   
-        headers:{
-        authorization: `Bearer ${token}`
-        },    
-        }
-        
-    }
-    getToken()
-    console.log(headers,"solution")
-  
-  }, [])
-  
-
 
   useEffect(() => {
     dispatch(getAllProducts());
@@ -77,7 +56,22 @@ const ProductsAdm= () => {
   const handleDelete = async (id, value) =>{
     //const token=await getToken()
    // console.log(token)
-    dispatch(deleteProducts(id, setFlag, value,headers));
+ 
+   const getToken=async()=>{
+
+     //pedimisn el token
+     const token= await getAccessTokenSilently()
+     console.log(token)
+     //realizamon un arreglo con los header
+     headers= {   
+       headers:{
+       authorization: `Bearer ${token}`
+       },    
+       }
+    dispatch(deleteProducts(id, setFlag, value,headers)); 
+   }
+   getToken()
+
   }
 
   const handleEdit = (id) =>{

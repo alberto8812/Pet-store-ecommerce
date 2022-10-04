@@ -46,14 +46,14 @@ useEffect(() => {
     dispatch(getDetails(id)).then(() => setCarga(false))
 }, [id,dispatch])
 
- 
+
     useEffect(() => {
       
        if(isAuthenticated && Object.keys(myProduct).length){//pregunta si el usuario tiene login en la pagina
             
             //indaga indaga si el usuario realizo compra en el producto
-      
-    setuserLogin(()=>(myProduct===undefined?{}:myProduct.reviews.find(e  => e.user === user.email )))//encuentra
+     
+    setuserLogin(()=>(myProduct.reviews.find(e  => e.user === user.email )))//encuentra
    
         }
 
@@ -112,11 +112,10 @@ useEffect(() => {
     }
 
     const handleChange =  function(e) {
-       
+       console.log(data)
         setData({
             ...data,
             [e.target.name]:e.target.value,
-            id: userLogin.id
         });
         setErrors(validate({
             ...data,
@@ -164,7 +163,7 @@ useEffect(() => {
     };
 
     useEffect(() => {
-        console.log(quantitySelected, "3")
+        //console.log(quantitySelected, "3")
     }, [quantitySelected])
     
 
@@ -198,7 +197,7 @@ useEffect(() => {
         return <Loading />;
     };
 
-console.log(myProduct,"4")
+//console.log(userLogin,"4")
     return (
        Object.keys(myProduct).length?<div className="contenido">
             <div className="m3">
@@ -272,7 +271,7 @@ console.log(myProduct,"4")
                                 <span className='star' onClick={e => calificar(1)} id="star1">★</span>
                             </div>
                             <div className="review">
-                            {!userLogin.comment?.length && 
+                            {!userLogin?.comment?.length && 
                                 <form onSubmit={(e) => handleSubmit(e)}>
                                     <h4 className="titleRev">Write a review</h4>
                                     <div className="comarea">

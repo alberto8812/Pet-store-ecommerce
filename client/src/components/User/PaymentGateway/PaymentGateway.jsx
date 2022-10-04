@@ -109,12 +109,13 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
                     products: listCart,
                     payment: data
                 }
-                dispatch(postSendProds(enviar , {
+                let header={
                     headers: {
                         authorization: `Bearer ${token}`
                     },
-                }))
-                dispatch()
+                }
+                dispatch(postSendProds(enviar ,header))
+             
 
                 elements.getElement(CardElement).clear();
                 notifyOK();

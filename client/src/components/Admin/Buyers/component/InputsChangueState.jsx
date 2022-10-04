@@ -11,10 +11,13 @@ import SendIcon from '@mui/icons-material/Send';
 import Stack from '@mui/material/Stack';
 import { useDispatch } from "react-redux";
 import { putCustomerShoppingStatus } from '../../../../redux/actions';
+import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
 ///
-const InputsChangueState = ({rowInf,headers,setRender,render}) => {
+const InputsChangueState = ({rowInf,setRender,render}) => {
+  const invoice=rowInf.invoice;
+  const {getAccessTokenSilently}=useAuth0()
   const dispatch = useDispatch();
-    console.log(rowInf.firstName)
+
     const [status, setStatus] = useState('');
 
   const handleChange = (event) => {
@@ -24,9 +27,28 @@ const InputsChangueState = ({rowInf,headers,setRender,render}) => {
 
 
  const handleSubmitSend=()=>{
-  dispatch(putCustomerShoppingStatus(headers,status,rowInf.invoice))
-  setRender(()=>render===''?'_':'')
-  setStatus('')
+  const getToken=async()=>{
+    let headers={}
+    //pedimisn el token
+    const token= await getAccessTokenSilently()
+ 
+    //realizamon un arreglo con los header
+    headers= {   
+      headers:{
+      authorization: `Bearer ${token}`
+      },    
+      }
+   //console.log(headers)
+   
+
+    dispatch(putCustomerShoppingStatus(headers,status,invoice))
+    setRender(()=>render===''?'_':'')
+    setStatus('')
+   
+  }
+
+  getToken()
+  
 
   rowInf=[]
   

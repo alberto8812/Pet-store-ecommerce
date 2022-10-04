@@ -156,9 +156,6 @@ export function decreaseCart(payload) {
     }
 };
 
-<<<<<<< HEAD
-export function addComment(input,headres) {
-=======
 export function refreshCart(payload) {
     return {
         type: REFRESH_CART,
@@ -169,8 +166,7 @@ export function refreshCart(payload) {
 ////////////////////////// FIN CART //////////////////////////
 
 
-export function addComment(input) {
->>>>>>> d66e81999c25a747a8a2000a9476d384a0c6e116
+export function addComment(input,headres) {
     return async function(dispatch) {
         axios.post('/loginUsers/comment',input,headres)
             .then((res) => {

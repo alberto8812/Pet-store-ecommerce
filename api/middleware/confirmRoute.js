@@ -3,9 +3,12 @@ const router = Router();
 const axios = require('axios');
 let nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
+const path = require("path");
+
 
 // const creds = require('../../credendial.json');
 const { auth_mail, pass_mail } = process.env;
+
 
 let transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -18,10 +21,12 @@ let transporter = nodemailer.createTransport({
 });
 
 function confirmationEmail(userData, products) {
-    console.log(products);
+    // console.log(products);
 
-    let namesShops = Object(products).map(el => el.name);
+    // let namesShops = Object(products).map(el => el.name);
+    // let imagenProducts = Object(products).map(x => x.image);
     // let quantity = Object(products).map(x => x.quantity);
+
     try {
         let mailToCompanyOptions = {
             from: userData,
@@ -38,13 +43,14 @@ function confirmationEmail(userData, products) {
             subject: 'ORDER CONFIRM 🐶',
             html: `<div>
                 <h2>Thank you for your purchase!</h2>
-                <p>We receive your purchase for 
-                    <div>
-                    <p>${namesShops}</p> 
-                    <hr/>
-                    </div>
-                </p>
-                </div>`
+                <p>We'll send you an other email when it's ready!</p><br/>
+                <img src="cid:download"/>
+                </div>`,
+            attachments: [{
+                filename: 'download.png',
+                path: __dirname + '/download.png',
+                cid: 'donwload'
+            }]
         }
 
         transporter.sendMail(mailToCompanyOptions, (err, data) => {

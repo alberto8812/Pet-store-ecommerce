@@ -1,22 +1,25 @@
-const {db,Op}=require('../../database/db')
+const {db,Op}=require('../../database/db');
+const dataUser = require('../../middleware/loginUser');
 const {Review,Product}=db.models
 
 const postCommentUser = async(req, res)=>{
 
-  //const accessToken=req.headers.authorization.split(' ')[1];
-  //const Userdata=await dataUser(accessToken);
+  const accessToken=req.headers.authorization.split(' ')[1];
+  const Userdata=await dataUser(accessToken);
 
-  const {comment,punctuation}= req.body
-  console.log(punctuation,comment)
+  const {id,comment,punctuation}= req.body
+  console.log(punctuation,comment,id)
     let commentUser = await Review.findOne({
       where: {
-        idProduct:"d770bd1b-9276-4ac8-9109-0900c5a686c7"
+        idProduct:id,
+        user:Userdata
+        
       }
     })
- console.log(commentUser)
+
     await commentUser.update({comment, punctuation})
 
-    return  await Product.findOne({where:{id:"d770bd1b-9276-4ac8-9109-0900c5a686c7"},include:{model:Review}})
+    return  await Product.findOne({where:{id:id},include:{model:Review}})
 
 }
 

@@ -80,13 +80,21 @@ function rootReducer(state = initialState, action) {
                 ...state
             };
         case ADD_FAVORITE:
-            console.log(action.payload);
             const itemToAdd = state.products.find(x => x.id === action.payload);
             state.favorites.push(itemToAdd);
             return {
                 ...state,
                 numberFavs: state.numberFavs + 1,
                 status: state.status === true ? false : true
+            };
+        case REMOVE_FAVORITE:
+            const itemToRemove = state.products.find(x => x.id === action.payload);
+            return {
+                ...state,
+                numberFavs: state.numberFavs - itemToRemove.quantity,
+                favorites: state.favorites.filter(item => {
+                    return item.id != itemToRemove.id
+                })
             };
 
             /////////////////// CART ///////////////////

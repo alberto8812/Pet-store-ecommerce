@@ -32,7 +32,6 @@ const NavBar = () => {
     const numberFavs = useSelector(state => state.numberFavs);
     const status = useSelector(state => state.status);
     const [favsQuantity, setcartFavsQuantity] = useState(0);
-    console.log('HOLA CARLOS', favs);
 
             ///////FAVS/////////
 
@@ -63,7 +62,6 @@ const NavBar = () => {
         calculateCartQuantity();
     }, [numberCart])
     
-
 
     const dispatch = useDispatch();
     let request = []

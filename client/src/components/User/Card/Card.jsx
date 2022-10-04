@@ -16,7 +16,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useDispatch, useSelector } from 'react-redux';
 import './Card.css';
-import { addToFav } from '../../../redux/actions';
+import { addToFav, removeFromFav } from '../../../redux/actions';
 import { useState } from "react";
 
 
@@ -42,9 +42,15 @@ export default function CardProduct({ id, image, name, price, rating, category, 
     };
 
     function handleFav(itemId){
-        dispatch(addToFav(itemId));
         const heart = document.getElementById(id);
-        heart.className = 'bi bi-heart-fill';
+        if(heart.classList.contains('bi-heart-fill')) {
+            dispatch(removeFromFav(itemId))
+            heart.className = 'bi bi-heart';
+        }
+        else {
+            dispatch(addToFav(itemId))
+            heart.className = 'bi bi-heart-fill';
+        }
     }; 
 
     

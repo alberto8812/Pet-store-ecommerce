@@ -7,6 +7,7 @@ import {
     SEARCH_BY_NAME,
     ADD_FAVORITE,
     REMOVE_FAVORITE,
+    GET_NUMBER_FAVS,
     ADD_TO_CART,
     GET_NUMBER_CART,
     INCREASE_QUANTITY,
@@ -83,23 +84,14 @@ export function postContact(payload) {
     }
 };
 
-// export function postConfirm(payload) {
-//     return async function() {
-//         try {
-//             let newConfirmEmail = await axios.post('http://localhost:3001/paymentgateway', payload)
-//             return newConfirmEmail;
-//         } catch (error) {
-//             console.error('Error en postConfirm --> ', error);
-//         }
-//     }
-// };
-
 export function sortByPrice(payload) {
     return {
         type: SORT_BY_PRICE,
         payload
     }
 };
+
+////////////////////////// FAVS //////////////////////////
 
 export function addToFav(payload) {
     return {
@@ -108,12 +100,26 @@ export function addToFav(payload) {
     }
 };
 
+
 export function removeFromFav(payload) {
     return {
         type: REMOVE_FAVORITE,
         payload
     }
 };
+
+export function getNumberFavs() {
+    return {
+        type: GET_NUMBER_FAVS
+    }
+};
+
+////////////////////////// FIN FAVS //////////////////////////
+
+
+
+
+////////////////////////// CART //////////////////////////
 
 export function addToCart(payload) {
     return {
@@ -150,6 +156,16 @@ export function decreaseCart(payload) {
     }
 };
 
+export function refreshCart(payload) {
+    return {
+        type: REFRESH_CART,
+        payload
+    }
+};
+
+////////////////////////// FIN CART //////////////////////////
+
+
 export function addComment(input) {
     return async function(dispatch) {
         axios.post('/loginUsers/comment', input)
@@ -161,13 +177,6 @@ export function addComment(input) {
             })
     }
 }
-
-export function refreshCart(payload) {
-    return {
-        type: REFRESH_CART,
-        payload
-    }
-};
 
 export const postSendProds = (enviar, headers) => {
     return async(dispatch) => {
@@ -246,7 +255,7 @@ export const getCustomerShopping = (token) => {
 
 // cambiar el status de la compra 
 export const putCustomerShoppingStatus = (token, status, invoice) => {
-
+ 
     return async(dispatch) => {
         try {
             const { data } = await axios.put(`/loginAdmin/customerShopping/${invoice}`, { status: status }, token);
@@ -294,11 +303,11 @@ export const postCustomerData = (dataUser, headers) => {
 
 
 
-export function deleteProducts(id, setFlag,value,token) {
-    console.log(token)
+export function deleteProducts(id, setFlag,value,headers) {
+   // console.log(headers)
     return async(dispatch) => {
         try {
-            return axios.put(`/loginAdmin/delete/${id}`,{value},token)
+            return axios.put(`/loginAdmin/delete/${id}`,{value},headers)
                 .then(res => {
                     setFlag((flag) => !flag)
                     return dispatch({ type: DELETE_PRODUCT, payload: res.data })

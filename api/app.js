@@ -39,7 +39,7 @@ app.use("/loginUsers", jwtCheck, v1UsersRouter);
 // jwtCheck
 
 ///proximamente ruta para roll admi
-app.use("/loginAdmin",v1AdminRouter)
+app.use("/loginAdmin",jwtCheck,checkpermissions,v1AdminRouter)
 
 //jwtCheck, checkpermissions
 

@@ -246,7 +246,7 @@ export const getCustomerShopping = (token) => {
 
 // cambiar el status de la compra 
 export const putCustomerShoppingStatus = (token, status, invoice) => {
-
+ 
     return async(dispatch) => {
         try {
             const { data } = await axios.put(`/loginAdmin/customerShopping/${invoice}`, { status: status }, token);
@@ -294,11 +294,11 @@ export const postCustomerData = (dataUser, headers) => {
 
 
 
-export function deleteProducts(id, setFlag,value,token) {
-    console.log(token)
+export function deleteProducts(id, setFlag,value,headers) {
+   // console.log(headers)
     return async(dispatch) => {
         try {
-            return axios.put(`/loginAdmin/delete/${id}`,{value},token)
+            return axios.put(`/loginAdmin/delete/${id}`,{value},headers)
                 .then(res => {
                     setFlag((flag) => !flag)
                     return dispatch({ type: DELETE_PRODUCT, payload: res.data })

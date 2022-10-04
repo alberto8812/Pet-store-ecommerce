@@ -46,28 +46,32 @@ const ProductsAdm= () => {
   const [flag, setFlag] = useState(false)
   const navigate = useNavigate()
   const {getAccessTokenSilently}=useAuth0()//componete de hook auth0
+  let headers={}
 
-  const getToken=async()=>{
-  
-    //pedimisn el token
-    const token= await getAccessTokenSilently()
-    //realizamon un arreglo con los header
-   const headers= {   
-      headers:{
-      authorization: `Bearer ${token}`
-      },    
-      }
-      return headers
-  }
 
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch, flag]);
 
-  const handleDelete = (id, value) =>{
-    console.log(id)
-    const token=getToken()
-    dispatch(deleteProducts(id, setFlag, value,token));
+  const handleDelete = async (id, value) =>{
+    //const token=await getToken()
+   // console.log(token)
+ 
+   const getToken=async()=>{
+
+     //pedimisn el token
+     const token= await getAccessTokenSilently()
+     console.log(token)
+     //realizamon un arreglo con los header
+     headers= {   
+       headers:{
+       authorization: `Bearer ${token}`
+       },    
+       }
+    dispatch(deleteProducts(id, setFlag, value,headers)); 
+   }
+   getToken()
+
   }
 
   const handleEdit = (id) =>{

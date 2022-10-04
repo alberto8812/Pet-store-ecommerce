@@ -53,6 +53,7 @@ const Users = () => {
 
       //pedimisn el token
       const token= await getAccessTokenSilently()
+      console.log(token)
       //realizamon un arreglo con los header
      const headers= {   
         headers:{

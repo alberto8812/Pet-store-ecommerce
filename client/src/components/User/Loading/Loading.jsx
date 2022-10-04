@@ -1,12 +1,13 @@
 // componenten de Carga
 import React from 'react'
-import loading from './catLoading.gif'
+import loading from './loading.gif';
+import './Loading.css';
 
 
 export default function Loading() {
     return (
-          <div>
-            <img src={loading} alt="" />
+          <div className="loading-container">
+            <img className="loading-img" src={loading} alt="" />
           </div>
     )}
 ///

@@ -16,7 +16,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useDispatch, useSelector } from 'react-redux';
 import './Card.css';
-import { addToFav } from '../../../redux/actions';
+import { addToFav, removeFromFav } from '../../../redux/actions';
 import { useState } from "react";
 
 
@@ -41,10 +41,16 @@ export default function CardProduct({ id, image, name, price, rating, category, 
         setExpanded(!expanded);
     };
 
-    function handleFav(){
-        dispatch(addToFav(products));
-        const heart = document.getElementById('favItem');
-        heart.style.color = 'red';
+    function handleFav(itemId){
+        const heart = document.getElementById(id);
+        if(heart.classList.contains('bi-heart-fill')) {
+            dispatch(removeFromFav(itemId))
+            heart.className = 'bi bi-heart';
+        }
+        else {
+            dispatch(addToFav(itemId))
+            heart.className = 'bi bi-heart-fill';
+        }
     }; 
 
     
@@ -100,7 +106,7 @@ export default function CardProduct({ id, image, name, price, rating, category, 
                 >
                     {rating} ⭐
                 </ExpandMore>
-                <button onClick={handleFav} type='button' className='btn-fav' id='favItem'><i id='favItem' class="bi bi-heart"></i></button>
+                <button onClick={() => handleFav(id)} type='button' className='btn-fav' id='favItem'><i id={id} class="bi bi-heart"></i></button>
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>

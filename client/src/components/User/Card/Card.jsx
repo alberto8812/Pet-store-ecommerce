@@ -42,7 +42,9 @@ export default function CardProduct({ id, image, name, price, rating, category, 
     };
 
     function handleFav(){
-        dispatch(addToFav(products))
+        dispatch(addToFav(products));
+        const heart = document.getElementById('favItem');
+        heart.style.color = 'red';
     }; 
 
     
@@ -98,7 +100,7 @@ export default function CardProduct({ id, image, name, price, rating, category, 
                 >
                     {rating} ⭐
                 </ExpandMore>
-                <button onClick={handleFav} type='button' className='btn-fav' id='favItem'><i class="bi bi-heart"></i></button>
+                <button onClick={handleFav} type='button' className='btn-fav' id='favItem'><i id='favItem' class="bi bi-heart"></i></button>
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>

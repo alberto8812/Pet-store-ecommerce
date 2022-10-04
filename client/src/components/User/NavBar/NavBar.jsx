@@ -114,7 +114,7 @@ const NavBar = () => {
                     justifyContent="center"
                     alignItems="center"
                 >
-                    <Link to='/' className='nav-link' >
+                    <Link to='/' onClick={() => window.location.reload()} target='_self' className='nav-link' >
                         {/* <Icon className='ico_nav' icon="bx:home" width='30px' height='30px' /> */}
                         <img className='img-home-btn' src={home} alt='' />
                         <h3 className='link_home'>Home</h3>
@@ -143,28 +143,37 @@ const NavBar = () => {
                         xs={2}
                         container
                         direction="row"
-                        justifyContent="center"
-                        alignItems="center"
-                    >
-                        {/* <Link to='/carrito' className='number-cart'>  */}
-                        <i class="bi bi-cart"><Link to='/carrito' className='number-cart'>{cartQuantity}</Link></i>
-                            {/* <Icon icon="fa:shopping-cart" width='35px' height='35px' hAlign="left" color="rgb(234, 208, 240)" /> */}
-                            {/* <h3 className='link_home'>shopping</h3> */}
-                        {/* </Link> */}
-                    </Grid>
-                    <Grid
-                        xs={2}
-                        container
-                        direction="row"
                         justifyContent="space-evenly"
                         alignItems="center"
 
                     >
-                        <Link to='/'  >
-                            <Icon icon="ic:outline-favorite" width='35px' height='35px' alignItems="center" color="rgb(234, 208, 240)" />
+                        <div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Favs
+  </a>
+
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href='#'>Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  </ul>
+</div>
+                        {/* <Link to='/'  > */}
+                            {/* <Icon icon="ic:outline-favorite" width='35px' height='35px' alignItems="center" color="rgb(234, 208, 240)" /> */}
                             {/* <h3 className='link_home'>Favorite</h3> */}
-                        </Link>
+                        {/* </Link> */}
                     </Grid>
+
+                    <Grid
+                        xs={2}
+                        container
+                        direction="row"
+                        justifyContent="center"
+                        alignItems="center"
+                    >
+                        <i class="bi bi-cart"><Link to='/carrito' className='number-cart'>{cartQuantity}</Link></i>
+                    </Grid>
+
 
 
                     {isAuthenticated ?

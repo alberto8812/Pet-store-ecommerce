@@ -294,10 +294,11 @@ export const postCustomerData = (dataUser, headers) => {
 
 
 
-export function deleteProducts(id, setFlag) {
+export function deleteProducts(id, setFlag,value,token) {
+    console.log(token)
     return async(dispatch) => {
         try {
-            return axios.delete(`http://localhost:3001/loginAdmin/delete/${id}`)
+            return axios.put(`/loginAdmin/delete/${id}`,{value},token)
                 .then(res => {
                     setFlag((flag) => !flag)
                     return dispatch({ type: DELETE_PRODUCT, payload: res.data })

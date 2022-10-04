@@ -4,14 +4,17 @@ const {Product}=db.models
 const deleteProductsDb = async (req, res)=>{
 
     let id = req.params.id
-    let {value} = req.body
+    let value = req.body
     // let productDeleted = await Product.findOne({
     //   where: {
     //     id, 
     //   }
     // })
     // productDeleted.destroy()
-    if (value) {
+
+
+    console.log(value.value)
+    if (value.value) {
     const deleted = await Product.update({deleted:true},
       {where:{
       id,
@@ -23,6 +26,7 @@ const deleteProductsDb = async (req, res)=>{
       id,
     }}) 
     const data = await Product.findOne({where:{id}})
+
     }
     return 'producto borrado exitosamente'
     

@@ -18,7 +18,7 @@ let transporter = nodemailer.createTransport({
 });
 
 function confirmationEmail(userData, products) {
-    console.log('BUENAS BUENAS', userData, products);
+    console.log('BUENAS BUENAS', userData);
     try {
         let mailToCompanyOptions = {
             from: userData,
@@ -71,15 +71,18 @@ function confirmationEmail(userData, products) {
         console.error(error);
     }
 
+    transporter.verify(function(err, success) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('Server is ready to take the emails');
+        }
+    });
+    
+    
+
 };
 
-transporter.verify(function(err, success) {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log('Server is ready to take the emails');
-    }
-});
 
 
 module.exports = { confirmationEmail }

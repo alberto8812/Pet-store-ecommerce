@@ -45,7 +45,20 @@ const ProductsAdm= () => {
   const products = useSelector((state) => state.products);
   const [flag, setFlag] = useState(false)
   const navigate = useNavigate()
-  const {isAuthenticated,getAccessTokenSilently}=useAuth0()//componete de hook auth0
+  const {getAccessTokenSilently}=useAuth0()//componete de hook auth0
+
+  const getToken=async()=>{
+  
+    //pedimisn el token
+    const token= await getAccessTokenSilently()
+    //realizamon un arreglo con los header
+   const headers= {   
+      headers:{
+      authorization: `Bearer ${token}`
+      },    
+      }
+      return headers
+  }
 
   useEffect(() => {
     dispatch(getAllProducts());
@@ -53,7 +66,8 @@ const ProductsAdm= () => {
 
   const handleDelete = (id, value) =>{
     console.log(id)
-    dispatch(deleteProducts(id, setFlag, value));
+    const token=getToken()
+    dispatch(deleteProducts(id, setFlag, value,token));
   }
 
   const handleEdit = (id) =>{

@@ -7,7 +7,6 @@ const { confirmationEmail } = require('../../middleware/confirmRoute');
 
 const postProductUserCartService = async(req) => {
     //console.log(req.body)
-<<<<<<< HEAD
     const {payment,products}=req.body
    // const { id, total, products } = req.body;
     const accessToken=req.headers.authorization.split(' ')[1];
@@ -15,15 +14,6 @@ const postProductUserCartService = async(req) => {
     const userData=await dataUser(accessToken);
   ///console.log(payment.id)
     const updateUser = await User.findOne({ where: { email:userData} })
-=======
-    const { payment, products } = req.body
-        // const { id, total, products } = req.body;
-    const accessToken = req.headers.authorization.split(' ')[1];
-    const userData = await dataUser(accessToken);
-    console.log(userData, 'USERDATAAAAAA');
-    ///console.log(payment.id)
-    const updateUser = await User.findOne({ where: { email: userData } })
->>>>>>> a0c2136244f9cb1b39e448f035bd05dc71e7b9e4
     const date = new Date
 
 

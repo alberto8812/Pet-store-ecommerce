@@ -83,16 +83,16 @@ export function postContact(payload) {
     }
 };
 
-export function postConfirm(payload) {
-    return async function() {
-        try {
-            let newConfirmEmail = await axios.post('http://localhost:3001/paymentgateway', payload)
-            return newConfirmEmail;
-        } catch (error) {
-            console.error('Error en postConfirm --> ', error);
-        }
-    }
-};
+// export function postConfirm(payload) {
+//     return async function() {
+//         try {
+//             let newConfirmEmail = await axios.post('http://localhost:3001/paymentgateway', payload)
+//             return newConfirmEmail;
+//         } catch (error) {
+//             console.error('Error en postConfirm --> ', error);
+//         }
+//     }
+// };
 
 export function sortByPrice(payload) {
     return {
@@ -169,12 +169,12 @@ export function refreshCart(payload) {
     }
 };
 
-export const postSendProds = (payload) => {
+export const postSendProds = (enviar, headers) => {
     return async(dispatch) => {
         try {
             const { data } = await axios.post(
                 `/loginUsers/productusercart`,
-                payload
+                enviar, headers
             );
             return dispatch({
                 type: POST_SEND_PRODS,
@@ -186,18 +186,12 @@ export const postSendProds = (payload) => {
     };
 };
 
-export function getProfileData() {
-    return async(dispatch) => {
-        try {
-            return axios.get('/loginUsers')
-                .then(res => dispatch({ type: PROFILE_DATA, payload: res.data }))
-                .catch(err => dispatch({ type: PROFILE_DATA, payload: err.data }))
-        } catch (error) {
-            console.log(error)
-        }
+export function getProfileData(payload) {
+    return {
+        type: PROFILE_DATA,
+        payload
     }
-};
-
+}
 
 ////////////////////////************Admind*******************/////////////////////////////////// /
 
@@ -252,7 +246,7 @@ export const getCustomerShopping = (token) => {
 
 // cambiar el status de la compra 
 export const putCustomerShoppingStatus = (token, status, invoice) => {
-
+ 
     return async(dispatch) => {
         try {
             const { data } = await axios.put(`/loginAdmin/customerShopping/${invoice}`, { status: status }, token);
@@ -300,10 +294,11 @@ export const postCustomerData = (dataUser, headers) => {
 
 
 
-export function deleteProducts(id, setFlag) {
+export function deleteProducts(id, setFlag,value,headers) {
+   // console.log(headers)
     return async(dispatch) => {
         try {
-            return axios.delete(`http://localhost:3001/loginAdmin/delete/${id}`)
+            return axios.put(`/loginAdmin/delete/${id}`,{value},headers)
                 .then(res => {
                     setFlag((flag) => !flag)
                     return dispatch({ type: DELETE_PRODUCT, payload: res.data })

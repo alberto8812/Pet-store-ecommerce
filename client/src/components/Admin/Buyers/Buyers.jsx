@@ -30,6 +30,7 @@ const Users = () => {
 
       //pedimisn el token
   const token= await getAccessTokenSilently()
+  console.log(token)
       //realizamon un arreglo con los header
       headers= {   
         headers:{
@@ -163,7 +164,7 @@ const Users = () => {
      </Grid>
      <Grid container  gap={2}  sx={{padding:'20px'}}>
 
-      <InputsChangueState rowInf={rowInf} headers={headers} setRender={setRender} render={render}/>
+      <InputsChangueState rowInf={rowInf} setRender={setRender} render={render}/>
      </Grid>
 
      </Box>

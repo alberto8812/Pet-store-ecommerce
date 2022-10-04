@@ -15,7 +15,7 @@ return saleByMonth;
 const customerShoppingStatusService=async(req)=>{
     const {id}=req.params
     const {status}=req.body
-
+    console.log(req.params)
     let customerShoppingStatus=[]
     if (status==='PENDING'){
         console.log("holi",status,id)

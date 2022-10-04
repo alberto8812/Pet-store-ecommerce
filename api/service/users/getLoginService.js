@@ -7,7 +7,7 @@ const getLoginResponse =async(req)=>{
 
     const accessToken=req.headers.authorization.split(' ')[1];
     ///peticion a auth0 para traer datos de usuario
-   
+ 
     const response=await axios.get(`https://dev-nzbce16c.us.auth0.com/userinfo`,{headers:{
           authorization:`Bearer ${accessToken}`
           }

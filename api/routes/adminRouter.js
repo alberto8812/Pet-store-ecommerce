@@ -24,9 +24,10 @@ router.post("/create",CreateProductDb)
 
 router.put("/customerShopping/:id",customerShoppingStatusDb)//ruta para cambiar el estatus de la compra
 
-router.put("/edit/:id", EditProductDb )
 
-router.delete("/delete/:id", DeleteProductDb)
+router.post("/edit/:id", EditProductDb )
+
+router.put("/delete/:id", DeleteProductDb)
 
        
 

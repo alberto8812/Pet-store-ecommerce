@@ -168,7 +168,7 @@ export default function Edit() {
         <Container>
             
             <br />
-            <div className="supercontainer">
+            <div className="supercontainer2">
             <h1>
                 <Badge className="title" bg="primary">Edit products</Badge>
             </h1>

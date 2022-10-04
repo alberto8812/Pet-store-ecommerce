@@ -10,7 +10,7 @@ import Paper from '@mui/material/Paper';
 import {RiDeleteBin6Line} from 'react-icons/ri';
 import {GrEdit} from 'react-icons/gr';
 import {HiPlus} from 'react-icons/hi';
-import { deleteProducts, getAllProducts, editProducts, activeProducts} from '../../../redux/actions/index';
+import { deleteProducts, getAllProducts, editProducts} from '../../../redux/actions/index';
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
@@ -45,19 +45,33 @@ const ProductsAdm= () => {
   const products = useSelector((state) => state.products);
   const [flag, setFlag] = useState(false)
   const navigate = useNavigate()
-  const {isAuthenticated,getAccessTokenSilently}=useAuth0()//componete de hook auth0
+  const {getAccessTokenSilently}=useAuth0()//componete de hook auth0
+  let headers={}
+
 
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch, flag]);
 
-  const handleDelete = (id) =>{
-    console.log(id)
-    dispatch(deleteProducts(id, setFlag));
-  }
+  const handleDelete = async (id, value) =>{
+    //const token=await getToken()
+   // console.log(token)
+ 
+   const getToken=async()=>{
 
-  const handleActive = (id) => {
-    dispatch(activeProducts(id, setFlag))
+     //pedimisn el token
+     const token= await getAccessTokenSilently()
+     console.log(token)
+     //realizamon un arreglo con los header
+     headers= {   
+       headers:{
+       authorization: `Bearer ${token}`
+       },    
+       }
+    dispatch(deleteProducts(id, setFlag, value,headers)); 
+   }
+   getToken()
+
   }
 
   const handleEdit = (id) =>{
@@ -80,6 +94,7 @@ const ProductsAdm= () => {
         </TableHead>
         <TableBody>
           {products?.map((row) => (
+            
             <StyledTableRow key={row.name}>
               <StyledTableCell  align="center" component="th" scope="row">
                 {row.name}
@@ -88,10 +103,10 @@ const ProductsAdm= () => {
               <StyledTableCell align="center">{row.price}</StyledTableCell>
               <StyledTableCell align="center">{row.stock}</StyledTableCell>
               <StyledTableCell align="center">{row.category?.name}</StyledTableCell>
-              <StyledTableCell align="center">{row.deleted?"deleted":"deletedn't"}</StyledTableCell>
-              <StyledTableCell align="center" onClick={() => {handleDelete(row.id)}} ><span data-tooltip = "delete"><RiDeleteBin6Line className='btnOptions'/></span></StyledTableCell>
+              <StyledTableCell align="center">{row.deleted?"deleted":"active"}</StyledTableCell>
+              <StyledTableCell align="center" onClick={() => {handleDelete(row.id, true)}} ><span data-tooltip = "delete"><RiDeleteBin6Line className='btnOptions'/></span></StyledTableCell>
               <StyledTableCell align="center" onClick={() => {handleEdit(row.id)}} ><span data-tooltip = "edit"><GrEdit className='btnOptions'/></span></StyledTableCell>
-              <StyledTableCell align="center" onClick={() => {handleActive(row.id)}} ><span data-tooltip = "activate"><HiPlus className='btnOptions'/></span></StyledTableCell>
+              <StyledTableCell align="center" onClick={() => {handleDelete(row.id, false)}} ><span data-tooltip = "activate"><HiPlus className='btnOptions'/></span></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

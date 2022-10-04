@@ -83,16 +83,16 @@ export function postContact(payload) {
     }
 };
 
-export function postConfirm(payload) {
-    //return async function() {
-       // try {
-          //  let newConfirmEmail = await axios.post('http://localhost:3001/paymentgateway', payload)
-          //  return newConfirmEmail;
-        //} catch (error) {
-        //    console.error('Error en postConfirm --> ', error);
-        //}
-    ///}
-};
+// export function postConfirm(payload) {
+//     return async function() {
+//         try {
+//             let newConfirmEmail = await axios.post('http://localhost:3001/paymentgateway', payload)
+//             return newConfirmEmail;
+//         } catch (error) {
+//             console.error('Error en postConfirm --> ', error);
+//         }
+//     }
+// };
 
 export function sortByPrice(payload) {
     return {
@@ -169,12 +169,12 @@ export function refreshCart(payload) {
     }
 };
 
-export const postSendProds = (enviar,headers) => {
+export const postSendProds = (payload) => {
     return async(dispatch) => {
         try {
             const { data } = await axios.post(
                 `/loginUsers/productusercart`,
-                enviar,headers
+                payload
             );
             return dispatch({
                 type: POST_SEND_PRODS,
@@ -186,18 +186,12 @@ export const postSendProds = (enviar,headers) => {
     };
 };
 
-export function getProfileData() {
-    return async(dispatch) => {
-        try {
-            return axios.get('/loginUsers')
-                .then(res => dispatch({ type: PROFILE_DATA, payload: res.data }))
-                .catch(err => dispatch({ type: PROFILE_DATA, payload: err.data }))
-        } catch (error) {
-            console.log(error)
-        }
+export function getProfileData(payload) {
+    return {
+        type: PROFILE_DATA,
+        payload
     }
-};
-
+}
 
 ////////////////////////************Admind*******************/////////////////////////////////// /
 
@@ -300,15 +294,30 @@ export const postCustomerData = (dataUser, headers) => {
 
 
 
-export function deleteProducts(id, setFlag, value) {
+export function deleteProducts(id, setFlag) {
     return async(dispatch) => {
         try {
-            return axios.put(`http://localhost:3001/loginAdmin/delete/${id}`, {value})
+            return axios.delete(`http://localhost:3001/loginAdmin/delete/${id}`)
                 .then(res => {
                     setFlag((flag) => !flag)
                     return dispatch({ type: DELETE_PRODUCT, payload: res.data })
                 })
                 .catch(err => dispatch({ type: DELETE_PRODUCT, payload: err.data }))
+        } catch (error) {
+            console.log(error)
+        }
+    }
+};
+
+export function activeProducts(id, setFlag) {
+    return async(dispatch) => {
+        try {
+            return axios.put(`http://localhost:3001/loginAdmin/delete/${id}`)
+                .then(res => {
+                    setFlag((flag) => !flag)
+                    return dispatch({ type: ACTIVE_PRODUCT, payload: res.data })
+                })
+                .catch(err => dispatch({ type: ACTIVE_PRODUCT, payload: err.data }))
         } catch (error) {
             console.log(error)
         }

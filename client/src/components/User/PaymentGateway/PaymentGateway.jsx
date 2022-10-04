@@ -118,6 +118,9 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
 
                 elements.getElement(CardElement).clear();
                 notifyOK();
+                setTimeout(() => {
+                    window.location.reload()
+                }, 2000);
             } catch (error) {
                 notifyError();
                 console.log(error);
@@ -133,9 +136,9 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
         // e.preventDefault();
         window.localStorage.clear();
         // setTimeout(() => {
-        //     navigate('/')
-        // }, 3000);
-
+            // window.location.reload();
+        //  navigate('/')
+        // }, 5000);
     }
 
     console.log(!stripe || loading);

@@ -89,7 +89,6 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
             const { id } = paymentMethod;
             try {
                 const token = await getAccessTokenSilently()
-                console.log(token);
                 const { data } = await axios.post(
                     "/loginUsers/checkoutpayment",
                     {
@@ -103,7 +102,7 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
                         },
                     }
                 );
-                console.log('Soy Data 104', data);
+                // console.log('Soy Data 104', data);
 
                 enviar = {
                     products: listCart,

@@ -26,7 +26,30 @@ const NavBar = () => {
     const allProducts = useSelector((state) => state.allProducts);
     const cart = useSelector(state => state.cart)
     const numberCart = useSelector(state => state.numberCart)
-    const [cartQuantity, setcartQuantity] = useState(0)
+    const [cartQuantity, setcartQuantity] = useState(0);
+
+    const favs = useSelector(state => state.favorites);
+    const numberFavs = useSelector(state => state.numberFavs);
+    const status = useSelector(state => state.status);
+    const [favsQuantity, setcartFavsQuantity] = useState(0);
+    console.log('HOLA CARLOS', favs);
+
+            ///////FAVS/////////
+
+    const calculateFavsQuantity = () => {
+        let counter = 0;
+        favs.forEach(item => {
+            counter += item.quantity
+        });
+        setcartFavsQuantity(counter)
+    }
+
+    useEffect(() => {
+        calculateFavsQuantity();
+    }, [numberFavs, status]);
+
+
+        ///////FIN FAVS/////////
 
     const calculateCartQuantity = () => {
         let counter = 0;
@@ -39,6 +62,7 @@ const NavBar = () => {
     useEffect(() => {
         calculateCartQuantity();
     }, [numberCart])
+    
 
 
     const dispatch = useDispatch();
@@ -148,20 +172,23 @@ const NavBar = () => {
 
                     >
                         <div class="dropdown">
-  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Favs
-  </a>
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+                                Favs
+                            </a>
 
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href='#'>Action</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-  </ul>
-</div>
-                        {/* <Link to='/'  > */}
-                            {/* <Icon icon="ic:outline-favorite" width='35px' height='35px' alignItems="center" color="rgb(234, 208, 240)" /> */}
-                            {/* <h3 className='link_home'>Favorite</h3> */}
-                        {/* </Link> */}
+                            <ul class="dropdown-menu" >
+                            {
+                                favs && favs.map((item) => {
+                                    return (
+                                        <li><a class="dropdown-item" href={`/products/detail/${item.id}`}>
+                                            {/* <img className="image" src={item.image} alt={item.name} width='30px' height='23px' /> */}
+                                            {item.name}
+                                        </a></li>
+                                    )
+                                })
+                            }
+                            </ul>
+                        </div>
                     </Grid>
 
                     <Grid

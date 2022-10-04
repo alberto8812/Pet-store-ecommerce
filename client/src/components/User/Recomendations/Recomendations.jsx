@@ -13,6 +13,7 @@ export default function Recomendations() {
   const dispatch = useDispatch();
   const productsDos = useSelector(state => state.products);
 
+  
 
   useEffect(() => {
     suggested.map(x => console.log(x))
@@ -69,20 +70,21 @@ export default function Recomendations() {
         <div class="carousel-item active">
           <img src={suggested[0].image} class="d-contents w-40" height='600px' alt={suggested[0].name} />
           <div class="carousel-caption d-none d-md-block">
-            <h5 className='h5'>{suggested[0].name}</h5>
+          <Link to={`/products/detail/${suggested[0].id}`} className='h5'> {suggested[0].name}</Link>
+            
           </div>
         </div>
         <div class="carousel-item">
           <img src={suggested[1].image} class="d-contents w-40" height='600px' alt={suggested[1].name} />
           <div class="carousel-caption d-none d-md-block">
-            <h5 className='h5'>{suggested[1].name}</h5>
+          <Link to={`/products/detail/${suggested[1].id}`} className='h5'> {suggested[1].name}</Link>
           </div>
         </div>
         <div class="carousel-item">
           <img src={suggested[2].image} class="d-contents w-40" height='600px' alt={suggested[2].name} />
           <div class="carousel-caption d-none d-md-block">
             <br />
-            <h5 className='h5'>{suggested[2].name}</h5>
+            <Link to={`/products/detail/${suggested[2].id}`} className='h5'> {suggested[2].name}</Link>
           </div>
         </div>
       </div>

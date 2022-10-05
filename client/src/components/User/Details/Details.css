@@ -830,13 +830,13 @@ textarea.danger {
     padding-top: 0%;
     border-radius: 2px;
     background-color: rgba(204, 204, 204, 0.108);
-    margin: 1em
+    margin: 0.5em
 }
 
 scroll-container {
     display: block;
     width: 48em;
-    height: 7em;
+    height: 18em;
     overflow-y: scroll;
     scroll-behavior: smooth;
 }

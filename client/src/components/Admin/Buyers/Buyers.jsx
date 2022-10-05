@@ -20,7 +20,7 @@ const Users = () => {
   const statusGraphics=statusGraphicsdb!==undefined?statusGraphicsdb:[];
   const [rowInf, setRowInf] = useState({})
   const [render, setRender] = useState('')
-  console.log(render)
+
   let rows=[]
  let headers={}
 

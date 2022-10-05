@@ -18,7 +18,7 @@ const bull = (
 
 const CardUser = ({logUser=[]}) => {
     let totalUser=0
-    console.log(logUser)
+   
    let logUser2=logUser.length?logUser.map(res=>totalUser+=parseInt(res.status_blocK)):[];
 
   return (
@@ -28,12 +28,12 @@ const CardUser = ({logUser=[]}) => {
       <PeopleIcon sx={{ minWidth: 55,height:40}}/>Users
       </Typography>
      
-      <Typography  component="div" sx={{ display:'grid', gridTemplateColumns:' repeat(auto-fit,minmax(30px,150px))',gridAutoRows: '1fr',alignItems:'center',alignContent:'center',justifyItems:'center',backgroundColor:"#f24"}} >
-      <Typography  component="div" sx={{backgroundColor:'#f45',display:'flex',flexDirection:'column',alignItems:'center',alignContent:'center'}} >
-        <h5>Register</h5> 
+      <Typography  component="div" sx={{ display:'grid', gridTemplateColumns:' repeat(auto-fit,minmax(30px,150px))',gridAutoRows: '1fr',alignItems:'center',alignContent:'center',justifyItems:'center'}} >
+      <Typography  component="div" sx={{display:'flex',flexDirection:'column',alignItems:'center',alignContent:'center'}} >
+        <h4>Register</h4> 
         <h2>{totalUser}</h2> 
       </Typography>
-      <Typography  component="div"   sx={{backgroundColor:'#f45', height: '100px',width:'50px',minWidth:'70px',display:'flex',justifyContent:'center',alignItems:'center',alignContent:'center'}} ><PieUser statusUserGraphics={logUser}/></Typography>
+      <Typography  component="div"   sx={{height: '100px',width:'50px',minWidth:'70px',display:'flex',justifyContent:'center',alignItems:'center',alignContent:'center'}} ><PieUser statusUserGraphics={logUser}/></Typography>
       </Typography>
     
     

@@ -15,10 +15,10 @@ const postProductUserCartService = async(req) => {
     ///console.log(payment.id)
     const updateUser = await User.findOne({ where: { email: userData } })
     const date = new Date
-
+    const dateDay=String(date.getDate()).padStart(2, '0')
 
     // console.log(payment.id,payment.amount)
-    const saleDb = await Sale.create({ invoice: payment.id, total: payment.amount, month: date.getMonth(), year: date.getFullYear() })
+    const saleDb = await Sale.create({ invoice: payment.id, total: payment.amount, month: dateDay, year: date.getFullYear() })
 
 
     await updateUser.addSale(saleDb)

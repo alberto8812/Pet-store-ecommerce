@@ -42,7 +42,7 @@ export const ComponentCard = ({animalsInCurrentPage}) => {
                     category={v.category.name}
                     genre={v.genre.name}
                     price={v.price}
-                    rating={v.rating}
+                    reviews={v.reviews}
                     />
                      </Box>
                     )})}

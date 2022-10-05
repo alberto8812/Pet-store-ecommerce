@@ -166,9 +166,9 @@ export function refreshCart(payload) {
 ////////////////////////// FIN CART //////////////////////////
 
 
-export function addComment(input) {
+export function addComment(input,headres) {
     return async function(dispatch) {
-        axios.post('/loginUsers/comment', input)
+        axios.post('/loginUsers/comment',input,headres)
             .then((res) => {
                 dispatch({
                     type: ADD_COMMENT,

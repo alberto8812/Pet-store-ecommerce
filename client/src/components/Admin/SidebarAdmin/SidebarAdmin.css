@@ -1,6 +1,7 @@
 .sidebar-admin{
   width: 100%;
-  height: calc(100vh - 52px);
+  /* height: calc(100vh - 52px); */
+  background-color: rgb(233, 211, 238);
 
   display: grid;
   grid-template-columns: 150px 1fr;
@@ -8,10 +9,22 @@
 }
 
 .sidebar-admin-rute{
-  padding-left: 0.25em;
+  padding-left: 0.27em;
+  padding-right: 0.27em;
   border-right: 2px solid gray;
   max-width: 150px;
-  
+}
+
+.menu {
+  margin-bottom: 2em;
+  margin-top: 2em;
+  border: 1px solid gray;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-radius: 4px;
+  padding-right: 0.1em;
+  padding-left: 0.7em;
+  background-color: rgb(244, 230, 247);
 }
 
 :link{

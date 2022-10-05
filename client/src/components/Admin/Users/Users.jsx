@@ -46,14 +46,14 @@ const Users = () => {
   const statusUserGraphics=statusUserGraphicsdb!==undefined?statusUserGraphicsdb:[];
   const [update, setupdate] = useState('down')
   let rows=[];
- 
+
 
   useEffect(() => {
     const getToken=async()=>{
 
       //pedimisn el token
       const token= await getAccessTokenSilently()
-      console.log(token)
+
       //realizamon un arreglo con los header
      const headers= {   
         headers:{

@@ -30,7 +30,7 @@ export function validate (data) {
 }
 
 export default function Detail() {
-   const {user,isAuthenticated}=useAuth0()
+   const {user,isAuthenticated,getAccessTokenSilently}=useAuth0()
 
     const [carga, setCarga] = useState(true);
     const { id } = useParams()
@@ -38,19 +38,26 @@ export default function Detail() {
     const navigate = useNavigate()
     const myProduct = useSelector(state => state.details);
    // console.log(myProduct,user.email)
-    let userLogin=[]//definimos una variable  para el filtrado
-   
-
+   const [userLogin, setuserLogin] = useState([])
+    // userLogin=[]//definimos una variable  para el filtrado
+   // console.log(myProduct)
 //PARA REVIEW:
- 
+useEffect(() => {
+    dispatch(getDetails(id)).then(() => setCarga(false))
+}, [id,dispatch])
+
+
     useEffect(() => {
-       if(isAuthenticated){//pregunta si el usuario tiene login en la pagina
-        
-            //indaga indaga si el usuario realizo compra en el producto
-          userLogin=myProduct.reviews===undefined?[]:myProduct.reviews.find(e  => e.user === user.email )//encuentra
-       }
       
-    }, [dispatch])
+       if(isAuthenticated && Object.keys(myProduct).length){//pregunta si el usuario tiene login en la pagina
+            
+            //indaga indaga si el usuario realizo compra en el producto
+     
+    setuserLogin(()=>(myProduct.reviews.find(e  => e.user === user.email )))//encuentra
+   
+        }
+
+    }, [dispatch,isAuthenticated,myProduct])
 
 
     const [input, setInput] = React.useState ({ 
@@ -58,32 +65,57 @@ export default function Detail() {
     })
     const [errors, setErrors] = React.useState({});
 
-    const [data, setData] = React.useState({id: userLogin.id, comment:'', punctuation:''})
-
+    const [data, setData] = React.useState({id: '', comment:'', punctuation:''})
+    useEffect(() => {
+     setData({...data,id:id})
+    }, [id])
+    
 
     let render = false;
 
     const handleSubmit = (e) => {
+        
         e.preventDefault();
+ 
+    
         const errors = validate(data)
+        
         if (!isAuthenticated) {
             alert('You must be logged to comment')
         } else if(errors.comment){
             alert('Your comment could not be published')
-        } else if (userLogin.review.length) {
+        } else if (userLogin.length  ) {//userLogin.review.length
             render = false;
             alert('You already posted a comment on this product')
         } else {
             alert('Comment posted successfully')
             render = false
-            dispatch(addComment(data))
+
+            const getToken=async()=>{
+
+                //pedimisn el token
+                const token= await getAccessTokenSilently()
+                console.log(token)
+                //realizamon un arreglo con los header
+               const headers= {   
+                  headers:{
+                  authorization: `Bearer ${token}`
+                  },    
+                  }
+                //dispatch(getCustomerData)
+                dispatch(addComment(data,headers))
+              }
+          
+              getToken()
+         
         }
     }
 
-    const handleChange = function (e) {
+    const handleChange =  function(e) {
+       console.log(data)
         setData({
             ...data,
-            [e.target.name]:e.target.value
+            [e.target.name]:e.target.value,
         });
         setErrors(validate({
             ...data,
@@ -93,7 +125,7 @@ export default function Detail() {
 
     const calificar = function (e) {
         setData({...data, punctuation: e})
-        console.log({...data, punctuation:e})
+        //console.log({...data, punctuation:e})
 
         for(var i = 1; i<=5; i++) {
             const stars = document.getElementById('star' + i)
@@ -131,7 +163,7 @@ export default function Detail() {
     };
 
     useEffect(() => {
-        console.log(quantitySelected)
+        //console.log(quantitySelected, "3")
     }, [quantitySelected])
     
 
@@ -159,9 +191,6 @@ export default function Detail() {
         }, 3000);
     }
 
-    useEffect(() => {
-        dispatch(getDetails(id)).then(() => setCarga(false))
-    }, [dispatch, id])
 
 
     if (carga) {
@@ -169,8 +198,16 @@ export default function Detail() {
     };
 
 
+    function rankingProm(){
+        let promedy = 3
+        if(myProduct.reviews){
+            promedy += myProduct.reviews.reduce((total,review)=>total=total+parseInt(review.punctuation),0)
+            console.log(promedy)
+        }
+        return promedy/(myProduct.reviews.length+1)
+    }
     return (
-        <div className="contenido">
+       Object.keys(myProduct).length?<div className="contenido">
             <div className="m3">
                 <div className="b5 desk">
                     <li><a href="/">Home</a></li>
@@ -186,8 +223,8 @@ export default function Detail() {
                                     <div className="d2">
                                         <div className="t1 activo" datatype="imagen">
                                             <picture>
-                                                <source srcSet={myProduct.image} type='image/webp' />
-                                                <img src={myProduct.image} alt={myProduct.name} />
+                                             <source srcSet={myProduct.image} type='image/webp' />
+                                                <img src={myProduct?.image} alt={myProduct.name} />
                                             </picture>
                                         </div>
                                         <a href={myProduct.image}></a>
@@ -233,6 +270,9 @@ export default function Detail() {
                         </div>
                         {/* SECCIÓN DE REVIEWS */}
                         <div className="item-description m-mobile">
+                            <div>
+                                <h2 className="title desk">Rating: {rankingProm()} <span className='star2'>★</span></h2>
+                            </div>
                             <h2 className="title desk">Reviews</h2>
                             <div class="rating">
                                 <span className='star' onClick={e => calificar(5)} id="star5">★</span>
@@ -242,11 +282,11 @@ export default function Detail() {
                                 <span className='star' onClick={e => calificar(1)} id="star1">★</span>
                             </div>
                             <div className="review">
-                                {!userLogin.comment?.length && 
+                            {!userLogin?.comment?.length && 
                                 <form onSubmit={(e) => handleSubmit(e)}>
                                     <h4 className="titleRev">Write a review</h4>
                                     <div className="comarea">
-                                        <textarea className={errors.comment? 'danger' : 'com'} type="text" placeholder="Leave your opinion..." name="comment" onChange={handleChange} value={data.comment}/>
+                                        <textarea className={errors.comment? 'danger' : 'com'} type="text" placeholder="Leave your opinion..." name="comment" onChange={(e)=>handleChange(e)} value={data.comment}/>
                                         {errors.comment && (
                                             <p className='danger'>{errors.comment}</p>
                                         )}
@@ -255,17 +295,21 @@ export default function Detail() {
                                 </form>}
                             </div>
                             <div>
-                                <h2 lassName="title desk">Comments</h2>
-                                <div>{myProduct?.reviews?.map( review => {
-                                    return(
-                                        <div>
-                                            <h2>{review.comment}</h2>
-                                            <h2>{renderizarEstrellas(review.punctuation)}</h2>
-                                        </div>
-                                    )
-                                })}</div>
+                                <h2 className="title desk">Comments</h2>
                                 <scroll-container>
                                 <div className="comments">
+                                    {myProduct.reviews.comment?
+                                    <scroll-page>
+                                    <div className="comments">
+                                    <div>{myProduct?.reviews?.map( review => {
+                                    return(
+                                        <div>
+                                            <span className='starComment'>{renderizarEstrellas(review.punctuation)}</span>
+                                            <p>{review.comment}</p>
+                                        </div>
+                                    )
+                                    })}</div></div>
+                                    </scroll-page>: ' '}
                                     <scroll-page>
                                     <div className="comments">
                                     <div>
@@ -466,7 +510,7 @@ export default function Detail() {
                 <Footer/>
             </div>
 
-        </div>
+        </div>:<h1>loading..........</h1>
     )
 
 }

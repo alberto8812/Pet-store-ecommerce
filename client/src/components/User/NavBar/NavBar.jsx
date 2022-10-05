@@ -124,7 +124,6 @@ const NavBar = () => {
       }
     );
   };
-//#6200adc9
 
   return (
     <Grid

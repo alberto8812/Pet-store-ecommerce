@@ -412,7 +412,8 @@ export default function Detail() {
 
                             <div className="c-mobile">
                                 <div className="card-promotion-section">
-                                    <p><CreditCardIcon className="fa fa-credit-card" /></p>
+                                <i class="bi bi-credit-card"></i>
+                                    {/* <p><CreditCardIcon className="fa fa-credit-card" /></p> */}
                                     Pay with credit or debit
                                 </div>
                                 <div className="card-section">

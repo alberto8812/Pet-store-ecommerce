@@ -60,7 +60,7 @@
     position: absolute;
     text-decoration: none;
     outline: none;
-    color: black;
+    color: white;
     font-size: 12px;
     font-weight: bold;
     top: 15px;
@@ -99,7 +99,7 @@
 .img-home-btn {
     /********************************/
     width: 80%;
-    height: 70%;
+    height: 90%;
 }
 
 .link_home {

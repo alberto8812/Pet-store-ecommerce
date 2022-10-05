@@ -109,7 +109,6 @@ const Carousel = props => {
              </TextoSlide>
             </Slide>
 
-       </ConstainerSlideshow>
        <Controls>
         <Boton onClick={back}>
         <FlechaIzquieRda/>
@@ -118,6 +117,7 @@ const Carousel = props => {
         <FlechaDerecha/>  
         </Boton>
        </Controls>
+       </ConstainerSlideshow>
     </mainContainer>
   )
 }
@@ -135,7 +135,7 @@ const Slide=styled.div`
    overflow:hidden;
    transition:0.3S ease all;
    z-index:10;
-   max-height:500px;
+   max-height:2500px;
    position:relative;
    img{
      width:100%;

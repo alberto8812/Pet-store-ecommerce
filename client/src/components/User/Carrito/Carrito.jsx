@@ -95,8 +95,10 @@ export default withAuthenticationRequired ( function Carrito() {
                 return (
                   <div className="item-cart" key={key}>
                     <button className="btn-delete" id={item.id} onClick={e => handleDelete(e)}>❌</button>
+                    <a href={`/products/detail/${item.id}`} className="item-cart">
                     <h3 className="name" style={{'fontWeight': 'bold'}}>{item.name.toUpperCase()}</h3>
                     <img className="image" src={item.image} alt={item.name} />
+                    </a>
                     <ul>
                       {/* <li><strong>Age: </strong> {item.age}</li>
                       <li><strong>ID Product: </strong>{item.id}</li> */}

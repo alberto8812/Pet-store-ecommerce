@@ -110,12 +110,12 @@ const NavBar = () => {
       }
     );
   };
-
+//#6200adc9
   return (
     <Grid
       container
       xs={12}
-      sx={{ background: "#6200adc9" }}
+      sx={{ background: "#63247ae0" }}
       direction="row"
       justifyContent="center"
       alignItems="center"
@@ -147,11 +147,12 @@ const NavBar = () => {
         </Grid>
         <Grid
           item
-          xs={8}
+          xs={7}
           container
           direction="row"
           justifyContent="center"
           alignItems="center"
+          marginLeft={7}
         >
           {/* <SearchBar /> */}
           <SearchBar

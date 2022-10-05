@@ -43,11 +43,13 @@
 }
 
 .div-contador {
-    display: flex;
-    gap: .5rem;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    align-content: center !important;
     border: 1px solid lightgray;
     border-radius: 5px;
-    margin-right: 10px;
+    /* margin-left: 10px; */
 }
 
 .plus,
@@ -62,9 +64,10 @@
     outline: inherit;
     /* margin-right: 2px; */
     font-size: 15px;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
     color: #3483fa;
     font-weight: bold;
+    /* margin-top: 5px; */
 }
 
 .count {

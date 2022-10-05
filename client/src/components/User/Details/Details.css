@@ -1,12 +1,16 @@
-body {
+/* body {
     font-family: 'roboto', sans-serif;
     background: #f6f6f6;
-}
+} */
+
+
 /**/
-body {
+
+
+/* body {
     padding: 0;
     margin: 0;
-}
+} */
 
 * {
     box-sizing: border-box;
@@ -16,35 +20,47 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
-user agent stylesheet body {
+
+/* user agent stylesheet body {
     display: block;
     margin: 8px;
-}
+} */
 
 .btn-section-add-to-cart {
     background: #3483fa;
     width: 100%;
     padding: 12px 20px;
     margin: 24px 0 0 0;
-    font-size: 18px;
+    font-size: 15px;
     color: #fff;
     border-radius: 4px;
     cursor: pointer;
+    border: transparent;
+    font-weight: bold;
+}
+
+.btn-section-add-to-cart:hover {
+    background: #1354b4;
 }
 
 .btn-sectionadd-to-cart {
     background: #3483fa;
+    border: transparent;
     width: 100%;
+    font-weight: bold;
     padding: 12px 20px;
     margin: 24px 0 0 0;
-    font-size: 18px;
+    font-size: 15px;
     color: #fff;
-    -webkit-border-radius: 4px;
     border-radius: 4px;
     cursor: pointer;
     margin: 8px 0 0 0;
-    background: #4189e626 !important;
+    background: rgba(65, 137, 230, .15) !important;
     color: #3483fa !important;
+}
+
+.btn-sectionadd-to-cart:hover {
+    background: #1f67c454 !important;
 }
 
 .contenido {
@@ -325,6 +341,12 @@ user agent stylesheet body {
     background: #00a650;
 }
 
+.tag-unavailable {
+    background-color: rgb(204, 50, 3);
+    color: white;
+    border-radius: 3px;
+}
+
 .contenido .m3 .b2 .delivery {
     display: block;
     margin: 0 0 20px 0;
@@ -367,14 +389,14 @@ user agent stylesheet body {
     position: relative;
 }
 
-.contenido .m3 .b2 .cart .quantity .content-qty {
+.contenido .m3 .b2 .cart .quantity {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100px;
     position: relative;
     overflow: hidden;
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     border-radius: 4px;
     padding: 0 10px;
     gap: 0.5rem;
@@ -423,9 +445,10 @@ user agent stylesheet body {
 .contenido .m3 .b2 .cart .available {
     display: inline-block;
     color: #acacac;
-    font-size: 14px;
+    font-size: 11px;
     font-weight: 300;
-    padding: 0 0 0 10px;
+    margin-right: 16px;
+    padding: 0 0 0 10;
 }
 
 .banner-secundarios .m-productos .m-footer a,
@@ -610,12 +633,12 @@ p:not(.item-description.m-mobile p) {
 }
 
 .body {
-    display: flex;
-    align-content: flex-end;
-    justify-content: space-around;
+    display: flex !important;
+    align-content: flex-start !important;
     flex-direction: column;
     padding-left: 50px;
     flex-wrap: nowrap;
+    font-size: 13px;
 }
 
 .contenido .m3 .b2 .producto-information {
@@ -636,6 +659,7 @@ p:not(.item-description.m-mobile p) {
     display: flex;
     font-size: 25px;
 }
+
 
 /* CSS ESTRELLAS: */
 
@@ -666,16 +690,19 @@ p:not(.item-description.m-mobile p) {
     color: yellow;
 }
 
-.starComment{
+.starComment {
     color: gold;
     text-shadow: 0 0 5px #e2e2e2;
     width: 1.1em;
     font-size: 2em;
 }
 
+
 /* FIN CSS ESTRELLAS */
 
+
 /* CSS REVIEW */
+
 .review {
     margin-top: 12%;
     font-family: 'roboto', sans-serif;
@@ -709,8 +736,8 @@ p:not(.item-description.m-mobile p) {
     min-height: 3em;
 }
 
-.btncom{
-    position:relative;
+.btncom {
+    position: relative;
     /* display: inline-block; */
     grid-column: 2;
     margin-left: 32em;
@@ -723,14 +750,14 @@ p:not(.item-description.m-mobile p) {
     border-radius: 4px;
     cursor: pointer;
 }
- 
+
 p.danger {
     color: red;
     font-size: 15px;
-    position: absolute; 
-    display:flex;
+    position: absolute;
+    display: flex;
 }
-  
+
 textarea.danger {
     border: 2px solid red;
     display: inline-block;
@@ -761,4 +788,38 @@ scroll-container {
     scroll-behavior: smooth;
 }
 
+
 /* FIN CSS REVIEW */
+
+.content-qty {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    align-content: center !important;
+    gap: .5rem;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.minus-plus-btn {
+    display: inline;
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    /* margin-right: 2px; */
+    font-size: 16px !important;
+    margin-bottom: 15px;
+    color: #3483fa;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.counter-detail {
+    font-size: 20px;
+    padding: 0;
+}

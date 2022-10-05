@@ -55,7 +55,7 @@ const ProductsAdm= () => {
 
   const handleDelete = async (id, value) =>{
     //const token=await getToken()
-   // console.log(token)
+   // console.log(token)//
  
    const getToken=async()=>{
 

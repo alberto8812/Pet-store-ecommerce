@@ -14,7 +14,7 @@ const HomeAdmin = () => {
      <CardUser logUser={statusGraphicsdb.statisticsStatusUserpie}/>
     </Grid>
     <Grid item xs={6}>
-    <CardTotalProducts logUser={statusGraphicsdb.statisticsStatusUserpie}/>
+    <CardTotalProducts logUser={statusGraphicsdb.productsCounttotal}/>
     </Grid>
     <Grid item xs={6}>
     <CardUser/>

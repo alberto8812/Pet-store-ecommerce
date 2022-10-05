@@ -68,4 +68,11 @@ const piestatususers=async(req)=>{
          return statusUsers ;
         }
 
-module.exports={LineGraphicsSale,pieGraphicscategory,piestatusProducts,piestatususers}
+const productsCount=async(req)=>{
+    
+    const productscount=await Product.findAll({attributes:[[db.fn('COUNT', db.col('id')),'status_product']]})
+    
+    return productscount ;
+    }
+
+module.exports={LineGraphicsSale,pieGraphicscategory,piestatusProducts,piestatususers,productsCount}

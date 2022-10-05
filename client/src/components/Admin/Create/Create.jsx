@@ -11,6 +11,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Alert from 'react-bootstrap/Alert';
 import Stack from 'react-bootstrap/Row';
+import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
 
 function validate(input) {
     let errors = {}
@@ -57,8 +58,8 @@ function validate(input) {
 
     if (!input.detail) {
         errors.detail = 'Product detail is required'
-    } else if (input.detail.length > 300) {
-        errors.detail = 'The name must not exceed 300 characters'
+    } else if (input.detail.length > 3000) {
+        errors.detail = 'The detail must not exceed 3000 characters'
     }
 
     if (!input.rating) {
@@ -76,7 +77,7 @@ function validate(input) {
 }
 
 export default function Create() {
-
+    const {isAuthenticated,getAccessTokenSilently}=useAuth0()//componete de hook auth0
     const dispatch = useDispatch();
     const navigate = useNavigate();
     // allCategorys = useSelector((state) => state.categorys)
@@ -177,8 +178,15 @@ export default function Create() {
                    input.image = ''
                }
                */
-
-            dispatch(postProduct(input))
+               async  function editPP(){
+               const token = await getAccessTokenSilently()
+               const headers= {   
+                 headers:{
+                 authorization: `Bearer ${token}`
+                 },    
+                 }
+ 
+            dispatch(postProduct(input, headers))
             alert('The product was added')
             setInput({
                 name: '',
@@ -191,7 +199,9 @@ export default function Create() {
                 rating: 0,
                 category: '',
                 genre: '',
-            })
+            })}
+
+            editPP()
             // navigate('/')
         } else {
             alert('There is incomplete data')
@@ -242,7 +252,7 @@ export default function Create() {
                         <Col sm={2}>  <label><strong>Category </strong></label></Col>
                         <Col sm={6}>  <div><select className='inputs' name="category" onChange={e => {handleChange(e)}}>
                             <option disabled selected>Select a category</option>
-                            <option value='accesories'>Accesories</option>
+                            <option value='accessories'>Accessories</option>
                             <option value='food'>Food</option>
                             <option value='toys'>Toys</option>
                         </select>

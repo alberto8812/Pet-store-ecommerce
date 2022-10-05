@@ -66,9 +66,10 @@ export const getDetails = (id) => {
     };
 };
 
-export function postProduct(payload) {
+export function postProduct(payload, headers) {
+    
     return async function(dispatch) {
-        const response = await axios.post('/loginAdmin/create', payload)
+        const response = await axios.post('/loginAdmin/create', payload, headers)
         return response;
     }
 };
@@ -335,7 +336,7 @@ export function activeProducts(id, setFlag) {
 };
 
 export function editProducts(id, headers, payload) {
-
+    console.log(id, headers, payload, 'action edit')
     return async function(dispatch) {
         try {
             axios.put(`/loginAdmin/edit/${id}`, payload, headers)

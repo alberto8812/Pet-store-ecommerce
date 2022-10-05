@@ -206,6 +206,8 @@ useEffect(() => {
         }
         return promedy/(myProduct.reviews.length+1)
     }
+
+    console.log(myProduct.reviews)
     return (
        Object.keys(myProduct).length?<div className="contenido">
             <div className="m3">
@@ -298,7 +300,7 @@ useEffect(() => {
                                 <h2 className="title desk">Comments</h2>
                                 <scroll-container>
                                 <div className="comments">
-                                    {myProduct.reviews.comment?
+                                    {myProduct.reviews.length?
                                     <scroll-page>
                                     <div className="comments">
                                     <div>{myProduct?.reviews?.map( review => {

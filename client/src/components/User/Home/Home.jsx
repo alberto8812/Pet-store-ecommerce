@@ -42,6 +42,7 @@ export default function Home() {
     indexLastAnimal
   );
 
+  console.log(products)
   return (
     <div className="home">
       <Grid container>

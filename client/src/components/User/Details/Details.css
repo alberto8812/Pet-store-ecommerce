@@ -795,7 +795,7 @@ p:not(.item-description.m-mobile p) {
     border-radius: 4px;
     cursor: pointer;
 }
-
+/*  */
 p.danger {
     color: red;
     font-size: 15px;

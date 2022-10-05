@@ -157,6 +157,7 @@ function rootReducer(state = initialState, action) {
             const increaseItem = state.cart.find(x => x.id === action.payload);
             state.numberCart++
                 increaseItem.quantity++;
+            localStorage.setItem("cart", JSON.stringify(state.cart));
             return {
                 ...state
             };
@@ -166,17 +167,20 @@ function rootReducer(state = initialState, action) {
                 state.numberCart--;
                 decreaseItem.quantity--;
             }
+            localStorage.setItem("cart", JSON.stringify(state.cart));
             return {
                 ...state
             }
         case DELETE_CART:
             const deleteItem = state.cart.find(x => x.id === action.payload);
+            const newCart = state.cart.filter(item => {
+                return item.id != deleteItem.id
+            })
+            localStorage.setItem("cart", JSON.stringify(newCart));
             return {
                 ...state,
                 numberCart: state.numberCart - deleteItem.quantity,
-                cart: state.cart.filter(item => {
-                    return item.id != deleteItem.id
-                })
+                cart: newCart
             };
         case REFRESH_CART:
             let cart = [];

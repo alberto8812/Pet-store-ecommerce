@@ -16,7 +16,7 @@ const datos = require('../../database/dbjson/catgen'); //archivo que contiene in
 const LoadProduct=require('../../middleware/LoadProduct')
 
 var ArrayAge = ['puppy', 'young', 'adult'];
-var randomAge = Math.floor(Math.random()*ArrayAge.length);
+var randomAge = Math.floor(Math.random()*ArrayAge.length);//
 
 
 

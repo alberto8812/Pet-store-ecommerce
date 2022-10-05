@@ -16,22 +16,20 @@
     color: #fff
 } */
 
-.container_navbar{
+.container_navbar {
     width: 60%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-auto-rows: 1fr;
-    justify-content:space-between;
+    justify-content: space-between;
     align-items: "center";
-   
+    margin-bottom: 5px;
 }
-
 
 .navbar {
     color: #fff;
-   
     display: flex;
-    grid-template-columns: repeat(auto-fit,1fr);
+    grid-template-columns: repeat(auto-fit, 1fr);
     grid-row: 1fr;
     gap: 1rem;
     /* margin: 0 auto; */
@@ -54,7 +52,6 @@
     font-size: 14px;
     font-weight: bold;
     display: flex;
-   
     /* display: inline-flex; */
 }
 
@@ -65,7 +62,6 @@
 
 .allProducts-btn {
     background-color: #fff;
-    
     border: 0.3px solid black;
     border-radius: 1.5rem;
     box-sizing: border-box;
@@ -78,7 +74,7 @@
     font-size: 1rem;
     font-weight: 600;
     line-height: 1;
-    padding: 5px 9px;
+    padding: 4px 3px;
     text-align: center;
     text-decoration: none #0d172a solid;
     text-decoration-thickness: auto;

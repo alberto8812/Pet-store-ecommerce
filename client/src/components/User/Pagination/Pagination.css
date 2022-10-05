@@ -1,8 +1,8 @@
 .paginado {
     display: flex !important;
     text-align: center;
-    margin: 10px 575px !important;
-    /* margin-top: 15px; */
+    margin: 0px 575px !important;
+    margin-top: 25px !important;
     align-content: center;
     overflow: hidden;
     flex-direction: row;
@@ -15,13 +15,14 @@
 .btn-paginado {
     /* float: left; */
     padding: 8px 18px;
-    background-color: #63247ae0;
+    color: #63247ae0;
     border: transparent;
     border-radius: 5px;
-    margin: 3px;
-    color: white;
+    margin: 5px;
+    background-color: #ebebeb;
     transition: transform 0.5s ease-in-out;
     transform-style: preserve-3d;
+    font-weight: 500;
 }
 
 .input-pag {
@@ -29,15 +30,18 @@
     font-size: 15px;
     font-weight: bold;
     outline: none;
-    width: 45px;
-    padding: 8px 18px;
-    background-color: #63247ae0;
+    width: 37px;
+    height: 38px;
+    padding: 13px 14px;
+    background-color: rgba(0, 0, 0, .04);
+    /* background-color: #63247ae0; */
     border: transparent;
-    margin: 3px;
-    color: white;
+    margin-top: 5px;
+    margin-right: 5px;
+    color: rgb(114, 112, 112);
     border-radius: 5px;
-    transition: transform 0.5s ease-in-out;
-    transform-style: preserve-3d;
+    /* transition: transform 0.5s ease-in-out;
+    transform-style: preserve-3d; */
 }
 
 .parrafo-pag {
@@ -45,20 +49,21 @@
     align-items: center;
     padding: 8px 18px;
     border: transparent;
-    color: black;
+    color: rgb(109, 107, 107);
     transition: transform 0.5s ease-in-out;
     /* transform-style: preserve-3d; */
 }
 
 .btn-paginado:hover {
-    background-color: #63247a98;
-    color: #121212;
+    background-color: #cecccc;
+    /* color: #121212; */
     transition: transform 0.5s ease-in-out;
-    transform-style: preserve-3d;
+    /* transform-style: preserve-3d; */
     /* transform: rotateY(180deg); */
 }
 
-.btn-paginado:focus {
+
+/* .btn-paginado:focus {
     background-color: #63247a98;
     color: #121212;
-}
+} */

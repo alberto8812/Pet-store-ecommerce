@@ -34,23 +34,23 @@ const SidebarAdmin = () => {
     <div className='sidebar-admin'>
         <div className='sidebar-admin-rute'>
           <ul>
-            <li>
+            <li className='menu'>
               <NavLink to="logs" ><FaIcons.FaHome/> Home de Admin</NavLink>          
             </li>
-            <li>
+            <li className='menu'>
               <Link to="statistics"><FaIcons.FaChartBar/> Statistics </Link>          
             </li>
-            <li>
+            <li className='menu'>
               <Link to="users"><FaIcons.FaUsers/> Users</Link>          
             </li>
-            <li>
+            <li className='menu'>
               <Link to="buyers"><FaIcons.FaTags/> Buyers</Link>          
             </li>
-            <li>
+            <li className='menu'>
               <Link to="productsAdm"> <FaIcons.FaBone/> Products</Link>          
             </li>
-            <li>
-              <Link to="create"><CgAddR/> Add Product</Link>          
+            <li className='menu'>
+              <Link to="create" ><CgAddR/> Add Product</Link>          
             </li>
           </ul>
         </div>

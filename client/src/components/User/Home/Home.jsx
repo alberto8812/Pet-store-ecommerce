@@ -42,11 +42,12 @@ export default function Home() {
     indexLastAnimal
   );
 
+  console.log(products)
   return (
     <div className="home">
       <Grid container>
         <Grid item xs={12}>
-          {/* <Box border={2} m={5}></Box> */}
+          {/* <Box border={.5} m={1}></Box> */}
         </Grid>
         <Grid item xs={12}>
           <Box border={2} overflow="hidden">
@@ -74,7 +75,7 @@ export default function Home() {
         <Recomendations />  </div>)}   {/*<img className="img-notFound"src={notFound} alt='not found'/>*/}
 
               <a style={{'textDecoration': 'none'}} href="#">
-                  <button className="goUp-btn">Go Up</button>
+                  <button className="goUp-btn">Go Up ↑</button>
               </a>
 
       <Footer />

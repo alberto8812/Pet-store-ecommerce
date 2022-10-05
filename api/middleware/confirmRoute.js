@@ -40,7 +40,7 @@ function confirmationEmail(userData, products) {
         let mailToCustomerOptions = {
             from: 'Developets',
             to: userData,
-            subject: 'ORDER CONFIRM 🐶',
+            subject: 'ORDER CONFIRMED 🐶',
             html: `<div>
                 <h2>Thank you for your purchase!</h2>
                 <p>We'll send you an other email when it's ready!</p><br/>

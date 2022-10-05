@@ -17,8 +17,24 @@
     align-items: flex-end;
 }
 
+.msg-noFavs {
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    color: rgb(173, 38, 38);
+    font-weight: bold;
+}
 
-/**/
+
+/* .div-containerIcons-navbar {
+    display: flex;
+    justify-content: center;
+    margin: 10 10;
+} */
+
+.logoutNav {
+    margin-right: 15px;
+}
 
 .bi-cart {
     font-size: 35px;
@@ -44,7 +60,7 @@
     position: absolute;
     text-decoration: none;
     outline: none;
-    color: black;
+    color: white;
     font-size: 12px;
     font-weight: bold;
     top: 15px;
@@ -83,7 +99,7 @@
 .img-home-btn {
     /********************************/
     width: 80%;
-    height: 70%;
+    height: 90%;
 }
 
 .link_home {

@@ -11,7 +11,7 @@ import PetsIcon from '@mui/icons-material/Pets';
 import InventoryIcon from '@mui/icons-material/Inventory';
 
 const CardTotalProducts = ({logUser=[]}) => {
-  console.log(logUser[0],"2")
+
   return (
     <Card sx={{ minWidth: 165,maxWidth:350 }}>
     <CardContent>

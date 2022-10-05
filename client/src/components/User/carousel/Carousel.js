@@ -135,7 +135,7 @@ const Slide=styled.div`
    overflow:hidden;
    transition:0.3S ease all;
    z-index:10;
-   max-height:2500px;
+   max-height:180px;
    position:relative;
    img{
      width:100%;

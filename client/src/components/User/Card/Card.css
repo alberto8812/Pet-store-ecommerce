@@ -7,7 +7,8 @@
 
 /**/
 
-.cards .flip-card {
+
+/* .cards .flip-card {
     background-color: transparent;
     width: 750px;
     height: 600px;
@@ -15,7 +16,7 @@
     border: solid 1px #121212;
     box-shadow: 30px 40px 15px 0px #121212;
     border-radius: 10%;
-}
+} */
 
 .bi-heart {
     font-size: 20px;
@@ -82,4 +83,45 @@
     width: 600px;
     height: 400px;
     border-radius: 10%
+}
+
+.title-card {
+    font-size: 18px;
+}
+
+.img-card {
+    height: 170px;
+    width: 170px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-left: 50px !important;
+    border-radius: 3px;
+    padding: 0;
+}
+
+.container-favs-stars {
+    display: block !important;
+}
+
+.container-favs-stars:hover {
+    color: transparent;
+}
+
+.card-div {
+    display: grid;
+    border-radius: 10px !important;
+    box-shadow: -1rem 0 3rem rgba(167, 117, 182, 0.678) !important;
+    transition: 0.4s ease-out;
+    padding-bottom: 10px;
+    width: 330px;
+    max-width: 350px;
+    height: 50vh;
+    margin: 1rem;
+    align-items: center;
+}
+
+.card-div:hover {
+    transform: translateY(-15px);
+    transition: 0.4s ease-out;
 }

@@ -46,7 +46,7 @@ export default function Home() {
     <div className="home">
       <Grid container>
         <Grid item xs={12}>
-          {/* <Box border={2} m={5}></Box> */}
+          {/* <Box border={.5} m={1}></Box> */}
         </Grid>
         <Grid item xs={12}>
           <Box border={2} overflow="hidden">

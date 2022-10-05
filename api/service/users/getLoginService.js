@@ -4,7 +4,7 @@ const axios=require('axios');
 
 const getLoginResponse =async(req)=>{
    /////require token enviado atravez del front 
-console.log('Holiiiiis')
+
     const accessToken=req.headers.authorization.split(' ')[1];
     ///peticion a auth0 para traer datos de usuario
  
@@ -13,6 +13,8 @@ console.log('Holiiiiis')
           }
         })
     const userInfo=response.data
+
+
     
     ///crear usuarios en la base de datos
     const createUserDB= await User.findOrCreate({where:{
@@ -23,8 +25,13 @@ console.log('Holiiiiis')
     }
     })
 
-    const userDb=await User.findOne({attributes:['city','direction'],where:{email:userInfo.email}})
-   console.log('MIRAMEEE', userDb)
+    if(userInfo.email==='developetshenry@gmail.com'){
+        const userDb=await User.update({flagAdmin:true},{where:{email:userInfo.email}})
+    }
+
+
+    const userDb=await User.findOne({attributes:['city','direction','flagAdmin'],where:{email:userInfo.email}})
+ 
     return  userDb;
 }
 

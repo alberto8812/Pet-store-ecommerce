@@ -12,11 +12,15 @@ import { useEffect } from 'react'
 import { getDataProfile } from '../../../redux/actions'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-
+useDispatch
 
 export default function Profile() {
+    const dispatch=useDispatch()
     const { getAccessTokenSilently, isAuthenticated, user } = useAuth0()//componete de hook auth0
-    let usuario= []
+   const userData=useSelector(state=>state.userProfile)
+   console.log(userData)
+
+   
 
     useEffect(() => {
         async function editUser() {
@@ -26,12 +30,14 @@ export default function Profile() {
                     authorization: `Bearer ${token}`
                 },
             }
-            usuario =  await axios.get('/loginUsers', headers)
-            
+            dispatch(getDataProfile(headers))
+        
         }
-        console.log('TRAEMELA',usuario)
         editUser()
     },[])
+
+
+
 
     return (
 
@@ -86,7 +92,7 @@ export default function Profile() {
                                                 <span>Direccion</span>
                                             </div>
                                             <div className="field-value__value">
-                                                <span>{usuario.direction}</span>
+                                                <span>{userData.direction}</span>
                                             </div>
                                         </div>
                                         {/*<div className="field-value__action">
@@ -105,7 +111,7 @@ export default function Profile() {
                                                 <span>Direccion alternativa (OPCIONAL)</span>
                                             </div>
                                             <div className="field-value__value">
-                                                <span>{user.birthdate}</span>
+                                                <span>{userData.city}</span>
                                             </div>
                                         </div>
                                         {/*<div className="field-value__action">

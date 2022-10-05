@@ -4,7 +4,7 @@ const axios=require('axios');
 
 const getLoginResponse =async(req)=>{
    /////require token enviado atravez del front 
-
+console.log('Holiiiiis')
     const accessToken=req.headers.authorization.split(' ')[1];
     ///peticion a auth0 para traer datos de usuario
  
@@ -24,6 +24,7 @@ const getLoginResponse =async(req)=>{
     })
 
     const userDb=await User.findOne({attributes:['city','direction'],where:{email:userInfo.email}})
+   console.log('MIRAMEEE', userDb)
     return  userDb;
 }
 

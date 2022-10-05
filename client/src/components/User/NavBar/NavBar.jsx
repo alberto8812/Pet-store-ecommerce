@@ -272,6 +272,11 @@ const NavBar = () => {
                   alignItems="center"
                   color="rgb(234, 208, 240)"
                 >
+                    <Link to='/' onClick={() => window.location.redirect()} target='_self' className='nav-link' >
+                        {/* <Icon className='ico_nav' icon="bx:home" width='30px' height='30px' /> */}
+                        <img className='img-home-btn' src={home} alt='' />
+                        
+                    </Link>
                 </Grid>
                   <LogOut />
               </Grid>

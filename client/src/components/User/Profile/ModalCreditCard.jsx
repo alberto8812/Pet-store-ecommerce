@@ -21,7 +21,21 @@ export default function ModalCreditCard() {
                     <Offcanvas.Title>Credit Card</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                
+                <div>
+                        <form action="">
+                            <div>
+                                <label>holaaa</label>
+                            </div>
+                            <br />
+                            <div>
+                                <input type="text" onChange={'funcion'}/>
+                            </div>
+                            <br />
+                            <div>
+                                <button onClick={'funcion'}>buton</button>
+                            </div>
+                        </form>
+                    </div>
 
                 </Offcanvas.Body>
             </Offcanvas>

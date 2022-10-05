@@ -225,6 +225,10 @@ function rootReducer(state = initialState, action) {
         case POST_CUSTOMER_EDIT_DATA:
             console.log("data")
             return state
+        case 'POST INFO':
+            return {
+                ...state,
+            }
         default:
             return state
     }

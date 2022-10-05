@@ -29,7 +29,7 @@ import {
 } from "./constants";
 
 export function getAllProducts() {
-    return async(dispatch) => {
+    return async (dispatch) => {
         try {
             return axios.get('/products')
                 .then(res => dispatch({ type: GET_ALL_PRODUCTS, payload: res.data }))
@@ -41,7 +41,7 @@ export function getAllProducts() {
 };
 
 export function getProducts(prop) {
-    return async function(dispatch) {
+    return async function (dispatch) {
         try {
             return axios.get('/products/search?name=' + prop.name + '&category=' + prop.category + '&genre=' + prop.genre + '&age=' + prop.age)
                 .then(res => dispatch({ type: GET_ALL_PRODUCTS, payload: res.data }))
@@ -53,7 +53,7 @@ export function getProducts(prop) {
 };
 
 export const getDetails = (id) => {
-    return async(dispatch) => {
+    return async (dispatch) => {
         try {
             const { data } = await axios.get(`/products/detail/${id}`);
             return dispatch({
@@ -75,7 +75,7 @@ export function postProduct(payload, headers) {
 };
 
 export function postContact(payload) {
-    return async function() {
+    return async function () {
         try {
             let newEmail = await axios.post('/aboutus', payload)
             return newEmail;
@@ -180,7 +180,7 @@ export function addComment(input,headres) {
 }
 
 export const postSendProds = (enviar, headers) => {
-    return async(dispatch) => {
+    return async (dispatch) => {
         try {
             const { data } = await axios.post(
                 `/loginUsers/productusercart`,
@@ -196,11 +196,18 @@ export const postSendProds = (enviar, headers) => {
     };
 };
 
-export function getProfileData(payload) {
-    return {
-        type: PROFILE_DATA,
-        payload
-    }
+export const getDataProfile = (token) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.get(`/loginAdmin`, token);
+            return dispatch({
+                type: PROFILE_DATA,
+                payload: data,
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    };
 }
 
 ////////////////////////************Admind*******************/////////////////////////////////// /
@@ -211,7 +218,7 @@ export function getProfileData(payload) {
 //verifica que tipo de roll de usuario
 
 export const getRollAdmin = (token) => {
-    return async(dispatch) => {
+    return async (dispatch) => {
         try {
             const { data } = await axios.get(`/loginAdmin`, token);
             return dispatch({
@@ -226,7 +233,7 @@ export const getRollAdmin = (token) => {
 
 //consigue todos los datos de las graficas 
 export const getgraphicsData = (token) => {
-    return async(dispatch) => {
+    return async (dispatch) => {
         try {
             const { data } = await axios.get(`/loginAdmin/graphics`, token);
             return dispatch({
@@ -241,7 +248,7 @@ export const getgraphicsData = (token) => {
 
 //consigue todos los datos de los usuarios que realizaron las compras
 export const getCustomerShopping = (token) => {
-    return async(dispatch) => {
+    return async (dispatch) => {
         try {
             const { data } = await axios.get(`/loginAdmin/customerShopping`, token);
             return dispatch({
@@ -256,8 +263,8 @@ export const getCustomerShopping = (token) => {
 
 // cambiar el status de la compra 
 export const putCustomerShoppingStatus = (token, status, invoice) => {
- 
-    return async(dispatch) => {
+
+    return async (dispatch) => {
         try {
             const { data } = await axios.put(`/loginAdmin/customerShopping/${invoice}`, { status: status }, token);
             return dispatch({
@@ -272,7 +279,7 @@ export const putCustomerShoppingStatus = (token, status, invoice) => {
 
 ///// trae todos los datos del usuario de la base de datos
 export const getCustomerData = (token) => {
-    return async(dispatch) => {
+    return async (dispatch) => {
         try {
             const { data } = await axios.get(`/loginAdmin/datausers`, token);
             return dispatch({
@@ -288,7 +295,7 @@ export const getCustomerData = (token) => {
 ///// edita todos los datos del usuario de la base de datos
 export const postCustomerData = (dataUser, headers) => {
 
-    return async(dispatch) => {
+    return async (dispatch) => {
         try {
             const { data } = await axios.post(`/loginAdmin/editUsersAdmin`, dataUser, headers);
             return dispatch({
@@ -304,11 +311,11 @@ export const postCustomerData = (dataUser, headers) => {
 
 
 
-export function deleteProducts(id, setFlag,value,headers) {
-   // console.log(headers)
-    return async(dispatch) => {
+export function deleteProducts(id, setFlag, value, headers) {
+    // console.log(headers)
+    return async (dispatch) => {
         try {
-            return axios.put(`/loginAdmin/delete/${id}`,{value},headers)
+            return axios.put(`/loginAdmin/delete/${id}`, { value }, headers)
                 .then(res => {
                     setFlag((flag) => !flag)
                     return dispatch({ type: DELETE_PRODUCT, payload: res.data })
@@ -321,7 +328,7 @@ export function deleteProducts(id, setFlag,value,headers) {
 };
 
 export function activeProducts(id, setFlag) {
-    return async(dispatch) => {
+    return async (dispatch) => {
         try {
             return axios.put(`http://localhost:3001/loginAdmin/delete/${id}`)
                 .then(res => {
@@ -349,6 +356,15 @@ export function editProducts(id, headers, payload) {
             console.log(error)
         }
     }
+}
+
+export function postInfo(payload, headers) {
+    return async function (dispatch) {
+        const response = await axios.post('/loginUsers/datauser', payload, headers)
+        console.log(response)
+        return response
+    }
+
 }
 
 

@@ -8,6 +8,29 @@ export default function ModalDireccionSec() {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [input, setInput] = useState({
+        direction:''
+    })
+
+    function handleChange(e) {
+        setInput({
+            ...input,
+            [e.target.name]: e.target.value,
+        })}
+
+        function handleSubmit(e) {
+            e.preventDefault()
+            if (!input.value) {
+                alert('insertar valores')
+            }else{
+                dispatch(getCustomerData(input))
+            setInput({
+                direction: '',
+                }
+            )
+            }}
+ 
+
 
     return (
         <>
@@ -21,8 +44,21 @@ export default function ModalDireccionSec() {
                     <Offcanvas.Title>Other Address</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                
-
+                    <div>
+                        <form onSubmit={e => handleSubmit(e)}>
+                            <div>
+                                <label>holaaa</label>
+                            </div>
+                            <br />
+                            <div>
+                                <input type="text" value={input.direction} onChange={e => handleChange(e)}/>
+                            </div>
+                            <br />
+                            <div>
+                                <button>buton</button>
+                            </div>
+                        </form>
+                    </div>
                 </Offcanvas.Body>
             </Offcanvas>
         </>

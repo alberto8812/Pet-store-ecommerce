@@ -23,6 +23,7 @@ import SidebarAdmin from "./components/Admin/SidebarAdmin/SidebarAdmin";
 import ProductsAdm from "./components/Admin/ProductsAdm/ProductsAdm"
 import Users from "./components/Admin/Users/Users"
 import Buyers from "./components/Admin/Buyers/Buyers"
+import Update from "./components/User/Profile/Update";
 //////////////////////
 const stripePromise = loadStripe(
   "pk_test_51LkfWEIzGpa9z0EFC6OqfUFPRBmrUIS1nZVezBHgqSh6GBtJ3x5whj06EuCkgwBhls2xwc3M8UI9JKxid7o7Zzni00BiLqFS7P"
@@ -46,6 +47,7 @@ function App() {
         <Route path={"/aboutus"} element={<AboutUs />} />
         <Route path={"/registration"} element={<Registration />} />
         <Route path={"/profile/:email"} element={<Profile />} />
+        <Route path={'/profile/update'} element={<Update/>}/>
         <Route path={"/registration"} element={<Registration />} />
         <Route path={"/paymentgateway"} element={<Elements stripe={stripePromise}><PaymentGateway /></Elements>}/>
         <Route path={"/carrito"} element={<Carrito />} />

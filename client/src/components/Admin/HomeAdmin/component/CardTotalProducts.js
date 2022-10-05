@@ -21,7 +21,7 @@ const CardTotalProducts = ({logUser=[]}) => {
    
       <Typography  component="div" sx={{ display:'grid', gridTemplateColumns:' repeat(auto-fit,minmax(30px,150px))',gridAutoRows: '1fr',alignItems:'center',alignContent:'center',justifyItems:'center'}} >
       <Typography  component="div" sx={{display:'flex',flexDirection:'column',alignItems:'center',alignContent:'center'}} >
-        <h5>Total</h5> 
+        <h4>Total</h4> 
         <h2>{logUser[0].status_product}</h2> 
       </Typography>
       <Typography  component="div"   sx={{ height: '100px',width:'50px',minWidth:'70px',display:'flex',justifyContent:'center',alignItems:'center',alignContent:'center'}} ><PetsIcon sx={{ minWidth: 55,height:40}}/></Typography>

@@ -97,12 +97,13 @@ const NavBar = () => {
       else{
         try {
           const token = await getAccessTokenSilently();
-          // console.log(token)
+          
           request = await axios.get("/loginAdmin", {
             headers: {
               authorization: `Bearer ${token}`,
             },
           });
+         
         } catch (error) {
           console.log(error.message);
         }
@@ -124,7 +125,7 @@ const NavBar = () => {
     );
   };
 //#6200adc9
-console.log(request)
+
   return (
     <Grid
       container

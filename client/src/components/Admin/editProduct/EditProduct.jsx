@@ -52,8 +52,8 @@ function validate(input) {
 
     if (!input.detail) {
         errors.detail = 'Product detail is required'
-    } else if (input.detail.length > 300) {
-        errors.detail = 'The name must not exceed 300 characters'
+    } else if (input.detail.length > 3000) {
+        errors.detail = 'The detail must not exceed 3000 characters'
     }
 
     if (!input.rating) {
@@ -140,7 +140,7 @@ export default function Edit() {
               authorization: `Bearer ${token}`
               },    
               }
-            console.log('2222holii')
+            console.log(token)
             dispatch(editProducts(id, headers, input))
             alert('The product was edited')
             setInput({

@@ -74,7 +74,7 @@ export default function Home() {
         <Recomendations />  </div>)}   {/*<img className="img-notFound"src={notFound} alt='not found'/>*/}
 
               <a style={{'textDecoration': 'none'}} href="#">
-                  <button className="goUp-btn">Go Up</button>
+                  <button className="goUp-btn">Go Up ↑</button>
               </a>
 
       <Footer />

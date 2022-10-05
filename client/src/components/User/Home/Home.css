@@ -152,6 +152,24 @@
 
 .goUp-btn {
     padding: 5px 15px;
+    color: #63247ae0;
+    border: transparent;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #ebebeb;
+    transition: transform 0.5s ease-in-out;
+    transform-style: preserve-3d;
+    font-weight: 500;
+}
+
+.goUp-btn:hover {
+    background-color: #cecccc;
+    transition: transform 0.5s ease-in-out;
+}
+
+
+/* .goUp-btn {
+    padding: 5px 15px;
     background-color: #63247ae0;
     border: transparent;
     border-radius: 5px;
@@ -159,9 +177,10 @@
     color: white;
     transition: transform 0.5s ease-in-out;
     transform-style: preserve-3d;
-}
+} */
 
-.goUp-btn:hover {
+
+/* .goUp-btn:hover {
     background-color: #63247a98;
     color: #121212;
     transition: transform 0.5s ease-in-out;
@@ -171,4 +190,4 @@
 .goUp-btn:focus {
     background-color: #63247a98;
     color: #121212;
-}
+} */

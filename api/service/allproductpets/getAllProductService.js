@@ -1,6 +1,6 @@
 const axios = require('axios')
 const { db } = require('../../database/db')
-const { Product, Genre, Category } = db.models
+const { Product, Genre, Category, Review } = db.models
 
 const catfood = require('../../database/dbjson/catFood.json'); //archivo json con comida para gatos 
 const cattoys = require('../../database/dbjson/cattoys.json'); //archivo json con juguetes para gatos
@@ -142,7 +142,7 @@ const getAllProudctsservice = async() => {
 
     ///peticion a la base de datos, trae todos los productos 
     const allproducts = await Product.findAll({
-        include: [{ model: Genre, attributes: ['name'] }, { model: Category, attributes: ['name'] }]
+        include: [{ model: Genre, attributes: ['name'] }, { model: Category, attributes: ['name'] },{model:Review}]
     })
 
     ////en desarrolllo para limpiar datos  pendiente ************///////
@@ -159,7 +159,8 @@ const getAllProudctsservice = async() => {
             genre: res.genre,
             category: res.category,
             age:res.age,
-            deleted:res.deleted
+            deleted:res.deleted,
+            reviews:res.reviews,
         }
     })
 

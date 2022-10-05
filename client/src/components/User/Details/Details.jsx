@@ -197,7 +197,15 @@ useEffect(() => {
         return <Loading />;
     };
 
-//console.log(userLogin,"4")
+
+    function rankingProm(){
+        let promedy = 3
+        if(myProduct.reviews){
+            promedy += myProduct.reviews.reduce((total,review)=>total=total+parseInt(review.punctuation),0)
+            console.log(promedy)
+        }
+        return promedy/(myProduct.reviews.length+1)
+    }
     return (
        Object.keys(myProduct).length?<div className="contenido">
             <div className="m3">
@@ -262,6 +270,9 @@ useEffect(() => {
                         </div>
                         {/* SECCIÓN DE REVIEWS */}
                         <div className="item-description m-mobile">
+                            <div>
+                                <h2 className="title desk">Rating: {rankingProm()} <span className='star2'>★</span></h2>
+                            </div>
                             <h2 className="title desk">Reviews</h2>
                             <div class="rating">
                                 <span className='star' onClick={e => calificar(5)} id="star5">★</span>
@@ -285,25 +296,22 @@ useEffect(() => {
                             </div>
                             <div>
                                 <h2 className="title desk">Comments</h2>
-                                
                                 <scroll-container>
-                           
-                   
-                                
                                 <div className="comments">
+                                    {myProduct.reviews.comment?
                                     <scroll-page>
                                     <div className="comments">
-                                    <div className="comments">
-                                    {myProduct?.reviews?.map( review => {
+                                    <div>{myProduct?.reviews?.map( review => {
                                     return(
                                         <div>
-                                            <h2>{review.comment}</h2>
-                                            <h2>{renderizarEstrellas(review.punctuation)}</h2>
+                                            <span className='starComment'>{renderizarEstrellas(review.punctuation)}</span>
+                                            <p>{review.comment}</p>
                                         </div>
                                     )
-                                })}
-                                </div>
-                                
+                                    })}</div></div>
+                                    </scroll-page>: ' '}
+                                    <scroll-page>
+                                    <div className="comments">
                                     <div>
                                         <span className='starComment'>{renderizarEstrellas(3)}</span>
                                     </div>

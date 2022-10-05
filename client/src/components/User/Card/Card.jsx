@@ -56,8 +56,9 @@ export default function CardProduct({ id, image, name, price, reviews, category,
     function rankingProm(){
         let promedy = 3
         if(reviews){
-            promedy += reviews.reduce((total,review)=>total=total+parseInt(review.punctuation),0)
+            promedy += reviews.reduce((total,review)=>total=parseFloat(total)+parseFloat(review.punctuation),0)
         }
+        console.log(promedy)
         return promedy/(reviews.length+1)
     }
     
@@ -119,3 +120,4 @@ export default function CardProduct({ id, image, name, price, reviews, category,
         </Card>
     );
 }
+  //

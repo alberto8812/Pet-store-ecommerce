@@ -51,3 +51,4 @@ export const ComponentCard = ({animalsInCurrentPage}) => {
         </Grid>
     )
 }
+//

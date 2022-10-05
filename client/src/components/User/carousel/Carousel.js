@@ -77,7 +77,7 @@ const Carousel = props => {
     <mainContainer>
         <ConstainerSlideshow ref={slideshow}>
             <Slide>
-                <a href='https://www.youtube.com/watch?v=3qNhsJPwFrI' target='_blank'>
+                <a href='#' target='_self'>
                 <img src={img1} alt=''/>
                 </a>
             <TextoSlide>
@@ -85,7 +85,7 @@ const Carousel = props => {
              </TextoSlide>
             </Slide>
             <Slide>
-                <a href='https://www.youtube.com/watch?v=3qNhsJPwFrI' target='_blank'>
+                <a href='#' target='_self'>
                 <img src={img2} alt=''/>
                 </a> 
             <TextoSlide>
@@ -93,7 +93,7 @@ const Carousel = props => {
              </TextoSlide>
             </Slide>
             <Slide>
-                <a href='https://www.youtube.com/watch?v=3qNhsJPwFrI' target='_blank'>
+                <a href='#' target='_self'>
                 <img src={img3} alt=''/>
                 </a>
             <TextoSlide>
@@ -101,7 +101,7 @@ const Carousel = props => {
              </TextoSlide>
             </Slide>
             <Slide>
-                <a href='https://www.youtube.com/watch?v=3qNhsJPwFrI' target='_blank'>
+                <a href='#' target='_self'>
                 <img src={img4} alt=''/>
                 </a>
             <TextoSlide >

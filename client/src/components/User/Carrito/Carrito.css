@@ -486,7 +486,7 @@
     font-size: 14px;
 }
 
-.m7 .cart-form-actions {
+.cart-form-actions {
     display: block;
 }
 
@@ -497,11 +497,11 @@
     font-size: 14px;
     text-transform: uppercase;
     font-weight: 1000;
-    margin: 0 0 0 15px;
+    /* margin: 0 0 0 15px; */
     color: #3483fa;
 }
 
-.m7 .cart-form-actions button {
+.cart-form-actions button {
     display: inline-block;
     padding: 0 25px;
     line-height: 40px;
@@ -510,7 +510,7 @@
     font-weight: 700;
     background: #3483fa;
     color: #fff;
-    border-radius: 3px;
+    border-radius: 5px;
     text-transform: uppercase;
     cursor: pointer;
     outline: none;

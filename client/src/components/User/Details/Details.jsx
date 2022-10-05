@@ -11,6 +11,9 @@ import Footer from "../Footer/Footer";
 import { useAuth0 } from '@auth0/auth0-react';//libreia Auth0
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ReactImageZoom from 'react-image-zoom';
+ 
+const props = {width: 400, height: 450, zoomWidth: 0, zoomPosition: 'rigth'};
 
 
 //Vamos a validar que la persona seleccione estrellas? Si o si haga puntuación? 
@@ -230,15 +233,19 @@ useEffect(() => {
                                         <a href={myProduct.image}></a>
                                         <div className="clear"></div>
                                     </div>
-                                    <div className="d1">
-                                        <picture>
+                                    </div>
+                                    </span>
+
+                                    {/* <div className="d1"> */}
+                                    <div className="image-zoom-container">
+                                    <ReactImageZoom {...props} img={myProduct?.image}/>
+                                    </div>
+                                        {/* <picture>
                                             <source name="product-image" className="product-image" srcSet={myProduct.image} type='image/webp' src={myProduct.image} data-id='1' />
                                             <img src={myProduct.image} alt={myProduct.name} className='product-image' data-id="1" />
-                                        </picture>
-                                        <div className="clear"></div>
-                                    </div>
-                                </div>
-                            </span>
+                                        </picture> */}
+                                        {/* <div className="clear"></div> */}
+                                    {/* </div> */}
                             <div className="clear"></div>
                         </div>
                         <div className="desk">

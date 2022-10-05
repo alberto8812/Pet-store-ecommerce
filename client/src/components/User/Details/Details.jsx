@@ -204,7 +204,7 @@ useEffect(() => {
     function rankingProm(){
         let promedy = 3
         if(myProduct.reviews){
-            promedy += myProduct.reviews.reduce((total,review)=>total=total+parseInt(review.punctuation),0)
+            promedy += myProduct.reviews.reduce((total,review)=>total=total+parseInt(review.punctuation===null?0:review.punctuation),0)
             console.log(promedy)
         }
         return promedy/(myProduct.reviews.length+1)

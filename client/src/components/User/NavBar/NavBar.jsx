@@ -117,7 +117,7 @@ const NavBar = () => {
                     <Link to='/' onClick={() => window.location.redirect()} target='_self' className='nav-link' >
                         {/* <Icon className='ico_nav' icon="bx:home" width='30px' height='30px' /> */}
                         <img className='img-home-btn' src={home} alt='' />
-                        <h3 className='link_home'>Home</h3>
+                        
                     </Link>
                 </Grid>
                 <Grid item xs={8}

@@ -1,13 +1,34 @@
 import React, { useState } from 'react';
 /* */
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import { useDispatch } from 'react-redux';
+import { postInfo } from '../../../redux/actions';
 
 
 export default function ModalDireccionPri() {
     const [show, setShow] = useState(false);
-
+const dispatch = useDispatch()
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [input, setInput] = useState({
+        direction:'',
+    })
+
+    function handleChange(e) {
+        setInput({
+            ...input,
+            [e.target.name]: e.target.value,
+        })}
+        function handleSubmit(e) {
+            e.preventDefault()
+            console.log(input)
+            dispatch(postInfo(input))
+            setInput({
+                direction:'',
+                }
+            )
+            }
+ 
 
     return (
         <>
@@ -21,7 +42,21 @@ export default function ModalDireccionPri() {
                     <Offcanvas.Title>Your Address</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                
+                <div>
+                        <form onSubmit={e => handleSubmit(e)}>
+                            <div>
+                                <label>holaaa</label>
+                            </div>
+                            <br />
+                            <div>
+                                <input type="text" name='direction' value={input.direction} onChange={e => handleChange(e)}/>
+                            </div>
+                            <br />
+                            <div>
+                                <button>buton</button>
+                            </div>
+                        </form>
+                    </div>
 
                 </Offcanvas.Body>
             </Offcanvas>

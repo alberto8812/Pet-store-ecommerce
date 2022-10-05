@@ -35,7 +35,7 @@ function rootReducer(state = initialState, action) {
         case GET_DETAILS:
             return {
                 ...state,
-                details:  action.payload.data
+                details: action.payload.data
             };
         case SEARCH_BY_NAME:
             return {
@@ -176,12 +176,16 @@ function rootReducer(state = initialState, action) {
         case POST_CUSTOMER_EDIT_DATA:
             console.log("data")
             return state
+        case 'POST INFO':
+            return {
+                ...state,
+            }
         default:
             return state
     }
 }
 
-export default rootReducer; 
+export default rootReducer;
 
 
 

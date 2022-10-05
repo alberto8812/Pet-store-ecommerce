@@ -17,6 +17,6 @@ router.post('/productusercart',postUserCart)
 
 router.post('/comment', postComment )
 
-     
+/*///////////////////// */  
       
 module.exports=router;

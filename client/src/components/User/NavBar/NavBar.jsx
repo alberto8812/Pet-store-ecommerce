@@ -123,12 +123,12 @@ const NavBar = () => {
       }
     );
   };
-
+//#6200adc9
   return (
     <Grid
       container
       xs={12}
-      sx={{ background: "#6200adc9" }}
+      sx={{ background: "#63247ae0" }}
       direction="row"
       justifyContent="center"
       alignItems="center"
@@ -167,11 +167,12 @@ const NavBar = () => {
         </Grid>
         <Grid
           item
-          xs={8}
+          xs={7}
           container
           direction="row"
           justifyContent="center"
           alignItems="center"
+          marginLeft={7}
         >
           {/* <SearchBar /> */}
           <SearchBar
@@ -220,6 +221,9 @@ const NavBar = () => {
                       </li>
                     );
                   })}
+                  {
+                    (favs.length === 0) && <span className="msg-noFavs">No favs yet!</span>
+                  }
               </ul>
             </div>
           </Grid>
@@ -249,13 +253,13 @@ const NavBar = () => {
                 color="rgb(234, 208, 240)"
               >
                 <div className="fotito">
+                  <Link to={`/profile/${user.email}`}>
                   <Avatar
                     alt={user.given_name}
                     sx={{ width: 45, height: 45 }}
                     src={user.picture}
                   />
-                  <Link to={`/profile/${user.email}`}>
-                    <h5>{user.given_name}</h5>
+                    {/* <h5>{user.given_name}</h5> */}
                   </Link>
                 </div>
                 <Grid
@@ -266,8 +270,8 @@ const NavBar = () => {
                   alignItems="center"
                   color="rgb(234, 208, 240)"
                 >
-                  <LogOut />
                 </Grid>
+                  <LogOut />
               </Grid>
             )
           ) : (

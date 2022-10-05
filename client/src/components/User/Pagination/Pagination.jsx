@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Pagination.css';
 /* */
+
+
 export default function Pagination({ animalsPerPage, products, currentPage, setCurrentPage }) {
     const pageNumber = [];
     const [input, setInput] = useState(1);
@@ -55,13 +57,13 @@ export default function Pagination({ animalsPerPage, products, currentPage, setC
     return (
         <div className="paginado">
            
-                    <button className='btn-paginado' name='prev' onClick={e => handlePrev(e)}>Prev</button>
+                    <button className='btn-paginado' name='prev' onClick={e => handlePrev(e)}> ﹤ Prev</button>
                
                     <input className='input-pag' onChange={e => onChange(e)} onKeyDown={(e) => onKeyDown(e)} name="animalsPerPage" autoComplete="off" value={input} />
                
                     <p className='parrafo-pag'>de {Math.ceil(pageNumber.length)}</p>
                 
-                    <button className='btn-paginado' name='next' onClick={e => handleNext(e)}>Next</button>
+                    <button className='btn-paginado' name='next' onClick={e => handleNext(e)}>Next ﹥ </button>
              
         </div>
 

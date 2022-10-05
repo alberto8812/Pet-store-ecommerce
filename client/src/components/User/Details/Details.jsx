@@ -156,7 +156,7 @@ useEffect(() => {
     }
     function sumar(e) {
         e.preventDefault()
-        if(quantitySelected === myProduct.stock){
+        if(quantitySelected === myProduct.stock || myProduct.stock <= 0){
             return
         }
          return setQuantitySelected(quantitySelected +1)
@@ -381,18 +381,21 @@ useEffect(() => {
                             </div>
                             <div className="producto-information">
                             <div className="icon">
-                                            <StorefrontIcon width='20px' height='20px' viewBox="0 0 25 25" className="Store"/><span className="tag free">Available now</span>
+                                            <StorefrontIcon width='20px' height='20px' viewBox="0 0 25 25" className="Store"/>
+                                            {/* <span className="tag free">Available now</span> */}
+                                            {(myProduct.stock <= 0) ? <span className="tag-unavailable">Not available now!</span>  : <span className="tag free">Available now</span>}
                                         </div>
                             </div>
                             <div className="delivery">
                                 <ul>
                                     <li>
                                         <div className="body">
+                                            
                                             {/* <p>Withdrawal per branch</p> */}
                                             <ul>
                                                 <li><strong>Age: </strong> {myProduct.age}</li>
                                                 <li><strong>ID Product: </strong>{myProduct.id}</li>
-                                                <li><strong>Stock: </strong>{myProduct.stock}</li>
+                                                {(myProduct.stock <= 0) ? (<li style={{'color':'red'}}><strong>Stock: </strong>{myProduct.stock}</li>) : (<li><strong>Stock: </strong>{myProduct.stock}</li>)}
                                             </ul>
 
                                             {/*<a className="more" href="/sucursales/listado">see branches</a>*/}
@@ -422,19 +425,15 @@ useEffect(() => {
                                 <div className="cart">
                                     <div className="quantity">
                                         <div className="content-qty">
-                                            <button type="button" onClick={e => restar(e)} value>
-                                            -
-                                            </button>
-                                            <p className="counter-detail">{quantitySelected}</p>
-                                            {/* <input onChange={e => onChange(e)} type="text" name="cantidad" id="cantidad" value="1" readOnly /> */}
-                                            <button type="button" onClick={e => sumar(e)} value>
-                                                +
-                                            </button>
+                                            <button className="minus-plus-btn" type="button" onClick={e => restar(e)} value> - </button>
+                                            <span className="counter-detail">{quantitySelected}</span>
+                                            <button className="minus-plus-btn" onClick={e => sumar(e)} value> + </button>
                                         </div>
+                                        {/* <div id="existencias" className="available">{myProduct.stock}</div> */}
                                     </div>
-                                    <div className="available" id="existencias">{myProduct.stock}</div>
+                                   
                                     <div className="btn-container">
-                                        <button type="button" onClick={handleBuyCart} className="btn-section-add-to-cart" id="comprar">Buy</button>
+                                        <button type="button" onClick={handleBuyCart} className="btn-section-add-to-cart" id="comprar">Buy now</button>
                                         <button type="button" onClick={handleAddToCart} id='agregarAlCarrito' className="btn-sectionadd-to-cart">Add to cart</button>
                                     </div>
                                 </div>
@@ -457,7 +456,8 @@ useEffect(() => {
 
                             <div className="c-mobile">
                                 <div className="card-promotion-section">
-                                    <p><CreditCardIcon className="fa fa-credit-card" /></p>
+                                <i class="bi bi-credit-card"></i>
+                                    {/* <p><CreditCardIcon className="fa fa-credit-card" /></p> */}
                                     Pay with credit or debit
                                 </div>
                                 <div className="card-section">
@@ -482,7 +482,7 @@ useEffect(() => {
                                         <img src="https://d28hi93gr697ol.cloudfront.net/_global/iconos/tarjetas/provincia-net-pagos.png" alt="Provincia NET Pagos" />
                                     </div>
                                 </div>
-                                <a href="/v/medios-pagos" className="btn-section">Payment Methods</a>
+                                {/* <a href="/v/medios-pagos" className="btn-section">Payment Methods</a> */}
                             </div>
                         </div>
                         <div className="clear"></div>

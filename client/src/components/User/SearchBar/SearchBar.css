@@ -11,30 +11,31 @@
     outline: none;
     padding: 0 7rem 0 1rem;
     font-size: 15px;
-    border: 1px solid #8200e5;
-    border-radius: 6px 0 0 6px;
+    border: 1px solid #63247ae0;
+    border-radius: 30px 0 0 30px;
     background-color: white;
     /*margin-left: 50%;*/
 }
 
 .button--submit {
     min-height: 49px;
-    padding: .5em .9em;
+    padding: .5em .8em;
     border: none;
-    border-radius: 0 6px 6px 0;
+    border-radius: 0 30px 30px 0;
     background-color: #ada7ac83;
     color: #fff;
     font-size: 15px;
     cursor: pointer;
+    outline: none;
     transition: background-color .3s ease-in-out;
 }
 
 .button--submit:hover {
-    background-color: #8200e5;
+    background-color: #63247ae0;
 }
 
 .input:focus,
 .input:focus-visible {
-    border-color: #3898EC;
+    border-color: #8b11e9;
     outline: none;
 }

@@ -5,7 +5,10 @@
     -o-box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 }
+
+
 /**/
+
 .m7 {
     width: 1140px;
     margin: 0 auto;
@@ -29,8 +32,9 @@
 .item-cart {
     display: flex;
     gap: 2rem;
-    margin: 30px auto;
+    margin: 15px auto;
     align-items: center;
+    text-decoration: none;
     /* flex-direction: row; */
 }
 
@@ -39,11 +43,13 @@
 }
 
 .div-contador {
-    display: flex;
-    gap: .5rem;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    align-content: center !important;
     border: 1px solid lightgray;
     border-radius: 5px;
-    margin-right: 10px;
+    /* margin-left: 10px; */
 }
 
 .plus,
@@ -58,9 +64,10 @@
     outline: inherit;
     /* margin-right: 2px; */
     font-size: 15px;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
     color: #3483fa;
     font-weight: bold;
+    /* margin-top: 5px; */
 }
 
 .count {
@@ -483,23 +490,24 @@
     font-size: 14px;
 }
 
-.m7 .cart-form-actions {
+.cart-form-actions {
     display: block;
 }
 
 .m7 .cart-form-actions a {
-    float: left;
+    float: right;
     line-height: 40px;
     height: 40px;
     font-size: 14px;
     text-transform: uppercase;
     font-weight: 1000;
-    margin: 0 0 0 15px;
+    /* margin: 0 0 0 15px; */
     color: #3483fa;
 }
 
-.m7 .cart-form-actions button {
-    display: inline-block;
+.cart-form-actions button {
+    float: right;
+    display: block;
     padding: 0 25px;
     line-height: 40px;
     height: 40px;
@@ -507,10 +515,11 @@
     font-weight: 700;
     background: #3483fa;
     color: #fff;
-    border-radius: 3px;
+    border-radius: 5px;
     text-transform: uppercase;
     cursor: pointer;
     outline: none;
+    border: transparent;
 }
 
 .loading-checkout {
@@ -585,4 +594,27 @@ strong {
 
 .m7 .cart-form-actions {
     display: block;
+}
+
+.empty-cart {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 30px auto;
+    font-size: 30px;
+    font-weight: bold;
+    color: grey;
+}
+
+.text-emptyCart {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 30px auto;
+    font-size: 20px;
+    color: grey;
+}
+
+.cart-form-actions-disable {
+    display: none;
 }

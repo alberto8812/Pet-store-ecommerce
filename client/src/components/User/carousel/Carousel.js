@@ -77,7 +77,7 @@ const Carousel = props => {
     <mainContainer>
         <ConstainerSlideshow ref={slideshow}>
             <Slide>
-                <a href='https://www.youtube.com/watch?v=3qNhsJPwFrI' target='_blank'>
+                <a href='#' target='_self'>
                 <img src={img1} alt=''/>
                 </a>
             <TextoSlide>
@@ -85,7 +85,7 @@ const Carousel = props => {
              </TextoSlide>
             </Slide>
             <Slide>
-                <a href='https://www.youtube.com/watch?v=3qNhsJPwFrI' target='_blank'>
+                <a href='#' target='_self'>
                 <img src={img2} alt=''/>
                 </a> 
             <TextoSlide>
@@ -93,7 +93,7 @@ const Carousel = props => {
              </TextoSlide>
             </Slide>
             <Slide>
-                <a href='https://www.youtube.com/watch?v=3qNhsJPwFrI' target='_blank'>
+                <a href='#' target='_self'>
                 <img src={img3} alt=''/>
                 </a>
             <TextoSlide>
@@ -101,7 +101,7 @@ const Carousel = props => {
              </TextoSlide>
             </Slide>
             <Slide>
-                <a href='https://www.youtube.com/watch?v=3qNhsJPwFrI' target='_blank'>
+                <a href='#' target='_self'>
                 <img src={img4} alt=''/>
                 </a>
             <TextoSlide >
@@ -109,7 +109,6 @@ const Carousel = props => {
              </TextoSlide>
             </Slide>
 
-       </ConstainerSlideshow>
        <Controls>
         <Boton onClick={back}>
         <FlechaIzquieRda/>
@@ -118,6 +117,7 @@ const Carousel = props => {
         <FlechaDerecha/>  
         </Boton>
        </Controls>
+       </ConstainerSlideshow>
     </mainContainer>
   )
 }
@@ -135,7 +135,7 @@ const Slide=styled.div`
    overflow:hidden;
    transition:0.3S ease all;
    z-index:10;
-   max-height:500px;
+   max-height:180px;
    position:relative;
    img{
      width:100%;

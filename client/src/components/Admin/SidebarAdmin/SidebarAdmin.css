@@ -1,6 +1,7 @@
 .sidebar-admin{
   width: 100%;
   height: calc(100vh - 52px);
+  background-color: rgb(233, 211, 238);
 
   display: grid;
   grid-template-columns: 150px 1fr;

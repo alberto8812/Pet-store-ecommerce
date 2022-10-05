@@ -18,9 +18,8 @@ const bull = (
   );
 
 const CardSaleDay = ({logUser}) => {
-    let totalUser=0
-    console.log(logUser,"holi")
-   
+    let totalUser=logUser.total[logUser.total.length-1]
+ 
   return (
     <Card sx={{ minWidth: 165,maxWidth:350 }}>
     <CardContent>
@@ -31,7 +30,7 @@ const CardSaleDay = ({logUser}) => {
       <Typography  component="div" sx={{ display:'grid', gridTemplateColumns:' repeat(auto-fit,minmax(30px,150px))',gridAutoRows: '1fr',alignItems:'center',alignContent:'center',justifyItems:'center'}} >
       <Typography  component="div" sx={{display:'flex',flexDirection:'column',alignItems:'center',alignContent:'center'}} >
         <h4>Mount</h4> 
-        <h4>${logUser.total}</h4> 
+        <h5>${totalUser}</h5> 
       </Typography>
       <Typography  component="div"   sx={{height: '100px',width:'50px',minWidth:'70px',display:'flex',justifyContent:'center',alignItems:'center',alignContent:'center'}}><CreditScoreIcon sx={{ minWidth: 55,height:120}}/></Typography>
       </Typography>

@@ -18,7 +18,7 @@ const bull = (
 
 const CardUser = ({logUser=[]}) => {
     let totalUser=0
-    console.log(logUser)
+   
    let logUser2=logUser.length?logUser.map(res=>totalUser+=parseInt(res.status_blocK)):[];
 
   return (

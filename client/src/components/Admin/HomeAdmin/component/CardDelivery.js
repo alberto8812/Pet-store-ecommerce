@@ -20,7 +20,7 @@ const bull = (
 
 
 const CardDelivery = ({logUser}) => {
- console.log(logUser)
+
  let pending=logUser.find(res=>res.status==='PENDING')
  let completed=logUser.find(res=>res.status==='COMPLETED')
  completed=completed===undefined?{status_count:0}:completed

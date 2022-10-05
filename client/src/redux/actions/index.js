@@ -199,7 +199,7 @@ export const postSendProds = (enviar, headers) => {
 export const getDataProfile = (token) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`/loginAdmin`, token);
+            const { data } = await axios.get(`/loginUsers`, token);
             return dispatch({
                 type: PROFILE_DATA,
                 payload: data,

@@ -8,7 +8,7 @@ const postCommentUser = async(req, res)=>{
   const Userdata=await dataUser(accessToken);
 
   const {id,comment,punctuation}= req.body
-  console.log(punctuation,comment,id)
+
     let commentUser = await Review.findOne({
       where: {
         idProduct:id,

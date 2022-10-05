@@ -5,7 +5,7 @@ const stripe = new Stripe(`${STRIPE_PAY}`);
 
 const postUserPaymentService =async(req)=>{
     const { id, amount, description } = req.body;
-    console.log("holi")
+ 
     const payment = await stripe.paymentIntents.create({
         amount,
         currency: "USD",
@@ -15,7 +15,7 @@ const postUserPaymentService =async(req)=>{
   
 })
 
-console.log(payment)
+
 return payment
 }
 

@@ -33,7 +33,7 @@ const ExpandMore = styled((props) => {
 }));
 
 
-export default function CardProduct({ id, image, name, price, rating, category, genre }) {
+export default function CardProduct({ id, image, name, price, reviews, category, genre }) {
     const [expanded, setExpanded] = React.useState(false);
     const dispatch = useDispatch()
     const products = useSelector(state => state.products);
@@ -53,6 +53,13 @@ export default function CardProduct({ id, image, name, price, rating, category, 
         }
     }; 
 
+    function rankingProm(){
+        let promedy = 3
+        if(reviews){
+            promedy += reviews.reduce((total,review)=>total=total+parseInt(review.punctuation),0)
+        }
+        return promedy/(reviews.length+1)
+    }
     
     return (
         <Card sx={{
@@ -104,7 +111,7 @@ export default function CardProduct({ id, image, name, price, rating, category, 
                     aria-expanded={expanded}
                     aria-label="show more"
                 >
-                    {rating} ⭐
+                    {rankingProm()} ⭐
                 </ExpandMore>
                 <button onClick={() => handleFav(id)} type='button' className='btn-fav' id='favItem'><i id={id} class="bi bi-heart"></i></button>
             </CardActions>

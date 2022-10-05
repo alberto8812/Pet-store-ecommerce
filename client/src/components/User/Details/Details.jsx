@@ -298,6 +298,7 @@ useEffect(() => {
                                 <h2 className="title desk">Comments</h2>
                                 <scroll-container>
                                 <div className="comments">
+                                    {myProduct.reviews.comment?
                                     <scroll-page>
                                     <div className="comments">
                                     <div>{myProduct?.reviews?.map( review => {
@@ -308,7 +309,7 @@ useEffect(() => {
                                         </div>
                                     )
                                     })}</div></div>
-                                    </scroll-page>
+                                    </scroll-page>: ' '}
                                     <scroll-page>
                                     <div className="comments">
                                     <div>

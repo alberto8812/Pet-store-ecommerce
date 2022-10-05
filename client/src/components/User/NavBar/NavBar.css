@@ -17,6 +17,14 @@
     align-items: flex-end;
 }
 
+.msg-noFavs {
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    color: rgb(173, 38, 38);
+    font-weight: bold;
+}
+
 
 /* .div-containerIcons-navbar {
     display: flex;

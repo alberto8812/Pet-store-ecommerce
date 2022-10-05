@@ -201,7 +201,7 @@ const NavBar = () => {
                     );
                   })}
                   {
-                    (favs.length === 0) && <span>Sin favoritos</span>
+                    (favs.length === 0) && <span className="msg-noFavs">No favs yet!</span>
                   }
               </ul>
             </div>

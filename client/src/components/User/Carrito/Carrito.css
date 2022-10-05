@@ -5,7 +5,10 @@
     -o-box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 }
+
+
 /**/
+
 .m7 {
     width: 1140px;
     margin: 0 auto;
@@ -585,4 +588,27 @@ strong {
 
 .m7 .cart-form-actions {
     display: block;
+}
+
+.empty-cart {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 30px auto;
+    font-size: 30px;
+    font-weight: bold;
+    color: grey;
+}
+
+.text-emptyCart {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 30px auto;
+    font-size: 20px;
+    color: grey;
+}
+
+.cart-form-actions-disable {
+    display: none;
 }

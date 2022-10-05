@@ -1,5 +1,6 @@
 .sidebar-admin{
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
   /* height: calc(100vh - 52px); */
   background-color: rgb(233, 211, 238);
 

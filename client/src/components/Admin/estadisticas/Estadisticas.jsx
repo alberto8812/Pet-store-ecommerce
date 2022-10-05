@@ -33,24 +33,60 @@ const estadisticas = () => {
 
 
   return (
-    <Grid>
-  
-      <Box
+    <Grid container spacing={3}>
+      <Grid item xs={8}
       sx={{
-        width: 500,
-        height: 500,       
-      }}   
+        maxwidth: '100%',
+        height: '100%',
+        backgroundColor:'#4917df44'
+      }}
       >
-      <LineChart/>
-     </Box>
-     <Box
+         <Box
+          sx={{
+           maxwidth: '100vh',
+           height: '100%',
+           minWidth:'50vh',      
+             backgroundColor:'#f234' }}   
+             >
+             <LineChart/>
+          </Box>
+      </Grid>
+   
+    <Grid item xs={3} sx={{
+           maxwidth: '50vh',
+           height: '100%',
+           minWidth:'50vh'}}  >
+             <Box
       sx={{
-        width: 300,
-        height: 600,       
-      }}   
+        width: '30vh',
+           height: '100%',
+           minWidth:'30vh',      
+             backgroundColor:'#f234' }}       
+ 
       >
       <PieCategory/>
      </Box>
+     <Box
+      sx={{
+        width: '30vh',
+           height: '100%',
+           minWidth:'10vh',      
+             backgroundColor:'#f234' }}       
+ 
+      >
+      <PieCategory/>
+     </Box>
+     <Box
+      sx={{
+        width: '30vh',
+           height: '100%',
+           minWidth:'10vh',      
+             backgroundColor:'#f234' }}       
+ 
+      >
+      <PieCategory/>
+     </Box>
+     </Grid> 
     </Grid>
   )
 }

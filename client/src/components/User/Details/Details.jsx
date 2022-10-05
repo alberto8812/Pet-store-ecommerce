@@ -206,6 +206,8 @@ useEffect(() => {
         }
         return promedy/(myProduct.reviews.length+1)
     }
+
+  
     return (
        Object.keys(myProduct).length?<div className="contenido">
             <div className="m3">

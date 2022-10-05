@@ -428,16 +428,25 @@ useEffect(() => {
                                     <div className="quantity">
                                         <div className="content-qty">
                                             <button className="minus-plus-btn" type="button" onClick={e => restar(e)} value> - </button>
-                                            <span className="counter-detail">{quantitySelected}</span>
+                                            {(myProduct.stock <= 0) ? <span className="counter-detail">0</span>  : <span className="counter-detail">{quantitySelected}</span>}
+                                            {/* <span className="counter-detail">{quantitySelected}</span> */}
                                             <button className="minus-plus-btn" onClick={e => sumar(e)} value> + </button>
                                         </div>
                                         {/* <div id="existencias" className="available">{myProduct.stock}</div> */}
                                     </div>
+
+                                    {(myProduct.stock <= 0) ?
+                                         (<div className="btn-container">
+                                         <button type="button"  className="btn-section-add-to-cart-disable" id="comprar">Buy now</button>
+                                         <button type="button"  id='agregarAlCarrito' className="btn-sectionadd-to-cart-disable">Add to cart</button>
+                                         </div>)  
+                                         : 
+                                         (<div className="btn-container">
+                                         <button type="button" onClick={handleBuyCart} className="btn-section-add-to-cart" id="comprar">Buy now</button>
+                                         <button type="button" onClick={handleAddToCart} id='agregarAlCarrito' className="btn-sectionadd-to-cart">Add to cart</button>
+                                        </div>)
+                                    }
                                    
-                                    <div className="btn-container">
-                                        <button type="button" onClick={handleBuyCart} className="btn-section-add-to-cart" id="comprar">Buy now</button>
-                                        <button type="button" onClick={handleAddToCart} id='agregarAlCarrito' className="btn-sectionadd-to-cart">Add to cart</button>
-                                    </div>
                                 </div>
                                 <ToastContainer
                                         position="top-center"

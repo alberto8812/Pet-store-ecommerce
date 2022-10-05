@@ -111,10 +111,10 @@ const Carousel = props => {
 
        <Controls>
         <Boton onClick={back}>
-        <FlechaIzquieRda/>
+        {/* <FlechaIzquieRda/> */}
         </Boton >
         <Boton derecha onClick={next}>
-        <FlechaDerecha/>  
+        {/* <FlechaDerecha/>   */}
         </Boton>
        </Controls>
        </ConstainerSlideshow>

@@ -24,7 +24,7 @@ console.log('Holiiiiis')
     })
 
     const userDb=await User.findOne({attributes:['city','direction'],where:{email:userInfo.email}})
-   console.log('MIRAMEEE', userDb)
+ 
     return  userDb;
 }
 

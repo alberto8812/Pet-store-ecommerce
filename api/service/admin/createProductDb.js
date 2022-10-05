@@ -16,13 +16,14 @@ const createProductsDb=async(req)=>{
           rating,
           age
       })
-      console.log({body:req.body})
+     
 
       let categoryDb= await Category.findOne({ //buscamos en el modelo category todas las que coincidan con el nombre que llega por body. 
         where:{
-            name: category //donde el nombre sea igual a la categoria que me llega por body
+            name: {[Op.iLike]: `%${category}%`} //donde el nombre sea igual a la categoria que me llega por body
         }
      })
+    
 
     let genreDb = await Genre.findOne({ 
       where:{

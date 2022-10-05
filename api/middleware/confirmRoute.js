@@ -3,9 +3,12 @@ const router = Router();
 const axios = require('axios');
 let nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
+const path = require("path");
+
 
 // const creds = require('../../credendial.json');
 const { auth_mail, pass_mail } = process.env;
+
 
 let transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -18,7 +21,12 @@ let transporter = nodemailer.createTransport({
 });
 
 function confirmationEmail(userData, products) {
-    console.log('BUENAS BUENAS', userData);
+    // console.log(products);
+
+    let namesShops = Object(products).map(el => el.name);
+    let quantity = Object(products).map(x => x.quantity);
+    // let imagenProducts = Object(products).forEach(el => { return el.image });
+
     try {
         let mailToCompanyOptions = {
             from: userData,
@@ -26,22 +34,25 @@ function confirmationEmail(userData, products) {
             subject: 'NEW ORDER',
             html: `<div>
                 <h2>You have a new order to prepare</h2>
-                <p>${products}</p>
                 </div>`
         };
 
         let mailToCustomerOptions = {
             from: 'Developets',
             to: userData,
-            subject: 'ORDER CONFIRM 🐶',
+            subject: 'ORDER CONFIRMED 🐶',
             html: `<div>
                 <h2>Thank you for your purchase!</h2>
-                <p>We receive your purchase for 
-                    <div>
-                        ${products}
-                    </div>
-                </p>
-                </div>`
+                <p>We'll send you an other email when it's ready!</p><br/>
+                <strong><p>Your item (s): </p></strong>
+                <p>(${quantity}) ${namesShops}</p>
+                <img src="cid:download"/>
+                </div>`,
+            attachments: [{
+                filename: 'download.png',
+                path: __dirname + '/download.png',
+                cid: 'donwload'
+            }]
         }
 
         transporter.sendMail(mailToCompanyOptions, (err, data) => {
@@ -78,8 +89,8 @@ function confirmationEmail(userData, products) {
             console.log('Server is ready to take the emails');
         }
     });
-    
-    
+
+
 
 };
 

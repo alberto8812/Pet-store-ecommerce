@@ -7,6 +7,7 @@ import {
     SEARCH_BY_NAME,
     ADD_FAVORITE,
     REMOVE_FAVORITE,
+    GET_NUMBER_FAVS,
     ADD_TO_CART,
     GET_NUMBER_CART,
     INCREASE_QUANTITY,
@@ -65,9 +66,10 @@ export const getDetails = (id) => {
     };
 };
 
-export function postProduct(payload) {
-    return async function (dispatch) {
-        const response = await axios.post('/loginAdmin/create', payload)
+export function postProduct(payload, headers) {
+    
+    return async function(dispatch) {
+        const response = await axios.post('/loginAdmin/create', payload, headers)
         return response;
     }
 };
@@ -83,23 +85,14 @@ export function postContact(payload) {
     }
 };
 
-// export function postConfirm(payload) {
-//     return async function() {
-//         try {
-//             let newConfirmEmail = await axios.post('http://localhost:3001/paymentgateway', payload)
-//             return newConfirmEmail;
-//         } catch (error) {
-//             console.error('Error en postConfirm --> ', error);
-//         }
-//     }
-// };
-
 export function sortByPrice(payload) {
     return {
         type: SORT_BY_PRICE,
         payload
     }
 };
+
+////////////////////////// FAVS //////////////////////////
 
 export function addToFav(payload) {
     return {
@@ -108,12 +101,26 @@ export function addToFav(payload) {
     }
 };
 
+
 export function removeFromFav(payload) {
     return {
         type: REMOVE_FAVORITE,
         payload
     }
 };
+
+export function getNumberFavs() {
+    return {
+        type: GET_NUMBER_FAVS
+    }
+};
+
+////////////////////////// FIN FAVS //////////////////////////
+
+
+
+
+////////////////////////// CART //////////////////////////
 
 export function addToCart(payload) {
     return {
@@ -150,9 +157,19 @@ export function decreaseCart(payload) {
     }
 };
 
-export function addComment(input) {
-    return async function (dispatch) {
-        axios.post('/loginUsers/comment', input)
+export function refreshCart(payload) {
+    return {
+        type: REFRESH_CART,
+        payload
+    }
+};
+
+////////////////////////// FIN CART //////////////////////////
+
+
+export function addComment(input,headres) {
+    return async function(dispatch) {
+        axios.post('/loginUsers/comment',input,headres)
             .then((res) => {
                 dispatch({
                     type: ADD_COMMENT,
@@ -161,13 +178,6 @@ export function addComment(input) {
             })
     }
 }
-
-export function refreshCart(payload) {
-    return {
-        type: REFRESH_CART,
-        payload
-    }
-};
 
 export const postSendProds = (enviar, headers) => {
     return async (dispatch) => {
@@ -333,8 +343,8 @@ export function activeProducts(id, setFlag) {
 };
 
 export function editProducts(id, headers, payload) {
-
-    return async function (dispatch) {
+    console.log(id, headers, payload, 'action edit')
+    return async function(dispatch) {
         try {
             axios.put(`/loginAdmin/edit/${id}`, payload, headers)
                 .then(res => {

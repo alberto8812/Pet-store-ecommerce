@@ -11,6 +11,23 @@ import Loading from "../Loading/Loading";
 export default withAuthenticationRequired ( function Carrito() {
   const productsInTheCart = useSelector(state => state.cart);
   const numberCart = useSelector(state => state.numberCart);
+  const [myCartQuantity, setmyCartQuantity] = useState(0);
+
+
+  /////////
+
+  const calculatemyCartQuantity = () => {
+    let counter = 0;
+    productsInTheCart.forEach((item) => {
+      counter += item.quantity;
+    });
+    setmyCartQuantity(counter);
+  };
+
+  useEffect(() => {
+    calculatemyCartQuantity();
+  }, [numberCart]);
+
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -57,7 +74,7 @@ export default withAuthenticationRequired ( function Carrito() {
   return (
     <div className="m7">
       <div className="b1 desk">
-        <div className="title">My Cart</div>
+        <div className="title">My Cart ( {myCartQuantity} )</div>
       </div>
       <div className="total-container mobile"></div>
       <div className="notification success desk">
@@ -68,8 +85,9 @@ export default withAuthenticationRequired ( function Carrito() {
       </div>
       <section className="cart-products-container">
         <div className="cart-product">
+      {(productsInTheCart.length === 0) && (<div ><h1 className="empty-cart">Your cart is empty.</h1>
+      <p className="text-emptyCart">But we have a lot of products waiting for you!</p></div>) }
           <div className="product-head desk">
-            {/* <div className="clear"></div> */}
           </div>
           <div className="table">
             {
@@ -77,8 +95,10 @@ export default withAuthenticationRequired ( function Carrito() {
                 return (
                   <div className="item-cart" key={key}>
                     <button className="btn-delete" id={item.id} onClick={e => handleDelete(e)}>❌</button>
+                    <a href={`/products/detail/${item.id}`} className="item-cart">
                     <h3 className="name" style={{'fontWeight': 'bold'}}>{item.name.toUpperCase()}</h3>
                     <img className="image" src={item.image} alt={item.name} />
+                    </a>
                     <ul>
                       {/* <li><strong>Age: </strong> {item.age}</li>
                       <li><strong>ID Product: </strong>{item.id}</li> */}
@@ -97,72 +117,42 @@ export default withAuthenticationRequired ( function Carrito() {
             }
           </div>
         </div>
-      </section>
-      {
-        <section className="cart-totals-container">
-          <div className="fixed-resume">
-            <div className="cart-totals-detail">
-              <div className="title-total-detail desk">Purchase Summary</div>
-              <ul className="cart-totals">
-                {/* <li className="desk" id="subtotal">
-                  <span>Subtotal</span>
-                  <span id="carritoSubTotal">$250</span>
-                </li>
-                <div className="t3 desk" id="div_monto_descuento_padre">
-                  <li
-                    id="div_monto_descuento"
-                    className="descuento_cupon_info m--font-success"
-                  >
-                    <span>Descuento Promocional</span>
-                    <span className="texto-descuento-cupon">$ -50 </span>
+      </section> 
+      
+      {<section className="cart-totals-container">
+            <div className="fixed-resume">
+              <div className="cart-totals-detail">
+                <div className="title-total-detail desk">Purchase Summary</div>
+                <ul className="cart-totals">
+                  <li id="total" className="cart-total desk">
+                    <span>Total</span>
+                    <span id="carritoTotal">$ {Number(totalCart).toLocaleString('en-US')}</span>
                   </li>
-                </div> */}
-                <li id="total" className="cart-total desk">
-                  <span>Total</span>
-                  <span id="carritoTotal">$ {Number(totalCart).toLocaleString('en-US')}</span>
-                </li>
-                {/*<div className="cart-additional-title">
-                  Descuentos y Cupones
-                </div>
-                <li className="cart-coupon">
-                  <div className="cart-additional-item">
-                    <div id="agregar_cupon_descuento">
-                      <input
-                        type="checkbox"
-                        id="agregar_cupon"
-                        name="agregar_cupon"
-                      />
-                      <label htmlFor="agregar_cupon">
-                        Tengo un cupon de descuentos
-                      </label>
-                    </div>
-                  </div>
-                  <div id="sel_codigo_descuento">
-                    <div className="cart-coupon-panel">
-                      <input type="text" placeholder="Ingresa tu codigo" />
-                      <button className="disabled">Aplicar</button>
-                    </div>
-                  </div>
-                </li>*/}
-              </ul>
-            </div>
-            <div className="cart-form-actions">
-              <a href="/">Buy more Products </a>
-            </div>
-            <br />
-            <br />
-            <div className="cart-form-actions">
+                </ul>
+              </div>
+              <div className="cart-form-actions">
+                <a href="/">Buy more Products </a>
+              </div>
+              <br />
+              <br />
+              {(productsInTheCart.length === 0) ? 
+              (<div className="cart-form-actions-disable" >
+                <button type="button" onClick={handleNext} className="btn-checkout">Continue</button>
+              </div>)
+              :
+              (<div className="cart-form-actions">
               <button type="button" onClick={handleNext} className="btn-checkout">Continue</button>
+            </div>)
+            }
             </div>
-          </div>
-        </section>
-      }
-      <div className="loading-checkout">
+      </section>}
+
+      {/* <div className="loading-checkout">
         <div className="loading-content">
           <div className="loading-icon"></div>
           <p className="loading-tile"></p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }, {onRedirecting:()=><Loading/>}) ;

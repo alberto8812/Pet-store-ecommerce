@@ -56,15 +56,15 @@ function App() {
      {/* < NavbarAdmin /> */ }
     
       <Routes>
-      <Route  path={"/admin/"} element={< SidebarAdmin />}>
-        <Route path={"logs"} element={<HomeAdmin/>}/>
-        <Route path={"statistics"} element={<Estadisticas/>}/>
-        <Route path={"productsAdm"} element={<ProductsAdm />}/>
-        <Route path={"buyers"} element={<Buyers/>}/>
-        <Route path={"users"} element={<Users/>}/>
-        <Route path={"create"} element={<Create />} />
-        <Route path={"edit/:id"} element={<Edit />} />
-        <Route path={"*"} element={<NotFound />} />
+        <Route  path={"/admin/"} element={< SidebarAdmin />}>
+          <Route path={"logs"} element={<HomeAdmin/>}/>
+          <Route path={"statistics"} element={<Estadisticas/>}/>
+          <Route path={"productsAdm"} element={<ProductsAdm />}/>
+          <Route path={"buyers"} element={<Buyers/>}/>
+          <Route path={"users"} element={<Users/>}/>
+          <Route path={"create"} element={<Create />} />
+          <Route path={"edit/:id"} element={<Edit />} />
+          <Route path={"*"} element={<NotFound />} />
         </Route>
       </Routes> 
 

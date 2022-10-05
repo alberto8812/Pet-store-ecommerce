@@ -56,7 +56,7 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
     };
 
     const notifyOK = () => {
-        toast.success(`Payment complete!`, {
+        toast.success(`Payment completed!`, {
             theme: "colored",
         });
     };
@@ -81,10 +81,10 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
             type: "card",
             card: elements.getElement(CardElement),
         });
-        setLoading(true);
         // notifyOK();
-
+        
         if (!error) {
+            setLoading(true);
             console.log(paymentMethod)
             const { id } = paymentMethod;
             try {
@@ -118,6 +118,9 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
 
                 elements.getElement(CardElement).clear();
                 notifyOK();
+                setTimeout(() => {
+                    window.location.reload()
+                }, 2000);
             } catch (error) {
                 notifyError();
                 console.log(error);
@@ -133,9 +136,9 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
         // e.preventDefault();
         window.localStorage.clear();
         // setTimeout(() => {
-        //     navigate('/')
-        // }, 3000);
-
+            // window.location.reload();
+        //  navigate('/')
+        // }, 5000);
     }
 
     console.log(!stripe || loading);
@@ -166,7 +169,7 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
                                         <img className="image" src={item.image} alt={item.name} height='50px' width='50px' />
                                         <div className="product-info">
                                             <h5 className="name">
-                                                <a href={`/products/detail/${id}`} target='_blank'>Go to product details</a>
+                                                <a href={`/products/detail/${item.id}`}>Go to product details</a>
                                             </h5>
                                             <div className="description">
                                                 <ul>

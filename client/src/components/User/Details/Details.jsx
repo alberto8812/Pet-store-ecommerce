@@ -11,6 +11,9 @@ import Footer from "../Footer/Footer";
 import { useAuth0 } from '@auth0/auth0-react';//libreia Auth0
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ReactImageZoom from 'react-image-zoom';
+ 
+const props = {width: 400, height: 450, zoomWidth: 0, zoomPosition: 'rigth'};
 
 
 //Vamos a validar que la persona seleccione estrellas? Si o si haga puntuación? 
@@ -30,7 +33,7 @@ export function validate (data) {
 }
 
 export default function Detail() {
-   const {user,isAuthenticated}=useAuth0()
+   const {user,isAuthenticated,getAccessTokenSilently}=useAuth0()
 
     const [carga, setCarga] = useState(true);
     const { id } = useParams()
@@ -38,19 +41,26 @@ export default function Detail() {
     const navigate = useNavigate()
     const myProduct = useSelector(state => state.details);
    // console.log(myProduct,user.email)
-    let userLogin=[]//definimos una variable  para el filtrado
-   
-
+   const [userLogin, setuserLogin] = useState([])
+    // userLogin=[]//definimos una variable  para el filtrado
+   // console.log(myProduct)
 //PARA REVIEW:
- 
+useEffect(() => {
+    dispatch(getDetails(id)).then(() => setCarga(false))
+}, [id,dispatch])
+
+
     useEffect(() => {
-       if(isAuthenticated){//pregunta si el usuario tiene login en la pagina
-        
-            //indaga indaga si el usuario realizo compra en el producto
-          userLogin=myProduct.reviews===undefined?[]:myProduct.reviews.find(e  => e.user === user.email )//encuentra
-       }
       
-    }, [dispatch])
+       if(isAuthenticated && Object.keys(myProduct).length){//pregunta si el usuario tiene login en la pagina
+            
+            //indaga indaga si el usuario realizo compra en el producto
+     
+    setuserLogin(()=>(myProduct.reviews.find(e  => e.user === user.email )))//encuentra
+   
+        }
+
+    }, [dispatch,isAuthenticated,myProduct])
 
 
     const [input, setInput] = React.useState ({ 
@@ -58,32 +68,57 @@ export default function Detail() {
     })
     const [errors, setErrors] = React.useState({});
 
-    const [data, setData] = React.useState({id: userLogin.id, comment:'', punctuation:''})
-
+    const [data, setData] = React.useState({id: '', comment:'', punctuation:''})
+    useEffect(() => {
+     setData({...data,id:id})
+    }, [id])
+    
 
     let render = false;
 
     const handleSubmit = (e) => {
+        
         e.preventDefault();
+ 
+    
         const errors = validate(data)
+        
         if (!isAuthenticated) {
             alert('You must be logged to comment')
         } else if(errors.comment){
             alert('Your comment could not be published')
-        } else if (userLogin.review.length) {
+        } else if (userLogin.length  ) {//userLogin.review.length
             render = false;
             alert('You already posted a comment on this product')
         } else {
             alert('Comment posted successfully')
             render = false
-            dispatch(addComment(data))
+
+            const getToken=async()=>{
+
+                //pedimisn el token
+                const token= await getAccessTokenSilently()
+                console.log(token)
+                //realizamon un arreglo con los header
+               const headers= {   
+                  headers:{
+                  authorization: `Bearer ${token}`
+                  },    
+                  }
+                //dispatch(getCustomerData)
+                dispatch(addComment(data,headers))
+              }
+          
+              getToken()
+         
         }
     }
 
-    const handleChange = function (e) {
+    const handleChange =  function(e) {
+       console.log(data)
         setData({
             ...data,
-            [e.target.name]:e.target.value
+            [e.target.name]:e.target.value,
         });
         setErrors(validate({
             ...data,
@@ -93,7 +128,7 @@ export default function Detail() {
 
     const calificar = function (e) {
         setData({...data, punctuation: e})
-        console.log({...data, punctuation:e})
+        //console.log({...data, punctuation:e})
 
         for(var i = 1; i<=5; i++) {
             const stars = document.getElementById('star' + i)
@@ -124,14 +159,14 @@ export default function Detail() {
     }
     function sumar(e) {
         e.preventDefault()
-        if(quantitySelected === myProduct.stock){
+        if(quantitySelected === myProduct.stock || myProduct.stock <= 0){
             return
         }
          return setQuantitySelected(quantitySelected +1)
     };
 
     useEffect(() => {
-        console.log(quantitySelected)
+        //console.log(quantitySelected, "3")
     }, [quantitySelected])
     
 
@@ -159,9 +194,6 @@ export default function Detail() {
         }, 3000);
     }
 
-    useEffect(() => {
-        dispatch(getDetails(id)).then(() => setCarga(false))
-    }, [dispatch, id])
 
 
     if (carga) {
@@ -169,8 +201,18 @@ export default function Detail() {
     };
 
 
+    function rankingProm(){
+        let promedy = 3
+        if(myProduct.reviews){
+            promedy += myProduct.reviews.reduce((total,review)=>total=total+parseInt(review.punctuation),0)
+            console.log(promedy)
+        }
+        return promedy/(myProduct.reviews.length+1)
+    }
+
+  
     return (
-        <div className="contenido">
+       Object.keys(myProduct).length?<div className="contenido">
             <div className="m3">
                 <div className="b5 desk">
                     <li><a href="/">Home</a></li>
@@ -186,22 +228,26 @@ export default function Detail() {
                                     <div className="d2">
                                         <div className="t1 activo" datatype="imagen">
                                             <picture>
-                                                <source srcSet={myProduct.image} type='image/webp' />
-                                                <img src={myProduct.image} alt={myProduct.name} />
+                                             <source srcSet={myProduct.image} type='image/webp' />
+                                                <img src={myProduct?.image} alt={myProduct.name} />
                                             </picture>
                                         </div>
                                         <a href={myProduct.image}></a>
                                         <div className="clear"></div>
                                     </div>
-                                    <div className="d1">
-                                        <picture>
+                                    </div>
+                                    </span>
+
+                                    {/* <div className="d1"> */}
+                                    <div className="image-zoom-container">
+                                    <ReactImageZoom {...props} img={myProduct?.image}/>
+                                    </div>
+                                        {/* <picture>
                                             <source name="product-image" className="product-image" srcSet={myProduct.image} type='image/webp' src={myProduct.image} data-id='1' />
                                             <img src={myProduct.image} alt={myProduct.name} className='product-image' data-id="1" />
-                                        </picture>
-                                        <div className="clear"></div>
-                                    </div>
-                                </div>
-                            </span>
+                                        </picture> */}
+                                        {/* <div className="clear"></div> */}
+                                    {/* </div> */}
                             <div className="clear"></div>
                         </div>
                         <div className="desk">
@@ -233,6 +279,9 @@ export default function Detail() {
                         </div>
                         {/* SECCIÓN DE REVIEWS */}
                         <div className="item-description m-mobile">
+                            <div>
+                                <h2 className="title desk">Rating: {rankingProm()} <span className='star2'>★</span></h2>
+                            </div>
                             <h2 className="title desk">Reviews</h2>
                             <div class="rating">
                                 <span className='star' onClick={e => calificar(5)} id="star5">★</span>
@@ -242,11 +291,11 @@ export default function Detail() {
                                 <span className='star' onClick={e => calificar(1)} id="star1">★</span>
                             </div>
                             <div className="review">
-                                {!userLogin.comment?.length && 
+                            {!userLogin?.comment?.length && 
                                 <form onSubmit={(e) => handleSubmit(e)}>
                                     <h4 className="titleRev">Write a review</h4>
                                     <div className="comarea">
-                                        <textarea className={errors.comment? 'danger' : 'com'} type="text" placeholder="Leave your opinion..." name="comment" onChange={handleChange} value={data.comment}/>
+                                        <textarea className={errors.comment? 'danger' : 'com'} type="text" placeholder="Leave your opinion..." name="comment" onChange={(e)=>handleChange(e)} value={data.comment}/>
                                         {errors.comment && (
                                             <p className='danger'>{errors.comment}</p>
                                         )}
@@ -255,17 +304,21 @@ export default function Detail() {
                                 </form>}
                             </div>
                             <div>
-                                <h2 lassName="title desk">Comments</h2>
-                                <div>{myProduct?.reviews?.map( review => {
-                                    return(
-                                        <div>
-                                            <h2>{review.comment}</h2>
-                                            <h2>{renderizarEstrellas(review.punctuation)}</h2>
-                                        </div>
-                                    )
-                                })}</div>
+                                <h2 className="title desk">Comments</h2>
                                 <scroll-container>
                                 <div className="comments">
+                                    {myProduct.reviews.length?
+                                    <scroll-page>
+                                    <div className="comments">
+                                    <div>{myProduct?.reviews?.map( review => {
+                                    return(
+                                        <div>
+                                            <span className='starComment'>{renderizarEstrellas(review.punctuation)}</span>
+                                            <p>{review.comment}</p>
+                                        </div>
+                                    )
+                                    })}</div></div>
+                                    </scroll-page>: ' '}
                                     <scroll-page>
                                     <div className="comments">
                                     <div>
@@ -337,18 +390,21 @@ export default function Detail() {
                             </div>
                             <div className="producto-information">
                             <div className="icon">
-                                            <StorefrontIcon width='20px' height='20px' viewBox="0 0 25 25" className="Store"/><span className="tag free">Available now</span>
+                                            <StorefrontIcon width='20px' height='20px' viewBox="0 0 25 25" className="Store"/>
+                                            {/* <span className="tag free">Available now</span> */}
+                                            {(myProduct.stock <= 0) ? <span className="tag-unavailable">Not available now!</span>  : <span className="tag free">Available now</span>}
                                         </div>
                             </div>
                             <div className="delivery">
                                 <ul>
                                     <li>
                                         <div className="body">
+                                            
                                             {/* <p>Withdrawal per branch</p> */}
                                             <ul>
                                                 <li><strong>Age: </strong> {myProduct.age}</li>
                                                 <li><strong>ID Product: </strong>{myProduct.id}</li>
-                                                <li><strong>Stock: </strong>{myProduct.stock}</li>
+                                                {(myProduct.stock <= 0) ? (<li style={{'color':'red'}}><strong>Stock: </strong>{myProduct.stock}</li>) : (<li><strong>Stock: </strong>{myProduct.stock}</li>)}
                                             </ul>
 
                                             {/*<a className="more" href="/sucursales/listado">see branches</a>*/}
@@ -378,21 +434,26 @@ export default function Detail() {
                                 <div className="cart">
                                     <div className="quantity">
                                         <div className="content-qty">
-                                            <button type="button" onClick={e => restar(e)} value>
-                                            -
-                                            </button>
-                                            <p className="counter-detail">{quantitySelected}</p>
-                                            {/* <input onChange={e => onChange(e)} type="text" name="cantidad" id="cantidad" value="1" readOnly /> */}
-                                            <button type="button" onClick={e => sumar(e)} value>
-                                                +
-                                            </button>
+                                            <button className="minus-plus-btn" type="button" onClick={e => restar(e)} value> - </button>
+                                            {(myProduct.stock <= 0) ? <span className="counter-detail">0</span>  : <span className="counter-detail">{quantitySelected}</span>}
+                                            {/* <span className="counter-detail">{quantitySelected}</span> */}
+                                            <button className="minus-plus-btn" onClick={e => sumar(e)} value> + </button>
                                         </div>
+                                        {/* <div id="existencias" className="available">{myProduct.stock}</div> */}
                                     </div>
-                                    <div className="available" id="existencias">{myProduct.stock}</div>
-                                    <div className="btn-container">
-                                        <button type="button" onClick={handleBuyCart} className="btn-section-add-to-cart" id="comprar">Buy</button>
-                                        <button type="button" onClick={handleAddToCart} id='agregarAlCarrito' className="btn-sectionadd-to-cart">Add to cart</button>
-                                    </div>
+
+                                    {(myProduct.stock <= 0) ?
+                                         (<div className="btn-container">
+                                         <button type="button"  className="btn-section-add-to-cart-disable" id="comprar">Buy now</button>
+                                         <button type="button"  id='agregarAlCarrito' className="btn-sectionadd-to-cart-disable">Add to cart</button>
+                                         </div>)  
+                                         : 
+                                         (<div className="btn-container">
+                                         <button type="button" onClick={handleBuyCart} className="btn-section-add-to-cart" id="comprar">Buy now</button>
+                                         <button type="button" onClick={handleAddToCart} id='agregarAlCarrito' className="btn-sectionadd-to-cart">Add to cart</button>
+                                        </div>)
+                                    }
+                                   
                                 </div>
                                 <ToastContainer
                                         position="top-center"
@@ -413,7 +474,8 @@ export default function Detail() {
 
                             <div className="c-mobile">
                                 <div className="card-promotion-section">
-                                    <p><CreditCardIcon className="fa fa-credit-card" /></p>
+                                <i class="bi bi-credit-card"></i>
+                                    {/* <p><CreditCardIcon className="fa fa-credit-card" /></p> */}
                                     Pay with credit or debit
                                 </div>
                                 <div className="card-section">
@@ -438,7 +500,7 @@ export default function Detail() {
                                         <img src="https://d28hi93gr697ol.cloudfront.net/_global/iconos/tarjetas/provincia-net-pagos.png" alt="Provincia NET Pagos" />
                                     </div>
                                 </div>
-                                <a href="/v/medios-pagos" className="btn-section">Payment Methods</a>
+                                {/* <a href="/v/medios-pagos" className="btn-section">Payment Methods</a> */}
                             </div>
                         </div>
                         <div className="clear"></div>
@@ -466,7 +528,7 @@ export default function Detail() {
                 <Footer/>
             </div>
 
-        </div>
+        </div>:<h1>loading..........</h1>
     )
 
 }

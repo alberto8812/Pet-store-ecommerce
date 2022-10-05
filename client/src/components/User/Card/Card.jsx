@@ -16,7 +16,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useDispatch, useSelector } from 'react-redux';
 import './Card.css';
-import { addToFav } from '../../../redux/actions';
+import { addToFav, removeFromFav } from '../../../redux/actions';
 import { useState } from "react";
 
 
@@ -33,7 +33,7 @@ const ExpandMore = styled((props) => {
 }));
 
 
-export default function CardProduct({ id, image, name, price, rating, category, genre }) {
+export default function CardProduct({ id, image, name, price, reviews, category, genre }) {
     const [expanded, setExpanded] = React.useState(false);
     const dispatch = useDispatch()
     const products = useSelector(state => state.products);
@@ -41,73 +41,83 @@ export default function CardProduct({ id, image, name, price, rating, category, 
         setExpanded(!expanded);
     };
 
-    function handleFav(){
-        dispatch(addToFav(products));
-        const heart = document.getElementById('favItem');
-        heart.style.color = 'red';
+    function handleFav(itemId){
+        const heart = document.getElementById(id);
+        if(heart.classList.contains('bi-heart-fill')) {
+            dispatch(removeFromFav(itemId))
+            heart.className = 'bi bi-heart';
+        }
+        else {
+            dispatch(addToFav(itemId))
+            heart.className = 'bi bi-heart-fill';
+        }
     }; 
 
+    function rankingProm(){
+        let promedy = 3
+        if(reviews){
+            promedy += reviews.reduce((total,review)=>total=parseFloat(total)+parseFloat(review.punctuation),0)
+        }
+        console.log(promedy)
+        return promedy/(reviews.length+1)
+    }
     
     return (
         <Card sx={{
-            width: 400,
-            height: 600,
-            padding: "2em",
-            margin: "2em",
+            width: 300,
+            height: 400,
+            padding: "1em",
+            margin: "3em",
             backgroundColor: '#aa71bfe0',
 
-        }}>
+        }}
+        className="card-div">
             <CardHeader
                 avatar={
-                    <Avatar sx={{ bgcolor: purple[800] }} aria-label="recipe">
+                    
+                    <Avatar sx={{ bgcolor: purple[700], fontSize:16, margin:-2 }} aria-label="recipe" >
                         {genre}
                     </Avatar>
                 }
-                action={
-                    <IconButton aria-label="settings">
-                        <Typography
-                            fontSize='20px'
-                            fontWeight="bold"
-                        >${price}</Typography>
-                    </IconButton>
-                }
 
-                title={<h3>{name}</h3>}
-                subheader={<h4>{category}</h4>}
+                title={<h3 className='title-card'>{name}</h3>}
+                subheader={<h4 className='title-card'>{category}</h4>}
             />
 
-            <CardMedia
+            <Link to={`/products/detail/${id}`}><CardMedia
                 component="img"
-                height="50%"
-                width='50%'
+                className='img-card'
+                // height="110px"
+                // width='auto'
                 image={image ? image : 'https://i0.wp.com/puppis.blog/wp-content/uploads/2022/03/etapas-desarrollo-perros-cachorros-min.jpg?fit=1200%2C944&ssl=1'}
                 alt={name}
             />
-            <CardContent>
-                <Typography variant="body2" color="text.secondary" fontSize='25px'>
-                    <Link to={`/products/detail/${id}`}><span>Details</span></Link>
-                </Typography>
-            </CardContent>
-            <CardActions disableSpacing>
-            
-                {/* <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                </IconButton> */}
+            <Typography
+                fontSize='20px'
+                fontWeight="bold"
+            >        ${price}
+            </Typography>
+            </Link>
+
+            <CardActions disableSpacing className='container-favs-stars'>            
                 <ExpandMore
                     onClick={handleExpandClick}
                     aria-expanded={expanded}
                     aria-label="show more"
                 >
-                    {rating} ⭐
+
+                    {rankingProm()} ⭐
+                <button onClick={() => handleFav(id)} type='button' className='btn-fav' id='favItem'><i id={id} class="bi bi-heart"></i></button>                    
                 </ExpandMore>
-                <button onClick={handleFav} type='button' className='btn-fav' id='favItem'><i id='favItem' class="bi bi-heart"></i></button>
+
             </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
+            {/* <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
 
                     <Link to={`/products/detail/${id}`}><span>Details</span></Link>
                 </CardContent>
-            </Collapse>
+            </Collapse> */}
         </Card>
     );
 }
+  //

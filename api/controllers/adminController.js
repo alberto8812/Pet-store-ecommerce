@@ -1,6 +1,6 @@
 const {createProductsDb}=require('../service/admin/createProductDb')
 const {deleteProductsDb} = require ('../service/admin/deleteProductDb')
-const {LineGraphicsSale,pieGraphicscategory,piestatusProducts,piestatususers}=require('../service/admin/statisticsProductService')
+const {LineGraphicsSale,pieGraphicscategory,piestatusProducts,piestatususers,productsCount}=require('../service/admin/statisticsProductService')
 const {customerShoppinService,customerShoppingStatusService}=require('../service/admin/customerShoppinService')
 const {editProductsDb}=require('../service/admin/editProductDb')
 const {dataUserstoreService,editUsersAdminService}=require('../service/admin/dataUserstoreService')
@@ -34,7 +34,9 @@ const statisticsProductDb=async(req,res)=>{
     const statisticsProductpie=await pieGraphicscategory(req)
     const statisticsStatusProductpie=await piestatusProducts(req)
     const statisticsStatusUserpie=await piestatususers(req)
-    res.status(202).json({statisticsProductpie:statisticsProductpie,statisticsProduct:statisticsProduct,statisticsStatusProductpie:statisticsStatusProductpie,statisticsStatusUserpie:statisticsStatusUserpie});
+    const productsCounttotal=await productsCount(req)
+    productsCount
+    res.status(202).json({statisticsProductpie:statisticsProductpie,statisticsProduct:statisticsProduct,statisticsStatusProductpie:statisticsStatusProductpie,statisticsStatusUserpie:statisticsStatusUserpie,productsCounttotal:productsCounttotal});
 }
 
 const  customerShoppingDb=async(req,res)=>{

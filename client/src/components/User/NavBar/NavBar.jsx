@@ -200,6 +200,9 @@ const NavBar = () => {
                       </li>
                     );
                   })}
+                  {
+                    (favs.length === 0) && <span>Sin favoritos</span>
+                  }
               </ul>
             </div>
           </Grid>
@@ -229,13 +232,13 @@ const NavBar = () => {
                 color="rgb(234, 208, 240)"
               >
                 <div className="fotito">
+                  <Link to={`/profile/${user.email}`}>
                   <Avatar
                     alt={user.given_name}
                     sx={{ width: 45, height: 45 }}
                     src={user.picture}
                   />
-                  <Link to={`/profile/${user.email}`}>
-                    <h5>{user.given_name}</h5>
+                    {/* <h5>{user.given_name}</h5> */}
                   </Link>
                 </div>
                 <Grid
@@ -246,8 +249,8 @@ const NavBar = () => {
                   alignItems="center"
                   color="rgb(234, 208, 240)"
                 >
-                  <LogOut />
                 </Grid>
+                  <LogOut />
               </Grid>
             )
           ) : (

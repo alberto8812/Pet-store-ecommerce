@@ -18,7 +18,15 @@
 }
 
 
-/**/
+/* .div-containerIcons-navbar {
+    display: flex;
+    justify-content: center;
+    margin: 10 10;
+} */
+
+.logoutNav {
+    margin-right: 15px;
+}
 
 .bi-cart {
     font-size: 35px;

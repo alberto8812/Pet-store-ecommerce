@@ -11,6 +11,26 @@ import Loading from "../Loading/Loading";
 export default withAuthenticationRequired ( function Carrito() {
   const productsInTheCart = useSelector(state => state.cart);
   const numberCart = useSelector(state => state.numberCart);
+  const [myCartQuantity, setmyCartQuantity] = useState(0);
+
+
+  /////////
+
+  const calculatemyCartQuantity = () => {
+    let counter = 0;
+    productsInTheCart.forEach((item) => {
+      counter += item.quantity;
+    });
+    setmyCartQuantity(counter);
+  };
+
+  useEffect(() => {
+    calculatemyCartQuantity();
+  }, [numberCart]);
+
+
+  /////////
+
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -57,7 +77,7 @@ export default withAuthenticationRequired ( function Carrito() {
   return (
     <div className="m7">
       <div className="b1 desk">
-        <div className="title">My Cart</div>
+        <div className="title">My Cart ( {myCartQuantity} )</div>
       </div>
       <div className="total-container mobile"></div>
       <div className="notification success desk">

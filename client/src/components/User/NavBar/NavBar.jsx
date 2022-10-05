@@ -94,6 +94,19 @@ const NavBar = () => {
           console.log(error.message);
         }
       }
+      else{
+        try {
+          const token = await getAccessTokenSilently();
+          // console.log(token)
+          request = await axios.get("/loginAdmin", {
+            headers: {
+              authorization: `Bearer ${token}`,
+            },
+          });
+        } catch (error) {
+          console.log(error.message);
+        }
+      }
     };
     callProtectAip();
   }, [isAuthenticated]);
@@ -144,6 +157,13 @@ const NavBar = () => {
             <img className="img-home-btn" src={home} alt="" />
             <h3 className="link_home">Home</h3>
           </Link>
+          <Link
+          to= "/admin/logs"
+          onClick ={()=> window.location.redirect()}
+          target= "_self"
+          >
+            <h3 className="link_home">Admin</h3>
+          </Link> 
         </Grid>
         <Grid
           item

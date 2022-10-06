@@ -12,6 +12,7 @@ import {
   getAllProducts,
 } from "../../../redux/actions";
 import Recomendations from "../Recomendations/Recomendations";
+import Loading from "../Loading/Loading";
 
 ///////////////
 export default function Home() {
@@ -20,11 +21,13 @@ export default function Home() {
 
   const ALLproducts = useSelector((state) => state.allProducts);
   const status = useSelector((state) => state.status);
+  const [carga, setCarga] = useState(true);
+
 
   
   useEffect(() => {
-    dispatch(getAllProducts());
-  }, []);
+    dispatch(getAllProducts()).then(() => setCarga(false))
+  }, [dispatch]);
 
   // console.log(ALLproducts,products)
   useEffect(() => {
@@ -42,7 +45,10 @@ export default function Home() {
     indexLastAnimal
   );
 
-  console.log(products)
+  if (carga) {
+    return <Loading />;
+};
+
   return (
     <div className="home">
       <Grid container>

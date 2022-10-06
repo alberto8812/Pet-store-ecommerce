@@ -98,7 +98,7 @@ useEffect(() => {
 
                 //pedimisn el token
                 const token= await getAccessTokenSilently()
-                console.log(token)
+                // console.log(token)
                 //realizamon un arreglo con los header
                const headers= {   
                   headers:{
@@ -115,7 +115,7 @@ useEffect(() => {
     }
 
     const handleChange =  function(e) {
-       console.log(data)
+    //    console.log(data)
         setData({
             ...data,
             [e.target.name]:e.target.value,
@@ -205,7 +205,6 @@ useEffect(() => {
         let promedy = 3
         if(myProduct.reviews){
             promedy += myProduct.reviews.reduce((total,review)=>total=total+parseInt(review.punctuation===null?0:review.punctuation),0)
-            console.log(promedy)
         }
         return promedy/(myProduct.reviews.length+1)
     }

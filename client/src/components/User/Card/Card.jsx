@@ -56,13 +56,10 @@ export default function CardProduct({ id, image, name, price, reviews, category,
 
     function rankingProm(){
         let promedy = 3
-        console.log(reviews)
         if(reviews.length){
-            console.log("hola ranking qqq")
             
             promedy += reviews.reduce((total,review)=>total=parseInt(total)+parseInt(review.punctuation===null?0:review.punctuation),0)
         }
-        console.log(reviews,"holi fernanda gasto")
         return promedy/(reviews.length+1)
     }
     

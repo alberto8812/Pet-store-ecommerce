@@ -12,9 +12,9 @@ export default function Recomendations() {
 
   
 
-  useEffect(() => {
-    suggested.map(x => console.log(x))
-  }, [])
+  // useEffect(() => {
+  //   suggested.map(x => console.log(x))
+  // }, [])
 
 
   return (

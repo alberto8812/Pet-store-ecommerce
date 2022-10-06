@@ -40,7 +40,6 @@ const NavBar = () => {
   const [favsQuantity, setcartFavsQuantity] = useState(0);
 
   ///////FAVS/////////
-console.log(userProfile,"user profile")
   const calculateFavsQuantity = () => {
     let counter = 0;
     favs.forEach((item) => {

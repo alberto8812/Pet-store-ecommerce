@@ -46,7 +46,7 @@ const options = {
 /* */
 export default function LineSell() {
 const lineGraphics = useSelector(state => state.statistics);
-console.log(lineGraphics)
+// console.log(lineGraphics)
 let labels =Object.keys(lineGraphics).length>0?lineGraphics.statisticsProduct.month:[];
 let scores = Object.keys(lineGraphics).length>0?lineGraphics.statisticsProduct.total:[];
 

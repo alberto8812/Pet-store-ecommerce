@@ -131,7 +131,7 @@ export default function Edit() {
 
   function handleSubmit(e) {
         e.preventDefault()
-        console.log('holiiiiiasyich')
+        // console.log('holiiiiiasyich')
         if (!Object.getOwnPropertyNames(errors).length && input.name && input.price && input.genre && input.category && input.age && input.stock && input.detail && input.rating && input.image /*&& input.category.length && input.genre.length*/) {
           async  function editPP(){
             const token = await getAccessTokenSilently()
@@ -140,7 +140,7 @@ export default function Edit() {
               authorization: `Bearer ${token}`
               },    
               }
-            console.log(token)
+            // console.log(token)
             dispatch(editProducts(id, headers, input))
             alert('The product was edited')
             setInput({

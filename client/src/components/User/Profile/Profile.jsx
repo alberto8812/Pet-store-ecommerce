@@ -18,7 +18,6 @@ export default function Profile() {
     const dispatch=useDispatch()
     const { getAccessTokenSilently, isAuthenticated, user } = useAuth0()//componete de hook auth0
    const userData=useSelector(state=>state.userProfile)
-   console.log(userData)
 
    
 
@@ -37,14 +36,12 @@ export default function Profile() {
     },[])
 
 
-
-
     return (
 
         isAuthenticated ?
             isAuthenticated && (
                 <div className="app-wrapper">
-                    {console.log(isAuthenticated)}
+                    {/* {console.log(isAuthenticated)} */}
                     <div className="page-wrapper">
                         <div className="page-wrapper__content">
                             <div className="main-container profile">

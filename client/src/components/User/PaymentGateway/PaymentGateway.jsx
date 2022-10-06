@@ -49,7 +49,6 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
     });
 
     const idList = listCart.map(e => e.id).toString()
-    console.log(listCart)
 
     function totalPrice(price, item) {
         return Number(price * item).toLocaleString('en-US');
@@ -75,7 +74,7 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
     const handleSubmit = async (e) => {
         e.preventDefault();
         // dispatch(postConfirm())
-        console.log(<CardElement />)
+        // console.log(<CardElement />)
 
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: "card",
@@ -85,7 +84,7 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
         
         if (!error) {
             setLoading(true);
-            console.log(paymentMethod)
+            // console.log(paymentMethod)
             const { id } = paymentMethod;
             try {
                 const token = await getAccessTokenSilently()
@@ -119,8 +118,9 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
                 elements.getElement(CardElement).clear();
                 notifyOK();
                 setTimeout(() => {
+                    navigate('/')
                     window.location.reload()
-                }, 2000);
+                }, 3000);
             } catch (error) {
                 notifyError();
                 console.log(error);
@@ -141,7 +141,7 @@ export default withAuthenticationRequired(function PaymentGateway({ image, name,
         // }, 5000);
     }
 
-    console.log(!stripe || loading);
+    // console.log(!stripe || loading);
 
 
     return (

@@ -62,7 +62,7 @@ const ProductsAdm= () => {
 
      //pedimisn el token
      const token= await getAccessTokenSilently()
-     console.log(token)
+    //  console.log(token)
      //realizamon un arreglo con los header
      headers= {   
        headers:{

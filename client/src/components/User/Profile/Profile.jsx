@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom'
 
 export default function Profile() {
     const { getAccessTokenSilently, isAuthenticated, user } = useAuth0()//componete de hook auth0
-    let usuario= []
+    let usuario = []
 
     useEffect(() => {
         async function editUser() {

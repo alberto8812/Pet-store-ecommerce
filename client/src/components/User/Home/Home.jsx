@@ -71,7 +71,7 @@ export default function Home() {
         </div>
       </Grid>
 
-        {(products.length === 0) && (<div className="not-found-message-container"><p >Product not Found!</p>
+        {(products.length === 0) && (<div><p className="not-found-msg">Product not found.</p><br/><p className="not-found-msg">But we also suggest!</p>
         <Recomendations />  </div>)}   {/*<img className="img-notFound"src={notFound} alt='not found'/>*/}
 
               <a style={{'textDecoration': 'none'}} href="#">

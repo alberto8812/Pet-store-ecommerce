@@ -748,6 +748,7 @@ p:not(.item-description.m-mobile p) {
     text-shadow: 0 0 5px #e2e2e2;
     width: 1.1em;
     font-size: 2em;
+    display:block;
 }
 
 
@@ -759,7 +760,7 @@ p:not(.item-description.m-mobile p) {
 .review {
     margin-top: 12%;
     font-family: 'roboto', sans-serif;
-    margin-bottom: 10%;
+    margin-bottom: 1vh;
 }
 
 .titleRev {
@@ -830,13 +831,13 @@ textarea.danger {
     padding-top: 0%;
     border-radius: 2px;
     background-color: rgba(204, 204, 204, 0.108);
-    margin: 0.5em
+    margin: 0.5em;
 }
 
 scroll-container {
     display: block;
     width: 48em;
-    height: 18em;
+    height: 19em;
     overflow-y: scroll;
     scroll-behavior: smooth;
 }
@@ -882,3 +883,4 @@ scroll-container {
     margin-right: 5px;
     color: white;
 }
+

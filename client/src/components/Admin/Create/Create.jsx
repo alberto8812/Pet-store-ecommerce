@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { postProduct } from "../../../redux/actions";
-//import './Create.css'
+import './Create.css'
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -210,10 +210,10 @@ export default function Create() {
     }
 
     return (
-        <Container>
+        <Container >
 
             <br />
-            <div className="supercontainer">
+            <div>
                 <h1>
                     <Badge bg="primary">Add products to Developets</Badge>
                 </h1>

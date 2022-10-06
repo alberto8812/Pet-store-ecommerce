@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-
+import './SubiendoIImagenes.css'
 export default function SubiendoImagenes({image, setImage}) {
 
     const [loading , setLoading] = useState(false)
@@ -28,7 +28,7 @@ export default function SubiendoImagenes({image, setImage}) {
 
 
     return(
-        <div>
+        <div className="SubiendoIImagenes">
             <div>
                 <input 
                 type="file"

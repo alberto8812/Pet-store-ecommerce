@@ -12,7 +12,7 @@ const options = {
   responsive: true,
   plugins: {
     legend: {
-      display: true,
+      display: false,
     },
   },
 };

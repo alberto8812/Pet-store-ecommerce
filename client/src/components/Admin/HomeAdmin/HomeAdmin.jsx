@@ -33,23 +33,23 @@ const HomeAdmin = () => {
   }, [])
   
   return (
-    Object.keys(statusGraphicsdb).length>0 ? <Box sx={{ height: '100%', width: '100%',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
-      <Box sx={{height: '100%', width: '100%',backgroundColor:'#6636a5'}}>
+    Object.keys(statusGraphicsdb).length>0 ? <Box sx={{ height: '80%', width: '100%',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
+      <Box sx={{height: '0%', width: '0%',backgroundColor:'rgb(233, 211, 238)'}}>
         
       </Box>
     <Box sx={{ height: '80%', width: '100%',display:'flex',justifyContent:'center',alignItems:'center',}}>
-    <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 0 ,}} sx={{ height: '100%', width: '100%',padding:'7px',alignContent:'center',justifyContent:'space-evenly',gap:"1px"}}
+    <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 0 ,}} sx={{ height: '100%', width: '100%',padding:'70px',alignContent:'center',justifyContent:'center',gap:"60px"}}
   >
-    <Grid item xs={4} >
+    <Grid item xs={4.8} >
      <CardUser logUser={statusGraphicsdb.statisticsStatusUserpie}/>
     </Grid>
-    <Grid item xs={4}>
+    <Grid item xs={4.8}>
     <CardTotalProducts logUser={statusGraphicsdb.productsCounttotal}/>
     </Grid>
-    <Grid item xs={4}>
+    <Grid item xs={4.8}>
     <CardSaleDay logUser={statusGraphicsdb.statisticsProduct}/>
     </Grid>
-    <Grid item xs={4}>
+    <Grid item xs={4.8}>
     <CardDelivery logUser={statusGraphicsdb.statisticsStatusProductpie}/>
     </Grid>
   </Grid>

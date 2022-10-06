@@ -65,7 +65,7 @@ const InputsChangueState = ({rowInf,setRender,render}) => {
             <TextField
                 id="outlined-read-only-input"
                 label="Read Only"
-                defaultValue="Usuario"
+                defaultValue="Users"
                 value={rowInf.firstName}
                 InputProps={{
                 readOnly: true,
@@ -74,7 +74,7 @@ const InputsChangueState = ({rowInf,setRender,render}) => {
                     <TextField
                 id="outlined-read-only-input"
                 label="Read Only"
-                defaultValue="Emial"
+                defaultValue="Email"
                 value={rowInf.email}
                 InputProps={{
                 readOnly: true,

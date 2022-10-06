@@ -191,8 +191,8 @@ const Users = () => {
       <DataGrid
         rows={rows}
         columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
+        pageSize={8}
+        rowsPerPageOptions={[8]}
         //checkboxSelection
         disableSelectionOnClick
         experimentalFeatures={{ newEditingApi: true }}

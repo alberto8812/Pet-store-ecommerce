@@ -12,6 +12,7 @@ import {
   getAllProducts,
 } from "../../../redux/actions";
 import Recomendations from "../Recomendations/Recomendations";
+import Loading from "../Loading/Loading";
 
 ///////////////
 export default function Home() {
@@ -20,11 +21,13 @@ export default function Home() {
 
   const ALLproducts = useSelector((state) => state.allProducts);
   const status = useSelector((state) => state.status);
+  const [carga, setCarga] = useState(true);
+
 
   
   useEffect(() => {
-    dispatch(getAllProducts());
-  }, []);
+    dispatch(getAllProducts()).then(() => setCarga(false))
+  }, [dispatch]);
 
   // console.log(ALLproducts,products)
   useEffect(() => {
@@ -42,7 +45,10 @@ export default function Home() {
     indexLastAnimal
   );
 
-  console.log(products)
+  if (carga) {
+    return <Loading />;
+};
+
   return (
     <div className="home">
       <Grid container>
@@ -71,7 +77,7 @@ export default function Home() {
         </div>
       </Grid>
 
-        {(products.length === 0) && (<div className="not-found-message-container"><p >Product not Found!</p>
+        {(products.length === 0) && (<div><p className="not-found-msg">Product not found.</p><br/><p className="not-found-msg">But we also suggest!</p>
         <Recomendations />  </div>)}   {/*<img className="img-notFound"src={notFound} alt='not found'/>*/}
 
               <a style={{'textDecoration': 'none'}} href="#">

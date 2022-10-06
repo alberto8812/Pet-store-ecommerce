@@ -223,7 +223,7 @@ function rootReducer(state = initialState, action) {
             return {...state, userStatus: action.payload }
 
         case POST_CUSTOMER_EDIT_DATA:
-            console.log("data")
+            // console.log("data")
             return state
         case 'POST INFO':
             return {

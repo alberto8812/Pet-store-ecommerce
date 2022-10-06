@@ -67,7 +67,7 @@ useEffect(() => {
     <Box
     component="form"//contenedor form para los inputs
     sx={{
-      '& .MuiTextField-root': { m: 1, width: '25ch' },
+      '& .MuiTextField-root': { m: 0, width: '25ch' },
     }}
     noValidate
     autoComplete="off"

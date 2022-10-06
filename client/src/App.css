@@ -53,11 +53,13 @@
     margin: 0;
 }
 
+html {
+    background-color: #ebebeb;
+}
 
-/* html {
-    line-height: 1.15;
-    background: #e3d6eb;
-} */
+body {
+    background-color: #ebebeb !important;
+}
 
 
 /* Sections

@@ -43,6 +43,7 @@ const ProductsAdm= () => {
 
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
+  const status = useSelector((state) => state.status);
   const [flag, setFlag] = useState(false)
   const navigate = useNavigate()
   const {getAccessTokenSilently}=useAuth0()//componete de hook auth0
@@ -61,7 +62,7 @@ const ProductsAdm= () => {
 
      //pedimisn el token
      const token= await getAccessTokenSilently()
-     console.log(token)
+    //  console.log(token)
      //realizamon un arreglo con los header
      headers= {   
        headers:{

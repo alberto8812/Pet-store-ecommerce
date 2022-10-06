@@ -1,3 +1,19 @@
-.h5{
-color: black
+.h5 {
+    color: black;
+    font-size: 10px !important;
+}
+
+.carousel-item.active {
+    margin: 0 !important;
+    display: flex !important;
+    justify-content: center;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    color: black !important;
+}
+
+.d-block {
+    cursor: pointer;
 }

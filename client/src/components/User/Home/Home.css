@@ -33,16 +33,25 @@
 }
 */
 
-.not-found-message-container {
+
+/* .not-found-message-container {
     display: grid;
     font-size: 20px;
     letter-spacing: -1px;
     color: #9e200f;
     text-transform: uppercase;
     text-shadow: 1px 1px 0 #000;
-    /* margin: 10px 0 24px; */
     text-align: center;
     line-height: 50px;
+} */
+
+.not-found-msg {
+    font-weight: bold !important;
+    font-size: 20px;
+    /* display: grid !important; */
+    letter-spacing: -1px;
+    margin-top: 10px !important;
+    color: rgb(119, 114, 114);
 }
 
 

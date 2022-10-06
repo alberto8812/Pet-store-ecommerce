@@ -2,14 +2,16 @@ import React,{useEffect} from 'react'
 import LineChart from '../graphics/LineSale'
 import { Avatar,Grid,Box } from '@mui/material';
 import PieCategory from '../graphics/PieCategory';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from '@auth0/auth0-react'//libreia Auth0
 import { getgraphicsData } from '../../../redux/actions';
-
+import PieStatus from '../graphics/PieStatus';
+import PieUsers from '../graphics/PieUsers';
 ////
 
 const estadisticas = () => {
   const dispatch = useDispatch();
+  const {statisticsStatusProductpie,statisticsStatusUserpie} = useSelector(state => state.statistics);
   const {isAuthenticated,getAccessTokenSilently}=useAuth0()//componete de hook auth0
 
   useEffect(() => {
@@ -38,17 +40,31 @@ const estadisticas = () => {
       sx={{
         maxwidth: '100%',
         height: '100%',
-        backgroundColor:'#4917df44'
+       
       }}
       >
          <Box
           sx={{
            maxwidth: '100vh',
            height: '100%',
-           minWidth:'50vh',      
-             backgroundColor:'#f234' }}   
+           minWidth:'50vh', 
+           
+
+              }}   
              >
+              <Box  sx={{
+           maxwidth: '100vh',
+           height: '30vh',
+           minWidth:'50vh', 
+           fontSize:'4rem',
+            display:'flex',
+            justifyContent:'center'
+             }}   >
+              <b>Daily sales</b>
+              </Box>
+              <Box>
              <LineChart/>
+             </Box>
           </Box>
       </Grid>
    
@@ -64,7 +80,18 @@ const estadisticas = () => {
              backgroundColor:'#f234' }}       
  
       >
-      <PieCategory/>
+         <PieCategory/>
+
+     </Box>
+     <Box
+      sx={{
+        width: '30vh',
+           height: '100%',
+           minWidth:'30vh',      
+             backgroundColor:'#f234' }}       
+ 
+      >
+        <PieStatus statusGraphics={statisticsStatusProductpie}/>
      </Box>
      <Box
       sx={{
@@ -74,17 +101,7 @@ const estadisticas = () => {
              backgroundColor:'#f234' }}       
  
       >
-      <PieCategory/>
-     </Box>
-     <Box
-      sx={{
-        width: '30vh',
-           height: '100%',
-           minWidth:'10vh',      
-             backgroundColor:'#f234' }}       
- 
-      >
-      <PieCategory/>
+      <PieUsers statusUserGraphics={statisticsStatusUserpie}/>
      </Box>
      </Grid> 
     </Grid>

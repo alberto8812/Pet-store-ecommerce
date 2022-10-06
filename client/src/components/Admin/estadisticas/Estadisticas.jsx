@@ -35,11 +35,12 @@ const estadisticas = () => {
 
 
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={3} sx={{gap:'5vh'}}>
       <Grid item xs={8}
       sx={{
         maxwidth: '100%',
         height: '100%',
+        gap:'5px'
        
       }}
       >
@@ -54,7 +55,7 @@ const estadisticas = () => {
              >
               <Box  sx={{
            maxwidth: '100vh',
-           height: '30vh',
+           height: '15vh',
            minWidth:'50vh', 
            fontSize:'4rem',
             display:'flex',
@@ -68,16 +69,25 @@ const estadisticas = () => {
           </Box>
       </Grid>
    
-    <Grid item xs={3} sx={{
+    <Grid container item xs={3} sx={{
            maxwidth: '50vh',
            height: '100%',
-           minWidth:'50vh'}}  >
+           minWidth:'50vh',
+           marginTop:'5rem',
+           marginLeft:'2px',
+          
+           justifyContent:'center',
+           justifyItems:'center',
+           padding:'1vh'
+          }}  
+           
+           >
              <Box
       sx={{
         width: '30vh',
            height: '100%',
            minWidth:'30vh',      
-             backgroundColor:'#f234' }}       
+             }}       
  
       >
          <PieCategory/>
@@ -88,21 +98,12 @@ const estadisticas = () => {
         width: '30vh',
            height: '100%',
            minWidth:'30vh',      
-             backgroundColor:'#f234' }}       
+              }}       
  
       >
         <PieStatus statusGraphics={statisticsStatusProductpie}/>
      </Box>
-     <Box
-      sx={{
-        width: '30vh',
-           height: '100%',
-           minWidth:'10vh',      
-             backgroundColor:'#f234' }}       
- 
-      >
-      <PieUsers statusUserGraphics={statisticsStatusUserpie}/>
-     </Box>
+
      </Grid> 
     </Grid>
   )

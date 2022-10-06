@@ -1,8 +1,9 @@
 .supercontainer{
-    background-color:#e3d6eb;
+   
 }
 
-
+/* background-color:#e3d6eb;
+}*/
 .errors {
     color: red;
     font-weight: bolder;

@@ -7,7 +7,7 @@ import { useAuth0 } from "@auth0/auth0-react"; //libreia Auth0
 import axios from "axios";
 import Filter_Sort from "../Filters_Sort/Filters_Sort";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts, sortByPrice } from "../../../redux/actions";
+import { getDataProfile, getProducts, sortByPrice } from "../../../redux/actions";
 import home from "./download.png";
 import { Avatar, Grid } from "@mui/material";
 import SearchBar from "../SearchBar/SearchBar";
@@ -18,6 +18,7 @@ import LogOut from "../LogOut/LogOut";
 
 const NavBar = () => {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+
   const [update, setUpdate] = useState(" ");
   const [filtersearch, setfiltersearch] = useState({
     age: "",
@@ -28,6 +29,7 @@ const NavBar = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const allProducts = useSelector((state) => state.allProducts);
+  const userProfile = useSelector((state) => state.userProfile);
   const cart = useSelector((state) => state.cart);
   const numberCart = useSelector((state) => state.numberCart);
   const [cartQuantity, setcartQuantity] = useState(0);
@@ -38,7 +40,7 @@ const NavBar = () => {
   const [favsQuantity, setcartFavsQuantity] = useState(0);
 
   ///////FAVS/////////
-
+console.log(userProfile,"user profile")
   const calculateFavsQuantity = () => {
     let counter = 0;
     favs.forEach((item) => {
@@ -81,49 +83,22 @@ const NavBar = () => {
   /////// envio de informacion datos de usuarios/////////////////pendiente por chequeo equipo
   useEffect(() => {
     const callProtectAip = async () => {
-      if (isAuthenticated) {
-        try {
-          const token = await getAccessTokenSilently();
-          // console.log(token)
-          request = await axios.get("/loginUsers", {
+      async function editUser() {
+        const token = await getAccessTokenSilently()
+        const headers = {
             headers: {
-              authorization: `Bearer ${token}`,
+                authorization: `Bearer ${token}`
             },
-          });
-        } catch (error) {
-          console.log(error.message);
         }
-      }
-      else{
-        try {
-          const token = await getAccessTokenSilently();
-          
-          request = await axios.get("/loginAdmin", {
-            headers: {
-              authorization: `Bearer ${token}`,
-            },
-          });
-         
-        } catch (error) {
-          console.log(error.message);
-        }
-      }
+        dispatch(getDataProfile(headers))
+    
+    }
+    editUser()
+      
     };
     callProtectAip();
-  }, [isAuthenticated]);
+  }, []);
 
-  const prueba = async () => {
-    const token = await getAccessTokenSilently();
-    const userData = await axios.post(
-      "/loginUsers/datauser",
-      { direction: "j1232", city: "medellin" },
-      {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      }
-    );
-  };
 
   return (
     <Grid
@@ -158,13 +133,13 @@ const NavBar = () => {
             <img className="img-home-btn" src={home} alt="" />
             <h3 className="link_home">Home</h3>
           </Link>
-          <Link
+         { userProfile.flagAdmin===true && <Link
           to= "/admin/logs"
           onClick ={()=> window.location.redirect()}
           target= "_self"
           >
             <h3 className="link_home">Admin</h3>
-          </Link> 
+          </Link>} 
         </Grid>
         <Grid
           item

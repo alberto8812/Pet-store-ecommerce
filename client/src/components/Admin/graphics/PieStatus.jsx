@@ -11,7 +11,7 @@ const options = {
   responsive: true,
   plugins: {
     legend: {
-      display: false,
+      display: true,
     },
   },
 };
@@ -21,6 +21,7 @@ const PieStatus = ({statusGraphics}) => {
 
   let labels =statusGraphics.length>0?statusGraphics.map(res=>{if(res.status==='PENDING'||res.status==='COMPLETED'){return res.status} } ):[];
   let scores = statusGraphics.length>0?statusGraphics.map(res=>{if(res.status_count>=0){return res.status_count} } ):[];
+
 
 
 
